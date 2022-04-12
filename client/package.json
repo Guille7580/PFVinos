@@ -16,7 +16,6 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.4.1"
-
   },
   "scripts": {
     "start": "react-scripts start",
