@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './navBar.css'
+import logo from './LasMoritasLogo.png'
+import CartBtn from '../ShoppingCartButton/CartBtn'
 
-export default function NavBar() {
+
+export default function NavBar () {
   return (
-    <div className='container'>Hello 
-      <Link to='/home' className='button'>
-        Home
+    <div className='container'>
+      <img className='image' src={logo} alt='logo de las moritas' />
+      <Link to='/aboutUs' className='button'>
+        About Us
       </Link>
       <Link to='/register' className='button'>
         Register
@@ -15,11 +19,8 @@ export default function NavBar() {
         Iniciar Sesion
       </Link>
       <Link to='/carrito' className='button'>
-        Carrito
+        <CartBtn />
       </Link>
     </div>
   )
 }
-
-
-

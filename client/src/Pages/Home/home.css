@@ -1,0 +1,15 @@
+.imageHome {
+  height: 600px;
+  width: 100%;
+}
+
+.animatedParagraph {
+  color: #523e27;
+  font-size: 50px;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-top: #523e27 solid 1px;
+}
