@@ -1,12 +1,34 @@
-import React from "react";
+import React from 'react'
 import './footer.css'
-import {Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import CartBtn from '../ShoppingCartButton/CartBtn'
 
+export default function Footer () {
+    const navigate = useNavigate()
 
-export default function Footer() {
-    return (
-        <>
+    const handleSubmit = () => {
+        navigate('/home')
+      }
+      
+      const handleClick = () => {
+        navigate('/cart')
+      }
+      
+      const toContact = () => {
+        navigate('/aboutUs')
+      }
 
-        </>
-    )
+  return (
+    <div className='containerFooter'>
+      <button to='/home' onclick = {handleSubmit} className='buttons'>
+        Home
+      </button>
+      <button to='/aboutUs' onClick={toContact} className='buttons'>
+        About Us
+      </button>
+      <button to='/carrito' onClick={handleClick} className='buttons'>
+        <CartBtn />
+      </button>
+    </div>
+  )
 }
