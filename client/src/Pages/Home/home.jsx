@@ -29,6 +29,9 @@ function Home () {
         >
           Bienvenidas a Las Moritas
         </AnimatedText>
+        <div className='containerBody'>
+          
+        </div>
       <Footer />
     </>
   )

@@ -13,3 +13,8 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
   border-top: #523e27 solid 1px;
 }
+
+.containerBody{
+  height: 800px;
+  width: 100%;
+}
