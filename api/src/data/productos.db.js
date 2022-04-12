@@ -47,7 +47,7 @@ module.exports = [
     },
     {
        "id": 4,
-       "title": "Mas De Daumas Gassac ‘Frizant’",
+       "title": "Mas De Daumas Gassac Frizant",
        "price": 210.90,
        "description": "Con un olor a rosas y fresas, este burbujeante francés tiene sabores distintivos de yogur cremoso.",
        "category": "Rosado",
@@ -299,5 +299,5 @@ module.exports = [
           "rate": 6.2,
           "count": 132
        }
-    },
+    }
  ]
