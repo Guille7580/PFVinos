@@ -1,11 +1,21 @@
-import './App.css';
+import { Routes, BrowserRouter } from "react-router-dom";
 
-function App() {
+const App = () => {
+
+
   return (
-    <div className="App">
-      <h1>Henry Videogames</h1>
+    <div>
+      <BrowserRouter>
+        
+        <Routes>
+        
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
+
+
+
