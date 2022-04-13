@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Paginado.module.css";
+//probando
 
 export default function Paginado({ productPerPage, allProduct, pagination }) {
   const pageNumbers = [];
@@ -13,6 +14,7 @@ export default function Paginado({ productPerPage, allProduct, pagination }) {
         <ul className={styles.crumbs} >
             {
             pageNumbers?.map(number => (
+              
                 <li className={styles.crumbss} key={number} >
                     <div  onClick={() => pagination(number)}>{number}</div>
                 </li>
