@@ -20,7 +20,7 @@ export default function Footer () {
 
   return (
     <div className='containerFooter'>
-      <button to='/home' onclick = {handleSubmit} className='buttons'>
+      <button to='/home' onClick = {handleSubmit} className='buttons'>
         Home
       </button>
       <button to='/aboutUs' onClick={toContact} className='buttons'>

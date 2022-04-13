@@ -1,6 +1,7 @@
 .imageHome {
   height: 600px;
   width: 100%;
+  border-bottom: white solid 1px;
 }
 
 .animatedParagraph {
@@ -12,4 +13,18 @@
   transform: translate(-50%, -50%);
   font-family: Georgia, 'Times New Roman', Times, serif;
   border-top: #523e27 solid 1px;
+}
+
+.containerBody{
+  height: 800px;
+  width: 100%;
+  color: white
+}
+
+
+.pinkBar{
+  width: 100%;
+  background-color: #e8cfc1;
+  height: 20px;
+  border: white solid 1px;
 }
