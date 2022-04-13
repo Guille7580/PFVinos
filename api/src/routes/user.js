@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Router, res } = require("express");
 //const jwt = require("jsonwebtoken");
 //const bcrypt = require("bcryptjs"); //encriptar contraseña
-const { JWT_SECRET } = process.env;
+//const { JWT_SECRET } = process.env;
 //const gravatar = require("gravatar");
 //const { check, validationResult } = require('express-validator');
 
@@ -52,11 +52,11 @@ exports.post("/register", [
     }
 
     // Si no, obtenemos la imágen de gravatar para su perfil
-    const avatar = gravatar.url(email, {
-      s: "200", //size
-      r: "pg", //rate
-      d: "mm",
-    });
+    // const avatar = gravatar.url(email, {
+    //   s: "200", //size
+    //   r: "pg", //rate
+    //   d: "mm",
+    // });
 
     // Creamos el usuario
     user = {
@@ -73,7 +73,7 @@ exports.post("/register", [
     };
 
     // Encriptamos la contraseña (complejidad 10)
-    user.contrasena = await bcrypt.hash(contrasena, 10);
+    //user.contrasena = await bcrypt.hash(contrasena, 10);
 
     // Creamos el nuevo usuario y lo guardamos en la DB
     try {
@@ -111,201 +111,201 @@ exports.post("/register", [
 // @route POST user/login
 // @desc Logear un usuario
 // @access Public
-userRouter.post("/login", [
-  check('email', 'Incluya un email válido').isEmail().exists(),
-  check('contrasena', 'Incluya una contraseña válida').isString().exists()
-], async (req, res, next) => {
-  // Validaciones de express-validator
-  const errors = validationResult(req);
+// userRouter.post("/login", [
+//   check('email', 'Incluya un email válido').isEmail().exists(),
+//   check('contrasena', 'Incluya una contraseña válida').isString().exists()
+// ], async (req, res, next) => {
+//   // Validaciones de express-validator
+//   const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
-    return next({ status: 400, errors });
-  }
+//   if (!errors.isEmpty()) {
+//     return next({ status: 400, errors });
+//   }
 
-  // Si no hay errores, continúo
-  const { email, contrasena } = req.body;
+//   // Si no hay errores, continúo
+//   const { email, contrasena } = req.body;
 
-  if (!email || !contrasena) {
-    return next({
-      status: 400,
-      message: "No se han proporcionado credenciales de acceso",
-    });
-  }
+//   if (!email || !contrasena) {
+//     return next({
+//       status: 400,
+//       message: "No se han proporcionado credenciales de acceso",
+//     });
+//   }
 
-  try {
-    let user = await User.findOne({ where: { email } });
+//   try {
+//     let user = await User.findOne({ where: { email } });
 
-    // significa que el correo no es válido
-    if (!user) return next({ status: 400, message: "Credenciales no validas" });
+//     // significa que el correo no es válido
+//     if (!user) return next({ status: 400, message: "Credenciales no validas" });
 
-    user = user.toJSON();
-    if (user.rol === "3") return next({ status: 403, message: "Usuario bloqueado" });
+//     user = user.toJSON();
+//     if (user.rol === "3") return next({ status: 403, message: "Usuario bloqueado" });
 
-    // Teniedo el usuario, determinamos si la contraseña enviada es correcta
-    const isMatch = await bcrypt.compare(contrasena, user.contrasena);
+//     // Teniedo el usuario, determinamos si la contraseña enviada es correcta
+//     const isMatch = await bcrypt.compare(contrasena, user.contrasena);
 
-    // si la contraseña es incorreta
-    if (!isMatch)
-      return next({ status: 400, message: "Credenciales no validas" });
+//     // si la contraseña es incorreta
+//     if (!isMatch)
+//       return next({ status: 400, message: "Credenciales no validas" });
 
-    // si la contraseña y email son validos escribimos el payload/body
-    const payload = {
-      usuario: { id: user.id },
-    };
+//     // si la contraseña y email son validos escribimos el payload/body
+//     const payload = {
+//       usuario: { id: user.id },
+//     };
 
-    // GENERO UN TOKEN
-    jwt.sign(
-      payload,
-      JWT_SECRET,
-      {
-        expiresIn: 360000,
-      },
-      (err, token) => {
-        if (err) throw err;
-        return res.json({ token });
-      }
-    );
-  } catch (err) {
-    console.log(err);
-    next({ status: 500 });
-  }
-});
+//     // GENERO UN TOKEN
+//     jwt.sign(
+//       payload,
+//       JWT_SECRET,
+//       {
+//         expiresIn: 360000,
+//       },
+//       (err, token) => {
+//         if (err) throw err;
+//         return res.json({ token });
+//       }
+//     );
+//   } catch (err) {
+//     console.log(err);
+//     next({ status: 500 });
+//   }
+// });
 
-// @route GET api/user
-// @desc Información del usuario
-// @access Private
-userRouter.get("/", authentication, async (req, res, next) => {
-  try {
-    let user = await User.findByPk(req.user.id);
+// // @route GET api/user
+// // @desc Información del usuario
+// // @access Private
+// userRouter.get("/", authentication, async (req, res, next) => {
+//   try {
+//     let user = await User.findByPk(req.user.id);
 
-    user && (user = user.toJSON());
+//     user && (user = user.toJSON());
 
-    // le borramos la contraseña
-    delete user.contrasena;
+//     // le borramos la contraseña
+//     delete user.contrasena;
 
-    res.json(user);
-  } catch (err) {
-    console.log(err);
-    next({ status: 500 });
-  }
-});
-
-
-// @route GET api/user/all
-// @desc Me trae todos los usuarios
-// @access Private admin
-userRouter.get("/all", authentication, adminAuthentication, async (req, res, next) => {
-  try {
-    const users = await User.findAll({ attributes: { exclude: ['contrasena'] } });
-
-    res.json(users);
-  } catch (error) {
-    console.log(error);
-    next({});
-  }
-});
+//     res.json(user);
+//   } catch (err) {
+//     console.log(err);
+//     next({ status: 500 });
+//   }
+// });
 
 
-// @route PUT user/update/
-// @desc Actualizar los datos de un usuario
-// @access Private
-userRouter.put("/update", [
-  check('id', 'Incluya un "id" valido').isInt({ min: 1 }),
-  check('nombre', 'Incluya un "nombre" valido').isString().trim().not().isEmpty(),
-  check('usuario', 'Incluya un "usuario" valido').isString().trim().not().isEmpty(),
-  check('contrasena', 'Incluya una contraseña válida').isString().trim().not().isEmpty(),
-  check('email', 'Incluya un email válido').isEmail().exists(),
-  check('pais', 'Incluya un país válido').isString().trim().not().isEmpty(),
-  check('provincia', 'Incluya una provincia válida').isString().trim().not().isEmpty(),
-  check('direccion', 'Incluya una direccion válida').isString().trim().not().isEmpty(),
-  check('telefono', 'Incluya un telefono válido').isString().isLength({ min: 8 }),
-], authentication, async (req, res, next) => {
-  // Validaciones de express-validator
-  const errors = validationResult(req);
+// // @route GET api/user/all
+// // @desc Me trae todos los usuarios
+// // @access Private admin
+// userRouter.get("/all", authentication, adminAuthentication, async (req, res, next) => {
+//   try {
+//     const users = await User.findAll({ attributes: { exclude: ['contrasena'] } });
 
-  if (!errors.isEmpty()) {
-    return next({ status: 400, errors });
-  }
-
-  // Si no hay errores, continúo
-  const {
-    id,
-    nombre,
-    usuario,
-    contrasena,
-    email,
-    pais,
-    provincia,
-    direccion,
-    telefono,
-  } = req.body;
-
-  if (!id) return next({ status: 400, message: "El id es Requerido" });
-  let avata = gravatar.url(email, {
-    s: "200", //size
-    r: "pg", //rate
-    d: "mm",
-  });
-  try {
-    let password = await bcrypt.hash(contrasena, 10);
-    const UserUpdate = await User.update(
-      {
-        nombre,
-        avatar: avata,
-        usuario,
-        contrasena: password,
-        email,
-        pais,
-        provincia,
-        direccion,
-        telefono,
-      },
-      {
-        where: {
-          id,
-        },
-      }
-    );
-    if (UserUpdate)
-      return res
-        .status(200)
-        .json({ message: "Los Datos fueron Actualizados" });
-
-    return res.status(203).json({ message: "Algo Sucedio" });
-  } catch (error) {
-    return next({});
-  }
-});
+//     res.json(users);
+//   } catch (error) {
+//     console.log(error);
+//     next({});
+//   }
+// });
 
 
-// @route PUT user/block/:userId
-// @desc Bloquear un usuario
-// @access Private admin
-userRouter.put("/block/:userId", authentication, adminAuthentication, async (req, res, next) => {
-  try {
-    await User.update({ rol: "3" }, { where: { id: req.params.userId } });
+// // @route PUT user/update/
+// // @desc Actualizar los datos de un usuario
+// // @access Private
+// // userRouter.put("/update", [
+// //   check('id', 'Incluya un "id" valido').isInt({ min: 1 }),
+// //   check('nombre', 'Incluya un "nombre" valido').isString().trim().not().isEmpty(),
+// //   check('usuario', 'Incluya un "usuario" valido').isString().trim().not().isEmpty(),
+// //   check('contrasena', 'Incluya una contraseña válida').isString().trim().not().isEmpty(),
+// //   check('email', 'Incluya un email válido').isEmail().exists(),
+// //   check('pais', 'Incluya un país válido').isString().trim().not().isEmpty(),
+// //   check('provincia', 'Incluya una provincia válida').isString().trim().not().isEmpty(),
+// //   check('direccion', 'Incluya una direccion válida').isString().trim().not().isEmpty(),
+// //   check('telefono', 'Incluya un telefono válido').isString().isLength({ min: 8 }),
+// // ], authentication, async (req, res, next) => {
+// //   // Validaciones de express-validator
+// //   const errors = validationResult(req);
 
-    res.end();
-  } catch (error) {
-    cosole.log(error);
-    return next({ status: 500, message: "No se ha podido bloquear al usuario" });
-  }
-});
+// //   if (!errors.isEmpty()) {
+// //     return next({ status: 400, errors });
+// //   }
+
+// //   // Si no hay errores, continúo
+// //   const {
+// //     id,
+// //     nombre,
+// //     usuario,
+// //     contrasena,
+// //     email,
+// //     pais,
+// //     provincia,
+// //     direccion,
+// //     telefono,
+// //   } = req.body;
+
+// //   if (!id) return next({ status: 400, message: "El id es Requerido" });
+// //   let avata = gravatar.url(email, {
+// //     s: "200", //size
+// //     r: "pg", //rate
+// //     d: "mm",
+// //   });
+// //   try {
+// //     let password = await bcrypt.hash(contrasena, 10);
+// //     const UserUpdate = await User.update(
+// //       {
+// //         nombre,
+// //         avatar: avata,
+// //         usuario,
+// //         contrasena: password,
+// //         email,
+// //         pais,
+// //         provincia,
+// //         direccion,
+// //         telefono,
+// //       },
+// //       {
+// //         where: {
+// //           id,
+// //         },
+// //       }
+// //     );
+// //     if (UserUpdate)
+// //       return res
+// //         .status(200)
+// //         .json({ message: "Los Datos fueron Actualizados" });
+
+// //     return res.status(203).json({ message: "Algo Sucedio" });
+// //   } catch (error) {
+// //     return next({});
+// //   }
+// // });
 
 
-// @route PUT user/unlock/:userId
-// @desc Desbloquear un usuario
-// @access Private admin
-userRouter.put("/unlock/:userId", authentication, adminAuthentication, async (req, res, next) => {
-  try {
-    await User.update({ rol: "1" }, { where: { id: req.params.userId } });
+// // // @route PUT user/block/:userId
+// // // @desc Bloquear un usuario
+// // // @access Private admin
+// // userRouter.put("/block/:userId", authentication, adminAuthentication, async (req, res, next) => {
+// //   try {
+// //     await User.update({ rol: "3" }, { where: { id: req.params.userId } });
 
-    res.end();
-  } catch (error) {
-    cosole.log(error);
-    return next({ status: 500, message: "No se ha podido desbloquear al usuario" });
-  }
-});
+// //     res.end();
+// //   } catch (error) {
+// //     cosole.log(error);
+// //     return next({ status: 500, message: "No se ha podido bloquear al usuario" });
+// //   }
+// // });
+
+
+// // // @route PUT user/unlock/:userId
+// // // @desc Desbloquear un usuario
+// // // @access Private admin
+// // userRouter.put("/unlock/:userId", authentication, adminAuthentication, async (req, res, next) => {
+// //   try {
+// //     await User.update({ rol: "1" }, { where: { id: req.params.userId } });
+
+// //     res.end();
+// //   } catch (error) {
+// //     cosole.log(error);
+// //     return next({ status: 500, message: "No se ha podido desbloquear al usuario" });
+// //   }
+// // });
 
 
 
