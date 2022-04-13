@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASEURL } from '../assets/URLS';
-import {GET_PRODUCTS} from './types';
+import {GET_PRODUCTS, GET_DETAIL} from './types';
+
 
 
 export const getAllProducts = () => async dispatch => {
@@ -14,6 +15,18 @@ export const getAllProducts = () => async dispatch => {
       console.log(err.response.data)
   }
 }
+
+export const getDetail = (id) => async dispatch => {
+    try {
+         const json = await axios.get(`${BASEURL}/products` + id)
+        return dispatch ({
+                type: GET_DETAIL,
+                payload : json.data
+            })
+        } catch (err) {
+            console.log(err.response.data)
+        }
+    }
 
 
 
