@@ -1,6 +1,6 @@
 'use strict'
 const { Sequelize } = require("sequelize");
-const { Category, Product } = require('../db')
+const { Categoria, Product } = require('../db')
 const Op = Sequelize.Op;
 
 // const getDbInfo = async () => {
@@ -35,7 +35,7 @@ const Op = Sequelize.Op;
         const { title } = req.query
         
         if(!title) {
-            let allProducts = await Product.findAll({include: Category});
+            let allProducts = await Product.findAll({include: Categoria});
             
             res.status(200).send( allProducts )
 
@@ -46,7 +46,7 @@ const Op = Sequelize.Op;
                   [Op.iLike]: `%${title}%`
                 },
               },
-              include: Category
+              include: Categoria
             });
             if (!ProductQuery[0]) {
                 return {
