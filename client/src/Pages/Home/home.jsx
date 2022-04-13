@@ -1,14 +1,34 @@
-import React from 'react'
-import Footer from '../../components/Footer/footer'
-import NavBar from '../../components/navBar/navBar'
-import './home.css'
-import image from './PurpleGrapesSmall.jpg'
-import AnimatedText from 'react-animated-text-content'
+import React from 'react';
+import {useState , useEffect } from 'react';
+import { useSelector , useDispatch} from 'react-redux';
+// import {getAllProducts } from '../../actions/productos';
+import Cards from '../../components/cards/cards';
+import Paginado from '../../components/Paginado/Paginado';
+import Footer from '../../components/Footer/footer';
+import NavBar from '../../components/navBar/navBar';
+import './home.css';
+import image from './PurpleGrapesSmall.jpg';
+import AnimatedText from 'react-animated-text-content';
 
 function Home () {
+
+    const dispatch = useDispatch();
+    const allProduct = useSelector ((state)=>state.productosReducer.allProducts)
+    const [currentPage,setCurrentPage] =  useState(1)//Pagina actual
+    const [productPerPage ]  = useState(8)//vinos por pagina
+
+    const indexOfLastProduct = currentPage * productPerPage //8
+    const indexOfFirstProduct =  indexOfLastProduct - productPerPage //0
+
+    const currentProducts = allProduct.slice( indexOfFirstProduct, indexOfLastProduct );
+
+    const pagination = (pageNumbers) => {
+      setCurrentPage(pageNumbers);
+    };
+
   return (
-    <>
-      <NavBar />
+    <div>
+      <NavBar /> 
       <img className='imageHome' src={image} alt="" />
       <AnimatedText
           type='words' // animate words or chars
@@ -28,12 +48,23 @@ function Home () {
           rootMargin='20%'
         >
           Bienvenidas a Las Moritas
+        
         </AnimatedText>
         <div className='containerBody'>
           
         </div>
+        <Paginado 
+            productPerPage={productPerPage}
+            allProduct={allProduct.length}
+            pagination={pagination}
+            page={currentPage}
+        />
+        <Cards 
+                   currentProducts={currentProducts}
+        />
+
       <Footer />
-    </>
+    </div>
   )
 }
 
