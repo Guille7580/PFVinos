@@ -3,7 +3,7 @@ import { GET_PRODUCTS, GET_DETAIL } from "../actions/types";
 const initialState = {
   allProducts: [],
   filtered: [],
-  detail: [],
+  detalles: [],
 };
 
 export default function productsReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function productsReducer(state = initialState, action) {
     case GET_DETAIL:
       return {
         ...state,
-        detail: payload,
+        detalles: payload,
       };
     default:
       return { ...state };
