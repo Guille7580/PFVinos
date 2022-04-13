@@ -125,3 +125,60 @@ exports.register = async (req, res, next) => {
       next({});
     }
   };
+
+ exports.postLogin =  async (req, res, next) => {
+    // Validaciones de express-validator
+    const errors = validationResult(req);
+  
+    if (!errors.isEmpty()) {
+      return next({ status: 400, errors });
+    }
+  
+    // Si no hay errores, continúo
+    const { email, contrasena } = req.body;
+  
+    if (!email || !contrasena) {
+      return next({
+        status: 400,
+        message: "No se han proporcionado credenciales de acceso",
+      });
+    }
+  
+    try {
+      let user = await User.findOne({ where: { email } });
+  
+      // significa que el correo no es válido
+      if (!user) return next({ status: 400, message: "Credenciales no validas" });
+  
+      user = user.toJSON();
+      if (user.rol === "3") return next({ status: 403, message: "Usuario bloqueado" });
+  
+      // Teniedo el usuario, determinamos si la contraseña enviada es correcta
+      const isMatch = await bcrypt.compare(contrasena, user.contrasena);
+  
+      // si la contraseña es incorreta
+      if (!isMatch)
+        return next({ status: 400, message: "Credenciales no validas" });
+  
+      // si la contraseña y email son validos escribimos el payload/body
+      const payload = {
+        usuario: { id: user.id },
+      };
+  
+      // GENERO UN TOKEN
+      jwt.sign(
+        payload,
+        JWT_SECRET,
+        {
+          expiresIn: 360000,
+        },
+        (err, token) => {
+          if (err) throw err;
+          return res.json({ token });
+        }
+      );
+    } catch (err) {
+      console.log(err);
+      next({ status: 500 });
+    }
+  }
