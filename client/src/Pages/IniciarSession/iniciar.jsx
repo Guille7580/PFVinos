@@ -6,6 +6,7 @@ import Footer from '../../components/Footer/footer'
 export default function IniciarSession () {
   return (
       <div>
+          {/* /*Hola */}
       <NavBar />
     <div className='iniciar'>
       <h1>Iniciar Session</h1>
