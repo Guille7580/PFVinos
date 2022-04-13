@@ -13,7 +13,7 @@ export default function Cards ({currentProducts}) {
                 {currentProducts?.map( el => 
                         <div key={el.id}>
                             <Link to={'/detalles/'+ el.id}  >
-                                <Card id={el.id} title={el.title} image={el.image } descriptions={el.descriptions} price={el.price} />
+                                <Card id={el.id} age= {el.age} title={el.title} image={el.image } descriptions={el.descriptions} price={el.price} />
                             </Link>
                         </div>
                 )}
