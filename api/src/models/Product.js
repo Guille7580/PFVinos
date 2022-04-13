@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
-module.exports = (sequelize ) => {
+module.exports = sequelize => {
   // defino el modelo
   sequelize.define('Product', {
     title: {
@@ -14,11 +14,11 @@ module.exports = (sequelize ) => {
     },
     descriptions: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     stock: {
       type: DataTypes.INTEGER,
@@ -27,31 +27,29 @@ module.exports = (sequelize ) => {
     },
     categoriaId: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: true
     },
     bodega: {
       type: DataTypes.TEXT,
       allowNull: true
     },
     cepa: {
-    type: DataTypes.TEXT,
-    allowNull: true
-  },
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
     age: {
       type: DataTypes.INTEGER,
       allowNull: true
-      
-  },
-  rate: {
-    type: DataTypes.FLOAT,
-    defaultValue: 0,
-    allowNull: true
-  },
-  count: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
-    allowNull: true
-  },
-})
+    },
+    rate: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0,
+      allowNull: true
+    },
+    count: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: true
+    }
+  })
 }
-

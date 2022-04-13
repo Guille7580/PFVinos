@@ -7,8 +7,7 @@ export default function Paginado({ productPerPage, allProduct, pagination }) {
   for (let i = 0; i < Math.ceil(allProduct / productPerPage); i++) {
     pageNumbers.push(i + 1);
   }
-  console.log(pageNumbers)
-  console.log(productPerPage)
+ 
   return(
     <nav>
         <ul className={styles.crumbs} >
