@@ -1,0 +1,17 @@
+.containerAbout{
+    color: black;
+    background-color:#e8cfc1;
+   text-align: center;
+}
+
+.members{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
+}
+
+h3{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
