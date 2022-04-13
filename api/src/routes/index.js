@@ -2,7 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const { Sequelize } = require('sequelize')
-const { Categoria, Product } = require('../db')
+const { Categoria, Product, User } = require('../db')
 
 const router = Router();
 
@@ -13,10 +13,15 @@ const router = Router();
 
 //------------------- product -----------------------------------------
 var product = require('./product')
+var user = require('./user')
 
-
+//Product
 router.get('/products', product.getAllProducts)
 
+
+//User
+router.get('/users', user.getUser)
+router.post('/register', user.register)
 
 
 
