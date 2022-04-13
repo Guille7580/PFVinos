@@ -1,0 +1,29 @@
+.cartContainer {
+  background-color: white;
+  text-align: center;
+  flex-wrap: wrap;
+  height: 650px;
+}
+
+.totalContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cartButton {
+  display: flex;
+  text-align: center;
+  justify-items: space-around;
+}
+
+.buttons {
+  justify-items: end;
+  height: fit-content;
+  width: fit-content;
+}
+
+.cartButtons{
+  display: flex;
+  
+}
