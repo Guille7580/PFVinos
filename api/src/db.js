@@ -3,11 +3,11 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, ENVIRONMENT, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, ENVIRONMENT, DB_NAME, DATABASE_URL
 } = process.env;
 
 const URL = ENVIRONMENT === "development" ? `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}` : DATABASE_URL;
-const basename = path.basename(__filename);
+
 
 const options = ENVIRONMENT === "development" ? {
   logging: false,
@@ -23,8 +23,10 @@ const options = ENVIRONMENT === "development" ? {
   },
 };
 
-const modelDefiners = [];
 const sequelize = new Sequelize(URL, options);
+const basename = path.basename(__filename);
+const modelDefiners = [];
+
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
@@ -62,7 +64,6 @@ const { Product, Categoria, User, Order } = sequelize.models;
   sourceKey: 'id',
   foreignKey: 'usuarioId'
 });
-
 
 // Relacionando Pedido y Usuario
 Order.belongsTo(User, {
