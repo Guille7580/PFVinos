@@ -15,6 +15,8 @@ const router = Router();
 var product = require('./product')
 
 router.get('/products', product.getAllProducts)
+router.get('/products/:id',product.getProductById)
+//router.get('category/:id', product.getAllProductosByCategory)
 
 
 
