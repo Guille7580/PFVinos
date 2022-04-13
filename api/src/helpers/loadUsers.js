@@ -1,10 +1,10 @@
-const { Users } = require('../db')
-const DATA_USERS = require("../data/usuarios.db");
+const { User } = require('../db')
+const DATA_USERS = require("../data/users.db");
 const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
 
 
-const loadUsuarios = async () => {
+const loadUser = async () => {
    try {
       const usuariosMaped = await Promise.all(DATA_USERS.map(async (e) => {
          let contrasena = "", avatar = "";
@@ -44,4 +44,4 @@ const loadUsuarios = async () => {
 }
 
 
-module.exports = loadUsuarios;
+module.exports = loadUser;

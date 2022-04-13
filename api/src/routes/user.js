@@ -17,16 +17,7 @@ const { User } = require("../db");
 const getDbUser = async () => {
     return await User.findAll();
 }
-function randomString(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
-    }
-    return result;
-}
+
 exports.getUser = async function (req, res, next) {
     try {
         const { id } = req.query;
