@@ -18,4 +18,13 @@
 .containerBody{
   height: 800px;
   width: 100%;
+  color: white
+}
+
+
+.pinkBar{
+  width: 100%;
+  background-color: #e8cfc1;
+  height: 20px;
+  border: white solid 1px;
 }

@@ -14,7 +14,7 @@ export default function Paginado({ productPerPage, allProduct, pagination }) {
             {
             pageNumbers?.map(number => (
                 <li className={styles.crumbss} key={number} >
-                    <div  onClick={() => pagination(number)}>{number}</div>
+                    <div  className={styles.numbers} onClick={() => pagination(number)}>{number}</div>
                 </li>
             ))
             }
