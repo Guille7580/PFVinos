@@ -2,17 +2,17 @@ require("dotenv").config();
 const { Router, res } = require("express");
 const { Sequelize } = require("sequelize");
 const Op = Sequelize.Op;
-//const jwt = require("jsonwebtoken");
-//const bcrypt = require("bcryptjs"); //encriptar contraseña
-//const { JWT_SECRET } = process.env;
-//const gravatar = require("gravatar");
-//const { check, validationResult } = require('express-validator');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs"); //encriptar contraseña
+const { JWT_SECRET } = process.env;
+const gravatar = require("gravatar");
+const { check, validationResult } = require('express-validator');
 
 const userRouter = Router();
 const { User } = require("../db");
 // Requerimos el middleware de autenticación
-// const { authentication } = require("../middlewares");
-// const adminAuthentication = require("../middlewares/adminAuthentication");
+//const { authentication } = require("../middlewares");
+//const adminAuthentication = require("../middlewares/adminAuthentication");
 
 const getDbUser = async () => {
     return await User.findAll();
@@ -40,46 +40,88 @@ exports.getUser = async function (req, res, next) {
         next(error);
     }
 }
-exports.register = async function (req, res, next) {
-    try {
-        //Checks query.
-        let {
-            nombre,
-            usuario,
-            contrase,
-            arguments, 
-            email,
-            pais,
-            provincia,
-            direccion,
-            telefono,
-            rol
-        } = req.body;
-
-        let emailUser = await User.findAll({
-            where: { email: email }
-        })
-
-        if (emailUser.length) {
-            res.status(400).send({ info: "Mail is already taken" });
-            return
-        }
-
-        let userCreated = await User.create({
-            nombre,
-            usuario,
-            contrase,
-            arguments, 
-            email,
-            pais,
-            provincia,
-            direccion,
-            telefono,
-            rol
-        });
-        res.status(201).send(userCreated)
-    } catch (error) {
-        next({ info: error });
+exports.register = async (req, res, next) => {
+    // Validaciones de express-validator
+    const errors = validationResult(req);
+  
+    if (!errors.isEmpty()) {
+      return next({ status: 400, errors });
     }
+  
+    // Si no hay errores, continúo
+    const {
+      nombre,
+      usuario,
+      contrasena,
+      email,
+      pais,
+      provincia,
+      direccion,
+      telefono,
 
-}
+    } = req.body;
+  
+    try {
+      let user = await User.findOne({ where: { email } });
+  
+      // Si el correo ya está registrado, devuelvo un error
+      if (user) {
+        return next({ status: 400, message: "Ya posee una cuenta registrada" });
+      }
+  
+      // Si no, obtenemos la imágen de gravatar para su perfil
+      const avatar = gravatar.url(email, {
+        s: "200", //size
+        r: "pg", //rate
+        d: "mm",
+      });
+  
+      // Creamos el usuario
+      user = {
+        nombre,
+        usuario,
+        contrasena,
+        email,
+        pais,
+        provincia,
+        direccion,
+        telefono,
+        avatar,
+        rol: 1,
+      };
+  
+      // Encriptamos la contraseña (complejidad 10)
+      user.contrasena = await bcrypt.hash(contrasena, 10);
+  
+      // Creamos el nuevo usuario y lo guardamos en la DB
+      try {
+        user = await User.create(user);
+        // console.log(user.toJSON());
+      } catch (error) {
+        // no se ha podido crear el usuario
+        console.log(error);
+      }
+  
+      // generamos el payload/body para generar el token
+      const payload = {
+        usuario: {
+          id: user.id,
+        },
+      };
+  
+      jwt.sign(
+        payload,
+        JWT_SECRET,
+        {
+          expiresIn: 360000, //for development
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.status(201).json({ token });
+        }
+      );
+    } catch (err) {
+      console.log(err);
+      next({});
+    }
+  };
