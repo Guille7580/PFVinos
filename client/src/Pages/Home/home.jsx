@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {filterByCategory } from '../../actions/categorias';
+import {filterByCategory, order_ByName, order_ByPrice } from '../../actions/categorias'
 // import {getAllProducts } from '../../actions/productos';
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
@@ -15,6 +15,9 @@ function Home () {
   const dispatch = useDispatch()
   const allProduct = useSelector(state => state.productosReducer.allProducts)
   const allActivities = useSelector((state)=>state.countryActivity)
+  const [orden,setOrden] = useState('')
+  const [ordenx,setOrdenx] = useState('')
+
   const [currentPage, setCurrentPage] = useState(1) //Pagina actual
   const [productPerPage] = useState(8) //vinos por pagina
 
@@ -35,7 +38,21 @@ function Home () {
     e.preventDefault()
     dispatch(filterByCategory(e.target.value))
     setCurrentPage(1)
-}
+  }
+
+  const handleorderByName = (e) =>{
+    e.preventDefault();
+    dispatch(order_ByName(e.target.value))
+    setCurrentPage(1)
+    setOrden(`Ordenado ${e.target.value}`)
+  }
+
+  const handleorderPrice = (e) =>{
+    e.preventDefault();
+    dispatch(order_ByPrice(e.target.value))
+    setCurrentPage(1)
+    setOrdenx(`Ordenadox ${e.target.value}`)
+  } 
 
   return (
     <div>
@@ -62,6 +79,18 @@ function Home () {
       </AnimatedText>
       <div className='pinkBar'></div>
       <div>
+      <label> Precios: </label>
+                <select onChange={handleorderPrice}>
+                    <option value='nada'>Ordenar</option> 
+                    <option value='asce'>Menor a Mayor</option>
+                    <option value='desce'>Mayor a Menor</option>
+                </select>
+      <label> Nombre Vino: </label>
+                <select onChange={handleorderByName}>
+                     <option value='nada'>Eliga un Orden</option> 
+                    <option value='asc'>Ascendente</option>
+                    <option value='desc'>Descendente</option>
+                </select>
       <label> Categoria: </label>
                 <select onChange={handleFilterCat} >
                     <option value='All'>Todos</option>

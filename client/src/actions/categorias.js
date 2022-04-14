@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASEURL } from '../assets/URLS';
-import {GET_CATEGORIA , FILTER_BY_CATEGORY } from './types';
+import {GET_CATEGORIA, FILTER_BY_CATEGORY, ORD_BYPRICE, ORD_BYNAME  } from './types';
 
 
 
@@ -25,6 +25,18 @@ export function filterByCategory(payload) {
        payload
  
     }
+  }
+  export const order_ByPrice = (payload) => {
+    return {
+      type: ORD_BYPRICE,
+      payload,
+    };
+  }
+  export const order_ByName = (payload) => {
+    return {
+      type: ORD_BYNAME,
+      payload,
+    };
   }
  
 
