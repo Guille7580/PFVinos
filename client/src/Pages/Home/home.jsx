@@ -21,24 +21,28 @@ function Home () {
   const [currentPage, setCurrentPage] = useState(1) //Pagina actual
   const [productPerPage] = useState(8) //vinos por pagina
 
+  
+
   const indexOfLastProduct = currentPage * productPerPage //8
   const indexOfFirstProduct = indexOfLastProduct - productPerPage //0
 
+  
+  
   const currentProducts = allProduct.slice(
     indexOfFirstProduct,
     indexOfLastProduct
-  )
+    )
+    
+    const pagination = pageNumbers => {
+      setCurrentPage(pageNumbers)
+    }
 
-  const pagination = pageNumbers => {
-    setCurrentPage(pageNumbers)
+    const handleFilterCat = (e) => {
+      e.preventDefault()
+      dispatch(filterByCategory(e.target.value))
+      setCurrentPage(1)
   }
 
-
-  const handleFilterCat = (e) => {
-    e.preventDefault()
-    dispatch(filterByCategory(e.target.value))
-    setCurrentPage(1)
-  }
 
   const handleorderByName = (e) =>{
     e.preventDefault();
@@ -60,6 +64,7 @@ function Home () {
       <img className='imageHome' src={image} alt='' />
       <AnimatedText
         type='words' // animate words or chars
+        
         animation={{
           x: '200px',
           y: '-20px',
@@ -97,10 +102,11 @@ function Home () {
                     <option value='Blanco'>Blanco</option>
                     <option value='Tinto'>Tinto</option>
                     <option value='Rosado'>Rosado</option>
-                
+
                 </select>
       </div>
       <div className='containerBody'>
+        
         <Paginado
           productPerPage={productPerPage}
           allProduct={allProduct.length}
