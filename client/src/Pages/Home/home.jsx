@@ -59,7 +59,14 @@ function Home () {
           pagination={pagination}
           page={currentPage}
         />
-        <Cards currentProducts={currentProducts} />
+       
+   
+{
+    typeof(currentProducts[0])  === "string"?
+    <h1>{currentProducts[0]}</h1>:
+    <Cards currentProducts={currentProducts} />
+
+}
       </div>
      
     </div>

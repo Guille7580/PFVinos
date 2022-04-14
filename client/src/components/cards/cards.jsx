@@ -5,7 +5,7 @@ import style from './cards.module.css'
 
 export default function Cards ({ currentProducts }) {
   //console.log('paginado ' , currentCountries)
-
+console.log(currentProducts)
   return (
     <div className={style.cards}>
       {currentProducts?.map(el => (

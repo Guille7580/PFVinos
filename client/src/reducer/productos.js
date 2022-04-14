@@ -1,6 +1,7 @@
-import { GET_PRODUCTS, GET_DETAIL } from "../actions/types";
+import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS } from "../actions/types";
 
 const initialState = {
+  
   allProducts: [],
   filtered: [],
   detalles: [],
@@ -19,6 +20,12 @@ export default function productsReducer(state = initialState, action) {
       return {
         ...state,
         detalles: payload,
+      };
+
+    case GET_NAME_PRODUCTS:
+      return {
+        ...state,
+        allProducts: payload,
       };
     default:
       return { ...state };

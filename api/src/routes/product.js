@@ -4,17 +4,17 @@ const { Sequelize } = require("sequelize");
 const { Categoria, Product } = require('../db')
 const Op = Sequelize.Op;
 
-// const mapProduct = (foundedProduct) => {
-//   foundedProduct = foundedProduct.toJSON()
-//   if (foundedProduct.categoriaId) {
-//     delete foundedProduct.categoriaId;
-//     let category = foundedProduct.Categorium.nombre;
-//     foundedProduct.category = category;
-//   }
-//   delete foundedProduct.Categorium;
+ const mapProduct = (foundedProduct) => {
+   foundedProduct = foundedProduct.toJSON()
+  if (foundedProduct.categoriaId) {
+    delete foundedProduct.categoriaId;
+    let category = foundedProduct.Categorium.nombre;
+    foundedProduct.category = category;
+  }
+  delete foundedProduct.Categorium;
 
-//   return foundedProduct;
-// }
+  return foundedProduct;
+ }
   
   exports.getAllProducts = async function (req, res, next) {
     try {
@@ -34,13 +34,14 @@ const Op = Sequelize.Op;
               },
               include: Categoria
             });
-            if (!ProductQuery[0]) {
-                return {
-                  error: {
-                    status: 404,
-                    message: `No se encuentra ningun Producto con el nombre '${title}'`
-                  }
-                };
+            console.log(ProductQuery)
+            if (ProductQuery.length === 0) {
+              console.log("salio mal")
+              const error = [
+             `No se encuentra ningun Producto con el nombre '${title}'`
+              ]
+              return res.json(error)
+                
               }
               ProductQuery.map(prod => mapProduct(prod));
               res.status(200).send( ProductQuery);
