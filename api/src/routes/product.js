@@ -16,7 +16,7 @@ const Op = Sequelize.Op;
 //   return foundedProduct;
 // }
   
-  exports.getAllProducts = async function (req, res, next) {
+exports.getAllProducts = async function (req, res, next) {
     try {
         const { title } = req.query
         
@@ -50,19 +50,17 @@ const Op = Sequelize.Op;
     }
 }
 exports.getProductById = async function (req, res, next) {
-const id = req.params.id
-try {
-  let prodId = await Product.findByPk(id, {
-    include: {
-      model: Categoria,
-      required: false,
-      attributes: ["nombre"]
-    }
-  })
-
- 
+  const id = req.params.id
+  try {
+    let prodId = await Product.findByPk(id, {
+      include: {
+        model: Categoria,
+        required: false,
+        attributes: ["nombre"]
+      }
+    })
   prodId ?  res.status(200).send(prodId) : res.status(404).send('no se encuentra')
-} catch (error) {
+  } catch (error) {
   next(error)
-}
+  }
 }

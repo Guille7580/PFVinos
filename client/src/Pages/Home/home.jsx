@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import {filterByCategory } from '../../actions/categorias';
 // import {getAllProducts } from '../../actions/productos';
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
@@ -13,6 +14,7 @@ import AnimatedText from 'react-animated-text-content'
 function Home () {
   const dispatch = useDispatch()
   const allProduct = useSelector(state => state.productosReducer.allProducts)
+  const allActivities = useSelector((state)=>state.countryActivity)
   const [currentPage, setCurrentPage] = useState(1) //Pagina actual
   const [productPerPage] = useState(8) //vinos por pagina
 
@@ -27,6 +29,13 @@ function Home () {
   const pagination = pageNumbers => {
     setCurrentPage(pageNumbers)
   }
+
+
+  const handleFilterCat = (e) => {
+    e.preventDefault()
+    dispatch(filterByCategory(e.target.value))
+    setCurrentPage(1)
+}
 
   return (
     <div>
@@ -52,6 +61,16 @@ function Home () {
         Bienvenidas a Las Moritas
       </AnimatedText>
       <div className='pinkBar'></div>
+      <div>
+      <label> Categoria: </label>
+                <select onChange={handleFilterCat} >
+                    <option value='All'>Todos</option>
+                    <option value='Blanco'>Blanco</option>
+                    <option value='Tinto'>Tinto</option>
+                    <option value='Rosado'>Rosado</option>
+                
+                </select>
+      </div>
       <div className='containerBody'>
         <Paginado
           productPerPage={productPerPage}
