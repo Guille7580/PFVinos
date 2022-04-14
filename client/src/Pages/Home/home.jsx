@@ -32,6 +32,7 @@ function Home () {
     const pagination = pageNumbers => {
       setCurrentPage(pageNumbers)
     }
+    
     useEffect(() => {
     (setCurrentPage(1));
   }, [allProduct]);
