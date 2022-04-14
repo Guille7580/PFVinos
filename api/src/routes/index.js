@@ -8,8 +8,8 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-
-
+//-------------------categorias---------------------------------------
+const categorRoute= require('./categorias')
 
 //------------------- product -----------------------------------------
 var product = require('./product')
@@ -24,6 +24,10 @@ router.get('/products/:id',product.getProductById)
 //User
 router.get('/users', user.getUser)
 router.post('/register', user.register)
+
+//Categorias
+router.use('/categoria',categorRoute)
+
 
 
 

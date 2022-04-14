@@ -4,19 +4,19 @@ const { Sequelize } = require("sequelize");
 const { Categoria, Product } = require('../db')
 const Op = Sequelize.Op;
 
-// const mapProduct = (foundedProduct) => {
-//   foundedProduct = foundedProduct.toJSON()
-//   if (foundedProduct.categoriaId) {
-//     delete foundedProduct.categoriaId;
-//     let category = foundedProduct.Categorium.nombre;
-//     foundedProduct.category = category;
-//   }
-//   delete foundedProduct.Categorium;
+ const mapProduct = (foundedProduct) => {
+   foundedProduct = foundedProduct.toJSON()
+  if (foundedProduct.categoriaId) {
+    delete foundedProduct.categoriaId;
+    let category = foundedProduct.Categorium.nombre;
+    foundedProduct.category = category;
+  }
+  delete foundedProduct.Categorium;
 
-//   return foundedProduct;
-// }
+  return foundedProduct;
+ }
   
-  exports.getAllProducts = async function (req, res, next) {
+exports.getAllProducts = async function (req, res, next) {
     try {
         const { title } = req.query
         
@@ -34,13 +34,14 @@ const Op = Sequelize.Op;
               },
               include: Categoria
             });
-            if (!ProductQuery[0]) {
-                return {
-                  error: {
-                    status: 404,
-                    message: `No se encuentra ningun Producto con el nombre '${title}'`
-                  }
-                };
+            console.log(ProductQuery)
+            if (ProductQuery.length === 0) {
+              console.log("salio mal")
+              const error = [
+             `No se encuentra ningun Producto con el nombre '${title}'`
+              ]
+              return res.json(error)
+                
               }
               ProductQuery.map(prod => mapProduct(prod));
               res.status(200).send( ProductQuery);
@@ -50,19 +51,17 @@ const Op = Sequelize.Op;
     }
 }
 exports.getProductById = async function (req, res, next) {
-const id = req.params.id
-try {
-  let prodId = await Product.findByPk(id, {
-    include: {
-      model: Categoria,
-      required: false,
-      attributes: ["nombre"]
-    }
-  })
-
- 
+  const id = req.params.id
+  try {
+    let prodId = await Product.findByPk(id, {
+      include: {
+        model: Categoria,
+        required: false,
+        attributes: ["nombre"]
+      }
+    })
   prodId ?  res.status(200).send(prodId) : res.status(404).send('no se encuentra')
-} catch (error) {
+  } catch (error) {
   next(error)
-}
+  }
 }
