@@ -13,7 +13,7 @@ export default function Detail() {
         dispatch(getDetail(id));
       }, [dispatch]);  
 
-    const myProducts= useSelector((state) => state.detalles);
+    const myProducts= useSelector((state) => state.productosReducer.detalles);
       console.log(myProducts)
 return (    
            
@@ -21,8 +21,10 @@ return (
     
            {Object.keys(myProducts).length > 0 ? (
               <div>
-                  <h1>{myProducts[0]?.title} hola </h1>
-                  <img src={myProducts[0]?.image} alt="img not found" />
+                  <h1>{myProducts.title}</h1>
+                  <img src={myProducts.image} alt="img not found" />
+                  <h3>{myProducts.descriptions}</h3>
+                  <h5>{myProducts.price}</h5>
             </div>
          
           ) : console.log("error")

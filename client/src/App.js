@@ -8,7 +8,7 @@ import IniciarSession from './Pages/IniciarSession/iniciar.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Detail from "./components/Detail/detail.jsx"
-import {  useDispatch } from 'react-redux'
+
 
 import { useEffect } from 'react'
 import { getAllProducts } from './actions/productos'
