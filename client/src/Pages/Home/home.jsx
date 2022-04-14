@@ -27,7 +27,7 @@ function Home () {
   const indexOfFirstProduct = indexOfLastProduct - productPerPage //0
 
   
-  
+
   const currentProducts = allProduct.slice(
     indexOfFirstProduct,
     indexOfLastProduct
@@ -57,6 +57,10 @@ function Home () {
     setCurrentPage(1)
     setOrdenx(`Ordenadox ${e.target.value}`)
   } 
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [allProduct]);
 
   return (
     <div>
