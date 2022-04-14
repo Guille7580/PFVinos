@@ -1,0 +1,31 @@
+.iniciar {
+  background-color: #532c27;
+  color: #e8cfc1;
+  height: 520px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.containerIn {
+  border: #e8cfc1 solid 1px;
+  padding: 40px;
+  margin: 20px;
+}
+
+.buttonSess {
+  margin-left: 30%;
+  border-radius: 5px;
+  height: 35px;
+  margin-top: 10px;
+  width: 70px;
+  background-color: #e8cfc1;
+}
+
+input{
+    border-radius: 5px;
+    background-color: #e8cfc1;
+    padding: 20px;
+    margin: 20px;
+}
