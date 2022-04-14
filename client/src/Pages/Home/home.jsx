@@ -13,21 +13,29 @@ import AnimatedText from 'react-animated-text-content'
 function Home () {
   const dispatch = useDispatch()
   const allProduct = useSelector(state => state.productosReducer.allProducts)
+  console.log(allProduct)
   const [currentPage, setCurrentPage] = useState(1) //Pagina actual
   const [productPerPage] = useState(8) //vinos por pagina
+
+  
 
   const indexOfLastProduct = currentPage * productPerPage //8
   const indexOfFirstProduct = indexOfLastProduct - productPerPage //0
 
+  
+  
   const currentProducts = allProduct.slice(
     indexOfFirstProduct,
     indexOfLastProduct
-  )
-
-  const pagination = pageNumbers => {
-    setCurrentPage(pageNumbers)
-  }
-
+    )
+    
+    const pagination = pageNumbers => {
+      setCurrentPage(pageNumbers)
+    }
+    useEffect(() => {
+    (setCurrentPage(1));
+  }, [allProduct]);
+    
   return (
     <div>
       <NavBar />
