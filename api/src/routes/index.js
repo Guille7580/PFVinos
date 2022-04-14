@@ -28,6 +28,12 @@ router.post('/register', user.register)
 
 
 
+// ------------------- Carrito -----------------------------------
+var carro = require('./carrito')
+
+router.post('/carritos', carro.carritoPost)
+router.get('/carritos/:usuarioId', carro.carritoGet)
+
 
 
 module.exports = router;
