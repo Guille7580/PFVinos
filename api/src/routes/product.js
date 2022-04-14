@@ -1,34 +1,20 @@
 'use strict'
+const { send } = require("process");
 const { Sequelize } = require("sequelize");
 const { Categoria, Product } = require('../db')
 const Op = Sequelize.Op;
 
-// const getDbInfo = async () => {
-//     return await Product.findAll({
-//       include: {
-//         model: Category,
-//         attributes: ['name'],
-//         through: {
-//           attributes: []
-//         }
-//       }
-//     })
+// const mapProduct = (foundedProduct) => {
+//   foundedProduct = foundedProduct.toJSON()
+//   if (foundedProduct.categoriaId) {
+//     delete foundedProduct.categoriaId;
+//     let category = foundedProduct.Categorium.nombre;
+//     foundedProduct.category = category;
 //   }
-  
-//   const getDbInfoById = async (id) => {
-//     return await Product.findAll({
-//       where: {
-//         id: id
-//       },
-//       include: {
-//         model: Category,
-//         attributes: ['name'],
-//         through: {
-//           attributes: []
-//         }
-//       }
-//     })
-//   }
+//   delete foundedProduct.Categorium;
+
+//   return foundedProduct;
+// }
   
   exports.getAllProducts = async function (req, res, next) {
     try {
@@ -62,4 +48,21 @@ const Op = Sequelize.Op;
     } catch(error) {
         next({info: error})
     }
+}
+exports.getProductById = async function (req, res, next) {
+const id = req.params.id
+try {
+  let prodId = await Product.findByPk(id, {
+    include: {
+      model: Categoria,
+      required: false,
+      attributes: ["nombre"]
+    }
+  })
+
+ 
+  prodId ?  res.status(200).send(prodId) : res.status(404).send('no se encuentra')
+} catch (error) {
+  next(error)
+}
 }

@@ -17,6 +17,8 @@ var user = require('./user')
 
 //Product
 router.get('/products', product.getAllProducts)
+router.get('/products/:id',product.getProductById)
+//router.get('category/:id', product.getAllProductosByCategory)
 
 
 //User
