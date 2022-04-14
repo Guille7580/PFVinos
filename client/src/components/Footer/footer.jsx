@@ -4,29 +4,29 @@ import { useNavigate } from 'react-router-dom'
 import CartBtn from '../ShoppingCartButton/CartBtn'
 
 export default function Footer () {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    const handleSubmit = () => {
-        navigate('/home')
-      }
-      
-      const handleClick = () => {
-        navigate('/cart')
-      }
-      
-      const toContact = () => {
-        navigate('/aboutUs')
-      }
+  const handleSubmit = () => {
+    navigate('/')
+  }
+
+  const handleClick = () => {
+    navigate('/carrito')
+  }
+
+  const toContact = () => {
+    navigate('/aboutUs')
+  }
 
   return (
     <div className='containerFooter'>
-      <button to='/home' onClick = {handleSubmit} className='buttons'>
+      <button onClick={handleSubmit} className='buttons'>
         Home
       </button>
-      <button to='/aboutUs' onClick={toContact} className='buttons'>
+      <button onClick={toContact} className='buttons'>
         About Us
       </button>
-      <button to='/carrito' onClick={handleClick} className='buttons'>
+      <button onClick={handleClick} className='buttons'>
         <CartBtn />
       </button>
     </div>
