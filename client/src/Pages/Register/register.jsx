@@ -1,212 +1,279 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import './register.css'
+import { useDispatch } from 'react-redux'
 import NavBar from '../../components/navBar/navBar'
 import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
+//import Swal from 'sweetalert2'
 import { validateEmail, validateTlf } from '../Helpers/validateForm'
-import { auth, provider } from '../Helpers/validateAuth'
+// import { auth, provider } from '../Helpers/validateAuth'
+// import { getUser } from '../../actions/types'
+import { postUser } from '../../actions/user'
 
-const initialForm = {
-  nombre: '',
-  usuario: '',
-  contrasena: '',
-  confirm_contrasena: '',
-  email: '',
-  pais: '',
-  provincia: '',
-  direccion: '',
-  telefono: ''
-}
 
-const validateForm = function (form) {
+// const initialForm = {
+//   nombre: '',
+//   usuario: '',
+//   contrasena: '',
+//   confirm_contrasena: '',
+//   email: '',
+//   pais: '',
+//   provincia: '',
+//   direccion: '',
+//   telefono: ''
+// }
+
+const validateForm = function (input) {
   const errors = {}
-  if (!form.nombre.trim()) {
+  if (!input.nombre.trim()) {
     errors.nombre = 'Campo requirido'
-  } else if (form.nombre.length < 4) {
+  } else if (input.nombre.length < 4) {
     errors.nombre = 'Minimo 4 caracters'
-  } else if (form.nombre > 25) {
+  } else if (input.nombre > 25) {
     errors.nombre = 'Maximo 25 caracters'
   }
 
-  if (!form.usuario.trim()) {
+  if (!input.usuario.trim()) {
     errors.usuario = 'Campo requirido'
-  } else if (form.usuario.length < 5) {
+  } else if (input.usuario.length < 5) {
     errors.usuario = 'Minimo 5 caracters'
-  } else if (form.usuario.length > 25) {
+  } else if (input.usuario.length > 25) {
     errors.usuario = 'Maximo 25 caracters'
   }
-  if (!form.contrasena.trim()) {
+  if (!input.contrasena.trim()) {
     errors.contrasena = 'Campo requerido'
-  } else if (form.contrasena.length < 10) {
+  } else if (input.contrasena.length < 10) {
     errors.contrasena = 'Mínimo 10 caracteres'
   }
-  if (!form.email.trim()) {
+  if (!input.email.trim()) {
     errors.email = 'Campo requerido'
-  } else if (!validateEmail(form.email)) {
+  } else if (!validateEmail(input.email)) {
     errors.email = 'Escriba un email válido'
   }
-  if (!form.pais.trim()) {
+  if (!input.pais.trim()) {
     errors.pais = 'Campo requerido'
   }
-  if (!form.provincia.trim()) {
+  if (!input.provincia.trim()) {
     errors.provincia = 'Campo requerido'
   }
-  if (!form.direccion.trim()) {
+  if (!input.direccion.trim()) {
     errors.direccion = 'Campo requerido'
-  } else if (form.direccion.length < 10) {
-    errors.direccion = 'Mínimo 10 caracteres'
-  } else if (form.direccion.length > 40) {
+  } else if (input.direccion.length < 5) {
+    errors.direccion = 'Mínimo 5 caracteres'
+  } else if (input.direccion.length > 40) {
     errors.direccion = 'Máximo 40 caracteres'
   }
-  if (!form.telefono.trim()) {
+  if (!input.telefono.trim()) {
     errors.telefono = 'Campo requerido'
-  } else if (!validateTlf(form.telefono)) {
+  } else if (!validateTlf(input.telefono)) {
     errors.telefono = 'Escriba un número de telefono válido'
   }
-  if (form.confirm_contrasena !== form.contrasena) {
+  if (input.confirm_contrasena !== input.contrasena) {
     errors.confirm_contrasena = 'Las contraseñas no coinciden'
   }
   return errors
 }
 
-export default function Register ({
-  updateUser,
-  register,
-  isAuth,
-  user,
-  edit = false
-}) {
-  const [form, setForm] = useState(
-    edit
-      ? { ...useReducer, confirm_contrasena: '', contrasena: '' }
-      : initialForm
-  )
+export default function Register ({ edit = false }) {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const handleClick = () => {
-    navigate('/')
-  }
 
+  // const [form, setForm] = useState(
+  //   edit ? { ...useReducer, contrasena: '', contrasena: '' } : initialForm
+  // )
+
+  const [input, setInput] = useState({
+    nombre: '',
+    usuario: '',
+    contrasena: '',
+    confirm_contrasena: '',
+    email: '',
+    pais: '',
+    provincia: '',
+    direccion: '',
+    telefono: ''
+  })
+
+  // const handleClick = () => {
+  //   navigate('/')
+  // }
   const [errors, setErrors] = useState({})
 
-  const handleChange = e => {
-    const { name, value } = e.target
+  // const handleInputChange = function (e) {
+  //   e.preventDefault()
+  //   setInput({
+  //     ...input,
+  //     [e.target.name]: e.target.value
+  //   })
 
-    const newform = { ...form, [name]: value }
-    setForm(newform)
-    const errors = validateForm(newform, edit)
-    setErrors(errors)
-    return newform
-  }
+  //   setErrors(
+  //     validateForm({
+  //       ...input,
+  //       [e.target.name]: e.target.value
+  //     })
+  //   )
+  // }
+
+  // const [showPassword, setShowPasword] = useState(true)
 
   const handleSubmit = e => {
     e.preventDefault()
-
-    const errors = validateForm(form)
-
-    const userForm = { ...form }
-    delete userForm.confirm_contrasena
-
-    edit ? updateUser(userForm) : register(userForm)
+    console.log(input)
+    if (
+      input.nombre &&
+      input.usuario &&
+      input.contrasena &&
+      input.email &&
+      input.pais &&
+      input.provincia &&
+      input.direccion &&
+      input.telefono
+    ) {
+      dispatch(postUser(input))
+      alert('Registro exitoso')
+      setInput({
+        nombre: '',
+        usuario: '',
+        contrasena: '',
+        email: '',
+        pais: '',
+        provincia: '',
+        direccion: '',
+        telefono: ''
+      })
+      navigate('/')
+    } else {
+      alert('Completar el Formulario')
+    }
   }
 
-  // useEffect(() => {
-  //   // Si ya está logueado que lo redireccione al dashboard
-  //   if (isAuth && user && !edit) {
-  //     setForm(initialForm);
-  //     const { nombre, rol } = user;
-  //     Swal.fire({
-  //       text: `Bienvenidx ${nombre}`,
-  //       icon: "success",
-  //       confirmButtonText: "Ok",
-  //     });
-  //     async function db() {
-  //       await postCart();
-  //     }
-  //     isAuth && db();
-  //     if (rol === "1") return navigate("/dashboard/user");
-  //     if (rol === "2") return navigate("/dashboard/admin");
-  //   }
-  // }, [isAuth, navigate, user, edit]);
+  // const handleChange = e => {
+  //   const { name, value } = e.target
+
+  //   const newform = { ...input, [name]: value }
+  //   setInput(newform)
+  //   const errors = validateForm(newform, edit)
+  //   setErrors(errors)
+  //   return newform
+  // }
+  function handleChange (e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    })
+    setErrors(
+      validateForm({
+        ...input,
+        [e.target.name]: e.target.value
+      })
+    )
+    console.log(input)
+  }
 
   return (
     <div className='containReg'>
       <NavBar />
       <h1>Register</h1>
-      <form className='formReg'>
+      <form className='formReg' onSubmit={e => handleSubmit(e)}>
         <label className='label'>
-          Nombre Completa{' '}
+          Nombre Completa
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
             type='text'
+            name='nombre'
             placeholder='Nombre Completa'
+            value={input.nombre}
           />
+          {errors.nombre && <p>{errors.nombre}</p>}
         </label>
         <label className='label'>
-          User Name{' '}
+          User Name
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
             type='text'
+            name='usuario'
             placeholder='Usuario'
-            value={form.nombre}
+            value={input.usuario}
           />
+          {errors.usuario && <p>{errors.usuario}</p>}
         </label>
         <label className='label'>
           Contrasena
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
             type='text'
+            name='contrasena'
             placeholder='Contrasena'
-            value={form.contrasena}
+            value={input.contrasena}
           />
+          {errors.contrasena && <p>{errors.contrasena}</p>}
         </label>
         <label className='label'>
-          Email{' '}
+          Email
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
             type='text'
+            name='email'
             placeholder='Email'
-            value={form.email}
+            value={input.email}
           />
+          {errors.email && <p>{errors.email}</p>}
         </label>
         <label className='label'>
-          Pais{' '}
+          Pais
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
             type='text'
+            name='pais'
             placeholder='Pais'
-            value={form.pais}
+            value={input.pais}
           />
+          {errors.pais && <p>{errors.pais}</p>}
         </label>
         <label className='label'>
-          Provincia{' '}
+          Provincia
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
             type='text'
+            name='provincia'
             placeholder='Provincia'
-            value={form.provincia}
+            value={input.provincia}
           />
+          {errors.provincia && <p>{errors.provincia}</p>}
         </label>
         <label className='label'>
-          Direccion{' '}
+          Direccion
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
             type='text'
+            name='direccion'
             placeholder='Direccion'
-            value={form.direccion}
+            value={input.direccion}
           />
+          {errors.direccion && <p>{errors.direccion}</p>}
         </label>
         <label className='label'>
           Telefono{' '}
           <input
+            onChange={e => handleChange(e)}
             className='regInput'
-          
-            value={form.telefono}
+            type='text'
+            name='telefono'
+            placeholder='Telefono'
+            value={input.telefono}
           />
         </label>
+        {errors.telefono && <p>{errors.telefono}</p>}
+        <button type='submit' className='buttonReg'>
+          Registrar
+        </button>
       </form>
-      <button className='buttonReg' onClick={handleClick}>
-        Register
-      </button>
     </div>
   )
 }
