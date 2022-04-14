@@ -61,70 +61,8 @@ try {
   })
 
  
-console.log("PRODID:--------------------", prodId)
   prodId ?  res.status(200).send(prodId) : res.status(404).send('no se encuentra')
 } catch (error) {
   next(error)
 }
 }
-//   let prodId = await getDbInfoById() 
-//   if (id) {
-//     let infoId = await prodId.filter(el => el.id == (id))
-//     infoId.length? res.status(200).send(infoId):res.status(404).send('no se encuentra')
-//   }
-// } catch (error){
-//   next(error)
-// }
-// }
-
-//   const {id} = req.params
-  
-//   try {
-
-//     let foundedProduct = await Product.findByPk(id, {
-//       include: [
-//         {
-//           model: Categoria,
-//           attribute: ["nombre"],
-//           through: {
-//             attributes: [],
-//           },
-//         },
-//       ],
-//     });
-//     if(foundedProduct){ res.status(200).send(foundedProduct) }
-//     else {res.status(400).send('no funciona')
-//   }} catch (error) {
-//     next({info: error})
-//   }
-// };
-
-// exports.getAllProductosByCategory = async function (req, res, next) {
-//   const { categoriaId } = req.params;
-
-//   try {
-//     let category = await Categoria.findByPk(categoriaId, {
-//       attributes: ["nombre"]
-//     });
-   
-//     if (!category) res.status(404).send('No existe la categoría especificada")
-    
-//       ;(cat = await Categoria.findAll({
-//         where: { nombre: categoriaId },
-//         include: Product
-//       })),
-//         cat.length
-//           ? res.status(200).send(cat)
-//           : res
-//               .status(404)
-//               .send('the mother fucking category doesnt exist!!!!!')
-//     } else {
-//       cat = await Categoria.findAll({
-//         include: Product
-//       })
-//       res.send(cat)
-//     }
-//   } catch (error) {
-//     next(error)
-//   }
-// }
