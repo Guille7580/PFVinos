@@ -18,7 +18,7 @@ export const getAllProducts = () => async dispatch => {
 
 export const getDetail = (id) => async dispatch => {
     try {
-         const json = await axios.get(`${BASEURL}/products` + id)
+         const json = await axios.get(`${BASEURL}/products/` + id)
         return dispatch ({
                 type: GET_DETAIL,
                 payload : json.data

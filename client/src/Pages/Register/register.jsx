@@ -2,7 +2,7 @@ import React, { useReducer, useState, useEffect } from 'react'
 import './register.css'
 import NavBar from '../../components/navBar/navBar'
 import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2'
+//import Swal from 'sweetalert2'
 import { validateEmail, validateTlf } from '../Helpers/validateForm'
 import { auth, provider } from '../Helpers/validateAuth'
 
