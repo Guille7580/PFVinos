@@ -121,7 +121,7 @@ function Home () {
    
 {
     typeof(currentProducts[0])  === "string"?
-    <h1>{currentProducts[0]}</h1>:
+    <h1>{currentProducts[0]}, intente buscando otro.</h1>:
     <Cards currentProducts={currentProducts} />
 
 }
