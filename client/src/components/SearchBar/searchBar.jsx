@@ -22,7 +22,8 @@ export default function SearchBar () {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        className='searchBar'
+
+      className="searchBar"
         value={title}
         type='text'
         placeholder='Buscar Productos...'
