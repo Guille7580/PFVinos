@@ -99,3 +99,38 @@ exports.deleteProduct = async function (req, res, next) {
     }
 }
 
+exports.putProduct = async function (req, res, next) {
+
+    const id = req.params.id
+    const {
+        title,
+        price,
+        descriptions,
+        categoriaId,
+        image,
+        stock,
+        bodega,
+        cepa,
+        age
+    } = req.body;
+    console.log(title, id, req)
+    try {
+        let ProductDB = await getProdDB()
+        console.log(ProductDB)
+            let prodName = await Product.update({
+                title,
+                price,
+                descriptions,
+                categoriaId,
+                image,
+                stock,
+                bodega,
+                cepa,
+                age
+            }, { where: { id: id } })
+        res.status(200).send('Producto actualizado')
+    }
+     catch (error) {
+        next(error);
+    }
+}
