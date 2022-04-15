@@ -1,13 +1,16 @@
 .containerAbout {
   color: black;
-  background-color: #e8cfc1;
+  background-color: #523e;
   text-align: center;
+  color: #e8cfc1;
 }
 
 .members {
   display: flex;
   justify-content: space-around;
   padding-bottom: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 h3 {
@@ -22,9 +25,9 @@ h3 {
   margin: 5px;
 }
 
-.backBtn{
-    border-radius: 5px;
-    height: 35px;
-    margin-top: 10px;
-    width:60px;
+.backBtn {
+  border-radius: 5px;
+  height: 35px;
+  margin-top: 10px;
+  width: 60px;
 }

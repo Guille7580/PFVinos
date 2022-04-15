@@ -1,5 +1,5 @@
 .imageHome {
-  height: 600px;
+  height: 540px;
   width: 100%;
   border-bottom: white solid 1px;
 }
@@ -47,4 +47,8 @@ select {
 
 .labelHome {
   color: #e8cfc1;
+}
+
+.numberPag{
+  padding: 20px;
 }
