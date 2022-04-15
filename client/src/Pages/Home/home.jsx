@@ -22,7 +22,7 @@ function Home () {
   const [ordenx,setOrdenx] = useState('')
 
   const [currentPage, setCurrentPage] = useState(1) //Pagina actual
-  const [productPerPage] = useState(8) //vinos por pagina
+  const [productPerPage] = useState(6) //vinos por pagina
 
   
 
