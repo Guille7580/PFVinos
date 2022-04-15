@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from "axios"; 
+import Swal from "sweetalert2"
 import { BASEURL } from "../assets/URLS";
 import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS } from "./types";
 
@@ -35,7 +36,13 @@ export function getNameProducts(title) {
         payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Oops...",
+        text: "No se encontro el producto!",
+      });
     }
+  }
   };
-}
+

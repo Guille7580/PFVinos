@@ -16,12 +16,13 @@ export default function SearchBar() {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getNameProducts(title));
-    
+    setTitle("");
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <input
+        value={title}
         type="text"
         placeholder="Search Products..."
         onChange={(e) => handleInputProducts(e)}
