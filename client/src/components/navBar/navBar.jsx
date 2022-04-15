@@ -3,12 +3,10 @@ import { Link } from 'react-router-dom'
 import './navBar.css'
 import logo from './LasMoritasLogo.png'
 import CartBtn from '../ShoppingCartButton/CartBtn'
-import SearchBar from '../SearchBar/searchBar'
 
 export default function NavBar () {
   return (
     <div className='container'>
-      <SearchBar />
       <Link to='/'>
         <img className='image' src={logo} alt='logo de las moritas' />
       </Link>

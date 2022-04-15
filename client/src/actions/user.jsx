@@ -15,7 +15,7 @@ export function postUser (payload) {
 export function getUser () {
   return async function (dispatch) {
     try {
-      var json = await axios(`${BASEURL}/user`)
+      var json = await axios(`${BASEURL}/login`)
       return dispatch({
         type: GET_USER_DETAIL,
         payload: json.data
