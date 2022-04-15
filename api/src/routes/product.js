@@ -36,11 +36,8 @@ exports.getAllProducts = async function (req, res, next) {
             });
             console.log(ProductQuery)
             if (ProductQuery.length === 0) {
-              console.log("salio mal")
-              const error = [
-             `No se encuentra ningun Producto con el nombre '${title}'`
-              ]
-              return res.json(error)
+              
+              return res.status(400).send({ message: 'This is an error!' })
                 
               }
               ProductQuery.map(prod => mapProduct(prod));
