@@ -15,16 +15,36 @@
   border-top: #523e27 solid 1px;
 }
 
-.containerBody{
+.containerBody {
   height: 800px;
   width: 100%;
-  color: white
+  color: white;
 }
 
-
-.pinkBar{
+.pinkBar {
   width: 100%;
   background-color: #e8cfc1;
   height: 20px;
   border: white solid 1px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-around;
+  height: 20px;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+select {
+  height: 40px;
+  width: 180px;
+  background-color: #e8cfc1;
+  border-radius: 5px;
+  color: #523e27;
+}
+
+.labelHome {
+  color: #e8cfc1;
 }
