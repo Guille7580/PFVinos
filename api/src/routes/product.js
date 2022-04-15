@@ -53,3 +53,30 @@ exports.getProductById = async function (req, res, next) {
  next(error)
  }
 }
+
+exports.postProduct = async function (req, res, next) {
+    const { title, price, descriptions, image, stock, bodega, cepa, age, category } = req.body
+
+    try {
+        let exist = await Product.findOne({ where: { title } });
+
+        if (exist)
+            return { error: { status: 400, message: `Ya existe un producto con ese nombre: '${title}'` } };
+
+        let createProduct = await Product.create({
+            title,
+            price,
+            descriptions,
+            categoriaId: category,
+            image,
+            stock,
+            bodega,
+            cepa,
+            age
+        });
+
+        res.status(200).send(createProduct)
+    }
+
+    catch (error) { next(error) }
+}
