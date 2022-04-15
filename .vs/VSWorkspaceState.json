@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\api",
+    "\\api\\src",
+    "\\api\\src\\routes"
   ],
-  "SelectedNode": "\\C:\\Users\\josea\\Source\\Repos\\PFVinos",
+  "SelectedNode": "\\api\\.env",
   "PreviewInSolutionExplorer": false
 }

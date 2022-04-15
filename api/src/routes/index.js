@@ -19,6 +19,7 @@ var user = require('./user')
 router.get('/products', product.getAllProducts)
 router.get('/products/:id',product.getProductById)
 router.post('/products', product.postProduct)
+router.delete('/products/:id', product.deleteProduct)
 
 //User
 router.get('/users', user.getUser)
