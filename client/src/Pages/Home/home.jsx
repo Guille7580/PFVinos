@@ -6,6 +6,7 @@ import {filterByCategory, order_ByName, order_ByPrice } from '../../actions/cate
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
 import Footer from '../../components/Footer/footer'
+import SearchBar from '../../components/SearchBar/searchBar';
 import NavBar from '../../components/navBar/navBar'
 import './home.css'
 import image from './PurpleGrapesSmall.jpg'
@@ -83,6 +84,7 @@ function Home () {
         Bienvenidas a Las Moritas
       </AnimatedText>
       <div className='pinkBar'></div>
+      <SearchBar />
       <div>
       <label> Precios: </label>
                 <select onChange={handleorderPrice}>
