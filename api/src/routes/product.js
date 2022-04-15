@@ -4,61 +4,52 @@ const { Sequelize } = require("sequelize");
 const { Categoria, Product } = require('../db')
 const Op = Sequelize.Op;
 
- const mapProduct = (foundedProduct) => {
-   foundedProduct = foundedProduct.toJSON()
-  if (foundedProduct.categoriaId) {
-    delete foundedProduct.categoriaId;
-    let category = foundedProduct.Categorium.nombre;
-    foundedProduct.category = category;
-  }
-  delete foundedProduct.Categorium;
-
-  return foundedProduct;
- }
-  
-exports.getAllProducts = async function (req, res, next) {
-    try {
-        const { title } = req.query
-        
-        if(!title) {
-            let allProducts = await Product.findAll({include: Categoria});
-            
-            res.status(200).send( allProducts )
-
-        } else {
-            const ProductQuery = await Product.findAll({
-              where: {
-                title: {
-                  [Op.iLike]: `%${title}%`
-                },
-              },
-              include: Categoria
-            });
-            console.log(ProductQuery)
-            if (ProductQuery.length === 0) {
-              
-              return res.status(400).send({ message: 'This is an error!' })
-                
-              }
-              ProductQuery.map(prod => mapProduct(prod));
-              res.status(200).send( ProductQuery);
-            }    
-    } catch(error) {
-        next({info: error})
-    }
+const getProdDB = async () => {
+  return await Product.findAll({
+    include:
+     Categoria
+      })
 }
+ 
+exports.getAllProducts = async function (req, res, next) {
+   
+       const { title } = req.query
+       let ProductDB = await getProdDB()
+try{
+
+       if(title) {
+           const ProductQuery = await Product.findAll({
+             where: {
+               title: {
+                 [Op.iLike]: `%${title}%`
+               },
+             },
+             include: Categoria
+           });
+           
+           ProductQuery[0] ?               
+            res.status(200).send(ProductQuery)
+           : res.status(404).send("No existe el producto");
+       } else {
+         res.status(201).send(ProductDB);
+       }
+     } catch (error) {
+       next(error);
+     }
+}
+
 exports.getProductById = async function (req, res, next) {
-  const id = req.params.id
-  try {
-    let prodId = await Product.findByPk(id, {
-      include: {
-        model: Categoria,
-        required: false,
-        attributes: ["nombre"]
-      }
-    })
-  prodId ?  res.status(200).send(prodId) : res.status(404).send('no se encuentra')
-  } catch (error) {
-  next(error)
-  }
+ const id = req.params.id
+ try {
+   let prodId = await Product.findByPk(id, {
+     include: {
+       model: Categoria,
+       required: false,
+       attributes: ["nombre"]
+     }
+   })
+ prodId ?  res.status(200).send(prodId) : res.status(404).send('no se encuentra')
+ } catch (error) {
+ next(error)
+ }
 }
