@@ -25,6 +25,8 @@ router.get('/products/:id',product.getProductById)
 router.get('/users', user.getUser)
 router.post('/register', user.register)
 router.post('/login', user.postLogin)
+router.get('/', user.get)
+router.put('/', user.putUser)
 
 
 //Categorias

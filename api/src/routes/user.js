@@ -176,3 +176,77 @@ exports.postLogin = async (req, res, next) => {
     next({ status: 500 });
   }
 };
+
+exports.get = async (req, res, next) => {
+  try {
+    let user = await User.findByPk(req.user.id);
+
+    user && (user = user.toJSON());
+
+    // le borramos la contraseña
+    delete user.contrasena;
+
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    next({ status: 500 });
+  }
+};
+
+exports.putUser =  async (req, res, next) => {
+  // Validaciones de express-validator
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return next({ status: 400, errors });
+  }
+
+  // Si no hay errores, continúo
+  const {
+    id,
+    nombre,
+    usuario,
+    contrasena,
+    email,
+    pais,
+    provincia,
+    direccion,
+    telefono,
+  } = req.body;
+
+  if (!id) return next({ status: 400, message: "El id es Requerido" });
+  let avata = gravatar.url(email, {
+    s: "200", //size
+    r: "pg", //rate
+    d: "mm",
+  });
+  try {
+    let password = await bcrypt.hash(contrasena, 10);
+    const UserUpdate = await User.update(
+      {
+        nombre,
+        avatar: avata,
+        usuario,
+        contrasena: password,
+        email,
+        pais,
+        provincia,
+        direccion,
+        telefono,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    if (UserUpdate)
+      return res
+        .status(200)
+        .json({ message: "Los Datos fueron Actualizados" });
+
+    return res.status(203).json({ message: "Algo Sucedio" });
+  } catch (error) {
+    return next({});
+  }
+};
