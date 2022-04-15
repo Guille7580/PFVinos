@@ -14,14 +14,13 @@ module.exports = async (req, res, next) => {
 
    try {
       const decoded = jwt.verify(token, JWT_SECRET);
-
       // Compruebo que efectivamente el usuario exista en la DDBB
       const user = await User.findByPk(decoded.user.id);
       !user && next({ status: 400, message: "Invalid user" });
       (user.rol === "3") && next({ status: 403, message: "Usuario bloqueado" });
 
       //Obtenemos el payload del token (usuario)
-      req.usuario = decoded.usuario;
+      req.user = decoded.user;
       next();
 
    } catch (error) {
