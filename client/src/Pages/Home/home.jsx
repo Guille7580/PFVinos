@@ -2,6 +2,8 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {filterByCategory, order_ByName, order_ByPrice } from '../../actions/categorias'
+import Swal from "sweetalert2"
+
 // import {getAllProducts } from '../../actions/productos';
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
@@ -62,10 +64,14 @@ function Home () {
   useEffect(() => {
     setCurrentPage(1);
   }, [allProduct]);
+  
 
   return (
     <div>
       <NavBar />
+
+      
+
       <img className='imageHome' src={image} alt='' />
       <AnimatedText
         type='words' // animate words or chars
@@ -119,14 +125,11 @@ function Home () {
           pagination={pagination}
           page={currentPage}
         />
-       
-   
-{
-    typeof(currentProducts[0])  === "string"?
-    <h1>{currentProducts[0]}, intente buscando otro.</h1>:
-    <Cards currentProducts={currentProducts} />
+       {currentProducts.length > 0?
+       <Cards currentProducts={currentProducts} />
+       : ""
+      }
 
-}
       </div>
      
     </div>
