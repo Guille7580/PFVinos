@@ -1,34 +1,35 @@
-import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getNameProducts } from "../../actions/productos";
-import "./searchBar.css";
+import React from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { getNameProducts } from '../../actions/productos'
+import './searchBar.css'
 
-export default function SearchBar() {
-  const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
+export default function SearchBar () {
+  const dispatch = useDispatch()
+  const [title, setTitle] = useState('')
 
-  function handleInputProducts(e) {
-    e.preventDefault();
-    setTitle(e.target.value);
+  function handleInputProducts (e) {
+    e.preventDefault()
+    setTitle(e.target.value)
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(getNameProducts(title));
-    setTitle("");
+  function handleSubmit (e) {
+    e.preventDefault()
+    dispatch(getNameProducts(title))
+    setTitle('')
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <input
+
       className="searchBar"
         value={title}
-        type="text"
-        placeholder="Search Products..."
-        onChange={(e) => handleInputProducts(e)}
+        type='text'
+        placeholder='Buscar Productos...'
+        onChange={e => handleInputProducts(e)}
       />
-      <button type="submit">Search</button>
+      <button type='submit'>Buscar</button>
     </form>
-  );
+  )
 }

@@ -86,7 +86,7 @@ function Home () {
         threshold={0.1}
         rootMargin='20%'
       >
-        Bienvenidas a Las Moritas
+        Viñedo Las Moritas
       </AnimatedText>
       <div className='pinkBar'></div>
       <div className='filters'>
@@ -113,6 +113,7 @@ function Home () {
       </div>
       <div className='containerBody'>
         <Paginado
+          className='numberPag'
           productPerPage={productPerPage}
           allProduct={allProduct.length}
           pagination={pagination}
