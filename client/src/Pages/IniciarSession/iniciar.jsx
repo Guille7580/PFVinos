@@ -31,7 +31,7 @@ export default function IniciarSession () {
     console.log(input)
     if (input.email && input.contrasena) {
       dispatch(getUser(input))
-      alert(`Bienvenidos`)
+      alert(`Bienvendios`)
       setInput({
         email: '',
         contrasena: ''
@@ -68,13 +68,27 @@ export default function IniciarSession () {
           <div>
             <label>
               Email
-              <input type='text' name='email' placeholder='Email' />
+              <input
+               
+                type='text'
+                name='email'
+                placeholder='Email'
+               
+              />
+              
             </label>
           </div>
           <div>
             <label>
               Contrasena
-              <input type='text' name='contrasena' placeholder='Contrasena' />
+              <input
+              
+                type='text'
+                name='contrasena'
+                placeholder='Contrasena'
+               
+              />
+             
             </label>
           </div>
           <button className='buttonSess'>Iniciar</button>
