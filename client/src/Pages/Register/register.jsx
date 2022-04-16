@@ -66,7 +66,7 @@ export default function Register ({ edit = false }) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(input)
+
     if (
       input.nombre &&
       input.usuario &&
@@ -78,7 +78,12 @@ export default function Register ({ edit = false }) {
       input.telefono
     ) {
       dispatch(postUser(input))
-      alert('Registro exitoso')
+      Swal.fire({
+        text: `Bienvenido ${input.nombre}` ,
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
+      //alert('Registro exitoso')
       setInput({
         nombre: '',
         usuario: '',
