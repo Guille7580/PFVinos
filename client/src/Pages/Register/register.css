@@ -12,31 +12,33 @@
   justify-content: center;
   text-align: center;
   margin: 20px;
- 
 }
 
 .label {
-width: 50%;
- display: flex;
- flex-direction: column;
- justify-items: center;
- margin-left: 25%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-left: 25%;
 }
 
 .regInput {
- 
   margin: 20px;
   text-align: center;
-  height: 40px;
+}
+
+.regButtons {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px;
 
 }
 
-.buttonReg{
+.buttonReg {
   border-radius: 5px;
   height: 35px;
   margin-top: 10px;
-  width:70px;
+  width: 170px;
   background-color: #e8cfc1;
-  margin-bottom: 30px;
-  margin-left: 550px;
+  margin-bottom: 80px;
 }

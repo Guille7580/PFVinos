@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from ' react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import './Cart.css'
 import NavBar from '../../components/navBar/navBar'
 import { useNavigate } from 'react-router-dom'
 import { Loader } from '../../components/Loader/Loader'
 import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
 import Swal from "sweetalert2"
-import { useDispatch } from 'react-redux'
+
 
 
 

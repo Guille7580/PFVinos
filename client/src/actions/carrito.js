@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
+import getHeaderToken from "../Pages/Helpers/getHeaderToken";
 import { ADD_ITEM, DELETE_CART, DELETE_CART_DB, DELETE_ITEM, GET_CART, REST_ITEM, UPDATE_CART } from "./types"
 
 export const addItem = (id) => {
