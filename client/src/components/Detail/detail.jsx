@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { getDetail } from "../../actions/productos";
 import "./detail.css";
 import  NavBar  from '../navBar/navBar'
-import Footer from '../Footer/footer'
+
 
 export default function Detail() {
   const dispatch = useDispatch();
