@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './iniciar.css'
 import NavBar from '../../components/navBar/navBar'
-import Footer from '../../components/Footer/footer'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getUser } from '../../actions/user'
@@ -79,7 +78,7 @@ export default function IniciarSession () {
           </div>
           <button className='buttonSess'>Iniciar</button>
         </form>
-        <Footer />
+      
       </div>
     </div>
   )
