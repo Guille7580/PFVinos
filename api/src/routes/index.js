@@ -32,12 +32,13 @@ router.post('/login', user.postLogin)
 router.use('/categoria',categorRoute)
 
 // ------------------- Carrito -----------------------------------
-var carro = require('./carrito')
+// var carro = require('./carrito')
 
-router.post('/carritos', carro.carritoPost)
-router.get('/carritos/:usuarioId', carro.carritoGet)
+// router.post('/carritos', carro.carritoPost)
+// router.get('/carritos/:usuarioId', carro.carritoGet)
 
-
+const carritoRouter = require("./carrito");
+router.use("/carritos", carritoRouter);
 
 
 
