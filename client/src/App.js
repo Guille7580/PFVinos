@@ -7,7 +7,9 @@ import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 
-import Detail from "./components/Detail/detail.jsx"
+import Detail from './components/Detail/detail.jsx'
+
+import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 
 
 import { useEffect } from 'react'
@@ -30,6 +32,8 @@ const App = () => {
 
           <Route path='/register' element={<Register />} />
           <Route path='/iniciar' element={<IniciarSession />} />
+
+          <Route exact path="/dashboard/admin" element={<Dashboard />} />
 
           <Route path='/detalles/:id' element={<Detail />}/>
 
