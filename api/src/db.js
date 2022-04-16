@@ -78,6 +78,8 @@ CarritoDetalle.belongsTo(Product, {
   foreignKey: "productoId",
 });
 
+
+
     // Relacionando con Usuario   (1:1)
 Carrito.belongsTo(User, {
   sourceKey: "id",
