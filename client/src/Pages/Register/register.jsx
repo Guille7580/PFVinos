@@ -229,9 +229,14 @@ export default function Register ({ edit = false }) {
           />
         </label>
         {errors.telefono && <p>{errors.telefono}</p>}
+        <div className='regButtons'>
         <button type='submit' className='buttonReg'>
           Registrar
         </button>
+        <button type='submit' className='buttonReg'>
+          Registrar con Google
+        </button>
+        </div> 
       </form>
     </div>
   )
