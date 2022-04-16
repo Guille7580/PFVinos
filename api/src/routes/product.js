@@ -1,4 +1,5 @@
 'use strict'
+const { count } = require("console");
 const { send } = require("process");
 const { Sequelize } = require("sequelize");
 const { Categoria, Product } = require('../db')
@@ -79,4 +80,57 @@ exports.postProduct = async function (req, res, next) {
     }
 
     catch (error) { next(error) }
+}
+
+exports.deleteProduct = async function (req, res, next) {
+    const id = req.params.id;
+    try {
+        let prod = await Product.findByPk(id)
+        if (prod) {
+            await Product.destroy({
+                where: {
+                    id: id,
+                },
+            });
+            return res.json({ delete: true });
+        } return res.status(400).send('id  no existente')
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.putProduct = async function (req, res, next) {
+
+    const id = req.params.id
+    const {
+        title,
+        price,
+        descriptions,
+        categoriaId,
+        image,
+        stock,
+        bodega,
+        cepa,
+        age
+    } = req.body;
+    console.log(title, id, req)
+    try {
+        let ProductDB = await getProdDB()
+        console.log(ProductDB)
+            let prodName = await Product.update({
+                title,
+                price,
+                descriptions,
+                categoriaId,
+                image,
+                stock,
+                bodega,
+                cepa,
+                age
+            }, { where: { id: id } })
+        res.status(200).send('Producto actualizado')
+    }
+     catch (error) {
+        next(error);
+    }
 }
