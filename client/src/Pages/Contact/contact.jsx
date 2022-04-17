@@ -22,15 +22,15 @@ export default function Contact () {
       <form className='contactForm'>
         <div>
           <label>Email: </label>
-          <input type='text' placeholder='email' />
+          <input type='text' placeholder='Email' />
         </div>
         <div>
           <label>Name: </label>
-          <input type='text' placeholder='name' />
+          <input type='text' placeholder='Nombre' />
         </div>
         <div>
           <label>Telefono: </label>
-          <input type='text' placeholder='telefono' />
+          <input type='text' placeholder='Telefono' />
         </div>
         <div>
           <label>Consulta: </label>
