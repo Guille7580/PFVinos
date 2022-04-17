@@ -108,7 +108,7 @@ function Home () {
           <option value='Tinto'>Tinto</option>
           <option value='Rosado'>Rosado</option>
         </select>
-        <SearchBar className='searchHome' />
+        <SearchBar className= 'searchHome' />
       </div>
       <div className='containerBody'>
         <Paginado
