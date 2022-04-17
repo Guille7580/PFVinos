@@ -75,8 +75,10 @@ Order.belongsTo(User, {
 // Relacionando con Product   (1:1)
 CarritoDetalle.belongsTo(Product, {
   sourceKey: "id",
-  foreignKey: "usuarioId",
+  foreignKey: "productoId",
 });
+
+
 
     // Relacionando con Usuario   (1:1)
 Carrito.belongsTo(User, {

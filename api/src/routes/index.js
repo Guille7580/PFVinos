@@ -21,8 +21,9 @@ var user = require('./user')
 //Product
 router.get('/products', product.getAllProducts)
 router.get('/products/:id',product.getProductById)
-//router.get('category/:id', product.getAllProductosByCategory)
-
+router.post('/products', product.postProduct)
+router.delete('/products/:id', product.deleteProduct)
+router.put('/products/:id', product.putProduct)
 
 //User
 router.get('/users', adminAuthentication, user.getUser)
@@ -38,12 +39,13 @@ router.put('/block/:userId', user.blockUser)
 router.use('/categoria',categorRoute)
 
 // ------------------- Carrito -----------------------------------
-var carro = require('./carrito')
+// var carro = require('./carrito')
 
-router.post('/carritos', carro.carritoPost)
-router.get('/carritos/:usuarioId', carro.carritoGet)
+// router.post('/carritos', carro.carritoPost)
+// router.get('/carritos/:usuarioId', carro.carritoGet)
 
-
+const carritoRouter = require("./carrito");
+router.use("/carritos", carritoRouter);
 
 
 

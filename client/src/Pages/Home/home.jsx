@@ -6,6 +6,7 @@ import {
   order_ByName,
   order_ByPrice
 } from '../../actions/categorias'
+import { getDetail, resetDetail } from '../../actions/productos'
 import Swal from 'sweetalert2'
 
 // import {getAllProducts } from '../../actions/productos';
@@ -64,6 +65,11 @@ function Home () {
     setCurrentPage(1)
   }, [allProduct])
 
+  useEffect(() => {
+    dispatch(resetDetail())
+  }, [])
+
+
   return (
     <div>
       <NavBar />
@@ -86,7 +92,7 @@ function Home () {
         threshold={0.1}
         rootMargin='20%'
       >
-        Bienvenidas a Las Moritas
+        Viñedo Las Moritas
       </AnimatedText>
       <div className='pinkBar'></div>
       <div className='filters'>
@@ -113,6 +119,7 @@ function Home () {
       </div>
       <div className='containerBody'>
         <Paginado
+          className='numberPag'
           productPerPage={productPerPage}
           allProduct={allProduct.length}
           pagination={pagination}

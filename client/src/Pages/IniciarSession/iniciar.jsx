@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './iniciar.css'
 import NavBar from '../../components/navBar/navBar'
-import Footer from '../../components/Footer/footer'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getUser } from '../../actions/user'
@@ -31,7 +30,7 @@ export default function IniciarSession () {
     console.log(input)
     if (input.email && input.contrasena) {
       dispatch(getUser(input))
-      alert(`Bienvendios`)
+      alert(`Bienvenidos`)
       setInput({
         email: '',
         contrasena: ''
@@ -68,32 +67,18 @@ export default function IniciarSession () {
           <div>
             <label>
               Email
-              <input
-               
-                type='text'
-                name='email'
-                placeholder='Email'
-               
-              />
-              
+              <input type='text' name='email' placeholder='Email' />
             </label>
           </div>
           <div>
             <label>
               Contrasena
-              <input
-              
-                type='text'
-                name='contrasena'
-                placeholder='Contrasena'
-               
-              />
-             
+              <input type='text' name='contrasena' placeholder='Contrasena' />
             </label>
           </div>
           <button className='buttonSess'>Iniciar</button>
         </form>
-        <Footer />
+      
       </div>
     </div>
   )

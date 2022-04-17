@@ -1,7 +1,9 @@
 // PRODUCTOS
 export const GET_PRODUCTS = 'GET_PRODUCTS'
+
 //detalles
 export const GET_DETAIL = "GET_DETAIL"
+export const RESET_DETAIL = "RESET_DETAIL"
 
 //searchbar
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS'
@@ -16,4 +18,13 @@ export const ORD_BYPRICE = 'ORD_BYPRICE'
 export const GET_USER_DETAIL = 'GET_USER_DETAIL'
 export const POST_USER = 'POST_USER'
 
+// CARRITO
+export const ADD_ITEM = 'ADD_ITEM'
+export const REST_ITEM = "REST_ITEM"
+export const DELETE_ITEM = 'DELETE_ITEM'
 
+// export const SUM_CART = "SUM_CART"
+export const UPDATE_CART = "UPDATE_CART"
+export const DELETE_CART = 'DELETE_CART'
+export const GET_CART = "GET_CART"
+export const DELETE_CART_DB = "DELETE_CART_DB"
