@@ -1,15 +1,12 @@
 // import React, { useState } from 'react'
-import './iniciar.css'
+//import './iniciar.css'
 import NavBar from '../../components/navBar/navBar'
-// import { useNavigate } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
 import { getUser } from '../../actions/user'
 import { validateForm} from './control login/validatelogin'
 
 import React, { useEffect, useState } from "react";
 import { login, register } from "../../actions/auth";
 import { Link, useNavigate } from "react-router-dom";
-//import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from 'react-redux'
 import { Col, Form, Row, Button } from "react-bootstrap";
 import style from "./Style/LoginAdm.module.css";
