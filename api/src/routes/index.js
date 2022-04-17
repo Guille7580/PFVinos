@@ -3,6 +3,9 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const { Sequelize } = require('sequelize')
 const { Categoria, Product, User } = require('../db')
+// Requerimos el middleware de autenticación
+const { authentication } = require("../middlewares/authentication");
+const adminAuthentication = require("../middlewares/adminAuthentication");
 
 const router = Router();
 
@@ -22,11 +25,13 @@ router.get('/products/:id',product.getProductById)
 
 
 //User
-router.get('/users', user.getUser)
+router.get('/users', adminAuthentication, user.getUser)
 router.post('/register', user.register)
 router.post('/login', user.postLogin)
-router.get('/', user.get)
-router.put('/', user.putUser)
+router.get('/', authentication, user.get)
+router.put('/update', authentication, user.putUser)
+router.put('/block/:userId', user.blockUser)
+
 
 
 //Categorias

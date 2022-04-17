@@ -9,9 +9,7 @@ const gravatar = require("gravatar");
 const { check, validationResult } = require("express-validator");
 const userRouter = Router();
 const { User } = require("../db");
-// Requerimos el middleware de autenticación
-const { authentication } = require("../middlewares/authentication");
-//const adminAuthentication = require("../middlewares/adminAuthentication");
+
 
 const getDbUser = async () => {
   return await User.findAll();
@@ -250,3 +248,18 @@ exports.putUser =  async (req, res, next) => {
     return next({});
   }
 };
+
+// @route PUT user/block/:userId
+// @desc Bloquear un usuario
+// @access Private admin
+exports.blockUser =  async (req, res, next) => {
+  try {
+    await Usuario.update({ rol: "3" }, { where: { id: req.params.userId } });
+
+    res.end();
+  } catch (error) {
+    cosole.log(error);
+    return next({ status: 500, message: "No se ha podido bloquear al usuario" });
+  }
+};
+
