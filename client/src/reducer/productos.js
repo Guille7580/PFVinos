@@ -1,5 +1,5 @@
 
-import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, FILTER_BY_CATEGORY, ORD_BYNAME, ORD_BYPRICE} from "../actions/types";
+import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, FILTER_BY_CATEGORY, ORD_BYNAME, ORD_BYPRICE, RESET_DETAIL} from "../actions/types";
 
 
 const initialState = {
@@ -23,6 +23,12 @@ export default function productsReducer(state = initialState, action) {
         ...state,
         detalles: payload,
       };
+
+      case RESET_DETAIL : 
+      return {
+        ...state,
+        detalles : []
+      }
 
 
     case GET_NAME_PRODUCTS:

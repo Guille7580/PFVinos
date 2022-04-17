@@ -6,12 +6,12 @@ import {
   order_ByName,
   order_ByPrice
 } from '../../actions/categorias'
+import { getDetail, resetDetail } from '../../actions/productos'
 import Swal from 'sweetalert2'
 
 // import {getAllProducts } from '../../actions/productos';
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
-import Footer from '../../components/Footer/footer'
 import SearchBar from '../../components/SearchBar/searchBar'
 import NavBar from '../../components/navBar/navBar'
 import './home.css'
@@ -64,6 +64,11 @@ function Home () {
     setCurrentPage(1)
   }, [allProduct])
 
+  useEffect(() => {
+    dispatch(resetDetail())
+  }, [])
+
+
   return (
     <div>
       <NavBar />
@@ -109,7 +114,7 @@ function Home () {
           <option value='Tinto'>Tinto</option>
           <option value='Rosado'>Rosado</option>
         </select>
-        <SearchBar className='searchHome' />
+        <SearchBar className= 'searchHome' />
       </div>
       <div className='containerBody'>
         <Paginado

@@ -131,7 +131,7 @@ export default function Register ({ edit = false }) {
   return (
     <div className='containReg'>
       <NavBar />
-      <h1>Register</h1>
+      <h1>Registro</h1>
       <form className='formReg' onSubmit={e => handleSubmit(e)}>
         <label className='label'>
           Nombre Completa
@@ -229,9 +229,14 @@ export default function Register ({ edit = false }) {
           />
         </label>
         {errors.telefono && <p>{errors.telefono}</p>}
+        <div className='regButtons'>
         <button type='submit' className='buttonReg'>
           Registrar
         </button>
+        <button type='submit' className='buttonReg'>
+          Registrar con Google
+        </button>
+        </div> 
       </form>
     </div>
   )
