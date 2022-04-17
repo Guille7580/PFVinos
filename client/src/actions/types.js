@@ -1,7 +1,9 @@
 // PRODUCTOS
 export const GET_PRODUCTS = 'GET_PRODUCTS'
+
 //detalles
 export const GET_DETAIL = "GET_DETAIL"
+export const RESET_DETAIL = "RESET_DETAIL"
 
 //searchbar
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS'

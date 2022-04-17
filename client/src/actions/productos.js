@@ -1,7 +1,8 @@
 import axios from "axios"; 
 import Swal from "sweetalert2"
 import { BASEURL } from "../assets/URLS";
-import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS } from "./types";
+import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL } from "./types";
+
 
 export const getAllProducts = () => async (dispatch) => {
   try {
@@ -45,4 +46,12 @@ export function getNameProducts(title) {
     }
   }
   };
+
+  export function resetDetail() {
+    return {
+      type: RESET_DETAIL
+      
+    }
+  }
+  
 
