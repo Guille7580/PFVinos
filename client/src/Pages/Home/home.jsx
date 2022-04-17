@@ -6,6 +6,7 @@ import {
   order_ByName,
   order_ByPrice
 } from '../../actions/categorias'
+import { getDetail, resetDetail } from '../../actions/productos'
 import Swal from 'sweetalert2'
 
 // import {getAllProducts } from '../../actions/productos';
@@ -62,6 +63,11 @@ function Home () {
   useEffect(() => {
     setCurrentPage(1)
   }, [allProduct])
+
+  useEffect(() => {
+    dispatch(resetDetail())
+  }, [])
+
 
   return (
     <div>
