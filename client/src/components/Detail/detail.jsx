@@ -4,9 +4,15 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDetail } from "../../actions/productos";
+import {
+  addItem,
+  deleteItem,
+  deleteProductCart,
+  putCart
+} from '../../actions/carrito'
 import "./detail.css";
 import  NavBar  from '../navBar/navBar'
-import Footer from '../Footer/footer'
+
 
 export default function Detail() {
   const dispatch = useDispatch();
