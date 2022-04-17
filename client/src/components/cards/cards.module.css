@@ -1,0 +1,29 @@
+ .grid{
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    gap: 10rem;
+}
+.cards{
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    margin-top: 20px;
+    /* margin-left: 200px; */
+    margin-right: 20px;
+    
+}
+
+.masInfo{
+    background: #e8cfc1;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    color: #e8cfc1;
+    font-weight: 700;
+    
+}
+a:link {text-decoration:none} 

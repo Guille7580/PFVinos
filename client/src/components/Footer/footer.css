@@ -1,0 +1,41 @@
+/* body{
+  position: relative;
+}
+body::after{
+  content: '';
+  display: block;
+  height: 50px;
+} */
+
+.containerFooter {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #e8cdc1;
+  border: white solid 1px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+}
+
+.buttons {
+  border: none;
+  background: none;
+  color: #523e27;
+  font-size: 20px;
+  margin-left: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.buttons:hover {
+  color: #523e27;
+  background-color: #e8cfc1;
+  border-radius: 5px;
+  transition: 0.5s;
+  border-bottom: #523e27 solid 1px;
+  border-right: #523e27 solid 1px;
+}

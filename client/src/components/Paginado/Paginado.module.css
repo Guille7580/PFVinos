@@ -1,0 +1,37 @@
+.crumbs {
+  margin: 7px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  gap: 0.1rem;
+}
+
+.crumbss {
+  text-align: center;
+
+  margin: 20px 5px;
+  font-size: 20px;
+  width: 32px;
+  display: flex;
+
+  text-decoration: none;
+  border-radius: 0.2rem;
+  border: 0.0625rem solid #e8cfc1 1px;
+  box-shadow: 6px 7px 8px -6px #e8cfc1;
+  color: white;
+}
+
+/* @media (max-width: 768px) {
+  .crumbs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} */
+
+.numbers {
+  padding: 10px;
+  background-color: rgb(18, 42, 41);
+  color: #e8cfc1;
+  font-size: 16px;
+}
