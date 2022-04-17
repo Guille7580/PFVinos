@@ -11,7 +11,6 @@ import Swal from 'sweetalert2'
 // import {getAllProducts } from '../../actions/productos';
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
-import Footer from '../../components/Footer/footer'
 import SearchBar from '../../components/SearchBar/searchBar'
 import NavBar from '../../components/navBar/navBar'
 import './home.css'

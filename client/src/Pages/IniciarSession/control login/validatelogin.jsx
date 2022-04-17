@@ -1,4 +1,4 @@
-import {validateEmail} from '../../Helpers/validateForm'
+import {validateEmail} from '../../../Helpers/validateForm'
 
 const validateForm = (form) => {
   const { email, contrasena } = form;

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { BASEURL } from '../assets/URLS';
-import getHeaderToken from '../helpers/getHeaderToken';
+import getHeaderToken from '../Helpers/getHeaderToken';
 import { toast } from "react-toastify";
 import { AUTHENTICATION_ERROR, GET_PEDIDO_BY_USER, GET_USER_DETAIL, LOGIN_FAILED, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILED, REGISTER_SUCCESS, UPDATE_USER, RECOVERY_PASSWORD } from './types';
-import { getPedidosByUser } from './pedidos';
+//import { getPedidosByUser } from './pedidos';
 
 export const recoveryPassword = async(email)=>{
 
@@ -66,7 +66,7 @@ export function login({ email, contrasena }) {
 
          dispatch(getUserDetail());
       } catch (err) {
-         toast.error(err.response.data);
+         //toast.error(err.response.data);
          console.log(err.response.data);
 
          // Si ocurrió un error durante el logen, envio el login_fail
@@ -139,7 +139,7 @@ export const getUserDetail = () => {
             type: GET_USER_DETAIL,
             payload: data
          })
-         dispatch(getPedidosByUser(data.id));
+         //dispatch(getPedidosByUser(data.id));
       } catch (error) {
          console.log(error.response.data);
          dispatch({

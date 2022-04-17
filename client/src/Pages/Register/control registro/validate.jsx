@@ -1,4 +1,4 @@
-import {validateEmail,validateTlf} from '../../Helpers/validateForm'
+import {validateEmail,validateTlf} from '../../../Helpers/validateForm'
 
 export const validateForm = (input) => {
   

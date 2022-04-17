@@ -1,19 +1,17 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
 import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
-
 import Register from './Pages/Register/register.jsx'
 // import IniciarSession from './Pages/IniciarSession/iniciar.jsx'
-import { useSelector, useDispatch } from 'react-redux'
-
 import Detail from './components/Detail/detail.jsx'
-
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 
-
-import { useEffect } from 'react'
 import { getAllProducts } from './actions/productos'
+import { getUserDetail } from "./actions/auth";
 
 const App = () => {
   const dispatch = useDispatch()
