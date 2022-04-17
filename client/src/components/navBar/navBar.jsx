@@ -10,16 +10,19 @@ export default function NavBar () {
       <Link to='/'>
         <img className='image' src={logo} alt='logo de las moritas' />
       </Link>
-      <Link to='/register' className='button'>
+      <Link to='/register' className='navButton'>
         Registrar
       </Link>
-      <Link to='/iniciar' className='button'>
+      <Link to='/iniciar' className='navButton'>
         Iniciar Sesion
       </Link>
-      <Link to='/aboutUs' className='button'>
+      <Link to='/aboutUs' className='navButton'>
         Sobre Nosotros
       </Link>
-      <Link to='/carrito' className='button'>
+      <Link to='/contact' className='navButton'>
+        Contact
+      </Link>
+      <Link to='/carrito' className='navButton'>
         <CartBtn />
       </Link>
     </div>

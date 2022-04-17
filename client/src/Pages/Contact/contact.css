@@ -1,0 +1,15 @@
+.contactContainer{
+    color: #e8cfc1;
+}
+
+.contactForm {
+    margin-top: 30px;
+    display: flex;
+    
+}
+
+.bkButton{
+    margin-left: 50%;
+    height: 30px;
+    width: 60px
+}

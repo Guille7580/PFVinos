@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
+import Contact from './Pages/Contact/contact.jsx'
 
 import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar.jsx'
@@ -29,6 +30,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/carrito' element={<Cart />} />
           <Route path='/aboutUs' element={<AboutUs />} />
+          <Route path='/contact' element={<Contact />} />
 
           <Route path='/register' element={<Register />} />
           <Route path='/iniciar' element={<IniciarSession />} />
