@@ -1,6 +1,6 @@
 import {validateEmail} from '../../../Helpers/validateForm'
 
-const validateForm = (form) => {
+export const validateForm = (form) => {
   const { email, contrasena } = form;
   const errors = {};
 
