@@ -2,7 +2,7 @@ import axios from 'axios';
 import { BASEURL } from '../assets/URLS';
 import getHeaderToken from '../Helpers/getHeaderToken';
 import { toast } from "react-toastify";
-import { AUTHENTICATION_ERROR, GET_PEDIDO_BY_USER, GET_USER_DETAIL, LOGIN_FAILED, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILED, REGISTER_SUCCESS, UPDATE_USER, RECOVERY_PASSWORD } from './types';
+import { AUTHENTICATION_ERROR, GET_USER_DETAIL, LOGIN_FAILED, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILED, REGISTER_SUCCESS, UPDATE_USER, RECOVERY_PASSWORD } from './types';
 //import { getPedidosByUser } from './pedidos';
 
 export const recoveryPassword = async(email)=>{

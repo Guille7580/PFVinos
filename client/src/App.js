@@ -6,7 +6,7 @@ import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
-import IniciarSession from './Pages/IniciarSession/Login'
+import IniciarSession from './Pages/IniciarSession/iniciar'
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 
