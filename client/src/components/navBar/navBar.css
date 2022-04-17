@@ -1,13 +1,13 @@
-body {
+/* body {
   background-color: black;
-}
+} */
 
 .image {
   height: 66px;
   width: 66px;
 }
 
-.container {
+.navContainer {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -17,7 +17,7 @@ body {
   color: #523e27;
 }
 
-.button {
+.navButton {
   border: none;
   background: none;
   color: #523e27;

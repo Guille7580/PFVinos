@@ -105,15 +105,15 @@ export default function Cart () {
     });
   };
 
-  // const emptyCart = () => {
-  //   return (
-  //     <div className={style.container}>
-  //       <Row>
-  //         <h3>Su Carrito esta vacío</h3>
-  //       </Row>
-  //     </div>
-  //   );
-  // };
+  const emptyCart = () => {
+    return (
+      <div className='container'>
+        <div>
+          <h3>Su Carrito esta vacío</h3>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -121,7 +121,7 @@ export default function Cart () {
         <div>
           <div>
             <h1>Shopping Cart</h1>
-            {/* <div className='cartContainer'>
+            <div className='cartContainer'>
               {items?.length === 0 && emptyCart()}
               {items?.map((i) => (
                 <Item
@@ -134,7 +134,7 @@ export default function Cart () {
                   quantity={i.quantity}
                 />
               ))}
-            </div> */}
+            </div>
 
             <div
               style={{
@@ -144,7 +144,7 @@ export default function Cart () {
                 textAlign: "end",
               }}
             >
-              <div className = 'cartTotal'>
+              <div className = 'cartContainer'>
               <h1>Total: </h1>
               <h3 className='cartPriceline'>&nbsp; $  {total}</h3>
               </div>
@@ -165,7 +165,7 @@ export default function Cart () {
       )}
 
 
-      {/* <div div className='cartContainer'>
+      <div div className='cartContainer'>
         <NavBar />
         <h1>Shopping Cart</h1>
         <div className='totalContainer'>
@@ -178,7 +178,7 @@ export default function Cart () {
             <button className='buttonss'>Pagar</button>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }
