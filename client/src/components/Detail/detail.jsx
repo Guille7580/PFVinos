@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { getDetail } from "../../actions/productos";
 import "./detail.css";
 import  NavBar  from '../navBar/navBar'
-import Footer from '../Footer/footer'
+//import Footer from '../Footer/footer'
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ export default function Detail() {
           <h3>Stock: {myProducts.stock}</h3>
           <h3>Ratings: {myProducts.rate}</h3>
           {/* <h3>{myProducts.count}</h3> */}
-          <h3>Precio: ${myProducts.price}</h3>
+          <h3>Precio: $ {myProducts.price}</h3>
           </div>
         </div>
       ) : (

@@ -1,17 +1,7 @@
+import {validateEmail,validateTlf} from '../../Helpers/validateForm'
 
 export const validateForm = (input) => {
-    function validateEmail (value) {
-        let validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
-      
-        return validRegex.test(value)
-    }
-      
-    function validateTlf (value) {
-        let regex = /[0123456789]{10}/
-      
-        return regex.test(value)
-    }
-
+  
     const errors = {}
     if (!input.nombre.trim()) {
       errors.nombre = 'Campo requirido'
