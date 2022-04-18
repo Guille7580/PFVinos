@@ -22,11 +22,11 @@ export default function AboutUs () {
       <h2>Hola!</h2>
       <div>
         <p>
-          We are a group of 6 individuals who came together to complete this
-          arduous task of completing our program at Henry. Please, let me
-          introduce this amazing group! Have a click on their profile to go
-          directly to their LinkedIn and Github pages. Thanks for giving us a
-          gander.
+
+      Somos un grupo de seis personas que se unieron para realizar este proyecto tan maravilloso. 
+      Aquí encontrarás una breve descripción de cada uno de nosotros junto a los links de contacto.
+      ¡Espero que disfrutes de nuestro proyecto!
+
         </p>
       </div>
       <div className='members'>

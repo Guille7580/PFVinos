@@ -162,7 +162,7 @@ export default function Cart () {
         <h1>Shopping Cart</h1>
         <div className='totalContainer'>
           <h2>Total: &nbsp; </h2>
-          <h3>$</h3>
+          <h3>$0</h3>
         </div>
         <div className='cartButtons'>
           <div className='cartButton'>
