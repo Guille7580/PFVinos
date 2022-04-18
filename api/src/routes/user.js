@@ -10,8 +10,8 @@ const { check, validationResult } = require("express-validator");
 const userRouter = Router();
 const { User } = require("../db");
 // Requerimos el middleware de autenticación
-const { authentication } = require("../middlewares/authentication");
-//const adminAuthentication = require("../middlewares/adminAuthentication");
+const  authentication  = require("../middlewares/authentication");
+const adminAuthentication = require("../middlewares/adminAuthentication");
 
 const getDbUser = async () => {
   return await User.findAll();
@@ -36,7 +36,13 @@ exports.getUser = async function (req, res, next) {
     next(error);
   }
 };
-exports.register = async (req, res, next) => {
+userRouter.post("/register", [
+  check('nombre', 'Incluya un "nombre" valido').isString().trim().not().isEmpty(),
+  check('usuario', 'Incluya un "usuario" valido').isString().trim().not().isEmpty(),
+  check('contrasena', 'Incluya una contraseña válida').isString().trim().not().isEmpty(),
+  check('email', 'Incluya un email válido').isEmail().exists(),
+  
+],  async (req, res, next) => {
   // Validaciones de express-validator
   const errors = validationResult(req);
 
@@ -119,9 +125,12 @@ exports.register = async (req, res, next) => {
     console.log(err);
     next({});
   }
-};
+});
 
-exports.postLogin = async (req, res, next) => {
+userRouter.post("/login", [
+  check('email', 'Incluya un email válido').isEmail().exists(),
+  check('contrasena', 'Incluya una contraseña válida').isString().exists()
+],  async (req, res, next) => {
   // Validaciones de express-validator
   const errors = validationResult(req);
 
@@ -175,4 +184,31 @@ exports.postLogin = async (req, res, next) => {
     console.log(err);
     next({ status: 500 });
   }
-};
+});
+
+userRouter.get("/", authentication, async (req, res, next) => {
+  try {
+    let user = await User.findByPk(req.user.id);
+
+    user && (user = user.toJSON());
+
+    // le borramos la contraseña
+    delete user.contrasena;
+
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+    next({ status: 500 });
+  }
+});
+
+userRouter.get("/all", authentication, adminAuthentication, async (req, res, next) => {
+  try {
+    const users = await Usuario.findAll({ attributes: { exclude: ['contrasena'] } });
+
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+    next({});
+  }
+});
