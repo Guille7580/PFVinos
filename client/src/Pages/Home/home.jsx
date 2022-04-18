@@ -90,21 +90,21 @@ function Home () {
       </AnimatedText>
       <div className='pinkBar'></div>
       <div className='filters'>
-        <label className='labelHome'> Precios: </label>
+        <label className='labelHome'>  </label>
         <select onChange={handleorderPrice}>
-          <option value='nada'>Ordenar</option>
+          <option value='nada'>Precio</option>
           <option value='asce'>Menor a Mayor</option>
           <option value='desce'>Mayor a Menor</option>
         </select>
-        <label className='labelHome'> Nombre Vino: </label>
+        <label className='labelHome'>  </label>
         <select onChange={handleorderByName}>
-          <option value='nada'>Eliga un Orden</option>
-          <option value='asc'>Ascendente</option>
-          <option value='desc'>Descendente</option>
+          <option value='nada'>Nombre</option>
+          <option value='asc'>A - Z</option>
+          <option value='desc'>Z - A</option>
         </select>
-        <label className='labelHome'> Categoria: </label>
+        <label className='labelHome'>  </label>
         <select onChange={handleFilterCat}>
-          <option value='All'>Todos</option>
+          <option value='All'>Categoría</option>
           <option value='Blanco'>Blanco</option>
           <option value='Tinto'>Tinto</option>
           <option value='Rosado'>Rosado</option>

@@ -79,7 +79,7 @@ export default function Register ({ edit = false }) {
     ) {
       dispatch(postUser(input))
       Swal.fire({
-        text: `Bienvenido ${input.nombre}` ,
+        text: `Bienvenid@ ${input.nombre}` ,
         icon: "success",
         confirmButtonText: "Ok",
       });
@@ -134,97 +134,97 @@ export default function Register ({ edit = false }) {
       <h1>Registro</h1>
       <form className='formReg' onSubmit={e => handleSubmit(e)}>
         <label className='label'>
-          Nombre Completa
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
             type='text'
             name='nombre'
-            placeholder='Nombre Completa'
+            placeholder='Nombre Completo...'
             value={input.nombre}
           />
           {errors.nombre && <p>{errors.nombre}</p>}
         </label>
         <label className='label'>
-          User Name
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
             type='text'
             name='usuario'
-            placeholder='Usuario'
+            placeholder='Usuario...'
             value={input.usuario}
           />
           {errors.usuario && <p>{errors.usuario}</p>}
         </label>
         <label className='label'>
-          Contrasena
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
-            type='text'
+            type='password'
             name='contrasena'
-            placeholder='Contrasena'
+            placeholder='Contraseña...'
             value={input.contrasena}
           />
           {errors.contrasena && <p>{errors.contrasena}</p>}
         </label>
         <label className='label'>
-          Email
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
             type='text'
             name='email'
-            placeholder='Email'
+            placeholder='Email...'
             value={input.email}
           />
           {errors.email && <p>{errors.email}</p>}
         </label>
         <label className='label'>
-          Pais
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
             type='text'
             name='pais'
-            placeholder='Pais'
+            placeholder='Pais...'
             value={input.pais}
           />
           {errors.pais && <p>{errors.pais}</p>}
         </label>
         <label className='label'>
-          Provincia
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
             type='text'
             name='provincia'
-            placeholder='Provincia'
+            placeholder='Provincia...'
             value={input.provincia}
           />
           {errors.provincia && <p>{errors.provincia}</p>}
         </label>
         <label className='label'>
-          Direccion
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
             type='text'
             name='direccion'
-            placeholder='Direccion'
+            placeholder='Dirección...'
             value={input.direccion}
           />
           {errors.direccion && <p>{errors.direccion}</p>}
         </label>
         <label className='label'>
-          Telefono{' '}
+
           <input
             onChange={e => handleChange(e)}
             className='regInput'
             type='text'
             name='telefono'
-            placeholder='Telefono'
+            placeholder='Teléfono...'
             value={input.telefono}
           />
         </label>

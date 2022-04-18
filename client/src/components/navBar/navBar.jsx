@@ -14,7 +14,7 @@ export default function NavBar () {
         Registrar
       </Link>
       <Link to='/iniciar' className='button'>
-        Iniciar Sesion
+        Iniciar Sesión
       </Link>
       <Link to='/aboutUs' className='button'>
         Sobre Nosotros

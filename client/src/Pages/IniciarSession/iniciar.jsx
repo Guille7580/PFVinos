@@ -62,18 +62,17 @@ export default function IniciarSession () {
     <div>
       <NavBar />
       <div className='iniciar'>
-        <h1>Iniciar Session</h1>
+        <h1>Iniciar Sesión</h1>
         <form className='containerIn'>
           <div>
             <label>
-              Email
+              
               <input type='text' name='email' placeholder='Email' />
             </label>
           </div>
           <div>
             <label>
-              Contrasena
-              <input type='text' name='contrasena' placeholder='Contrasena' />
+              <input type='text' name='contrasena' placeholder='Contraseña' />
             </label>
           </div>
           <button className='buttonSess'>Iniciar</button>
