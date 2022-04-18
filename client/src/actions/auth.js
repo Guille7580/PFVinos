@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
-import getHeaderToken from "../Pages/Helpers/getHeaderToken"
+import getHeaderToken from "../Helpers/getHeaderToken"
 import { toast } from 'react-toastify'
 import {
   AUTHENTICATION_ERROR,
@@ -26,23 +26,9 @@ export const recoveryPassword = async email => {
   )
 
   console.log('el retorno de post', post)
-import axios from 'axios';
-import { BASEURL } from '../assets/URLS';
-import getHeaderToken from '../Helpers/getHeaderToken';
-import { toast } from "react-toastify";
-import { AUTHENTICATION_ERROR, GET_USER_DETAIL, LOGIN_FAILED, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILED, REGISTER_SUCCESS, UPDATE_USER, RECOVERY_PASSWORD } from './types';
-//import { getPedidosByUser } from './pedidos';
 
-export const recoveryPassword = async(email)=>{
-
-      let post = await axios.post(`${BASEURL}/password`,
-      {"email":`${email}`},
-      {
-         'Content-Type': 'application/json',
-      }
-      )
      
-      console.log('el retorno de post',post)
+
 
    
      
@@ -98,30 +84,30 @@ export function login({ email, contrasena }) {
             type: LOGIN_FAILED
          });
       }
-      // Armo el payload/body
-      const body = { email, contrasena }
+    //   // Armo el payload/body
+    //   const body = { email, contrasena }
 
-      // Envío la petición con el body y config armados
-      let { data } = await axios.post(`${BASEURL}/user/login`, body, config)
+    //   // Envío la petición con el body y config armados
+    //   let { data } = await axios.post(`${BASEURL}/user/login`, body, config)
 
-      // Si todo bien configuro al usuario como logueado
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: data
-      })
+    //   // Si todo bien configuro al usuario como logueado
+    //   dispatch({
+    //     type: LOGIN_SUCCESS,
+    //     payload: data
+    //   })
 
-      dispatch(getUserDetail())
-    } catch (err) {
-      toast.error(err.response.data)
-      console.log(err.response.data)
+    //   dispatch(getUserDetail())
+    // }; catch (err) {
+    //   toast.error(err.response.data)
+    //   console.log(err.response.data)
 
-      // Si ocurrió un error durante el logen, envio el login_fail
-      return dispatch({
-        type: LOGIN_FAILED
-      })
+    //   // Si ocurrió un error durante el logen, envio el login_fail
+    //   return dispatch({
+    //     type: LOGIN_FAILED
+    //   })
     }
   }
-}
+
 
 export function register ({
   nombre,

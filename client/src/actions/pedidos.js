@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { BASEURL } from '../assets/URLS';
-import getHeaderToken from '../Pages/Helpers/getHeaderToken'
+import getHeaderToken from '../Helpers/getHeaderToken'
 import {
    EDIT_STATUS_PEDIDO,
    GET_PEDIDOS,

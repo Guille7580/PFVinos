@@ -5,13 +5,13 @@ import NavBar from '../../components/navBar/navBar'
 import { Link, useNavigate } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import Swal from 'sweetalert2'
-import { auth, provider } from '../Helpers/firebase'
+import { auth, provider } from '../../Helpers/firebase'
 import { signInWithPopup } from 'firebase/auth'
 import { postCart } from '../../actions/carrito'
 import { useDispatch } from 'react-redux'
 //import { getUser } from '../../actions/user'
 import { connect } from 'react-redux'
-import { validateEmail } from '../Helpers/validateForm'
+import { validateEmail } from '../../Helpers/validateForm'
 
 const initialForm = {
   contrasena: '',
@@ -32,7 +32,7 @@ const validateSesh = function (form) {
     errors.contrasena = 'Contrasena equivocada'
   }
 }
-const IniciarSession = ({ login, isAuth, user }) => {
+export default function IniciarSession ({ login, isAuth, user }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
