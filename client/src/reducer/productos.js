@@ -16,6 +16,7 @@ import {
   DELETE_CART,
   DELETE_CART_DB
 } from '../actions/types.js'
+import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, FILTER_BY_CATEGORY, ORD_BYNAME, ORD_BYPRICE, RESET_DETAIL} from "../actions/types";
 
 import {
   getCartLocalStorage,
@@ -187,8 +188,15 @@ export default function productsReducer (state = initialState, action) {
     case GET_DETAIL:
       return {
         ...state,
-        detalles: payload
+        detalles: payload,
+      };
+
+      case RESET_DETAIL : 
+      return {
+        ...state,
+        detalles : []
       }
+
 
     case GET_NAME_PRODUCTS:
       return {

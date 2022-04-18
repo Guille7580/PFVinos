@@ -143,16 +143,3 @@ const IniciarSession = ({ login, isAuth, user }) => {
     </div>
   )
 }
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ login, register }, dispatch)
-}
-
-// const mapStateToProps = (state) => {
-//   return {
-//     isAuth: state.loginReducer.isAuth,
-//     user: state.loginReducer.userDetail,
-//   };
-// };
-
-export default connect(mapDispatchToProps)(IniciarSession)

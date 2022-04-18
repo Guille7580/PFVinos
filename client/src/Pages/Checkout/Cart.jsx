@@ -1,19 +1,11 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+//import { useSelector, useDispatch } from 'react-redux'
 import './Cart.css'
 import NavBar from '../../components/navBar/navBar'
-import { useNavigate } from 'react-router-dom'
+//import { useNavigate } from 'react-router-dom'
 import { Loader } from '../../components/Loader/Loader'
-import  Item  from '../Item/Item.jsx'
-import {
-  updateCart,
-  getCartDb,
-  deleteAllCart,
-  deleteAllCartDB,
-  getCartDB
-} from '../../actions/carrito'
-import Swal from 'sweetalert2'
-import { getAllProducts } from '../../actions/productos'
+//import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
+import Swal from "sweetalert2"
 
 export default function Cart () {
   const navigate = useNavigate()
