@@ -54,6 +54,7 @@ export function logout () {
 }
 
 export function login({ email, contrasena }) {
+  console.log(login)
    return async (dispatch) => {
       try {
          // Configuro los headers

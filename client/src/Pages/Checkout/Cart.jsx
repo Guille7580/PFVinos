@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react'
-//import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import './Cart.css'
 import NavBar from '../../components/navBar/navBar'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Loader } from '../../components/Loader/Loader'
-//import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
-import Swal from "sweetalert2"
+import { getAllProducts } from '../../actions/productos'
+import {
+  updateCart,
+  
+  deleteAllCart,
+  deleteAllCartDB
+} from '../../actions/carrito'
+import Swal from 'sweetalert2'
 
 export default function Cart () {
   const navigate = useNavigate()
@@ -33,10 +39,10 @@ export default function Cart () {
     if (products.length === 0) dispatch(getAllProducts())
   }, [dispatch, products])
 
-  useEffect(() => {
-    dispatch(updateCart())
-    if (isAuth) dispatch(getCartDB(user.id))
-  }, [dispatch, isAuth, user])
+  // useEffect(() => {
+  //   dispatch(updateCart())
+  //   if (isAuth) dispatch(getCartDb(user.id))
+  // }, [dispatch, isAuth, user])
 
   const handlebtnCompra = () => {
     if (!isAuth) {
@@ -67,7 +73,7 @@ export default function Cart () {
         Swal.fire({
           title: 'No hay ningun producto en el carrito',
           showDenyButton: false,
-          showCancelButton: true,
+          showCancelButton: true
           // confirmButtonText: 'Registrarse'
         })
       }
@@ -75,27 +81,27 @@ export default function Cart () {
   }
   const handleDeleteAll = () => {
     Swal.fire({
-      title: "¿ Esta seguro que quiere eliminar el carrito?",
+      title: '¿ Esta seguro que quiere eliminar el carrito?',
 
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminar",
-    }).then((result) => {
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar'
+    }).then(result => {
       if (result.isConfirmed) {
-        dispatch(deleteAllCart());
+        dispatch(deleteAllCart())
         if (cartDB.usuarioId) {
-          dispatch(deleteAllCartDB(cartDB.usuarioId));
+          dispatch(deleteAllCartDB(cartDB.usuarioId))
         }
         Swal.fire(
-          "ELiminado!",
-          "El carrito se eliminó correctamente.",
-          "success"
-        );
+          'ELiminado!',
+          'El carrito se eliminó correctamente.',
+          'success'
+        )
       }
-    });
-  };
+    })
+  }
 
   const emptyCart = () => {
     return (
@@ -104,44 +110,44 @@ export default function Cart () {
           <h3>Su Carrito esta vacío</h3>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   return (
     <div>
- {products.length > 0 ? (
+      {products.length > 0 ? (
         <div>
           <div>
             <h1>Shopping Cart</h1>
-            <div className='cartContainer'>
+            {/* <div className='cartContainer'>
               {items?.length === 0 && emptyCart()}
-              {items?.map((i) => (
-                <Item
-                  key={i.id}
-                  title={i.title}
-                  image={i.image}
-                  price={i.price}
-                  id={i.id}
-                  stock={i.cantidad}
-                  quantity={i.quantity}
-                />
-              ))}
-            </div>
+              {items?.map(i => (
+                // <Item */}
+                {/* //   key={i.id}
+                //   title={i.title}
+                //   image={i.image}
+                //   price={i.price}
+                //   id={i.id}
+                //   stock={i.cantidad}
+                //   quantity={i.quantity}
+                // /> */}
+              {/* ))}
+            </div> */}
 
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-start",
-                textAlign: "end",
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                textAlign: 'end'
               }}
             >
-              <div className = 'cartContainer'>
-              <h1>Total: </h1>
-              <h3 className='cartPriceline'>&nbsp; $  {total}</h3>
+              <div className='cartContainer'>
+                <h1>Total: </h1>
+                <h3 className='cartPriceline'>&nbsp; $ {total}</h3>
               </div>
               <div className='cartbuttonContainer'>
-                <button variant="danger" onClick={handleDeleteAll}>
+                <button variant='danger' onClick={handleDeleteAll}>
                   Eliminar carrito
                 </button>
                 <button className='cartButton' onClick={handlebtnCompra}>
@@ -150,12 +156,10 @@ export default function Cart () {
               </div>
             </div>
           </div>
-       
         </div>
       ) : (
-        <Loader/>
+        <Loader />
       )}
-
 
       <div div className='cartContainer'>
         <NavBar />

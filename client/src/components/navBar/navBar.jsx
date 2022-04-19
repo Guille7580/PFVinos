@@ -13,7 +13,7 @@ export default function NavBar () {
       <Link to='/register' className='navButton'>
         Registrar
       </Link>
-      <Link to='/iniciar' className='button'>
+      <Link to='/iniciar' className='navButton'>
         Iniciar Sesión
       </Link>
       <Link to='/aboutUs' className='navButton'>
