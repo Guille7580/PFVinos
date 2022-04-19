@@ -1,17 +1,21 @@
 import {
     GET_PRODUCT_BY_ID,
-    DELETE_PRODUCT, EDIT_PRODUCT
+    DELETE_PRODUCT, EDIT_PRODUCT, ADD_PRODUCT
 } from '../actions/types';
 
 const initialState = {
     singleProduct: [],
     details: {},
-    allProducts: []
+    allProducts: [],
+    products: []
 }
 
 export default function adminReducer(state = initialState, action) {
 
     switch (action.type) {
+
+        case ADD_PRODUCT:
+            return { ...state, products: state.products.concat(action.payload)};
 
         case GET_PRODUCT_BY_ID:
             return {

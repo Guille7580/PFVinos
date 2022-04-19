@@ -1,7 +1,7 @@
 import axios from "axios"; 
 import Swal from "sweetalert2"
 import { BASEURL } from "../assets/URLS";
-import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL } from "./types";
+import { GET_PRODUCTS, ADD_PRODUCT, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL } from "./types";
 
 
 export const getAllProducts = () => async (dispatch) => {
@@ -53,5 +53,22 @@ export function getNameProducts(title) {
       
     }
   }
+
+  export function createProduct(product) {
+    return async function (dispatch) {
+ 
+       try {
+          const config = getHeaderToken();
+          var response = await axios.post(`${BASEURL}/products`, product, config)
+          return {
+             type: ADD_PRODUCT,
+             payload: response.data
+          }
+       } catch (err) {
+          console.log('No se pudo crear el producto')
+       }
+    }
+ 
+ }
   
 

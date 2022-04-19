@@ -4,7 +4,7 @@ import {
   GET_NAME_PRODUCTS,
   FILTER_BY_CATEGORY,
   ORD_BYNAME,
-  ORD_BYPRICE
+  ORD_BYPRICE,
 } from '../actions/types'
 
 import {
@@ -30,7 +30,8 @@ const initialState = {
   filtered: [],
   detalles: [],
   cart: getCartLocalStorage(),
-  carts: {}
+  carts: {},
+
 }
 
 export default function productsReducer (state = initialState, action) {
@@ -162,6 +163,8 @@ export default function productsReducer (state = initialState, action) {
     //     carts: payload,
     //     flag: true
     //   }
+
+
     
     case DELETE_CART:
       newCart = {
