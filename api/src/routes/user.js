@@ -17,7 +17,7 @@ const getDbUser = async () => {
   return await User.findAll();
 };
 
-exports.getUser = async function (req, res, next) {
+userRouter.get("/users", async function (req, res, next) {
   try {
     const { id } = req.query;
     let bdTotal = await getDbUser();
@@ -35,7 +35,7 @@ exports.getUser = async function (req, res, next) {
   } catch (error) {
     next(error);
   }
-};
+});
 userRouter.post("/register", [
   check('nombre', 'Incluya un "nombre" valido').isString().trim().not().isEmpty(),
   check('usuario', 'Incluya un "usuario" valido').isString().trim().not().isEmpty(),

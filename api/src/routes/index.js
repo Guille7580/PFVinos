@@ -13,7 +13,7 @@ const categorRoute= require('./categorias')
 
 //------------------- product -----------------------------------------
 var product = require('./product')
-var user = require('./user')
+//userRouter.post("/register"var user = require('./user')
 
 //Product
 router.get('/products', product.getAllProducts)
@@ -23,7 +23,7 @@ router.delete('/products/:id', product.deleteProduct)
 router.put('/products/:id', product.putProduct)
 
 //User
-router.get('/users', user.getUser)
+
 
 
 
