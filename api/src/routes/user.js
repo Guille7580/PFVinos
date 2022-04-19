@@ -204,7 +204,7 @@ userRouter.get("/", authentication, async (req, res, next) => {
 
 userRouter.get("/all", authentication, adminAuthentication, async (req, res, next) => {
   try {
-    const users = await Usuario.findAll({ attributes: { exclude: ['contrasena'] } });
+    const users = await User.findAll({ attributes: { exclude: ['contrasena'] } });
 
     res.json(users);
   } catch (error) {
@@ -212,3 +212,40 @@ userRouter.get("/all", authentication, adminAuthentication, async (req, res, nex
     next({});
   }
 });
+
+userRouter.put("/block/:userId", authentication, adminAuthentication, async (req, res, next) => {
+  try {
+    await User.update({ rol: "3" }, { where: { id: req.params.userId } });
+
+    res.end();
+  } catch (error) {
+    cosole.log(error);
+    return next({ status: 500, message: "No se ha podido bloquear al usuario" });
+  }
+});
+
+userRouter.put("/unlock/:userId", authentication, adminAuthentication, async (req, res, next) => {
+  try {
+    await User.update({ rol: "1" }, { where: { id: req.params.userId } });
+
+    res.end();
+  } catch (error) {
+    cosole.log(error);
+    return next({ status: 500, message: "No se ha podido desbloquear al usuario" });
+  }
+});
+
+//cambio de rol de usuario a admin
+
+userRouter.put("/userAdmin/:userId", authentication, adminAuthentication, async (req, res, next) => {
+  try {
+    await User.update({ rol: "2" }, { where: { id: req.params.userId } });
+
+    res.end();
+  } catch (error) {
+    cosole.log(error);
+    return next({ status: 500, message: "No puede ser administrador" });
+  }
+});
+
+module.exports = userRouter;
