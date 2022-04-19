@@ -4,7 +4,7 @@ import './navBar.css'
 import logo from './LasMoritasLogo.png'
 import CartBtn from '../ShoppingCartButton/CartBtn'
 
-export default function NavBar () {
+export default function NavBar ({getTotalItems}) {
   return (
     <div className='container'>
       <Link to='/'>
@@ -20,7 +20,7 @@ export default function NavBar () {
         Sobre Nosotros
       </Link>
       <Link to='/carrito' className='button'>
-        <CartBtn />
+        <CartBtn getTotalItems = {getTotalItems} />
       </Link>
     </div>
   )

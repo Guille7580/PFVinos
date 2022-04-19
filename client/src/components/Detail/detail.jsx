@@ -8,7 +8,7 @@ import "./detail.css";
 import  NavBar  from '../navBar/navBar'
 //import Footer from '../Footer/footer'
 
-export default function Detail() {
+export default function Detail({handleAddToCart,  cartItems, setCartItems }) {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -18,6 +18,7 @@ export default function Detail() {
 
   const myProducts = useSelector((state) => state.productosReducer.detalles);
   console.log(myProducts);
+  console.log(cartItems)
   return (
     <div className="detailContainer">
       <NavBar />
@@ -48,9 +49,9 @@ export default function Detail() {
         <button className="detailButtons">Sigue Comprando</button>
       </Link>
 
-      <Link to="/carrito">
-        <button className="detailButtons">Agrega a Carrito</button>
-      </Link>
+     {/*  <Link to="/carrito"> */}
+        <button onClick = {() => handleAddToCart(myProducts)} className="detailButtons">Agrega a Carrito</button>
+   {/*    </Link> */}
       </div>
       
     </div>
