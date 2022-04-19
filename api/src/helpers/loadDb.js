@@ -1,12 +1,12 @@
 const loadProductos = require("./loadProductos");
 const loadCategorias = require("./loadCategorias");
-const loadUsers = require("./loadUsers");
+const loadUser = require("./loadUsers");
 
 async function LoadDb() {
   try {
     await loadCategorias();
     await loadProductos();
-    await loadUsers();
+    await loadUser();
     
   } catch (error) {
     console.log(error);
