@@ -27,12 +27,6 @@ export const recoveryPassword = async email => {
 
   console.log('el retorno de post', post)
 
-     
-
-
-   
-     
-
 }
 
 export function updateUser (newUser) {
@@ -67,7 +61,7 @@ export function login({ email, contrasena }) {
          const body = { email, contrasena };
 
          // Envío la petición con el body y config armados
-         let { data } = await axios.post(`${BASEURL}/user/login`, body, config);
+         let { data } = await axios.post(`${BASEURL}/login`, body, config);
 
          // Si todo bien configuro al usuario como logueado
          dispatch({
