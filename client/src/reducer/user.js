@@ -1,5 +1,4 @@
 import { GET_USER_DETAIL, GET_ALL_USERS } from '../actions/types.js'
-console.log('Hola Reducer')
 
 const initialState = {
   getUser: [],

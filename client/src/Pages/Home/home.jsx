@@ -71,7 +71,6 @@ function Home () {
 
   return (
     <div>
-      <NavBar />
 
       <img className='imageHome' src={image} alt='' />
       <AnimatedText
