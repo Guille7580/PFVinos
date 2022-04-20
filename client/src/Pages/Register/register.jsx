@@ -9,17 +9,8 @@ import { validateEmail, validateTlf } from "../../Helpers/validateForm";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { signInWithPopup} from "firebase/auth";
-
-
-import NavBar from '../../components/navBar/navBar'
-
-
-import { auth, provider } from '../../Helpers/firebase'
-
-import {validateForm} from './control registro/validate'
-import { postCart } from '../../actions/carrito'
-
-
+import {auth , provider} from '../../Helpers/firebase'
+import {postCart} from '../../actions/carrito'
 
 
 const initialForm = {
@@ -52,17 +43,54 @@ const validateform = function (form) {
     errors.usuario = "Máximo 15 caracteres";
   }
 
-function Register ({ updateUser, register, isAuth, user, edit = false }) {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  if (!form.contrasena.trim()) {
+    errors.contrasena = "Campo requerido";
+  } else if (form.contrasena.length < 10) {
+    errors.contrasena = "Mínimo 10 caracteres";
+  }
 
-  // const [form, setForm] = useState(
-  //   edit ? { ...useReducer, contrasena: '', contrasena: '' } : initialForm
-  // )
+  if (!form.email.trim()) {
+    errors.email = "Campo requerido";
+  } else if (!validateEmail(form.email)) {
+    errors.email = "Escriba un email válido";
+  }
+
+  if (!form.pais.trim()) {
+    errors.pais = "Campo requerido";
+  }
+
+  if (!form.provincia.trim()) {
+    errors.provincia = "Campo requerido";
+  }
+
+  if (!form.direccion.trim()) {
+    errors.direccion = "Campo requerido";
+  } else if (form.direccion.length < 10) {
+    errors.direccion = "Mínimo 10 caracteres";
+  } else if (form.direccion.length > 40) {
+    errors.direccion = "Máximo 40 caracteres";
+  }
+
+  if (!form.telefono.trim()) {
+    errors.telefono = "Campo requerido";
+  } else if (!validateTlf(form.telefono)) {
+    errors.telefono = "Escriba un número de telefono válido";
+  }
+
+  if (form.confirm_contrasena !== form.contrasena) {
+    errors.confirm_contrasena = "Las contraseñas no coinciden";
+  }
+
+  return errors;
+};
+
+function Createform({ updateUser, register, isAuth, user, edit = false }) {
+  const navigate = useNavigate();
   const [form, setForm] = useState(
     edit ? { ...user, confirm_contrasena: "", contrasena: "" } : initialForm
   );
-  const [input, setInput] = useState({
+  const [errors, setErrors] = useState({});
+    const [input, setInput] = useState({
     nombre: '',
     usuario: '',
     contrasena: '',
@@ -74,31 +102,21 @@ function Register ({ updateUser, register, isAuth, user, edit = false }) {
     telefono: ''
   })
 
-  // const handleClick = () => {
-  //   navigate('/')
-  // }
-  const [errors, setErrors] = useState({})
 
-  // const handleInputChange = function (e) {
-  //   e.preventDefault()
-  //   setInput({
-  //     ...input,
-  //     [e.target.name]: e.target.value
-  //   })
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  //   setErrors(
-  //     validateForm({
-  //       ...input,
-  //       [e.target.name]: e.target.value
-  //     })
-  //   )
-  // }
+    const newform = { ...form, [name]: value };
+    setForm(newform);
+    const errors = validateform(newform, edit);
+    setErrors(errors);
+    return newform;
+  };
 
-  // const [showPassword, setShowPasword] = useState(true)
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const errors = validateForm(form);
+    const errors = validateform(form);
 
     const userForm = { ...form };
     delete userForm.confirm_contrasena;
@@ -106,46 +124,6 @@ function Register ({ updateUser, register, isAuth, user, edit = false }) {
     edit ? updateUser(userForm) : register(userForm);
 
   };
-  // const handleSubmit = e => {
-  //   e.preventDefault()
-
-  //   if (
-  //     input.nombre &&
-  //     input.usuario &&
-  //     input.contrasena &&
-  //     input.email &&
-  //     input.pais &&
-  //     input.provincia &&
-  //     input.direccion &&
-  //     input.telefono
-  //   ) {
-  //     dispatch(postUser(input))
-  //     Swal.fire({
-  //       text: `Bienvenid@ ${input.nombre}` ,
-  //       icon: "success",
-  //       confirmButtonText: "Ok",
-  //     });
-  //     //alert('Registro exitoso')
-  //     setInput({
-  //       nombre: '',
-  //       usuario: '',
-  //       contrasena: '',
-  //       email: '',
-  //       pais: '',
-  //       provincia: '',
-  //       direccion: '',
-  //       telefono: ''
-  //     })
-  //     navigate('/')
-  //   } else {
-  //     Swal.fire({
-  //       text: `Completar el Formulario`,
-  //       icon: "error",
-  //       confirmButtonText: "Ok",
-  //     });
-  //     // alert('Completar el Formulario')
-  //   }
-  // }
 
   useEffect(() => {
     // Si ya está logueado que lo redireccione al dashboard
@@ -166,20 +144,36 @@ function Register ({ updateUser, register, isAuth, user, edit = false }) {
     }
   }, [isAuth, navigate, user, edit]);
 
-  function handleChange (e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value
-    })
-    setErrors(
-      validateForm({
-        ...input,
-        [e.target.name]: e.target.value
+  const handleSesionGoogle= async (e) =>{
+    e.preventDefault();
+   const userG = await signInWithPopup(auth,provider)
+   try{
+     const userGoogle={
+       nombre: userG._tokenResponse.displayName,
+        usuario:userG._tokenResponse.firstName,
+        contrasena:userG._tokenResponse.localId,
+        email: userG._tokenResponse.email,
+        pais: '',
+        provincia: '',
+        direccion: '',
+        telefono: userG.user.phoneNumber,
+        token: userG._tokenResponse.idToken
+      }
+      console.log(userGoogle)
+       register(userGoogle) 
+      
+       
+   }
+    catch(e) { 
+      if(e.message.split("/")[1] === "account-exists-with-different-credential)."){
+      Swal.fire({
+          title:'Ya tiene una cuenta con el mismo email',
+          text: "no puede iniciar sesión en una cuenta no registrada en la base de datos que tenga el mismo email. Use la cuenta con la que se haya registrado",
+          icon: 'error'
       })
-    )
+     }
     }
-    
-  
+  }
 
   return (
         <div className='containReg'>
@@ -304,5 +298,5 @@ const mapStateToProps = (state) => {
     user: state.loginReducer.userDetail,
   };
 };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Createform);

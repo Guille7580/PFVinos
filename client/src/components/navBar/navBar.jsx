@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import './navBar.css'
 import logo from './LasMoritasLogo.png'
 import CartBtn from '../ShoppingCartButton/CartBtn'
-import { useState, useEffect } from "react";
-import { logout } from "../../actions/auth";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../SearchBar/searchBar";
-import Footer from "../Footer/footer";
+import { useState, useEffect } from 'react'
+import { logout } from '../../actions/auth'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import SearchBar from '../SearchBar/searchBar'
+import Footer from '../Footer/footer'
 
 const NavBarAll = () => {
   return (
@@ -37,65 +37,49 @@ const NavBarLogin = () => {
         Registrarse
       </Link>
     </>
-  );
-};
+  )
+}
 const NavBarAdmin = () => {
-  const [admin, setAdmin] = useState(true);
-  const navigate = useNavigate();
+  const [admin, setAdmin] = useState(true)
+  const navigate = useNavigate()
 
-  const handleAdmin = (e) => {
-    e.preventDefault();
+  const handleAdmin = e => {
+    e.preventDefault()
 
-    setAdmin(true);
-    navigate("/dashboard/admin");
-  };
+    setAdmin(true)
+    navigate('/dashboard/admin')
+  }
 
-  const handleUsuarioNormal = (e) => {
-    e.preventDefault();
+  const handleUsuarioNormal = e => {
+    e.preventDefault()
 
-    setAdmin(false);
-    navigate("/home");
-  };
+    setAdmin(false)
+    navigate('/home')
+  }
 
   return (
     <>
       {admin ? (
         <>
-          <NavLink
-            to="/dashboard/admin"
-
-          >
-            Dashboard
-          </NavLink>
-          <NavLink
-            to="/dashboard/sales"
-
-          >
-            Sales
-          </NavLink>
-          <NavLink
-            to="/dashboard/offers"
-
-          >
-            Ofertas
-          </NavLink>
+          <NavLink to='/dashboard/admin'>Dashboard</NavLink>
+          <NavLink to='/dashboard/sales'>Sales</NavLink>
+          <NavLink to='/dashboard/offers'>Ofertas</NavLink>
         </>
       ) : (
         <NavBarAuthenticated />
       )}
       {admin ? (
-        <button className="btn btn-success" onClick={handleUsuarioNormal}>
+        <button className='btn btn-success' onClick={handleUsuarioNormal}>
           Comprador
         </button>
       ) : (
-        <button className="btn btn-success" onClick={handleAdmin}>
+        <button className='btn btn-success' onClick={handleAdmin}>
           Administrador
         </button>
       )}
     </>
-  );
-};
-
+  )
+}
 
 const NavBarAuthenticated = () => {
   return (
@@ -105,22 +89,22 @@ const NavBarAuthenticated = () => {
         Perfil
       </Link>
     </>
-  );
-};
+  )
+}
 
-function NavBar() {
-  const [flag, setFlag] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+function NavBar () {
+  const [flag, setFlag] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const user = useSelector((state) => state.loginReducer.userDetail);
-  const isAuth = useSelector((state) => state.loginReducer.isAuth);
+  const user = useSelector(state => state.loginReducer.userDetail)
+  const isAuth = useSelector(state => state.loginReducer.isAuth)
 
   const handleLogout = () => {
-    setFlag(true);
-    dispatch(logout());
-    navigate("/home");
-  };
+    setFlag(true)
+    dispatch(logout())
+    navigate('/home')
+  }
 
   // useEffect(() => {
   //   if (flag) dispatch(updateCart());
@@ -135,22 +119,20 @@ function NavBar() {
 
       {isAuth && user ? (
         <>
-          {user.rol === "2" ? <NavBarAdmin /> : <NavBarAuthenticated />}
+          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated />}
+             <div className="navButton"> Hola, {user.usuario} </div>
           <Link to='/' className='navButton' onClick={handleLogout}>
-            Salir
+              Salir
           </Link>
         </>
       ) : (
         <>
-          
           <NavBarLogin />
           <NavBarAll />
         </>
       )}
-
-
     </div>
-  );
+  )
 }
 
-export default NavBar;
+export default NavBar
