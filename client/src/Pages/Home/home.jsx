@@ -18,7 +18,7 @@ import './home.css'
 import image from './PurpleGrapesSmall.jpg'
 import AnimatedText from 'react-animated-text-content'
 
-function Home () {
+function Home ({handleAddToCart, setCartItems, cartItems}) {
   const dispatch = useDispatch()
   const allProduct = useSelector(state => state.productosReducer.allProducts)
   const allActivities = useSelector(state => state.countryActivity)
@@ -71,7 +71,6 @@ function Home () {
 
   return (
     <div>
-      <NavBar />
 
       <img className='imageHome' src={image} alt='' />
       <AnimatedText
@@ -125,7 +124,7 @@ function Home () {
           page={currentPage}
         />
         {currentProducts.length > 0 ? (
-          <Cards currentProducts={currentProducts} />
+          <Cards currentProducts={currentProducts} handleAddToCart = {handleAddToCart} cartItems = {cartItems} setCartItems = {setCartItems}/>
         ) : (
           ''
         )}

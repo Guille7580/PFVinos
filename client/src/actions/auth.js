@@ -50,7 +50,7 @@ export function logout() {
 
 export function login({ email, contrasena }) {
   // console.log(login)
-  return async (dispatch) => {
+  return async function (dispatch) {
     try {
       // Configuro los headers
       const config = {
@@ -60,10 +60,10 @@ export function login({ email, contrasena }) {
       };
       // Armo el payload/body
       const body = { email, contrasena };
-
+      console.log(body)
       // Envío la petición con el body y config armados
       let { data } = await axios.post(`${BASEURL}/user/login`, body, config);
-      console.log(data);
+      console.log("+++++++++++++++",data);
       // Si todo bien configuro al usuario como logueado
       dispatch({
         type: LOGIN_SUCCESS,
