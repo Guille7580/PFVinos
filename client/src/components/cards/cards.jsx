@@ -3,7 +3,7 @@ import Card from '../card/card'
 import { Link } from 'react-router-dom'
 import style from './cards.module.css'
 
-export default function Cards ({ currentProducts }) {
+export default function Cards ({ currentProducts, handleAddToCart, cartItems, setCartItems}) {
   //console.log('paginado ' , currentCountries)
 console.log(currentProducts)
   return (
@@ -11,7 +11,7 @@ console.log(currentProducts)
       {currentProducts?.map(el => (
         <div key={el.id}>
           <Link to={'/detalles/' + el.id}>
-            <Card
+            <Card handleAddToCart = {handleAddToCart} cartItems = {cartItems} setCartItems = {setCartItems}
               id={el.id}
               category={el.Categorium.nombre}
               age={el.age}
