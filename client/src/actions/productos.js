@@ -7,9 +7,10 @@ import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL } from "./typ
 export const getAllProducts = () => async (dispatch) => {
   try {
     const responseProduct = await axios.get(`${BASEURL}/products`);
+    const data = await responseProduct.json()
     return dispatch({
       type: GET_PRODUCTS,
-      payload: responseProduct.data,
+      payload: data,
     });
   } catch (err) {
     console.log(err.response.data);
