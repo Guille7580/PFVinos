@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
-import { GET_USER_DETAIL,  GET_ALL_USERS } from './types'
+import { GET_USER_DETAIL,  GET_ALL_USERS, POST_USER } from './types'
 
 
 export function getUser () {
@@ -31,4 +31,14 @@ export function getAllUser() {
             console.log(error)
         }
     }
+}
+
+export function postUser (payload) {
+  return async function (dispatch) {
+    const response = await axios.post(`${BASEURL}/register`, payload)
+    dispatch({
+      type: POST_USER,
+      payload: response.data
+    })
+  }
 }

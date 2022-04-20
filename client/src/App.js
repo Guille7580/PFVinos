@@ -95,7 +95,7 @@ const App = () => {
           <Route exact path="/dashboard/admin" element={<Dashboard />} />
 
 
-          <Route path='/detalles/:id' element={<Detail />}/>
+          <Route path='/detalles/:id' element={<Detail handleAddToCart = {handleAddToCart}/>}/>
 
         </Routes>
       </BrowserRouter>
