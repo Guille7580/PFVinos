@@ -7,10 +7,10 @@ const initialState = {
 }
 
 export default function users (state = initialState, action) {
-  console.log('Hola Reducer')
 
   switch (action.type) {
     case GET_USER_DETAIL:
+      console.log('entrandoaluser')
       return { ...state, getUser: action.payload }
 
     case GET_ALL_USERS:

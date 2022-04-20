@@ -2,9 +2,10 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const { Sequelize } = require('sequelize')
-const { Categoria, Product, User } = require('../db')
-
+const { Categoria, Product, User} = require('../db')
+const userRouter = require("./user");
 const router = Router();
+
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
@@ -23,6 +24,8 @@ router.delete('/products/:id', product.deleteProduct)
 router.put('/products/:id', product.putProduct)
 
 //User
+const user = require('./user')
+router.use('/user', user)
 
 
 

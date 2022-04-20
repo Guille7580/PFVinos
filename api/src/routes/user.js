@@ -11,31 +11,12 @@ const userRouter = Router();
 const { User } = require("../db");
 // Requerimos el middleware de autenticación
 const  authentication  = require("../middlewares/authentication");
-const adminAuthentication = require("../middlewares/adminAuthentication");
+const adminAuthentication = require("../middlewares/adminAuthentication")
 
 const getDbUser = async () => {
   return await User.findAll();
 };
 
-userRouter.get("/users", async function (req, res, next) {
-  try {
-    const { id } = req.query;
-    let bdTotal = await getDbUser();
-    // console.log(bdTotal)
-    if (id) {
-      let prodName = await bdTotal.filter((user) => user.id == id);
-      prodName.length //si hay algún nombre
-        ? res.status(200).send(prodName)
-        : res
-            .status(404)
-            .send({ info: "Sorry, the user you are looking for is not here." });
-    } else {
-      res.status(200).send(bdTotal);
-    }
-  } catch (error) {
-    next(error);
-  }
-});
 userRouter.post("/register", [
   check('nombre', 'Incluya un "nombre" valido').isString().trim().not().isEmpty(),
   check('usuario', 'Incluya un "usuario" valido').isString().trim().not().isEmpty(),
@@ -188,7 +169,7 @@ userRouter.post("/login", [
 
 userRouter.get("/", authentication, async (req, res, next) => {
   try {
-    let user = await User.findByPk(req.user.id);
+    let user = await User.findByPk(req.usuario.id);
 
     user && (user = user.toJSON());
 
@@ -202,7 +183,7 @@ userRouter.get("/", authentication, async (req, res, next) => {
   }
 });
 
-userRouter.get("/all", authentication, adminAuthentication, async (req, res, next) => {
+userRouter.get("/all", async (req, res, next) => {
   try {
     const users = await User.findAll({ attributes: { exclude: ['contrasena'] } });
 
