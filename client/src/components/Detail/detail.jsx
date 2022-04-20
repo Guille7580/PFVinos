@@ -55,9 +55,9 @@ export default function Detail({handleAddToCart,  cartItems, setCartItems }) {
         <button className="detailButtons">Sigue Comprando</button>
       </Link>
 
-     {/*  <Link to="/carrito"> */}
+       <Link to="/carrito"> 
         <button onClick = {() => handleAddToCart(myProducts)} className="detailButtons">Agrega a Carrito</button>
-   {/*    </Link> */}
+      </Link> 
       </div>
       
     </div>
