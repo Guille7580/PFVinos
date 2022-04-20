@@ -62,7 +62,7 @@ export function login({ email, contrasena }) {
       const body = { email, contrasena };
 
       // Envío la petición con el body y config armados
-      let { data } = await axios.post(`${BASEURL}/login`, body, config);
+      let { data } = await axios.post(`${BASEURL}/user/login`, body, config);
       console.log(data);
       // Si todo bien configuro al usuario como logueado
       dispatch({
@@ -113,17 +113,18 @@ export function register({
         direccion,
         telefono,
       };
-      console.log("body");
-      console.log(body);
+      // console.log("body");
+      // console.log(body);
 
       let { data } = await axios.post(`${BASEURL}/user/register`, body, config);
 
-       console.log(data);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: data,
       });
+
       dispatch(getUserDetail());
+
     } catch (err) {
       toast.error(err.response.data);
       console.log(err.response.data);
@@ -137,12 +138,12 @@ export function register({
 
 export const getUserDetail = () => {
   return async (dispatch) => {
-    const headers = getHeaderToken();
-    // console.log(headers);
+    const headers = getHeaderToken();    
+    
     try {
       const { data } = await axios.get(`${BASEURL}/user`, headers);
       //toast(`Bienvenido ${data.nombre}`)
-      // console.log(data);
+      //console.log("/////////////////",data);
       dispatch({
         type: GET_USER_DETAIL,
         payload: data,

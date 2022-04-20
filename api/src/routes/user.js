@@ -169,7 +169,7 @@ userRouter.post("/login", [
 
 userRouter.get("/", authentication, async (req, res, next) => {
   try {
-    let user = await User.findByPk(req.user.id);
+    let user = await User.findByPk(req.usuario.id);
 
     user && (user = user.toJSON());
 
