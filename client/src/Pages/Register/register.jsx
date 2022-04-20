@@ -378,10 +378,10 @@ function Createform({ updateUser, register, isAuth, user, edit = false }) {
         icon: "success",
         confirmButtonText: "Ok",
       });
-      async function db() {
-        await postCart();
-      }
-      isAuth && db();
+      // async function db() {
+      //   await postCart();
+      // }
+      //isAuth && db();
       if (rol === "1") return navigate("/dashboard/user");
       if (rol === "2") return navigate("/dashboard/admin");
     }
