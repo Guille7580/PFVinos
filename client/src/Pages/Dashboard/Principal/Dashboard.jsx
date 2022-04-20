@@ -1,48 +1,41 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
 import { useDispatch, useSelector } from "react-redux";
+import { AppBar, Modal, Tab, Tabs } from "@material-ui/core";
 import { getAllUser } from "../../../actions/user.jsx"
 import { useEffect } from "react";
+import UserCards from "../../../components/cards/userCards.jsx";
 
 
 
 export default function Admin() {
     const dispatch = useDispatch()
-   
-    const [value, setValue] = React.useState(0);
+    const [selectedTab, setSelectedTab] = React.useState(0);
 
     useEffect(() => {
         dispatch(getAllUser());
     }, [dispatch]);
 
-    const allUsers = useSelector(state => state.users.allUsers)
+    const allUsers = useSelector(state => state.users.allUser)
 
-    { console.log(allUsers) }
+    const hundleChangue = (e, newvalue)=>{
+        setSelectedTab(newvalue)
+    }
 
     return (
-        <div>
-            <h2>How to Create Tabs in ReactJS?</h2>
-            <Paper square>
-                <Tabs
-                    value={value}
-                    textColor="primary"
-                    indicatorColor="primary"
-                    onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}
-                >
-                    <Tab label="Usuarios">
-                        
-                    </Tab>
-                    <Tab label="Productos " />
-                    <Tab label="Ordenes " />
+        <>
+            <AppBar position="static">
+                <Tabs value={selectedTab} onChange={hundleChangue}>
+                    <Tab label="Usuarios" />
+                    <Tab label="Productos" />
+                    <Tab label="Ordenes" />
+                    <Tab label="Categorias" />
                 </Tabs>
-                <h3>TAB NO: {value} clicked!</h3>
-                
-            </Paper>
-        </div>
-    );
-};
+            </AppBar>
+            
+            {selectedTab === 0 && <UserCards users={allUsers} />
+               
+            }
+        </>
+    )
+}
 
