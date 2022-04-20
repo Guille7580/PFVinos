@@ -4,32 +4,36 @@ import { useDispatch } from 'react-redux'
 import NavBar from '../../components/navBar/navBar'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-// import { auth, provider } from '../Helpers/validateAuth'
+import { register, updateUser } from "../../actions/types";
+import { auth, provider } from '../../Helpers/firebase'
 import { postUser } from '../../actions/user'
 import {validateForm} from './control registro/validate'
+import { postCart } from '../../actions/carrito'
 
 
-// const initialForm = {
-//   nombre: '',
-//   usuario: '',
-//   contrasena: '',
-//   confirm_contrasena: '',
-//   email: '',
-//   pais: '',
-//   provincia: '',
-//   direccion: '',
-//   telefono: ''
-// }
+const initialForm = {
+  nombre: '',
+  usuario: '',
+  contrasena: '',
+  confirm_contrasena: '',
+  email: '',
+  pais: '',
+  provincia: '',
+  direccion: '',
+  telefono: ''
+}
 
 
-export default function Register ({ edit = false }) {
+export default function Register ({ updateUser, register, isAuth, user, edit = false }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   // const [form, setForm] = useState(
   //   edit ? { ...useReducer, contrasena: '', contrasena: '' } : initialForm
   // )
-
+  const [form, setForm] = useState(
+    edit ? { ...user, confirm_contrasena: "", contrasena: "" } : initialForm
+  );
   const [input, setInput] = useState({
     nombre: '',
     usuario: '',
@@ -63,57 +67,77 @@ export default function Register ({ edit = false }) {
   // }
 
   // const [showPassword, setShowPasword] = useState(true)
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleSubmit = e => {
-    e.preventDefault()
+    const errors = validateForm(form);
 
-    if (
-      input.nombre &&
-      input.usuario &&
-      input.contrasena &&
-      input.email &&
-      input.pais &&
-      input.provincia &&
-      input.direccion &&
-      input.telefono
-    ) {
-      dispatch(postUser(input))
+    const userForm = { ...form };
+    delete userForm.confirm_contrasena;
+
+    edit ? updateUser(userForm) : register(userForm);
+
+  };
+  // const handleSubmit = e => {
+  //   e.preventDefault()
+
+  //   if (
+  //     input.nombre &&
+  //     input.usuario &&
+  //     input.contrasena &&
+  //     input.email &&
+  //     input.pais &&
+  //     input.provincia &&
+  //     input.direccion &&
+  //     input.telefono
+  //   ) {
+  //     dispatch(postUser(input))
+  //     Swal.fire({
+  //       text: `Bienvenid@ ${input.nombre}` ,
+  //       icon: "success",
+  //       confirmButtonText: "Ok",
+  //     });
+  //     //alert('Registro exitoso')
+  //     setInput({
+  //       nombre: '',
+  //       usuario: '',
+  //       contrasena: '',
+  //       email: '',
+  //       pais: '',
+  //       provincia: '',
+  //       direccion: '',
+  //       telefono: ''
+  //     })
+  //     navigate('/')
+  //   } else {
+  //     Swal.fire({
+  //       text: `Completar el Formulario`,
+  //       icon: "error",
+  //       confirmButtonText: "Ok",
+  //     });
+  //     // alert('Completar el Formulario')
+  //   }
+  // }
+
+  useEffect(() => {
+    // Si ya está logueado que lo redireccione al dashboard
+    if (isAuth && user && !edit) {
+      setForm(initialForm);
+      const { nombre, rol } = user;
       Swal.fire({
-        text: `Bienvenid@ ${input.nombre}` ,
+        text: `Bienvenidx ${nombre}`,
         icon: "success",
         confirmButtonText: "Ok",
       });
-      //alert('Registro exitoso')
-      setInput({
-        nombre: '',
-        usuario: '',
-        contrasena: '',
-        email: '',
-        pais: '',
-        provincia: '',
-        direccion: '',
-        telefono: ''
-      })
-      navigate('/')
-    } else {
-      Swal.fire({
-        text: `Completar el Formulario`,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-      // alert('Completar el Formulario')
+      async function db() {
+        await postCart();
+      }
+      isAuth && db();
+      if (rol === "1") return navigate("/dashboard/user");
+      if (rol === "2") return navigate("/dashboard/admin");
     }
-  }
+  }, [isAuth, navigate, user, edit]);
 
-  // const handleChange = e => {
-  //   const { name, value } = e.target
-
-  //   const newform = { ...input, [name]: value }
-  //   setInput(newform)
-  //   const errors = validateForm(newform, edit)
-  //   setErrors(errors)
-  //   return newform
-  // }
   function handleChange (e) {
     setInput({
       ...input,
