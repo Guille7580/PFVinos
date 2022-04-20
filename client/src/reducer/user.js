@@ -1,14 +1,21 @@
-import { GET_USER_DETAIL } from '../actions/types.js'
+import { GET_USER_DETAIL, GET_ALL_USERS } from '../actions/types.js'
 
 const initialState = {
-  getUser: []
+  getUser: [],
+  allUser: []
 }
 
-export default function loginReducer (state = initialState, action) {
+export default function users (state = initialState, action) {
+
   switch (action.type) {
     case GET_USER_DETAIL:
       return { ...state, getUser: action.payload }
-    
+
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUser: action.payload
+      }
     default:
       return state
   }

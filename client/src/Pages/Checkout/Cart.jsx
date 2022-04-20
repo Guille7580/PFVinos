@@ -44,7 +44,6 @@ items = items?.filter((e) => e);
 
     <div>
       <div div className='cartContainer'>
-        <NavBar />
         <h1>Shopping Cart</h1>
         <div className='totalContainer'>
           <h2>Total: &nbsp; </h2>
