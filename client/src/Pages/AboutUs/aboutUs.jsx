@@ -1,23 +1,23 @@
 import React from 'react'
 import './aboutUs.css'
-//import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import javi from './javierjpeg.jpg'
 import jose from './josejpeg.jpg'
 import andrea from './andreajpeg.jpg'
 import jenny from './jenny.jpg'
 import luciana from './luciana.jpg'
 import guille from './guille.jpeg'
-import NavBar from '../../components/navBar/navBar'
+
 
 export default function AboutUs () {
-  // const navigate = useNavigate()
-  // const handleClick = () => {
-  //   navigate('/')
-  // }
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate('/')
+  }
   return (
     <div className='containerAbout'>
-      <NavBar />
-      {/* <button className="backBtn" onClick={handleClick}>Back</button> */}
+     
+      <button className="backBtn" onClick={handleClick}>Back</button> 
       <h1>Sobre Nosotros</h1>
       <h2>Hola!</h2>
       <div>
