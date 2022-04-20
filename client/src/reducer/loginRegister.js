@@ -23,7 +23,12 @@ export default function loginReducer(state = initialState, action) {
         case GET_USER_DETAIL:
             return { ...state, isAuth: true, userDetail: action.payload };
         case LOGIN_SUCCESS:
-            return { ...state, userLogin: action.payload };
+            localStorage.setItem('token_ecommerce', action.payload.token);
+            return {
+                ...state,
+                token: action.payload.token,
+                isAuth: true,
+            };
         case REGISTER_SUCCESS:
             // Set Token in localstorage
             localStorage.setItem('token_ecommerce', action.payload.token);
