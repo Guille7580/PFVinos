@@ -233,34 +233,35 @@ import { signInWithPopup } from "firebase/auth";
 //import {postCart} from '../../actions/cart'
 import NavBar from '../../components/navBar/navBar'
 import './iniciar.css'
+import { useDispatch } from 'react-redux'
 
 const initialFormLogin = {
   contrasena: "",
   email: "",
 };
 
-const validateForm = (form) => {
-  const { email, contrasena } = form;
+const validateForm = function (form) {
+  
   const errors = {};
-console.log(form)
 
-  if (!email.trim()) {
-    errors.email = "El email es requerido";
-  } else if (!validateEmail(email)) {
-    errors.email = "Email no válido";
+  if (!form.email.trim()) {
+    errors.email = "Campo requerido";
+  } else if (!validateEmail(form.email)) {
+    errors.email = "Escriba un email válido";
   }
 
-  if (!contrasena.trim()) {
+  if (!form.contrasena.trim()) {
     errors.contrasena = "La contraseña es requerida";
   }
 
   return errors;
 };
 
-const IniciarSesion = ({ login, isAuth, user }) => {
+const Login = ({ login, isAuth, user, edit = false }) => {
   const navigate = useNavigate();
   const [form, setForm] = useState(initialFormLogin);
   const [error, setError] = useState({});
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -275,11 +276,7 @@ const IniciarSesion = ({ login, isAuth, user }) => {
     e.preventDefault();
     const errors = validateForm(form);
     setError(errors);
-    const userForm = { ...form };
-    if (Object.keys(errors).length) {
-      return window.alert("El formulario contiene errrores");
-    }
-    login(userForm);
+    login(form);
   };
 
   useEffect(() => {
@@ -321,7 +318,7 @@ const IniciarSesion = ({ login, isAuth, user }) => {
 
   return (
     <div>
-      <NavBar />
+
       <div className='iniciar'>
         <h1>Iniciar Sesion</h1>
         <form onSubmit={handleSubmit} className='containerIn'>
@@ -383,4 +380,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(IniciarSesion);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

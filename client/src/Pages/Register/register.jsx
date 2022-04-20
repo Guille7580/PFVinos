@@ -24,8 +24,8 @@ const initialForm = {
   direccion: "",
   telefono: "",
 };
-
 const validateform = function (form) {
+
   const errors = {};
   if (!form.nombre.trim()) {
     errors.nombre = "Campo requerido";
@@ -177,7 +177,6 @@ function Createform({ updateUser, register, isAuth, user, edit = false }) {
 
   return (
         <div className='containReg'>
-          <NavBar />
           <h1>Registro</h1>
           <form className='formReg' onSubmit={e => handleSubmit(e)}>
             <label className='label'>

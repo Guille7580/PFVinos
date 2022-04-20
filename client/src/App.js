@@ -7,7 +7,7 @@ import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
-import IniciarSesion from './Pages/IniciarSession/iniciar'
+import IniciarSession from './Pages/IniciarSession/iniciar'
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from "./components/navBar/navBar"
@@ -90,7 +90,7 @@ const App = () => {
           <Route path='/aboutUs' element={<AboutUs />} />
 
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<IniciarSesion />} />
+          <Route path='/login' element={<IniciarSession />} />
 
           <Route exact path="/dashboard/admin" element={<Dashboard />} />
 
