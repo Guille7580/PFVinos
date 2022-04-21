@@ -59,10 +59,10 @@ export function login({ email, contrasena }) {
         };
         // Armo el payload/body
         const body = { email, contrasena };
-
+        console.log(body)
         // Envío la petición con el body y config armados
         let { data } = await axios.post(`${BASEURL}/user/login`, body, config);
-
+        
         // Si todo bien configuro al usuario como logueado
         dispatch({
            type: LOGIN_SUCCESS,
@@ -139,7 +139,7 @@ export function register({
 export const getUserDetail = () => {
   return async (dispatch) => {
      const headers = getHeaderToken();
-     // console.log(headers);
+     console.log(headers);
      try {
         const { data } = await axios.get(`${BASEURL}/user`, headers);
         //toast(`Bienvenido ${data.nombre}`)

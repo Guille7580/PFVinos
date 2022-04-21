@@ -227,6 +227,15 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getUser } from '../../actions/user'
 import { validateEmail } from '../../Helpers/validateForm'
+import { login,updateUser } from "../../actions/auth";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+
+const initialForm = {
+  contrasena: "",
+  email: "",
+};
 
 const validateSesh = function (input) {
   const errors = {}
@@ -239,25 +248,46 @@ const validateSesh = function (input) {
     errors.contrasena = 'Contrasena equivocada'
   }
 }
-export default function IniciarSession (login, user, email, contrasena, edit=false) {
+function IniciarSession (login,  email, contrasena, edit=false) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [input, setInput] = useState({
-    email: '',
-    contrasena: ''
-  })
+  const [input, setInput] = useState()
+
+  const [showPassword, setShowPasword] = useState(true)
+
+  //   useEffect(() => {
+  //   // Si ya está logueado que lo redireccione al dashboard
+  //   if (isAuth && user && !edit) {
+  //     setForm(initialForm);
+  //     const { nombre, rol } = user;
+  //     Swal.fire({
+  //       text: `Bienvenidx ${nombre}`,
+  //       icon: "success",
+  //       confirmButtonText: "Ok",
+  //     });
+  //     // async function db() {
+  //     //   await postCart();
+  //     // }
+  //     //isAuth && db();
+  //     if (rol === "1") return navigate("/");
+  //     if (rol === "2") return navigate("/dashboard/admin");
+  //   }
+  // }, [isAuth, navigate, user, edit]);
+
+
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(input)
     if (input.email && input.contrasena) {
       dispatch(getUser(input))
-      alert(`Bienvenidos`)
+      alert(`Bienvenid@`)
+      const userForm = { ...input};
       setInput({
         email: '',
         contrasena: ''
       })
-      navigate('/')
+      edit ? updateUser(userForm) : login(userForm);
+      //navigate('/')
     } else {
       alert(
         'Hubo error, chequear que tu usuario y contrasena estan correctos o tenes que registrarse'
@@ -265,37 +295,28 @@ export default function IniciarSession (login, user, email, contrasena, edit=fal
     }
   }
 
-  function handleChange (e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value
-    })
-    setErrors(
-      validateSesh({
-        ...input,
-        [e.target.name]: e.target.value
-      })
-    )
-    console.log(input)
-  }
+    const handleInputChange = function (e) {
+        e.preventDefault()
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        });
+    }
 
   const [errors, setErrors] = useState({})
   return (
     <div>
-      <NavBar />
       <div className='iniciar'>
         <h1>Iniciar Session</h1>
-        <form className='containerIn'>
+        <form onSubmit={handleSubmit} className='containerIn'>
           <div>
             <label>
-              Email
-              <input type='text' name='email' placeholder='Email' />
+              <input onChange={handleInputChange} type='text' name='email' placeholder='Email' />
             </label>
           </div>
           <div>
             <label>
-              Contrasena
-              <input type='text' name='contrasena' placeholder='Contrasena' />
+             <input onChange={handleInputChange} type='text' name='contrasena' placeholder='Contrasena' />
             </label>
           </div>
           <button className='buttonSess'>Iniciar</button>
@@ -305,3 +326,17 @@ export default function IniciarSession (login, user, email, contrasena, edit=fal
     </div>
   )
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ login, updateUser }, dispatch);
+};
+
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.loginReducer.isAuth,
+    user: state.loginReducer.userDetail,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IniciarSession);
+
