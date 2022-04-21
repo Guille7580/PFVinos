@@ -48,7 +48,7 @@ export function logout() {
   return { type: LOGOUT };
 }
 
-export function login({ email, contrasena}) {
+export function login({email, contrasena}) {
   return async (dispatch) => {
      try {
         // Configuro los headers
@@ -57,12 +57,13 @@ export function login({ email, contrasena}) {
               'Content-Type': 'application/json',
            },
         };
+        
         // Armo el payload/body
         const body = { email, contrasena };
         
         // Envío la petición con el body y config armados
-        const json = await axios.post(`${BASEURL}/user/login`,body, config);
-        
+        const json = await axios.post(`${BASEURL}/user/login`, body, config);
+        console.log(localStorage.token_ecommerce)
         // Si todo bien configuro al usuario como logueado
         dispatch({
            type: LOGIN_SUCCESS,
