@@ -313,11 +313,42 @@ function IniciarSession (login,  email, contrasena, edit=false) {
             <label>
               <input onChange={handleInputChange} type='text' name='email' placeholder='Email' />
             </label>
+ 
+
+          <label>
+            <input
+              type='contrasena'
+              onChange={handleChange}
+              name='contrasena'
+              autoComplete='current-password'
+              placeholder='Contraseña'
+              value={form.contrasena}
+            />
+            {error.contrasena && (
+              <span className='errorPass'>{error.contrasena}</span>
+            )}
+          </label>
           </div>
-          <div>
-            <label>
-             <input onChange={handleInputChange} type='text' name='contrasena' placeholder='Contrasena' />
-            </label>
+          <div className='buttonsSession'>
+            <div className="box1">
+            <Link to='/'>
+              <button type='submit' className='buttonSess'>
+                Iniciar
+              </button>
+            </Link>
+            <Button
+              className='googleBtn'
+              variant='primary'
+              onClick={handleSesionGoogle}
+            >
+              Iniciar sesión con Google
+            </Button>
+            </div>
+            <div className="box2">
+            <h4>Aún no te has registrado? </h4>
+            <Link to='/register'>Registrarse</Link>
+            </div>
+            {/* <Link to="/login/recoverpassword">¿Olvidaste la contraseña?</Link> */}
           </div>
           <button className='buttonSess'>Iniciar</button>
         </form>
