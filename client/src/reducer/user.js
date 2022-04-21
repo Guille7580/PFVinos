@@ -7,7 +7,6 @@ const initialState = {
 }
 
 export default function users (state = initialState, action) {
-  console.log('Hola Reducer')
 
   switch (action.type) {
     case POST_USER:
