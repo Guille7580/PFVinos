@@ -121,9 +121,9 @@ userRouter.post("/login", [
 
   // Si no hay errores, continúo
   const { email, contrasena } = req.body;
-
+console.log(req.body)
   try {
-    let user = await User.findOne({ where: { email, contrasena } });
+    let user = await User.findOne({ where: { email } });
 
     // significa que el correo no es válido
     if (!user) return next({ status: 400, message: "Credenciales no validas" });

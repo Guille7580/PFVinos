@@ -1,7 +1,7 @@
-import axios from "axios";
-import { BASEURL } from "../assets/URLS";
-import getHeaderToken from "../Helpers/getHeaderToken";
-import { toast } from "react-toastify";
+import axios from 'axios'
+import { BASEURL } from '../assets/URLS'
+import getHeaderToken from '../Helpers/getHeaderToken'
+import { toast } from 'react-toastify'
 import {
   AUTHENTICATION_ERROR,
   GET_PEDIDO_BY_USER,
@@ -12,78 +12,76 @@ import {
   REGISTER_FAILED,
   REGISTER_SUCCESS,
   UPDATE_USER,
-  RECOVERY_PASSWORD,
-} from "./types";
+  RECOVERY_PASSWORD
+} from './types'
 //import { getPedidosByUser } from './pedidos'
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
 
-
-export const recoveryPassword = async (email) => {
+export const recoveryPassword = async email => {
   let post = await axios.post(
     `${BASEURL}/password`,
     { email: `${email}` },
     {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json'
     }
-  );
+  )
 
-  console.log("el retorno de post", post);
-};
+  console.log('el retorno de post', post)
+}
 
-export function updateUser(newUser) {
+export function updateUser (newUser) {
   return async function (dispatch) {
     try {
-      await axios.put(`${BASEURL}/user/update`, newUser, getHeaderToken());
-      dispatch(getUserDetail());
+      await axios.put(`${BASEURL}/user/update`, newUser, getHeaderToken())
+      dispatch(getUserDetail())
       return {
-        type: UPDATE_USER,
-      };
+        type: UPDATE_USER
+      }
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err.response.data)
     }
-  };
-}
-
-export function logout() {
-  return { type: LOGOUT };
-}
-
-export function login({ email, contrasena}) {
-  return async (dispatch) => {
-     try {
-        // Configuro los headers
-        const config = {
-           headers: {
-              'Content-Type': 'application/json',
-           },
-        };
-        // Armo el payload/body
-        const body = { email, contrasena };
-        
-        // Envío la petición con el body y config armados
-        const json = await axios.post(`${BASEURL}/user/login`,body, config);
-        
-        // Si todo bien configuro al usuario como logueado
-        dispatch({
-           type: LOGIN_SUCCESS,
-           payload: json.data
-        });
-
-        dispatch(getUserDetail());
-     } catch (err) {
-        //toast.error(err.response.data);
-        console.log(err);
-
-        // Si ocurrió un error durante el logen, envio el login_fail
-        return dispatch({
-           type: LOGIN_FAILED
-        });
-     }
   }
-};
+}
 
+export function logout () {
+  return { type: LOGOUT }
+}
 
-export function register({
+export function login ({ email, contrasena }) {
+  return async dispatch => {
+    try {
+      // Configuro los headers
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      // Armo el payload/body
+      const body = { email, contrasena }
+console.log(body)
+      // Envío la petición con el body y config armados
+      const json = await axios.post(`${BASEURL}/user/login`, body, config)
+
+      // Si todo bien configuro al usuario como logueado
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: json.data
+      })
+
+      dispatch(getUserDetail())
+    } catch (err) {
+      //toast.error(err.response.data);
+      console.log(err)
+
+      // Si ocurrió un error durante el logen, envio el login_fail
+      return dispatch({
+        type: LOGIN_FAILED
+      })
+    }
+  }
+}
+
+export function register ({
   nombre,
   usuario,
   contrasena,
@@ -91,16 +89,16 @@ export function register({
   pais,
   provincia,
   direccion,
-  telefono,
+  telefono
 }) {
   return async function (dispatch) {
     try {
       // Configuro los headers
       const config = {
         headers: {
-          "Content-Type": "application/json",
-        },
-      };
+          'Content-Type': 'application/json'
+        }
+      }
 
       // Armo el payload/body
       const body = {
@@ -111,50 +109,49 @@ export function register({
         pais,
         provincia,
         direccion,
-        telefono,
-      };
+        telefono
+      }
       // console.log("body");
       // console.log(body);
 
-      let { data } = await axios.post(`${BASEURL}/user/register`, body, config);
+      let { data } = await axios.post(`${BASEURL}/user/register`, body, config)
 
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: data,
-      });
+        payload: data
+      })
 
-      dispatch(getUserDetail());
-
+      dispatch(getUserDetail())
     } catch (err) {
-      toast.error(err.response.data);
-      console.log(err.response.data);
+      toast.error(err.response.data)
+      console.log(err.response.data)
 
       dispatch({
-        type: REGISTER_FAILED,
-      });
+        type: REGISTER_FAILED
+      })
     }
-  };
+  }
 }
 
 export const getUserDetail = () => {
-  return async (dispatch) => {
-     const headers = getHeaderToken();
-     console.log(headers);
-     try {
-        const { data } = await axios.get(`${BASEURL}/user`, headers);
-        //toast(`Bienvenido ${data.nombre}`)
-        // console.log(data);
-        dispatch({
-           type: GET_USER_DETAIL,
-           payload: data
-        })
-        //dispatch(getPedidosByUser(data.id));
-     } catch (error) {
-        console.log(error.response.data);
-        dispatch({
-           type: AUTHENTICATION_ERROR
-        })
-     }
+  return async dispatch => {
+    const headers = getHeaderToken()
+    console.log(headers)
+    try {
+      const { data } = await axios.get(`${BASEURL}/user`, headers)
+      //toast(`Bienvenido ${data.nombre}`)
+      // console.log(data);
+      dispatch({
+        type: GET_USER_DETAIL,
+        payload: data
+      })
+      //dispatch(getPedidosByUser(data.id));
+    } catch (error) {
+      console.log(error.response.data)
+      dispatch({
+        type: AUTHENTICATION_ERROR
+      })
+    }
   }
 }
 
@@ -167,16 +164,16 @@ export const loginGoogle = ({
   provincia,
   direccion,
   telefono,
-  token,
+  token
 }) => {
   return async function (dispatch) {
     try {
       // Configuro los headers
       const config = {
         headers: {
-          "Content-Type": "application/json",
-        },
-      };
+          'Content-Type': 'application/json'
+        }
+      }
 
       // Armo el payload/body
       const body = {
@@ -188,23 +185,23 @@ export const loginGoogle = ({
         provincia,
         direccion,
         telefono,
-        token,
-      };
+        token
+      }
 
-      await axios.post(`${BASEURL}/loginGoogle`, body, config);
+      await axios.post(`${BASEURL}/loginGoogle`, body, config)
 
       // console.log(data);
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: body,
-      });
-      dispatch(getUserDetail());
+        payload: body
+      })
+      dispatch(getUserDetail())
     } catch (err) {
-      console.log(err.response);
+      console.log(err.response)
 
       dispatch({
-        type: REGISTER_FAILED,
-      });
+        type: REGISTER_FAILED
+      })
     }
-  };
-};
+  }
+}

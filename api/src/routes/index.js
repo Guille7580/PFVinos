@@ -28,9 +28,6 @@ const user = require('./user')
 
 router.use('/user', user)
 
-
-
-
 //Categorias
 router.use('/categoria',categorRoute)
 

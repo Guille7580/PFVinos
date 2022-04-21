@@ -24,6 +24,7 @@ const initialForm = {
 
 const validateForm = function (form) {
   const { email, contrasena } = form
+  console.log(form)
   const errors = {}
 
   if (!email.trim()) {
@@ -120,7 +121,7 @@ export default function SignIn(isAuth,user ) {
     const data = {
       email, contrasena
     };
-
+console.log
     dispatch(login(data));
   }
   // function handleSignIn(e) {
