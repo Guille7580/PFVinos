@@ -17,17 +17,19 @@ export function getUser () {
   }
 }
 
-export function getAllUser () {
-  return async function (dispatch) {
-    try {
-      var json = await axios(`${BASEURL}user/all`)
-      console.log(json.data)
-      return dispatch({
-        type: GET_ALL_USERS,
-        payload: json.data
-      })
-    } catch (error) {
-      console.log(error)
+export function getAllUser() {
+    return async function (dispatch) {
+        try {
+            var json = await axios(`${BASEURL}user/all`)
+            console.log(json.data)
+            return dispatch({
+                type: GET_ALL_USERS,
+                payload: json.data
+            })
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 }
 
