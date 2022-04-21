@@ -51,8 +51,7 @@ items = items?.filter((e) => e);
         </div>
         <div className='cartButtons'>
           <div className='cartButton'>
-            <button className='buttonss'>Eliminar Carrito</button>
-            <button className='buttonss'>Pagar</button>
+          
           </div>
         </div>
         <div>

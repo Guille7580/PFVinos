@@ -1,8 +1,8 @@
 import { GET_USER_DETAIL, POST_USER,  GET_ALL_USERS } from '../actions/types.js'
 
 const initialState = {
-  getUser: [],
-  allUser: []
+    getUser: [],
+    allUser:[]
 }
 
 export default function users (state = initialState, action) {
@@ -14,12 +14,22 @@ export default function users (state = initialState, action) {
         ...state
       }
 
-    case GET_ALL_USERS:
-      return {
-        ...state,
-        allUser: action.payload
+    switch (action.type) {
+
+        case POST_USER:
+            return {
+                ...state
+            }
+
+        case GET_USER_DETAIL:
+            return { ...state, getUser: action.payload }
+
+        case GET_ALL_USERS:
+          return {
+            ...state,
+            allUser: action.payload
+          }
+        default:
+          return state
       }
-    default:
-      return state
-  }
-}
+    }
