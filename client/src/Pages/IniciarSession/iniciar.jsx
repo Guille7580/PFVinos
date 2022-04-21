@@ -65,10 +65,10 @@ const Login = ({ login, isAuth, user, register }) => {
     if (isAuth && user) {
       const { rol } = user
       setForm(initialForm)
-      async function db() {
-        await postCart();
+      async function db () {
+        await postCart()
       }
-      isAuth && db();
+      isAuth && db()
 
       rol === '2' ? navigate('/dashboard/admin') : navigate('/')
     }
@@ -122,7 +122,7 @@ const Login = ({ login, isAuth, user, register }) => {
               />
               {error.email && <span className='errorEmail'>{error.email}</span>}
             </label>
-          </div>
+ 
 
           <label>
             <input
@@ -137,7 +137,9 @@ const Login = ({ login, isAuth, user, register }) => {
               <span className='errorPass'>{error.contrasena}</span>
             )}
           </label>
+          </div>
           <div className='buttonsSession'>
+            <div className="box1">
             <Link to='/'>
               <button type='submit' className='buttonSess'>
                 Iniciar
@@ -150,8 +152,11 @@ const Login = ({ login, isAuth, user, register }) => {
             >
               Iniciar sesión con Google
             </Button>
+            </div>
+            <div className="box2">
             <h4>Aún no te has registrado? </h4>
             <Link to='/register'>Registrarse</Link>
+            </div>
             {/* <Link to="/login/recoverpassword">¿Olvidaste la contraseña?</Link> */}
           </div>
         </form>

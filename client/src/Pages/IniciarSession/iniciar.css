@@ -9,6 +9,10 @@
   padding-bottom: 20px;
 }
 .containerIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   border: #e8cfc1 solid 1px;
   padding: 40px;
   margin: 10px;
@@ -31,16 +35,33 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-left: 20px;
-
+  padding-left: 150px;
+  padding-top: 150px;
 }
 .buttonsSession {
-  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+}
+.buttonSess {
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
   border-radius: 5px;
   height: 35px;
   margin-top: 10px;
   width: 70px;
   background-color: #e8cfc1;
+}
+.box1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.box2{
+  text-align: center;
 }
 
 input {
@@ -51,7 +72,8 @@ input {
 }
 
 .googleBtn {
-  height: 40px;
+  margin-top: 10px;
+  height: 35px;
   background-color: #e8cfc1;
   border-radius: 5px;
 }
@@ -60,14 +82,14 @@ input {
   height: 100px;
   width: 60px;
   border: 3px solid #000;
-  border-radius: 0 0 50% 50%;
+  border-radius: 5% 5% 50% 50%;
   position: relative;
   overflow: hidden;
   margin-top: 20px;
 }
 
 .wine-glass:before {
-  margin-top: 20px;
+  margin-top: 80px;
   content: '';
   position: absolute;
   width: 400px;
@@ -75,28 +97,39 @@ input {
   background-color: #722f37;
   left: 50%;
   transform: translate(-50%);
-  border-radius: 50%;
-  animation: fill 4s ease-in-out infinite;
-  animation: skew 4s ease-in-out infinite;
+  border-radius: 130px;
+  /* animation: fill 4s ease-in-out infinite; */
+  animation: wave 20s infinite linear;
+  transition: all 2s ease-in-out;
   z-index: -1px;
 }
+.comentario:hover:before {
+  text-decoration: none;
+  color: transparent;
+}
 
-@keyframes fill {
-  from {
-    top: 250px;
-    transform: translateX(-50%) rotate(0deg);
+.wine-glass:hover:before {
+  top: -50px;
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%) rotate(-180deg);
   }
-  to {
-    top: -50px;
-    transform: translateX(-50%) rotate(360deg);
+
+  100% {
+    transform: translate(-50%) rotate(360deg);
   }
 }
 
-@keyframes skew {
+/* @keyframes skew {
   from {
     transform: skewX(40deg);
   }
-}
+  to {
+    transform: skewX(50deg);
+  }
+} */
 .glass-stem {
   height: 70px;
   width: 6px;
@@ -109,5 +142,4 @@ input {
   background-color: #000;
   border-radius: 50%;
   margin: 0;
-  box-shadow: #000 0% 0% 5px;
 }

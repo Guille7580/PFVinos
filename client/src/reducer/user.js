@@ -1,14 +1,18 @@
-import { GET_USER_DETAIL, GET_ALL_USERS, POST_USER } from '../actions/types.js'
-console.log('Hola Reducer')
+import { GET_USER_DETAIL, POST_USER,  GET_ALL_USERS } from '../actions/types.js'
 
 const initialState = {
     getUser: [],
     allUser:[]
 }
 
-export default function users(state = initialState, action) {
-
-    console.log('Hola Reducer')
+export default function users (state = initialState, action) {
+  switch (action.type) {
+    case GET_USER_DETAIL:
+      return { ...state, getUser: action.payload }
+    case POST_USER:
+      return {
+        ...state
+      }
 
     switch (action.type) {
 
