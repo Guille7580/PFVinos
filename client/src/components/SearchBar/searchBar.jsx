@@ -7,7 +7,7 @@ import './searchBar.css'
 export default function SearchBar () {
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
-
+  //console.log(title)
   function handleInputProducts (e) {
     e.preventDefault()
     setTitle(e.target.value)
@@ -22,14 +22,13 @@ export default function SearchBar () {
   return (
     <div>
       <input
-        onSubmit={handleSubmit}
         className='searchBar'
         value={title}
         type='text'
         placeholder='Buscar Productos...'
-        onChange={e => handleInputProducts(e)}
+        onChange={(e) => handleInputProducts(e)}
       />
-      <button type='submit'>Buscar</button>
+      <button type='submit' onClick={(e) => handleSubmit(e)}>Buscar</button>
     </div>
   )
 }
