@@ -61,7 +61,7 @@ export function login({ email, contrasena}) {
         const body = { email, contrasena };
         
         // Envío la petición con el body y config armados
-        const json = await axios.get(`${BASEURL}/user/login`,body, config);
+        const json = await axios.post(`${BASEURL}/user/login`,body, config);
         
         // Si todo bien configuro al usuario como logueado
         dispatch({

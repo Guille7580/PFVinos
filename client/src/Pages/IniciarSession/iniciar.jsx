@@ -105,68 +105,36 @@ export default function SignIn(isAuth,user ) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   //const {isAuthenticated} = useAuth0();
-  const [email, setEmail] = useState('')
-  const [modalInsertar, setStateModalInsectar] = useState(false)
-  const [contrasena, setPassword] = useState('');
-  const [validate, setValidate] = useState(0);
   //const user = useSelector((state) => state.User);
   const guestCart = useSelector((state) => state.basket);
   const Error = () => toast.error("El email o la contraseña son incorrectos")
-  const Bienvenido = () => setStateModalInsectar(true)
   const [error, setError] = useState({});
   const [form, setForm] = useState();
 
-  useEffect(() => {
-
-
-    // Si ya está logueado que lo redireccione al dashboard
-    if (email && contrasena) {
-      setForm(initialForm);
-      const { rol } = user;
-      Swal.fire({
-        text: `Bienvenidx`,
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
-      // async function db() {
-      //   await postCart();
-      // }
-      //isAuth && db();
-      if (rol === "1") return navigate("/");
-      if (rol === "2") return navigate("/dashboard/admin");
-    }
-  }, [isAuth, , user, navigate]);
-
-  function handleEmail(e) {
-    e.preventDefault()
-    setEmail(e.target.value)
-  }
-
-  function handlePassword(e) {
-    e.preventDefault()
-    setPassword(e.target.value)
-  }
-
   function handleSignIn(e) {
     e.preventDefault();
-    const fetchData = async () => {
-      await dispatch(login({
-        email: email,
-        contrasena: contrasena
-      }, guestCart))
-      await setValidate(validate + 1)
-    }
-    fetchData()
 
+    let email = e.target.email;
+    let contrasena = e.target.contrasena;
+
+    const data = {
+      email, contrasena
+    };
+
+    dispatch(login(data));
   }
-  // const IniciarCompra = (e) => {
-  //   e.preventDefault()
-  //   Navigate('/')
+  // function handleSignIn(e) {
+  //   e.preventDefault();
+  //     const fetchData = async () => {
+  //     await dispatch(login({
+  //       email: email,
+  //       contrasena: contrasena
+  //     }, guestCart))
+  //     await setValidate(validate + 1)
+  //   }
+  //   fetchData()
+
   // }
-
-
-
-
 
   return (
     <div className='box'>
@@ -180,14 +148,14 @@ export default function SignIn(isAuth,user ) {
 
       <div className='iniciar'>
         <h1>Iniciar Sesion</h1>
-        <form className='containerIn'>
+        <form className='containerIn'onClick={(e) => handleSignIn(e)}>
           <div>
             <label>
               <input
                 type='email'
                 name='email'
                 placeholder='Email'
-                onChange={handleEmail}
+
               />
               {error.email && <span className='errorEmail'>{error.email}</span>}
             </label>
@@ -198,7 +166,7 @@ export default function SignIn(isAuth,user ) {
                 name='contrasena'
                 autoComplete='current-password'
                 placeholder='Contraseña'
-                onChange={handlePassword}
+
               />
               {error.contrasena && (
                 <span className='errorPass'>{error.contrasena}</span>
@@ -208,7 +176,7 @@ export default function SignIn(isAuth,user ) {
           <div className='buttonsSession'>
             <div className='box1'>
               <Link to='/'>
-                <button className='buttonSess' onClick={(e) => handleSignIn(e)}>
+                <button className='buttonSess' >
                   Iniciar
                 </button>
               </Link>

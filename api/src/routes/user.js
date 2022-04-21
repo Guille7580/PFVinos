@@ -108,7 +108,7 @@ userRouter.post("/register", [
   }
 });
 
-userRouter.get("/login", [
+userRouter.post("/login", [
   check('email', 'Incluya un email válido').isEmail().exists(),
   check('contrasena', 'Incluya una contraseña válida').isString().exists()
 ],  async (req, res, next) => {
@@ -120,7 +120,7 @@ userRouter.get("/login", [
   }
 
   // Si no hay errores, continúo
-  const { email, contrasena } = req.query;
+  const { email, contrasena } = req.body;
 
   try {
     let user = await User.findOne({ where: { email, contrasena } });
