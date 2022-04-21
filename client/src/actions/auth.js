@@ -40,6 +40,45 @@ export function updateUser (newUser) {
     } catch (err) {
       console.log(err.response.data)
     }
+  };
+}
+
+export function logout() {
+  return { type: LOGOUT };
+}
+
+export function login({email, contrasena}) {
+  return async (dispatch) => {
+     try {
+        // Configuro los headers
+        const config = {
+           headers: {
+              'Content-Type': 'application/json',
+           },
+        };
+        
+        // Armo el payload/body
+        const body = { email, contrasena };
+        
+        // Envío la petición con el body y config armados
+        const json = await axios.post(`${BASEURL}/user/login`, body, config);
+        console.log(localStorage.token_ecommerce)
+        // Si todo bien configuro al usuario como logueado
+        dispatch({
+           type: LOGIN_SUCCESS,
+           payload: json.data
+        });
+
+        dispatch(getUserDetail());
+     } catch (err) {
+        //toast.error(err.response.data);
+        console.log(err);
+
+        // Si ocurrió un error durante el logen, envio el login_fail
+        return dispatch({
+           type: LOGIN_FAILED
+        });
+     }
   }
 }
 
