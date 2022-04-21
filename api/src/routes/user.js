@@ -108,7 +108,7 @@ userRouter.post("/register", [
   }
 });
 
-userRouter.post("/login", [
+userRouter.get("/login", [
   check('email', 'Incluya un email válido').isEmail().exists(),
   check('contrasena', 'Incluya una contraseña válida').isString().exists()
 ],  async (req, res, next) => {
@@ -120,10 +120,10 @@ userRouter.post("/login", [
   }
 
   // Si no hay errores, continúo
-  const { email, contrasena } = req.body;
+  const { email, contrasena } = req.query;
 
   try {
-    let user = await User.findOne({ where: { email } });
+    let user = await User.findOne({ where: { email, contrasena } });
 
     // significa que el correo no es válido
     if (!user) return next({ status: 400, message: "Credenciales no validas" });

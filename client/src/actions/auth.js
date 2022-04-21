@@ -48,7 +48,7 @@ export function logout() {
   return { type: LOGOUT };
 }
 
-export function login({ email, contrasena }) {
+export function login({ email, contrasena}) {
   return async (dispatch) => {
      try {
         // Configuro los headers
@@ -59,20 +59,20 @@ export function login({ email, contrasena }) {
         };
         // Armo el payload/body
         const body = { email, contrasena };
-        console.log(body)
+        
         // Envío la petición con el body y config armados
-        let { data } = await axios.post(`${BASEURL}/user/login`, body, config);
+        const json = await axios.get(`${BASEURL}/user/login`,body, config);
         
         // Si todo bien configuro al usuario como logueado
         dispatch({
            type: LOGIN_SUCCESS,
-           payload: data
+           payload: json.data
         });
 
         dispatch(getUserDetail());
      } catch (err) {
-        toast.error(err.response.data);
-        console.log(err.response.data);
+        //toast.error(err.response.data);
+        console.log(err);
 
         // Si ocurrió un error durante el logen, envio el login_fail
         return dispatch({
