@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
-import { GET_USER_DETAIL, POST_USER,  GET_ALL_USERS } from './types'
+import { GET_USER_DETAIL,  GET_ALL_USERS, POST_USER } from './types'
 
 
 export function getUser () {
   return async function (dispatch) {
     try {
-      var json = await axios(`${BASEURL}/login`)
+      var json = await axios(`${BASEURL}/user/login`)
       return dispatch({
         type: GET_USER_DETAIL,
         payload: json.data

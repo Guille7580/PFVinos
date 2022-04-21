@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { signInWithPopup} from "firebase/auth";
 import {auth , provider} from '../../Helpers/firebase'
 import {postCart} from '../../actions/carrito'
-import NavBar from '../../components/navBar/navBar'
+
 
 const initialForm = {
   nombre: "",

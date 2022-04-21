@@ -3,13 +3,15 @@
   background-color: #523e;
   text-align: center;
   color: #e8cfc1;
+  padding-top: 20px;
+  padding-left: 10px;
 }
 
 .members {
   display: flex;
   justify-content: space-around;
   padding-bottom: 50px;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-right: 20px;
 }
 
@@ -28,6 +30,10 @@ h3 {
 .backBtn {
   border-radius: 5px;
   height: 35px;
-  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
+  background-color: #e8cfc1;
 }

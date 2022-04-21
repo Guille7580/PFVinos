@@ -1,7 +1,7 @@
 import React from 'react'
 import style from '../card/card.module.css'
 
-export default function Card ({ 
+export default function Card ({
   id,
   category,
   age,

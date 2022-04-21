@@ -2,13 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\client",
-    "\\client\\public",
     "\\client\\src",
+    "\\client\\src\\actions",
     "\\client\\src\\components",
+    "\\client\\src\\components\\card",
+    "\\client\\src\\components\\cards",
     "\\client\\src\\Pages",
-    "\\client\\src\\Pages\\Admin",
-    "\\client\\src\\Pages\\Register\\control registro"
+    "\\client\\src\\Pages\\Home",
+    "\\client\\src\\store"
   ],
-  "SelectedNode": "\\client\\src\\Pages\\Admin\\Admin.css",
+  "SelectedNode": "\\client\\src\\components\\card\\userCard.jsx",
   "PreviewInSolutionExplorer": false
 }

@@ -16,7 +16,7 @@ const categorRoute= require('./categorias')
 var product = require('./product')
 //userRouter.post("/register"var user = require('./user')
 
-//Product
+//Product//////
 router.get('/products', product.getAllProducts)
 router.get('/products/:id',product.getProductById)
 router.post('/products', product.postProduct)
