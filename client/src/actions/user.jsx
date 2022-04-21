@@ -20,7 +20,7 @@ export function getUser () {
 export function getAllUser() {
     return async function (dispatch) {
         try {
-            var json = await axios(`${BASEURL}user/all`)
+            var json = await axios(`${BASEURL}/user/all`)
             console.log(json.data)
             return dispatch({
                 type: GET_ALL_USERS,
