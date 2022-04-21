@@ -1,15 +1,22 @@
 .cartContainer {
-  background-color: #ccc;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(70, 69, 69),
+    rgb(230, 227, 219)
+  );
   text-align: center;
   flex-wrap: wrap;
-  height: 600px;
+  height: fit-content;
+  padding-top: 20px;
 }
 
 .totalContainer {
   display: flex;
-  justify-content: end;
+  justify-content: space-around;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 150px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .cartButton {
@@ -42,6 +49,29 @@
 .buttonss:hover {
   color: #523e27;
   background-color: #e8cfc1;
+  border-radius: 5px;
+  transition: 0.5s;
+  border-bottom: #523e27 solid 1px;
+  border-right: #523e27 solid 1px;
+}
+
+.btnBottom {
+  color: #523e27;
+  font-size: 16px;
+  margin-left: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  height: 40px;
+}
+
+.btnBottom:hover {
+  color: #523e27;
+  background-color: #464544;
+  color: whitesmoke;
   border-radius: 5px;
   transition: 0.5s;
   border-bottom: #523e27 solid 1px;
