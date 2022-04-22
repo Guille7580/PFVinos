@@ -279,7 +279,7 @@ function Createform({ updateUser, register, isAuth, user, edit = false }) {
             <button type='submit' className='buttonReg'>
               Registrar
             </button>
-            <button type='submit' className='buttonReg'>
+            <button onClick={handleSesionGoogle} className='buttonReg'>
               Registrar con Google
             </button>
             </div> 

@@ -27,7 +27,7 @@ function Modall() {
 
     const addUser = (nuevoUsuario) => {
         console.log('nuevoUsuario', nuevoUsuario)
-        dispatch(postUser(JSON.stringify(nuevoUsuario)))
+        dispatch(postUser(nuevoUsuario))
         
     }
 
@@ -83,8 +83,8 @@ function Modall() {
         
 
         {
-            title: "Password", field: "password",
-            validate: rowData => rowData.password === undefined || rowData.password === "" ? "Required" : true,
+            title: "Contrasena", field: "contrasena",
+            validate: rowData => rowData.contrasena === undefined || rowData.contrasena === "" ? "Required" : true,
             headerStyle: {
                 backgroundColor: '#039be5',
             }

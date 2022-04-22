@@ -135,7 +135,29 @@ export default function SignIn(isAuth,user ) {
   //   fetchData()
 
   // }
-
+  const handleSesionGoogle = async (e) => {
+    e.preventDefault();
+    const userG = await signInWithPopup(auth, provider);
+    try {
+      const userGoogle = {
+        contrasena: userG._tokenResponse.localId,
+        email: userG._tokenResponse.email,
+      };
+      console.log(userGoogle);
+      dispatch (login(userGoogle));
+      navigate('/');
+    } catch (e) {
+      if (
+        e.message.split("/")[1] === "account-exists-with-different-credential)."
+      ) {
+        Swal.fire({
+          title: "Ya tiene una cuenta con el mismo email",
+          text: "No puede iniciar sesión en una cuenta no registrada en la base de datos que tenga el mismo email. Use la cuenta con la que se haya registrado",
+          icon: "error",
+        });
+      }
+    }
+  };
   return (
     <div className='box'>
       <div className='containerWine'>
@@ -180,13 +202,13 @@ export default function SignIn(isAuth,user ) {
                   Iniciar
                 </button>
             
-              {/* <Button
+              <Button
                 className='googleBtn'
                 variant='primary'
                 onClick={handleSesionGoogle}
               >
                 Iniciar sesión con Google
-              </Button> */}
+              </Button> 
             </div>
             <div className='box2'>
               <h4>Aún no te has registrado? </h4>

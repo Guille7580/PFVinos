@@ -67,7 +67,7 @@ items = items?.filter((e) => e);
               <button className='btnBottom'>Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="#">
+            <Link to="/chekout">
             <button className='btnBottom'>Pagar</button>
             </Link>
           </div>
