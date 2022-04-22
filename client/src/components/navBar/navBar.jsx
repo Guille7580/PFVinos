@@ -85,7 +85,7 @@ const NavBarAuthenticated = () => {
   return (
     <>
       <NavBarAll />
-      <Link to='/register' className='navButton'>
+      <Link to='/perfil' className='navButton'>
         Perfil
       </Link>
     </>
@@ -120,9 +120,9 @@ function NavBar () {
       {isAuth && user ? (
         <>
           {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated />}
-             <div className="navButton"> Hola, {user.usuario} </div>
+          <div className='navButton'> Hola, {user.usuario} </div>
           <Link to='/' className='navButton' onClick={handleLogout}>
-              Salir
+            Salir
           </Link>
         </>
       ) : (
