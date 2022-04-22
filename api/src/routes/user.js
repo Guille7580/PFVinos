@@ -281,6 +281,18 @@ userRouter.delete('/:email', async (req, res) => {
   }
 });
 
+userRouter.delete('/:email', async (req, res) => {
+    const { email } = req.params;
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+        await user.destroy();
+
+        res.send('The user has been deleted successfully');
+    } else {
+        res.send('The user does not exist');
+    }
+});
+
 /////Editar info user desde USUARIO//////////////////
 userRouter.put('/:email/update', async (req, res) => {
   const {        

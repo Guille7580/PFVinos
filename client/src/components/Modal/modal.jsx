@@ -1,130 +1,119 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Modal, Button, TextField } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import { style } from '@material-ui/icons';
-import { postUser } from '../../actions/user';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import './modal.css';
+import MaterialTable from 'material-table'
+import { deleteUser, getAllUser, postUser } from '../../actions/user';
 
+function Modall() {
 
-const useStyles = makeStyles((theme) => ({
-    modal: {
-        position: 'absolute',
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)'
-    },
-    iconos: {
-        cursor: 'pointer'
-    },
-    inputMaterial: {
-        width: '100%'
-    },
-    button: {
-        minwidth: '130px',
-        height: "40px",
-        color: "#fff",
-        padding: "30px 40%",
-        fontweight: "bold",
-        cursor: "pointer",
-        transition: "all 0.3s ease",
-        position: "relative",
-        display: "inlineblock",
-        outline: "none",
-        overflow: "hidden",
-        borderradius: "5px",
-        border: "none",
-        backgroundcolor: "#3d348b"
-    }
+    const dispatch = useDispatch();
 
+    const [data, setData] = useState([])
 
-}));
+    useEffect(() => {
+        dispatch(getAllUser());
+    }, [dispatch]);
 
-export default function Modall() {
+    const allUsers = useSelector(state => state.users.allUser)
 
-    const dispatch = useDispatch()
+    useEffect(() => {
+        setData(allUsers)
+    }, [allUsers]);
 
-    const styles = useStyles()
-
-    const [modalInsertar, setModalInsertar] = useState(false)
-
-    const [consolaSeleccionada, setConsolaSeleccionada] = useState({
-        usuario: '',
-        nombre: '',
-        direccion: '',
-        pais: '',
-        provincia: '',
-        contrasena:'',
-        email: '',
-        telefono: '',
+    const getStudents = () => {
+        setData(allUsers)
         
-    })
-
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setConsolaSeleccionada(prevState => ({
-            ...prevState,
-            [name]: value
-        }))
-        console.log(consolaSeleccionada);
     }
 
-    const abrirCerrarModalInsertar = () => {
-        setModalInsertar(!modalInsertar)
+    const addUser = (nuevoUsuario) => {
+        console.log('nuevoUsuario', nuevoUsuario)
+        dispatch(postUser(JSON.stringify(nuevoUsuario)))
+        
     }
 
-    const hundleSubmit = e => {
-        dispatch(postUser(consolaSeleccionada))
-        abrirCerrarModalInsertar()
+    const delUser = (email) => {
+        dispatch(deleteUser(email))
+        getStudents()
     }
-    
-    const bodyInsertar = (
-        <div className={styles.modal}>
-            <h3>Agregar Nuevo Usuario</h3>
-            <TextField className={styles.inputMaterial} name='ususaio' label="Usuario" onChange={(e) => handleChange(e)} />
-            <br/>
-            <TextField className={styles.inputMaterial} name='nombre' label="Nombre" onChange={(e) => handleChange(e)}/>
-            <br />
-            <TextField className={styles.inputMaterial} name='direccion' label="Direccion" onChange={(e) => handleChange(e)}/>
-            <br />
-            <TextField className={styles.inputMaterial} name='pais' label="Pais" onChange={(e) => handleChange(e)}/>
-            <br />
-            <TextField className={styles.inputMaterial} name='provincia' label="Provincia" onChange={(e) => handleChange(e)}/>
-            <br />
-            <TextField className={styles.inputMaterial} name='contraena' label="contrasena" onChange={(e) => handleChange(e)} />
-            <br />
-            <TextField className={styles.inputMaterial} name='email' label="Email" onChange={(e) => handleChange(e)}/>
-            <br />
-            <TextField className={styles.inputMaterial} name='telefono' label="Telefono" onChange={(e) => handleChange(e)}/>
-            <br />
-            
-            <br /><br />
-            <div align='rigth'>
-                <Button color='primary' onClick={(e) => hundleSubmit(e)}>Insertar</Button>
-                <Button color='secondary' onClick={() => abrirCerrarModalInsertar()}>Cancelar</Button>
-            </div>
 
-        </div>
+    console.log(data)
 
-        )
-
+    const columns = [
+        {
+            title: "Name", field: "nombre", validate: rowData => rowData.nombre === undefined || rowData.nombre === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+        {
+            title: "Usuario", field: "usuario",
+            validate: rowData => rowData.usuario === undefined || rowData.usuario === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+        
+        {
+            title: "Email", field: "email",
+            validate: rowData => rowData.email === undefined || rowData.email === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+        {
+            title: "Pais", field: "pais",
+            validate: rowData => rowData.pais === undefined || rowData.pais === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+        {
+            title: "Provincia", field: 'provincia',
+            validate: rowData => rowData.provincia === undefined || rowData.provincia === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+        {
+            title: "Direccion", field: "direccion",
+            validate: rowData => rowData.direccion === undefined || rowData.direccion === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+        {
+            title: "Telefono", field: "telefono",
+            validate: rowData => rowData.telefono === undefined || rowData.telefono === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+    ]
     return (
-        <div>
-
-            <Modal
-                open={modalInsertar}
-                onClose={abrirCerrarModalInsertar}>
-                {bodyInsertar}
-
-            </Modal>
-            <Button className={styles.button} onClick={() => abrirCerrarModalInsertar()} >Insertar Nuevo Usuario</Button>
+        <div className="App">
+            <h1 align="center">PANEL ADMINISTRACION DE USUARIOS</h1>
+            
+            <MaterialTable
+                
+                title="Usuarios"
+                columns={columns}
+                data={data}
+                options={{ actionsColumnIndex: -1, addRowPosition: "first", exportButton: true, gruoping: true }}
+                editable={{
+                    onRowAdd: newData =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                addUser(newData)
+                                getStudents()
+                                console.log(newData)
+                               resolve();
+                            }, 1000);
+                        }),
+                    
+                }}
+            />
         </div>
-
-
-        )
+    );
 }
 
+export default Modall;
