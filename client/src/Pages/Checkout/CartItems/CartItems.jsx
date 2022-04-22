@@ -14,7 +14,7 @@ const CartItems = ({
       </div>
       <div className='itemDetalle'>
         <h4> Nombre: {product.title}</h4>
-        <h4>Precio: {product.price}</h4>
+        <h4>Precio: $ {product.price}</h4>
 
         <h4>Stock: {product.stock}</h4>
         <h4>Cantidad: {product.amount}</h4>
@@ -37,7 +37,7 @@ const CartItems = ({
         </button>
       </div>
       <div className='subtotalItem'>
-        <h4>Subtotal: {(product.price * product.amount).toFixed(2)}</h4>
+        <h4>Subtotal: $ {(product.price * product.amount).toFixed(2)}</h4>
       </div>
     </div>
   )

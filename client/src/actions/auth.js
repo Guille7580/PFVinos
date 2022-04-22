@@ -72,7 +72,7 @@ export function login({email, contrasena}) {
 
         dispatch(getUserDetail());
      } catch (err) {
-        //toast.error(err.response.data);
+        toast.error(err.response.data);
         console.log(err);
 
         // Si ocurrió un error durante el logen, envio el login_fail
@@ -143,7 +143,7 @@ export const getUserDetail = () => {
      console.log(headers);
      try {
         const { data } = await axios.get(`${BASEURL}/user`, headers);
-        //toast(`Bienvenido ${data.nombre}`)
+        toast(`Bienvenido ${data.nombre}`)
         // console.log(data);
         dispatch({
            type: GET_USER_DETAIL,
