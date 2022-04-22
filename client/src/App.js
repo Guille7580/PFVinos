@@ -15,6 +15,7 @@ import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
 import { getAllProducts } from './actions/productos'
 import { getUserDetail } from './actions/auth'
+import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx';
 
 const App = () => {
   const token = useSelector(state => state.loginReducer.token)
@@ -119,6 +120,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/chekout" element={<VerificacionDeChekout />} />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
