@@ -15,7 +15,7 @@ import {
   RECOVERY_PASSWORD,
 } from "./types";
 //import { getPedidosByUser } from './pedidos'
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 
 
 export const recoveryPassword = async (email) => {
