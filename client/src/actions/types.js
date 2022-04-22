@@ -45,6 +45,8 @@ export const GET_BY_EMAIL = "GET_BY_EMAIL"
 
 export const POST_USER = 'POST_USER'
 export const DELETE_USER = 'DELETE_USER'
+export const GET_BY_EMAIL = 'GET_BY_EMAIL'
+
 
 // PEDIDOS
 export const GET_PEDIDOS = "GET_PEDIDOS" //all
