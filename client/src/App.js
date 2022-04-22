@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, BrowserRouter ,Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { ToastContainer } from "react-toastify";
@@ -100,7 +100,7 @@ const App = () => {
 
           <Route path='/detalles/:id' element={<Detail handleAddToCart = {handleAddToCart}/>}/>
           
-          <Route path='*' element={<Navigate replace to='/home' />} />
+          <Route path='*' element={<Navigate replace to='/' />} />
 
         </Routes>
       </BrowserRouter>
