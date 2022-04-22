@@ -348,6 +348,67 @@ userRouter.put('/admin/:email/update', async (req, res) => {
   }
 })
 
+
+userRouter.post('/admin/userRegister',  [
+  check("nombre", 'Incluya un "nombre" valido')
+    .isString()
+    .trim()
+    .not()
+    .isEmpty(),
+  check("usuario", 'Incluya un "usuario" valido')
+    .isString()
+    .trim()
+    .not()
+    .isEmpty(),
+  check("contrasena", "Incluya una contraseña válida")
+    .isString()
+    .trim()
+    .not()
+    .isEmpty(),
+  check("email", "Incluya un email válido").isEmail().exists(),
+], async (req, res, next) => {
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return next({ status: 400, errors });
+  }
+  const {
+    nombre,
+    usuario,
+    contrasena,
+    email,
+    pais,
+    provincia,
+    direccion,
+    telefono,
+  } = req.body;
+
+  try {
+    let userEmail = await User.findOne({ where: { email } });
+
+    // Si el correo ya está registrado, devuelvo un error
+    if (userEmail) {
+      return next({ status: 400, message: "Ya posee una cuenta registrada" });
+    }
+      const avatar = gravatar.url(email, {
+        s: "200", //size
+        r: "pg", //rate
+        d: "mm",
+      });
+const user = await User.create({nombre, usuario, contrasena,email, pais, provincia, direccion, telefono,avatar, rol:1})
+
+            // Creamos el nuevo usuario y lo guardamos en la DB
+            
+            res.status(200).send("Usuario creado")
+              // console.log(user.toJSON());
+            } catch (error) {
+              // no se ha podido crear el usuario
+              console.log(error);
+            }
+      
+  })
+
 /////////////////////////////RECUPERAR CONTRASE;A////////////////////
 
 // userRouter.post('/:email/forgotPassword/:token', async (req, res) => {
