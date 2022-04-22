@@ -1,16 +1,18 @@
 {
   "ExpandedNodes": [
     "",
+    "\\api",
+    "\\api\\src",
     "\\client",
     "\\client\\src",
     "\\client\\src\\actions",
     "\\client\\src\\components",
-    "\\client\\src\\components\\card",
-    "\\client\\src\\components\\cards",
+    "\\client\\src\\components\\Modal",
     "\\client\\src\\Pages",
-    "\\client\\src\\Pages\\Home",
-    "\\client\\src\\store"
+    "\\client\\src\\Pages\\Dashboard",
+    "\\client\\src\\Pages\\Dashboard\\Principal",
+    "\\client\\src\\reducer"
   ],
-  "SelectedNode": "\\client\\src\\components\\card\\userCard.jsx",
+  "SelectedNode": "\\client\\src\\components\\Modal\\modal.jsx",
   "PreviewInSolutionExplorer": false
 }

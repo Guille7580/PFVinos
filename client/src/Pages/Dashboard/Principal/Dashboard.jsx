@@ -1,10 +1,11 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { AppBar, Modal, Tab, Tabs } from "@material-ui/core";
 import { getAllUser } from "../../../actions/user.jsx"
 import { useEffect } from "react";
 import UserCards from "../../../components/cards/userCards.jsx";
-
+import Modall from "../../../components/Modal/modal.jsx";
 
 
 export default function Admin() {
@@ -32,7 +33,7 @@ export default function Admin() {
                 </Tabs>
             </AppBar>
             
-            {selectedTab === 0 && <UserCards users={allUsers} />
+            {selectedTab === 0 && <Modall />
                
             }
         </>
