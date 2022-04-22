@@ -123,73 +123,6 @@ userRouter.post(
   }
 );
 
-/* userRouter.post(
-  "/login",
-  [
-    check("email", "Incluya un email válido").isEmail().exists(),
-    check("contrasena", "Incluya una contraseña válida").isString().exists(),
-  ],
-  async (req, res, next) => {
-    // Validaciones de express-validator
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return next({ status: 400, errors });
-    }
-
-    // Si no hay errores, continúo
-    const { email, contrasena } = req.body;
-
-    try {
-      let user = await User.findOne({
-        where: { email: email, contrasena: contrasena },
-      });
-      console.log(user);
-
-      // significa que el correo no es válido
-      if (!user) return next({ status: 400, message: "correo no valido" });
-
-      user = user.toJSON();
-      if (user.rol === "3")
-        return next({ status: 403, message: "Usuario bloqueado" });
-
-      // Teniedo el usuario, determinamos si la contraseña enviada es correcta
-      const isMatch = await bcrypt.compare(contrasena, user.contrasena);
-
-      // si la contraseña es incorreta
-      if (!isMatch)
-        return next({ status: 400, message: "contraseña no valida" });
-      if (!email || !contrasena) {
-        return next({
-          status: 400,
-          message: "No se han proporcionado credenciales de acceso",
-        });
-      }
-
-      // si la contraseña y email son validos escribimos el payload/body
-      const payload = {
-        usuario: { id: user.id },
-      };
-      // GENERO UN TOKEN
-      jwt.sign(
-        payload,
-        JWT_SECRET,
-        {
-          expiresIn: 360000,
-        },
-        (err, token) => {
-          if (err) throw err;
-          return res.json({ token });
-        }
-      );
-    } catch (err) {
-      console.log(err);
-      next({ status: 500 });
-    }
-  }
-);
- */
-
 userRouter.post('/login', [
   check("email", "Incluya un email válido").isEmail().exists(),
   check("contrasena", "Incluya una contraseña válida").isString().exists(),
@@ -335,5 +268,113 @@ userRouter.put(
     }
   }
 );
+
+userRouter.delete('/:email', async (req, res) => {
+  const { email } = req.params;
+  const user = await User.findOne({ where: { email } });
+  if (user) {
+      await user.destroy();
+
+      res.send('The user has been deleted successfully');
+  } else {
+      res.send('The user does not exist');
+  }
+});
+
+userRouter.delete('/:email', async (req, res) => {
+    const { email } = req.params;
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+        await user.destroy();
+
+        res.send('The user has been deleted successfully');
+    } else {
+        res.send('The user does not exist');
+    }
+});
+
+/////Editar info user desde USUARIO//////////////////
+userRouter.put('/:email/update', async (req, res) => {
+  const {        
+    pais,
+    contrasena,
+    provincia,
+    direccion,
+    telefono,
+  } = req.body, {email} = req.params
+
+  try{
+      const user = await User.findOne({where: {email}})
+      
+      if(contrasena === user.contrasena){
+          if(telefono) user.telefono = telefono
+          if(direccion) user.direccion = direccion
+          if(pais) user.pais = pais
+          if(provincia) user.provincia = provincia
+          if(contrasena) user.contrasena = contrasena
+          await user.save()
+          res.send('Update user')
+      }
+      else res.send('The password that you entered is incorrect ')
+  }
+  catch {
+      res.status(500).send('INVALID EMAIL')
+  }
+})
+
+/////////Editar info user desde ADMIN////////////////////////////
+userRouter.put('/admin/:email/update', async (req, res) => {
+  const {        
+    pais,
+    provincia,
+    direccion,
+    telefono,
+  } = req.body, {email} = req.params
+
+  try{
+      const user = await User.findOne({where: {email}})
+      
+      if(email){
+          if(telefono) user.telefono = telefono
+          if(direccion) user.direccion = direccion
+          if(pais) user.pais = pais
+          if(provincia) user.provincia = provincia
+          await user.save()
+          res.send('Update user')
+      }
+  }
+  catch {
+      res.status(500).send('INVALID EMAIL')
+  }
+})
+
+/////////////////////////////RECUPERAR CONTRASE;A////////////////////
+
+// userRouter.post('/:email/forgotPassword/:token', async (req, res) => {
+//   const {email, token} = req.params
+//     const user = await User.findOne({where: {email}})
+//   if(user){
+//       const mailOptions = {
+//           from: 'latcom@gmail.com',
+//           to: email,
+//           subject: 'Recuperar contraseña',
+//           html: `<h1>Recuperar contraseña</h1>
+//           <p>Hola ${user.name} ${user.lastname}</p>
+//           <p>Para recuperar tu contraseña ingresa al siguiente link:</p>
+//           <a href="http://localhost:3000/change/${token}">Reset your Password</a>
+//           `
+//       };
+//       transporter.sendMail(mailOptions, (error, info) => {
+//           if (error) {
+//               console.log(error);
+//           } else {
+//               console.log('Email sent: ' + info.response);
+//           }
+//       });
+//       res.send('El mail ha sido enviado')
+//   } else{
+//       res.status(404).send('El usuario no ha sido encontrado')
+//   }
+// })
 
 module.exports = userRouter;
