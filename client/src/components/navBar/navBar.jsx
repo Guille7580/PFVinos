@@ -85,7 +85,7 @@ const NavBarAuthenticated = () => {
   return (
     <>
       <NavBarAll />
-      <Link to='/profile' className='navButton'>
+      <Link to='/perfil' className='navButton'>
         Perfil
       </Link>
     </>

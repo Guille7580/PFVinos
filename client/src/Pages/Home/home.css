@@ -54,17 +54,3 @@ select {
   padding: 20px;
 }
 
-.buttonsSession {
-  display: flex;
-  flex-direction: column;
-}
-.buttonSess {
-  border-radius: 5px;
-  height: 30px;
-  margin-top: 5px;
-  width: 100px;
-  background-color: #e8cfc1;
- 
-}
-
-

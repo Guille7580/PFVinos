@@ -119,8 +119,7 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
           <option value='Rosado'>Rosado</option>
         </select>
         <SearchBar className= 'searchHome' />
-        
-        <button className='buttonSess' onClick={e=>{handleClick(e)}}>Vinos</button>
+        <button onClick={e=>{handleClick(e)}}>Recargar Vinos</button>
         
       </div>
       <div className='containerBody'>
