@@ -154,8 +154,11 @@ export default function SignIn (isAuth, user) {
           </div>
           <div className='buttonsSession'>
             <div className='box1'>
-              <button className='buttonSess'>Iniciar</button>
-
+             
+                <button className='buttonSess' >
+                  Iniciar
+                </button>
+            
               <Button
                 className='googleBtn'
                 variant='primary'
@@ -163,7 +166,7 @@ export default function SignIn (isAuth, user) {
                 type='submit'
               >
                 Iniciar sesión con Google
-              </Button>
+              </Button> 
             </div>
             <div className='box2'>
               <h4>Aún no te has registrado? </h4>

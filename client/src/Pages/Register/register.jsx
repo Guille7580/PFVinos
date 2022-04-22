@@ -173,108 +173,114 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
   }
 
   return (
-    <div className='containReg'>
-      <h1>Registro</h1>
-      <form className='formReg' onSubmit={e => handleSubmit(e)}>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='text'
-            name='nombre'
-            placeholder='Nombre Completo...'
-            value={form.nombre}
-          />
-          {errors.nombre && <p>{errors.nombre}</p>}
-        </label>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='text'
-            name='usuario'
-            placeholder='Usuario...'
-            value={form.usuario}
-          />
-          {errors.usuario && <p>{errors.usuario}</p>}
-        </label>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='password'
-            name='contrasena'
-            placeholder='Contraseña...'
-            value={form.contrasena}
-          />
-          {errors.contrasena && <p>{errors.contrasena}</p>}
-        </label>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='text'
-            name='email'
-            placeholder='Email...'
-            value={form.email}
-          />
-          {errors.email && <p>{errors.email}</p>}
-        </label>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='text'
-            name='pais'
-            placeholder='Pais...'
-            value={form.pais}
-          />
-          {errors.pais && <p>{errors.pais}</p>}
-        </label>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='text'
-            name='provincia'
-            placeholder='Provincia...'
-            value={form.provincia}
-          />
-          {errors.provincia && <p>{errors.provincia}</p>}
-        </label>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='text'
-            name='direccion'
-            placeholder='Dirección...'
-            value={form.direccion}
-          />
-          {errors.direccion && <p>{errors.direccion}</p>}
-        </label>
-        <label className='label'>
-          <input
-            onChange={e => handleChange(e)}
-            className='regInput'
-            type='text'
-            name='telefono'
-            placeholder='Teléfono...'
-            value={form.telefono}
-          />
-        </label>
-        {errors.telefono && <p>{errors.telefono}</p>}
-        <div className='regButtons'>
-          <button type='submit' className='buttonReg'>
-            Registrar
-          </button>
-          <button
-            onClick={handleSesionGoogle}
-            type='submit'
-            className='buttonReg'
-          >
-            Registrar con Google
-          </button>
+        <div className='containReg'>
+          <h1>Registro</h1>
+          <form className='formReg' onSubmit={e => handleSubmit(e)}>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='text'
+                name='nombre'
+                placeholder='Nombre Completo...'
+                value={form.nombre}
+              />
+              {errors.nombre && <p>{errors.nombre}</p>}
+            </label>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='text'
+                name='usuario'
+                placeholder='Usuario...'
+                value={form.usuario}
+              />
+              {errors.usuario && <p>{errors.usuario}</p>}
+            </label>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='password'
+                name='contrasena'
+                placeholder='Contraseña...'
+                value={form.contrasena}
+              />
+              {errors.contrasena && <p>{errors.contrasena}</p>}
+            </label>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='text'
+                name='email'
+                placeholder='Email...'
+                value={form.email}
+              />
+              {errors.email && <p>{errors.email}</p>}
+            </label>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='text'
+                name='pais'
+                placeholder='Pais...'
+                value={form.pais}
+              />
+              {errors.pais && <p>{errors.pais}</p>}
+            </label>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='text'
+                name='provincia'
+                placeholder='Provincia...'
+                value={form.provincia}
+              />
+              {errors.provincia && <p>{errors.provincia}</p>}
+            </label>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='text'
+                name='direccion'
+                placeholder='Dirección...'
+                value={form.direccion}
+              />
+              {errors.direccion && <p>{errors.direccion}</p>}
+            </label>
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='text'
+                name='telefono'
+                placeholder='Teléfono...'
+                value={form.telefono}
+              />
+            </label>
+            {errors.telefono && <p>{errors.telefono}</p>}
+            <div className='regButtons'>
+            <button type='submit' className='buttonReg'>
+              Registrar
+            </button>
+            <button onClick={handleSesionGoogle} className='buttonReg'>
+              Registrar con Google
+            </button>
+            </div> 
+          </form>
         </div>
       </form>
     </div>

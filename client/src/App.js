@@ -16,6 +16,7 @@ import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
 import { getAllProducts } from './actions/productos'
 import { getUserDetail } from './actions/auth'
+import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx';
 
 const App = () => {
   const token = useSelector(state => state.loginReducer.token)
@@ -23,6 +24,16 @@ const App = () => {
   const userDetail = useSelector(state => state.loginReducer.userDetail)
   const dispatch = useDispatch()
   const [cartItems, setCartItems] = useState([])
+
+  useEffect(() => {
+    if (cartItems.length !== 0) localStorage.setItem('carrito', JSON.stringify(cartItems))
+  }, [cartItems])
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("carrito"));
+
+    if (items) setCartItems(items);
+  }, [])
 
   const handleAddToCart = clickedItem => {
     setCartItems(prev => {
@@ -44,7 +55,7 @@ const App = () => {
   }
 
   const handleRemoveFromCart = id => {
-    //if (cartItems.length === 1) localStorage.removeItem("carrito");
+    if (cartItems.length === 1) localStorage.removeItem("carrito");
 
     setCartItems(prev =>
       prev.reduce((acc, item) => {
@@ -63,7 +74,7 @@ const App = () => {
   }
 
   const handleDeleteFromCart = id => {
-    //if (cartItems.length === 1) localStorage.removeItem("carrito");
+    if (cartItems.length === 1) localStorage.removeItem("carrito");
 
     setCartItems(prev => prev.filter(item => item.id !== id))
   }
@@ -110,6 +121,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/chekout" element={<VerificacionDeChekout />} />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
