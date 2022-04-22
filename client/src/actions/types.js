@@ -39,6 +39,7 @@ export const AUTHENTICATION_ERROR = "AUTHENTICATION_ERROR";
 export const UPDATE_USER = "UPDATE_USER";
 export const RECOVERY_PASSWORD = "RECOVERY_PASSWORD"
 export const GET_ALL_USERS = "GET_ALL_USERS"
+export const GET_BY_EMAIL = "GET_BY_EMAIL"
 
 //Usuario
 

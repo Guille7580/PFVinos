@@ -1,10 +1,18 @@
 .perfilContainer {
-  background-color: linear-gradient(
+  background-image: linear-gradient(
     to bottom right,
     rgb(70, 69, 69),
     rgb(230, 227, 219)
   );
   height: 600px;
+  padding-top: 20px;
   width: 100%;
-  color:red;
+  display: flex;
+  flex-direction: column;
+}
+
+.dataContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
