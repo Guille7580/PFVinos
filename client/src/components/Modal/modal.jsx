@@ -36,7 +36,7 @@ function Modall() {
         getStudents()
     }
 
-    console.log(data)
+   console.log(data)
 
     const columns = [
         {
@@ -52,6 +52,14 @@ function Modall() {
                 backgroundColor: '#039be5',
             }
         },
+
+        {
+            title: "Rol", field: "rol",
+            validate: rowData => rowData.rol === undefined || rowData.rol === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
         
         {
             title: "Email", field: "email",
@@ -60,6 +68,17 @@ function Modall() {
                 backgroundColor: '#039be5',
             }
         },
+
+        
+
+        {
+            title: "Password", field: "password",
+            validate: rowData => rowData.password === undefined || rowData.password === "" ? "Required" : true,
+            headerStyle: {
+                backgroundColor: '#039be5',
+            }
+        },
+
         {
             title: "Pais", field: "pais",
             validate: rowData => rowData.pais === undefined || rowData.pais === "" ? "Required" : true,
