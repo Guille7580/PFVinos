@@ -31,10 +31,6 @@ const pedidoRouter = require("./pedido");
 router.use('/user', user);
 router.use("/pedidos", pedidoRouter);
 
-
-
-
-
 //Categorias
 router.use('/categoria',categorRoute)
 
