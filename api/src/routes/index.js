@@ -2,7 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const { Sequelize } = require('sequelize')
-const { Categoria, Product, User} = require('../db')
+const { Categoria, Product, User, Carrito} = require('../db')
 const userRouter = require("./user");
 const router = Router();
 
@@ -25,8 +25,12 @@ router.put('/products/:id', product.putProduct)
 
 //User
 const user = require('./user')
+const pedidoRouter = require("./pedido");
 
-router.use('/user', user)
+
+router.use('/user', user);
+router.use("/pedidos", pedidoRouter);
+
 
 
 
@@ -41,7 +45,7 @@ router.use('/categoria',categorRoute)
 // router.get('/carritos/:usuarioId', carro.carritoGet)
 
 const carritoRouter = require("./carrito");
-router.use("/carritos", carritoRouter);
+router.use("/carrito", carritoRouter);
 
 
 
