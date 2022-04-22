@@ -370,10 +370,10 @@ userRouter.post('/admin/userRegister', [
 ], async (req, res, next) => {
 
     const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        return next({ status: 400, errors });
-    }
+console.log(req.body)
+     if (!errors.isEmpty()) { 
+         return next({ status: 400, errors });
+    } 
     const {
         nombre,
         usuario,
