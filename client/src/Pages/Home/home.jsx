@@ -6,10 +6,9 @@ import {
   order_ByName,
   order_ByPrice
 } from '../../actions/categorias'
-import { getDetail, resetDetail } from '../../actions/productos'
+import { getDetail, resetDetail ,getAllProducts } from '../../actions/productos'
 import Swal from 'sweetalert2'
 
-// import {getAllProducts } from '../../actions/productos';
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
 import SearchBar from '../../components/SearchBar/searchBar'
@@ -38,6 +37,11 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
 
   const pagination = pageNumbers => {
     setCurrentPage(pageNumbers)
+  }
+
+  function handleClick (e) {
+    e.preventDefault()
+    dispatch(getAllProducts())
   }
 
   const handleFilterCat = e => {
@@ -94,6 +98,7 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
       </AnimatedText>
       <div className='pinkBar'></div>
       <div className='filters'>
+        
         <label className='labelHome'>  </label>
         <select onChange={handleorderPrice}>
           <option value='nada'>Precio</option>
@@ -114,6 +119,8 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
           <option value='Rosado'>Rosado</option>
         </select>
         <SearchBar className= 'searchHome' />
+        <button onClick={e=>{handleClick(e)}}>Recargar Vinos</button>
+        
       </div>
       <div className='containerBody'>
         <Paginado
