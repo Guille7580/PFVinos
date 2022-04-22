@@ -302,7 +302,7 @@ userRouter.put('/:email/update', async (req, res) => {
     direccion,
     telefono,
   } = req.body, {email} = req.params
-
+//probando
   try{
       const user = await User.findOne({where: {email}})
       
