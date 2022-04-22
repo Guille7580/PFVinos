@@ -5,13 +5,12 @@ import './register.css'
 import Swal from "sweetalert2";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { validateEmail, validateTlf } from "../../Helpers/validateForm";
 import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { signInWithPopup} from "firebase/auth";
 import {auth , provider} from '../../Helpers/firebase'
 import {postCart} from '../../actions/carrito'
-import NavBar from '../../components/navBar/navBar'
+import {validateform} from './control registro/validate'
 
 const initialForm = {
   nombre: "",
@@ -23,65 +22,6 @@ const initialForm = {
   provincia: "",
   direccion: "",
   telefono: "",
-};
-const validateform = function (form) {
-
-  const errors = {};
-  if (!form.nombre.trim()) {
-    errors.nombre = "Campo requerido";
-  } else if (form.nombre.length < 4) {
-    errors.nombre = "Mínimo 4 caracteres";
-  } else if (form.nombre.length > 25) {
-    errors.nombre = "Máximo 25 caracteres";
-  }
-
-  if (!form.usuario.trim()) {
-    errors.usuario = "Campo requerido";
-  } else if (form.usuario.length < 5) {
-    errors.usuario = "Mínimo 5 caracteres";
-  } else if (form.usuario.length > 15) {
-    errors.usuario = "Máximo 15 caracteres";
-  }
-
-  if (!form.contrasena.trim()) {
-    errors.contrasena = "Campo requerido";
-  } else if (form.contrasena.length < 10) {
-    errors.contrasena = "Mínimo 10 caracteres";
-  }
-
-  if (!form.email.trim()) {
-    errors.email = "Campo requerido";
-  } else if (!validateEmail(form.email)) {
-    errors.email = "Escriba un email válido";
-  }
-
-  if (!form.pais.trim()) {
-    errors.pais = "Campo requerido";
-  }
-
-  if (!form.provincia.trim()) {
-    errors.provincia = "Campo requerido";
-  }
-
-  if (!form.direccion.trim()) {
-    errors.direccion = "Campo requerido";
-  } else if (form.direccion.length < 10) {
-    errors.direccion = "Mínimo 10 caracteres";
-  } else if (form.direccion.length > 40) {
-    errors.direccion = "Máximo 40 caracteres";
-  }
-
-  if (!form.telefono.trim()) {
-    errors.telefono = "Campo requerido";
-  } else if (!validateTlf(form.telefono)) {
-    errors.telefono = "Escriba un número de telefono válido";
-  }
-
-  if (form.confirm_contrasena !== form.contrasena) {
-    errors.confirm_contrasena = "Las contraseñas no coinciden";
-  }
-
-  return errors;
 };
 
 function Createform({ updateUser, register, isAuth, user, edit = false }) {

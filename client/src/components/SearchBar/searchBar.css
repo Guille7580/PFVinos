@@ -6,3 +6,13 @@
   color: #523e27; 
   margin-right: 5px;
 }
+
+.buttonSess {
+
+  border-radius: 5px;
+  height: 35px;
+  margin-top: 10px;
+  width: 170px;
+  background-color: #e8cfc1;
+ 
+}
