@@ -4,18 +4,15 @@ import {
   GET_NAME_PRODUCTS,
   FILTER_BY_CATEGORY,
   ORD_BYNAME,
-  ORD_BYPRICE
-} from '../actions/types'
-
-import {
+  ORD_BYPRICE,
+  REST_ITEM,
+  DELETE_CART_DB,
   UPDATE_CART,
   ADD_ITEM,
-  REST_ITEM,
   DELETE_ITEM,
   GET_CART,
   DELETE_CART,
-  DELETE_CART_DB
-} from '../actions/types.js'
+} from '../actions/types'
 
 
 import {

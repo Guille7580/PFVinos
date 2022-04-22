@@ -15,7 +15,7 @@ import {
   RECOVERY_PASSWORD,
 } from "./types";
 //import { getPedidosByUser } from './pedidos'
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 
 
 export const recoveryPassword = async (email) => {
@@ -48,7 +48,7 @@ export function logout() {
   return { type: LOGOUT };
 }
 
-export function login({ email, contrasena}) {
+export function login({email, contrasena}) {
   return async (dispatch) => {
      try {
         // Configuro los headers
@@ -57,12 +57,13 @@ export function login({ email, contrasena}) {
               'Content-Type': 'application/json',
            },
         };
+        
         // Armo el payload/body
         const body = { email, contrasena };
         
         // Envío la petición con el body y config armados
-        const json = await axios.post(`${BASEURL}/user/login`,body, config);
-        
+        const json = await axios.post(`${BASEURL}/user/login`, body, config);
+        console.log(localStorage.token_ecommerce)
         // Si todo bien configuro al usuario como logueado
         dispatch({
            type: LOGIN_SUCCESS,
@@ -71,7 +72,7 @@ export function login({ email, contrasena}) {
 
         dispatch(getUserDetail());
      } catch (err) {
-        //toast.error(err.response.data);
+        toast.error(err.response.data);
         console.log(err);
 
         // Si ocurrió un error durante el logen, envio el login_fail
@@ -142,7 +143,7 @@ export const getUserDetail = () => {
      console.log(headers);
      try {
         const { data } = await axios.get(`${BASEURL}/user`, headers);
-        //toast(`Bienvenido ${data.nombre}`)
+        toast(`Bienvenido ${data.nombre}`)
         // console.log(data);
         dispatch({
            type: GET_USER_DETAIL,

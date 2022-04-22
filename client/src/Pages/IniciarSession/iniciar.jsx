@@ -40,8 +40,6 @@ const validateForm = function (form) {
 }
 
 export default function SignIn(isAuth,user ) {
-
-  //   const navigate = useNavigate()
   //   const [form, setForm] = useState(initialForm)
   //   const [error, setError] = useState({})
 
@@ -115,13 +113,15 @@ export default function SignIn(isAuth,user ) {
     e.preventDefault();
 
     let email = e.target.email;
+    console.log(email.value)
     let contrasena = e.target.contrasena;
 
     const data = {
-      email, contrasena
+      email : email.value, contrasena : contrasena.value
     };
 
     dispatch(login(data));
+    navigate('/');
   }
   // function handleSignIn(e) {
   //   e.preventDefault();
@@ -148,10 +148,10 @@ export default function SignIn(isAuth,user ) {
 
       <div className='iniciar'>
         <h1>Iniciar Sesion</h1>
-        <form className='containerIn'onClick={(e) => handleSignIn(e)}>
+        <form className='containerIn' onSubmit ={(e) => handleSignIn(e)}>
           <div>
             <label>
-              <input
+              <input 
                 type='email'
                 name='email'
                 placeholder='Email'
@@ -162,7 +162,7 @@ export default function SignIn(isAuth,user ) {
 
             <label>
               <input
-                type='contrasena'
+                type='password'
                 name='contrasena'
                 autoComplete='current-password'
                 placeholder='Contraseña'
@@ -175,11 +175,11 @@ export default function SignIn(isAuth,user ) {
           </div>
           <div className='buttonsSession'>
             <div className='box1'>
-              <Link to='/'>
+             
                 <button className='buttonSess' >
                   Iniciar
                 </button>
-              </Link>
+            
               {/* <Button
                 className='googleBtn'
                 variant='primary'

@@ -1,0 +1,10 @@
+.perfilContainer {
+  background-color: linear-gradient(
+    to bottom right,
+    rgb(70, 69, 69),
+    rgb(230, 227, 219)
+  );
+  height: 600px;
+  width: 100%;
+  color:red;
+}

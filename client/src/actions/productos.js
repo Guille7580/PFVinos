@@ -31,10 +31,13 @@ export const getDetail = (id) => async (dispatch) => {
 export function getNameProducts(title) {
   return async function (dispatch) {
     try {
-      let response = await axios.get(`${BASEURL}/products?title=${title}`);
+      
+      let response = await axios(`${BASEURL}/products?title=${title}`);
+      //console.log(response)
       return dispatch({
         type: GET_NAME_PRODUCTS,
         payload: response.data,
+        
       });
     } catch (error) {
       Swal.fire({
