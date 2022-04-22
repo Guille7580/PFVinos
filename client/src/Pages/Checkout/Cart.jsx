@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 //import { useSelector, useDispatch } from 'react-redux'
 import './Cart.css'
-import NavBar from '../../components/navBar/navBar'
+//import NavBar from '../../components/navBar/navBar'
 import { Link } from 'react-router-dom'
 //import { Loader } from '../../components/Loader/Loader'
 //import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
-import Swal from 'sweetalert2'
+//import Swal from 'sweetalert2'
 import CartItems from './CartItems/CartItems'
 
 export function calculateTotal (items) {
@@ -66,7 +66,7 @@ items = items?.filter((e) => e);
             <Link to='/'>
               <button className='btnBottom'>Seguir Comprando</button>
             </Link>
-            <h2>Total: &nbsp; ${calculateTotal(cartItems)} </h2>
+            <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
             <Link to="#">
             <button className='btnBottom'>Pagar</button>
             </Link>
