@@ -162,7 +162,7 @@ export default function SignIn(isAuth,user ) {
 
             <label>
               <input
-                type='contrasena'
+                type='password'
                 name='contrasena'
                 autoComplete='current-password'
                 placeholder='Contraseña'

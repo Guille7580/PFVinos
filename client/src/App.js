@@ -1,6 +1,8 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, BrowserRouter ,Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
@@ -81,7 +83,8 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <NavBar />
+        <ToastContainer />
+        <NavBar/>
         <Routes>
           <Route
             path='/'
@@ -111,7 +114,12 @@ const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
 
-          <Route exact path='/dashboard/admin' element={<Dashboard />} />
+          <Route exact path="/dashboard/admin" element={<Dashboard />} />
+
+
+          <Route path='/detalles/:id' element={<Detail handleAddToCart = {handleAddToCart}/>}/>
+          
+          <Route path='*' element={<Navigate replace to='/' />} />
 
           <Route
             path='/detalles/:id'
