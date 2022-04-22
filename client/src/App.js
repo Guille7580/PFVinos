@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import Profile from './Pages/Profile/Profile';
+
 import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
 import Perfil from './Pages/Perfil/perfil.jsx'
@@ -116,8 +118,9 @@ const App = () => {
 
           <Route exact path="/dashboard/admin" element={<Dashboard />} />
 
-
           <Route path='/detalles/:id' element={<Detail handleAddToCart = {handleAddToCart}/>}/>
+
+          <Route path="/profile" element={<Profile />} />
           
           <Route path='*' element={<Navigate replace to='/' />} />
 

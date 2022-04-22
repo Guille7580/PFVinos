@@ -1,6 +1,6 @@
 import {validateEmail, validateTlf} from '../../../Helpers/validateForm'
 
-export const validateForm = (input) => {
+export const validateform = (input) => {
   
     const errors = {}
     if (!input.nombre.trim()) {
