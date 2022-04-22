@@ -43,7 +43,7 @@ export const GET_ALL_USERS = "GET_ALL_USERS"
 //Usuario
 
 export const POST_USER = 'POST_USER'
-
+export const DELETE_USER = 'DELETE_USER'
 
 // PEDIDOS
 export const GET_PEDIDOS = "GET_PEDIDOS" //all
