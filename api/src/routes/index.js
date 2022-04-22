@@ -25,7 +25,6 @@ router.put('/products/:id', product.putProduct)
 
 //User
 const user = require('./user')
-
 router.use('/user', user)
 
 

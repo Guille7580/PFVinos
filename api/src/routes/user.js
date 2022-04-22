@@ -23,10 +23,11 @@ userRouter.post("/register", [
   check('contrasena', 'Incluya una contraseña válida').isString().trim().not().isEmpty(),
   check('email', 'Incluya un email válido').isEmail().exists(),
   
-],  async (req, res, next) => {
+], async (req, res, next) => {
+    
   // Validaciones de express-validator
-  const errors = validationResult(req);
-
+    const errors = validationResult(req);
+  
   if (!errors.isEmpty()) {
     return next({ status: 400, errors });
   }
@@ -218,7 +219,7 @@ userRouter.put("/unlock/:userId", authentication, adminAuthentication, async (re
 
 //cambio de rol de usuario a admin
 
-userRouter.put("/userAdmin/:userId", authentication, adminAuthentication, async (req, res, next) => {
+userRouter.put("/userAdmin/:userId", /*authentication, adminAuthentication,*/ async (req, res, next) => {
   try {
     await User.update({ rol: "2" }, { where: { id: req.params.userId } });
 
@@ -228,5 +229,18 @@ userRouter.put("/userAdmin/:userId", authentication, adminAuthentication, async 
     return next({ status: 500, message: "No puede ser administrador" });
   }
 });
+
+userRouter.delete('/:email', async (req, res) => {
+    const { email } = req.params;
+    const user = await User.findOne({ where: { email } });
+    if (user) {
+        await user.destroy();
+
+        res.send('The user has been deleted successfully');
+    } else {
+        res.send('The user does not exist');
+    }
+});
+
 
 module.exports = userRouter;
