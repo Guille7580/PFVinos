@@ -322,28 +322,6 @@ userRouter.put('/:email/update', async (req, res) => {
   }
 })
 
-/////////Editar info user desde ADMIN////////////////////////////
-// userRouter.put('/admin/:email/update', async (req, res) => {
-//   const{email} = req.params
-
-//   try{
-//       const user = await User.findOne({where: {email}})
-      
-//       if(email){
-      
-//           if(rol: 1) user.direccion = direccion
-//           if(pais) user.pais = pais
-//           if(provincia) user.provincia = provincia
-//           await user.save()
-//           res.send('Update user')
-//       }
-//   }
-//   catch {
-//       res.status(500).send('INVALID EMAIL')
-//   }
-// })
-
-
 userRouter.post('/admin/userRegister',  [
   check("nombre", 'Incluya un "nombre" valido')
     .isString()
