@@ -21,7 +21,23 @@ export default function Cart ({
   handleRemoveFromCart,
   handleDeleteFromCart,
   getTotalItems
+
+  
 }) {
+   const products = cartItems.map(product =>({
+     id: product.id,
+     amount: product.amount
+
+   }) )
+   console.log(products)
+   let order = {
+    products: products,
+    //userId: dataUser?.id, 
+    total: Number(calculateTotal(cartItems)),
+    date: new Date().toLocaleString(),
+  }; 
+  console.log(order)
+ 
   /* const navigate = useNavigate();
   const dispatch = useDispatch();
 
