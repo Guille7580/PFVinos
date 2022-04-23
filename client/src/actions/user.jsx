@@ -11,15 +11,15 @@ import {
 export function getUser () {
   return async function (dispatch) {
     try {
-      var json = await axios(`${BASEURL}/user/reg`)
+      var json = await axios(`${BASEURL}/user/reg`);
       return dispatch({
         type: GET_USER_DETAIL,
-        payload: json.data
-      })
+        payload: json.data,
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 }
 
 export function getAllUser () {
@@ -49,47 +49,32 @@ export function getAllUser () {
 //     }
 // }
 
-
 export function postUser(payload) {
-    console.log('Desde Payload Action',payload)
-    return async function (dispatch) {
-        try {
-            const response = await axios.post(`${BASEURL}/user/admin/userRegister`, payload)
-            console.log('response', response)
-            return dispatch({
-                type: POST_USER,
-                payload: response.data
-            })
-            console.log('desde response',response)
-        }
-        catch (error) {
-            console.log('desde error request',error)
-        }
-    }
-  }
-
-
-export function deleteUser (payload) {
-  return async function (dispatch) {
-    const response = await axios.delete(`${BASEURL}/user/delete`, payload)
-    dispatch({
-      type: DELETE_USER,
-      payload: response.data
-    })
-  }
-}
-
-export function getByEmail (payload) {
+  console.log("Desde Payload Action", payload);
   return async function (dispatch) {
     try {
-      var json = axios(`${BASEURL}/user/all`)
-      console.log(json.data)
-      dispatch({
-        type: GET_BY_EMAIL,
-        payload: json.data
-      })
+      const response = await axios.post(
+        `${BASEURL}/user/admin/userRegister`,
+        payload
+      );
+      console.log("response", response);
+      return dispatch({
+        type: POST_USER,
+        payload: response.data,
+      });
+      console.log("desde response", response);
     } catch (error) {
-      console.log(error)
+      console.log("desde error request", error);
     }
-  }
+  };
+}
+
+export function deleteUser(payload) {
+  return async function (dispatch) {
+    const response = await axios.delete(`${BASEURL}/user/delete`, payload);
+    dispatch({
+      type: DELETE_USER,
+      payload: response.data,
+    });
+  };
 }
