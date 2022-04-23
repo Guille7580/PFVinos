@@ -254,16 +254,16 @@ userRouter.put(
 //cambio de rol de usuario a admin
 
 userRouter.put(
-  "/userAdmin/:userId",
-  authentication,
-  adminAuthentication,
+  "/userAdmin/:email",
+  // authentication,
+  // adminAuthentication,
   async (req, res, next) => {
     try {
-      await User.update({ rol: "2" }, { where: { id: req.params.userId } });
+      await User.update({ rol: "2" }, { where: { email: req.params.email } });
 
       res.end();
     } catch (error) {
-      cosole.log(error);
+      console.log(error);
       return next({ status: 500, message: "No puede ser administrador" });
     }
   }
@@ -302,7 +302,7 @@ userRouter.put('/:email/update', async (req, res) => {
     direccion,
     telefono,
   } = req.body, {email} = req.params
-
+//probando
   try{
       const user = await User.findOne({where: {email}})
       
@@ -322,95 +322,65 @@ userRouter.put('/:email/update', async (req, res) => {
   }
 })
 
-/////////Editar info user desde ADMIN////////////////////////////
-userRouter.put('/admin/:email/update', async (req, res) => {
-    
+userRouter.post('/admin/userRegister',  [
+  check("nombre", 'Incluya un "nombre" valido')
+    .isString()
+    .trim()
+    .not()
+    .isEmpty(),
+  check("usuario", 'Incluya un "usuario" valido')
+    .isString()
+    .trim()
+    .not()
+    .isEmpty(),
+  check("contrasena", "Incluya una contraseña válida")
+    .isString()
+    .trim()
+    .not()
+    .isEmpty(),
+  check("email", "Incluya un email válido").isEmail().exists(),
+], async (req, res, next) => {
 
-  const {        
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return next({ status: 400, errors });
+  }
+  const {
+    nombre,
+    usuario,
+    contrasena,
+    email,
     pais,
     provincia,
     direccion,
     telefono,
-  } = req.body, {email} = req.params
+  } = req.body;
 
-  try{
-      const user = await User.findOne({where: {email}})
+  try {
+    let userEmail = await User.findOne({ where: { email } });
+
+    // Si el correo ya está registrado, devuelvo un error
+    if (userEmail) {
+      return next({ status: 400, message: "Ya posee una cuenta registrada" });
+    }
+      const avatar = gravatar.url(email, {
+        s: "200", //size
+        r: "pg", //rate
+        d: "mm",
+      });
+const user = await User.create({nombre, usuario, contrasena,email, pais, provincia, direccion, telefono,avatar, rol:1})
+
+            // Creamos el nuevo usuario y lo guardamos en la DB
+            
+            res.status(200).send("Usuario creado")
+              // console.log(user.toJSON());
+            } catch (error) {
+              // no se ha podido crear el usuario
+              console.log(error);
+            }
       
-      if(email){
-          if(telefono) user.telefono = telefono
-          if(direccion) user.direccion = direccion
-          if(pais) user.pais = pais
-          if(provincia) user.provincia = provincia
-          await user.save()
-          res.send('Update user')
-      }
-  }
-  catch {
-      res.status(500).send('INVALID EMAIL')
-  }
-})
-
-userRouter.post('/admin/userRegister', [
-    check("nombre", 'Incluya un "nombre" valido')
-        .isString()
-        .trim()
-        .not()
-        .isEmpty(),
-    check("usuario", 'Incluya un "usuario" valido')
-        .isString()
-        .trim()
-        .not()
-        .isEmpty(),
-    check("contrasena", "Incluya una contraseña válida")
-        .isString()
-        .trim()
-        .not()
-        .isEmpty(),
-    check("email", "Incluya un email válido").isEmail().exists(),
-], async (req, res, next) => {
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        return next({ status: 400, errors });
-    }
-    const {
-        nombre,
-        usuario,
-        contrasena,
-        email,
-        pais,
-        provincia,
-        direccion,
-        telefono,
-    } = req.body;
-
-    console.log(req.body)
-
-    try {
-        let userEmail = await User.findOne({ where: { email } });
-
-        // Si el correo ya está registrado, devuelvo un error
-        if (userEmail) {
-            return next({ status: 400, message: "Ya posee una cuenta registrada" });
-        }
-        const avatar = gravatar.url(email, {
-            s: "200", //size
-            r: "pg", //rate
-            d: "mm",
-        });
-        const user = await User.create({ nombre, usuario, contrasena, email, pais, provincia, direccion, telefono, avatar, rol: 1 })
-
-        // Creamos el nuevo usuario y lo guardamos en la DB
-
-        res.status(200).send("Usuario creado")
-        // console.log(user.toJSON());
-    } catch (error) {
-        // no se ha podido crear el usuario
-        console.log(error);
-    }
-
-})
+  })
 
 /////////////////////////////RECUPERAR CONTRASE;A////////////////////
 
@@ -440,8 +410,5 @@ userRouter.post('/admin/userRegister', [
 //       res.status(404).send('El usuario no ha sido encontrado')
 //   }
 // })
-
-
-
 
 module.exports = userRouter;

@@ -47,7 +47,7 @@ export const postCart = async () => {
 //getHeaderToken()
 
 export const putCart = async (cart, id) => {
-  await axios.put(`${BASEURL}/carritos/add`, {
+  await axios.put(`${BASEURL}/carrito/add`, {
     carritoId: id,
     productoId: cart.id,
     cantidad: cart.quantity

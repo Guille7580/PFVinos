@@ -27,13 +27,24 @@ function Modall() {
 
     const addUser = (nuevoUsuario) => {
         console.log('nuevoUsuario', nuevoUsuario)
-        dispatch(postUser(JSON.stringify(nuevoUsuario)))
+        dispatch(postUser(nuevoUsuario))
         
     }
 
     const delUser = (email) => {
         dispatch(deleteUser(email))
         getStudents()
+    }
+
+    function valideMail(rowData) {
+        let re = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+        return (!re.exec(rowData.email) || rowData.email === undefined || rowData.email === "") 
+    }
+
+    function validateNumber(rowData) {
+        let re = /^([0-9])*$/
+        return (!re.exec(rowData.telefono) || rowData.telefono === undefined || rowData.telefono === "")
+
     }
 
    console.log(data)
@@ -63,7 +74,7 @@ function Modall() {
         
         {
             title: "Email", field: "email",
-            validate: rowData => rowData.email === undefined || rowData.email === "" ? "Required" : true,
+            validate: rowData => valideMail(rowData) ? "Required" : true,
             headerStyle: {
                 backgroundColor: '#039be5',
             }
@@ -72,8 +83,8 @@ function Modall() {
         
 
         {
-            title: "Password", field: "password",
-            validate: rowData => rowData.password === undefined || rowData.password === "" ? "Required" : true,
+            title: "Contrasena", field: "contrasena",
+            validate: rowData => rowData.contrasena === undefined || rowData.contrasena === "" ? "Required" : true,
             headerStyle: {
                 backgroundColor: '#039be5',
             }
@@ -102,7 +113,7 @@ function Modall() {
         },
         {
             title: "Telefono", field: "telefono",
-            validate: rowData => rowData.telefono === undefined || rowData.telefono === "" ? "Required" : true,
+            validate: rowData => validateNumber(rowData) ? "Required" : true,
             headerStyle: {
                 backgroundColor: '#039be5',
             }
