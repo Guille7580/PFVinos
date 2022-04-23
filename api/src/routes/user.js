@@ -254,16 +254,16 @@ userRouter.put(
 //cambio de rol de usuario a admin
 
 userRouter.put(
-  "/userAdmin/:userId",
-  authentication,
-  adminAuthentication,
+  "/userAdmin/:email",
+  // authentication,
+  // adminAuthentication,
   async (req, res, next) => {
     try {
-      await User.update({ rol: "2" }, { where: { id: req.params.userId } });
+      await User.update({ rol: "2" }, { where: { email: req.params.email } });
 
       res.end();
     } catch (error) {
-      cosole.log(error);
+      console.log(error);
       return next({ status: 500, message: "No puede ser administrador" });
     }
   }
@@ -323,30 +323,25 @@ userRouter.put('/:email/update', async (req, res) => {
 })
 
 /////////Editar info user desde ADMIN////////////////////////////
-userRouter.put('/admin/:email/update', async (req, res) => {
-  const {        
-    pais,
-    provincia,
-    direccion,
-    telefono,
-  } = req.body, {email} = req.params
+// userRouter.put('/admin/:email/update', async (req, res) => {
+//   const{email} = req.params
 
-  try{
-      const user = await User.findOne({where: {email}})
+//   try{
+//       const user = await User.findOne({where: {email}})
       
-      if(email){
-          if(telefono) user.telefono = telefono
-          if(direccion) user.direccion = direccion
-          if(pais) user.pais = pais
-          if(provincia) user.provincia = provincia
-          await user.save()
-          res.send('Update user')
-      }
-  }
-  catch {
-      res.status(500).send('INVALID EMAIL')
-  }
-})
+//       if(email){
+      
+//           if(rol: 1) user.direccion = direccion
+//           if(pais) user.pais = pais
+//           if(provincia) user.provincia = provincia
+//           await user.save()
+//           res.send('Update user')
+//       }
+//   }
+//   catch {
+//       res.status(500).send('INVALID EMAIL')
+//   }
+// })
 
 
 userRouter.post('/admin/userRegister',  [
