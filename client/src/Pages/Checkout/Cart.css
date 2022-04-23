@@ -1,12 +1,12 @@
 .cartContainer {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to bottom right,
     rgb(70, 69, 69),
     rgb(230, 227, 219)
-  );
+  ); */
   text-align: center;
   flex-wrap: wrap;
-  height: fit-content;
+  height: 550px;
   padding-top: 20px;
 }
 
@@ -78,4 +78,7 @@
   border-right: #523e27 solid 1px;
 }
 
-
+.btnContainer {
+  display: flex;
+  justify-content: space-around;
+}

@@ -13,6 +13,36 @@
 
 .dataContainer {
   display: flex;
+  background-color: rgb(208, 228, 245);
+  border: black solid 1px;
   justify-content: space-around;
   align-items: center;
+  margin: 50px;
+  margin-right: 200px;
+  margin-left: 200px;
+}
+
+.editBtn{
+  color: #523e27;
+  font-size: 16px;
+  margin-left: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  height: 40px;
+  
+}
+
+
+.editBtn:hover {
+  color: #523e27;
+  background-color: #464544;
+  color: whitesmoke;
+  border-radius: 5px;
+  transition: 0.5s;
+  border-bottom: #523e27 solid 1px;
+  border-right: #523e27 solid 1px;
 }
