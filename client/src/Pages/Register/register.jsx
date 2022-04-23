@@ -282,8 +282,7 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
             </div> 
           </form>
         </div>
-      </form>
-    </div>
+      
   )
 }
 

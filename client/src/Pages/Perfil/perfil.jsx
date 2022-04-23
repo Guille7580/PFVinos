@@ -4,14 +4,61 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { WineLoader } from '../../components/wineLoader/wineLoader'
 
-export default function Perfil () {
-  let user = useSelector(state => state.loginReducer.userDetail)
-  const { nombre, usuario, email, pais, provincia, direccion, telefono } =
-    user || {}
+//   
 
-  return user ? (
-      
-    <div className='perfilContainer'>
+function PerfilGoogle() {
+    let user = useSelector(state => state.loginReducer.userDetail)
+    const { nombre, usuario, email, pais, provincia, direccion, telefono } =
+      user || {}
+    return user ?(  
+            <div className='perfilContainer'>
+            <div>
+          <Link className="edit_btn" to='/profile/edit'>
+            Editar
+          </Link>
+          <Link
+            className="edit_btn"
+            to='/profile/orders'
+            style={{ textAlign: 'center' }}
+          >
+            Ver mis compras
+          </Link>
+          </div>
+          <div className='dataContainer'>
+          
+          <div>
+            <h5>Nombre: </h5>
+            <h5>Email: </h5>
+            <h5>Teléfono: </h5>
+            <h5>Usuario: </h5>
+            <h5>País: </h5>
+            <h5>Provincia: </h5>
+            <h5>Dirección:   </h5>
+          </div>
+    
+          <div className='infoPerfil'>
+            <h5> {nombre}</h5>
+            <span></span>
+            <h5>{email}</h5>
+            <span></span>
+            <h5>{usuario}</h5>
+            <span></span>
+       
+          </div>
+          </div>
+        </div>
+            ) : (
+                <WineLoader />
+            )
+}
+
+
+function RegPerfil() {
+    let user = useSelector(state => state.loginReducer.userDetail)
+    const { nombre, usuario, email, pais, provincia, direccion, telefono } =
+      user || {}
+    return  user ? (
+        <div className='perfilContainer'>
         <div>
       <Link className="edit_btn" to='/profile/edit'>
         Editar
@@ -25,11 +72,12 @@ export default function Perfil () {
       </Link>
       </div>
       <div className='dataContainer'>
+      
       <div>
         <h5>Nombre: </h5>
         <h5>Email: </h5>
-        <h5>Usuario: </h5>
         <h5>Teléfono: </h5>
+        <h5>Usuario: </h5>
         <h5>País: </h5>
         <h5>Provincia: </h5>
         <h5>Dirección:   </h5>
@@ -53,7 +101,32 @@ export default function Perfil () {
       </div>
       </div>
     </div>
-  ) : (
-    <WineLoader />
-  )
+    ) : <WineLoader />
+} 
+
+export default function Perfil () {
+    const auth2 = gapi.auth2.init();
+    if (auth2.isSignedIn.get()) {
+        let profile = auth2.currentUser.get().getBasicProfile();
+        console.log('ID: ' + profile.getId());
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+     
+  return (
+      <div>
+      <PerfilGoogle />
+   
+   </div>
+  )    
+ 
+}  else {
+    return (
+        <div>
+            <RegPerfil />
+        </div>
+    )
+}
 }

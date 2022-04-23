@@ -40,14 +40,14 @@ export function getAllUser () {
 
 
 
-export function getByEmail(payload) {
-    return function (dispatch) {
-            return dispatch({
-                type: GET_BY_EMAIL,
-                payload: payload
-            })
-    }
-}
+// export function getByEmail(payload) {
+//     return function (dispatch) {
+//             return dispatch({
+//                 type: GET_BY_EMAIL,
+//                 payload: payload
+//             })
+//     }
+// }
 
 
 export function postUser(payload) {
