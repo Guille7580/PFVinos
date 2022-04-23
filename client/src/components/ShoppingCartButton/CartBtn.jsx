@@ -9,7 +9,6 @@ function CartBtn() {
   return (
     <div>
       <img src={cart} className='cartButton' alt="" />
-      {/* {item.length} */}
     </div>
   );
 }
