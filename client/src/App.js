@@ -1,11 +1,12 @@
-import { Routes, Route, BrowserRouter ,Navigate } from 'react-router-dom'
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
+import Contact from './Pages/Contact/contact.jsx'
 import Perfil from './Pages/Perfil/perfil.jsx'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
@@ -95,7 +96,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <ToastContainer />
-        <NavBar/>
+        <NavBar />
         <Routes>
           <Route
             path='/'
@@ -125,12 +126,14 @@ const App = () => {
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route exact path='/dashboard/admin' element={<Dashboard />} />
 
-          <Route exact path="/dashboard/admin" element={<Dashboard />} />
+          <Route
+            path='/detalles/:id'
+            element={<Detail handleAddToCart={handleAddToCart} />}
+          />
 
-
-          <Route path='/detalles/:id' element={<Detail handleAddToCart = {handleAddToCart}/>}/>
-          
           <Route path='*' element={<Navigate replace to='/' />} />
 
           <Route

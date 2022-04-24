@@ -16,7 +16,7 @@ const NavBarAll = () => {
       <Link to='/aboutUs' className='navButton'>
         Sobre Nosotros
       </Link>
-      <Link to='#' className='navButton'>
+      <Link to='/contact' className='navButton'>
         Contacta
       </Link>
       <Link to='/carrito' className='navButton'>
@@ -86,7 +86,7 @@ const NavBarAuthenticated = () => {
     <>
       <NavBarAll />
       <Link to='/perfil' className='navButton'>
-        Perfil
+       Perfil
       </Link>
     </>
   )
