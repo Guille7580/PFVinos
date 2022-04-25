@@ -3,7 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, ENVIRONMENT, DB_NAME, DATABASE_URL
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, 
 } = process.env;
 
 // const URL = ENVIRONMENT === "development" ? `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}` : DATABASE_URL;
@@ -31,7 +31,7 @@ let sequelize =
         database: DB_NAME,
         dialect: "postgres",
         host: DB_HOST,
-        port: 5433,
+        port: 5432,
         username: DB_USER,
         password: DB_PASSWORD,
         pool: {
