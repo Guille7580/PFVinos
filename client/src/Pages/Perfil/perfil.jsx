@@ -9,8 +9,8 @@ function PerfilGoogle () {
   const { nombre, usuario, email } = user || {}
   return user ? (
     <div className='perfilContainer'>
-      <div>
-        <Link className='editBtn' to='/profile/edit'>
+      <div className='btnContainer'>
+        <Link className='editBtn' to='/profile/edit' >
           Editar
         </Link>
         <Link
