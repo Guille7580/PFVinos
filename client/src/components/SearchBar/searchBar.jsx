@@ -28,7 +28,11 @@ export default function SearchBar () {
         placeholder='Buscar Productos...'
         onChange={e => handleInputProducts(e)}
       />
-      <button type='submit' onClick={e => handleSubmit(e)}>
+      <button
+        className='searchBtn'
+        type='submit'
+        onClick={e => handleSubmit(e)}
+      >
         Buscar
       </button>
     </form>
