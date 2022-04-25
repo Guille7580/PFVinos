@@ -23,7 +23,7 @@ export default function Contact () {
           <input type='text' placeholder='Email' />
         </div>
         <div>
-          <label>Name: </label>
+          <label>Nombre: </label>
           <input type='text' placeholder='Nombre' />
         </div>
         <div>
@@ -36,7 +36,7 @@ export default function Contact () {
         </div>
       </form>
       <Link to='/'>
-        <button className='bkButton'>Back</button>
+        <button className='bkButton'>Volver</button>
       </Link>
     </div>
   )
