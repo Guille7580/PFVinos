@@ -1,7 +1,12 @@
 .detailContainer {
   color: #e8cfc1;
-  /* display: flex;
-    flex-direction: column; */
+
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(70, 69, 69),
+    rgb(184, 177, 160)
+  );
+  height: 600px;
 }
 
 .btnDetails {
@@ -17,6 +22,8 @@
   font-size: 20px;
   height: 50px;
   color: #523c27;
+  border-radius: 5px;
+  background-color: lightgray;
 }
 
 .detailButtons:hover {
