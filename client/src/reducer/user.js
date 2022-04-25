@@ -1,11 +1,12 @@
 import {
-  GET_USER_DETAIL,
-  GET_ALL_USERS,
-  POST_USER,
-  GET_BY_EMAIL,
-  DELETE_USER
+    GET_USER_DETAIL,
+    GET_ALL_USERS,
+    POST_USER,
+    GET_BY_EMAIL,
+    DELETE_USER,
+    CHANGE_CATEGORY
 } from '../actions/types.js'
-console.log('Hola Reducer')
+
 
 const initialState = {
   getUser: [],
@@ -37,7 +38,11 @@ export default function users (state = initialState, action) {
       return {
         ...state,
         userByEmail: action.payload.filter(el => el.email === action.payload)
-      }
+          }
+      case CHANGE_CATEGORY:
+          return {
+              ...state
+          }
     default:
       return state
   }
