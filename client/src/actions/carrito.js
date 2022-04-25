@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
-//import getHeaderToken from "../Helpers/getHeaderToken"
+import getHeaderToken from "../Helpers/getHeaderToken"
 import { ADD_ITEM, DELETE_CART, DELETE_CART_DB, DELETE_ITEM, GET_CART, REST_ITEM, UPDATE_CART } from "./types"
 
 export const addItem = id => {
@@ -51,7 +51,7 @@ export const putCart = async (cart, id) => {
     carritoId: id,
     productoId: cart.id,
     cantidad: cart.quantity
-  })
+  } , getHeaderToken())
 }
 //, getHeaderToken()
 
