@@ -4,7 +4,7 @@ import {
   withScriptjs,
   withGoogleMap,
   Marker
-} from 'react-google-maps'
+} from "react-google-maps"
 
 import styled from 'styled-components'
 
