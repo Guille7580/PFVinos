@@ -20,7 +20,7 @@ import {
 
 export const recoveryPassword = async (email) => {
   let post = await axios.post(
-    `${BASEURL}/password`,
+    `/password`,
     { email: `${email}` },
     {
       "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export const recoveryPassword = async (email) => {
 export function updateUser(newUser) {
   return async function (dispatch) {
     try {
-      await axios.put(`${BASEURL}/user/update`, newUser, getHeaderToken());
+      await axios.put(`/user/update`, newUser, getHeaderToken());
       dispatch(getUserDetail());
       return {
         type: UPDATE_USER,
@@ -62,7 +62,7 @@ export function login({email, contrasena}) {
         const body = { email, contrasena };
         
         // Envío la petición con el body y config armados
-        const json = await axios.post(`${BASEURL}/user/login`, body, config);
+        const json = await axios.post(`/user/login`, body, config);
         console.log(localStorage.token_ecommerce)
         // Si todo bien configuro al usuario como logueado
         dispatch({
@@ -117,7 +117,7 @@ export function register({
       // console.log("body");
       // console.log(body);
 
-      let { data } = await axios.post(`${BASEURL}/user/register`, body, config);
+      let { data } = await axios.post(`/user/register`, body, config);
 
       dispatch({
         type: REGISTER_SUCCESS,
@@ -142,7 +142,7 @@ export const getUserDetail = () => {
      const headers = getHeaderToken();
      console.log(headers);
      try {
-        const { data } = await axios.get(`${BASEURL}/user`, headers);
+        const { data } = await axios.get(`/user`, headers);
         toast(`Bienvenido ${data.nombre}`)
         // console.log(data);
         dispatch({
@@ -192,7 +192,7 @@ export const loginGoogle = ({
         token,
       };
 
-      await axios.post(`${BASEURL}/loginGoogle`, body, config);
+      await axios.post(`/loginGoogle`, body, config);
 
       // console.log(data);
       dispatch({
