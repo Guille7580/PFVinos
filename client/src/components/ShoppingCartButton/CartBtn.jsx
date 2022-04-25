@@ -5,7 +5,7 @@ import './CartBtn.css'
 import { BsCart3 } from 'react-icons/bs'
 
 function CartBtn () {
-  const item = useSelector(state => state.products.length)
+  const item = useSelector(state => state.products)
   console.log('=================' + item)
   return (
     <div>
