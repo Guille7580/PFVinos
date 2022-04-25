@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
 import {
-  GET_USER_DETAIL,
-  GET_ALL_USERS,
-  POST_USER,
-  DELETE_USER,
-  GET_BY_EMAIL
+    GET_USER_DETAIL,
+    GET_ALL_USERS,
+    POST_USER,
+    DELETE_USER,
+    GET_BY_EMAIL,
+    CHANGE_CATEGORY
+
 } from './types'
 
 export function getUser () {
@@ -39,39 +41,44 @@ export function getAllUser () {
 
 
 
-
-// export function getByEmail(payload) {
-//     return function (dispatch) {
-//             return dispatch({
-//                 type: GET_BY_EMAIL,
-//                 payload: payload
-//             })
-//     }
-// }
-
 export function postUser(payload) {
-  console.log("Desde Payload Action", payload);
   return async function (dispatch) {
     try {
       const response = await axios.post(
         `${BASEURL}/user/admin/userRegister`,
         payload
-      );
-      console.log("response", response);
+      );  
       return dispatch({
         type: POST_USER,
         payload: response.data,
       });
-      console.log("desde response", response);
     } catch (error) {
       console.log("desde error request", error);
     }
   };
 }
 
+
+export function changCategory(payload) {
+    console.log(payload)
+    return async function (dispatch) {
+        try {
+            const response = await axios.put(`${BASEURL}/user/userAdmin/${payload}`)
+            return dispatch({
+                type: CHANGE_CATEGORY,
+                payload: response.data,
+            })
+
+        } catch (error) {
+            console.log("desde error request", error);
+        }
+    }
+    
+}
+
 export function deleteUser(payload) {
   return async function (dispatch) {
-    const response = await axios.delete(`${BASEURL}/user/delete`, payload);
+      const response = await axios.delete(`${BASEURL}/user/${payload}`);
     dispatch({
       type: DELETE_USER,
       payload: response.data,

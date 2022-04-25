@@ -257,29 +257,32 @@ userRouter.put(
   "/userAdmin/:email",
   // authentication,
   // adminAuthentication,
-  async (req, res, next) => {
-    try {
-      await User.update({ rol: "2" }, { where: { email: req.params.email } });
-
-      res.end();
+    async (req, res, next) => {
+        console.log('desde ruta', req.params)
+        console.log(req.params.email)
+        try {
+            await User.update({ rol: "2" }, { where: { email: req.params.email } });
+            res.end(`Usuario ${req.params.email} cambio a administrador`);
     } catch (error) {
       console.log(error);
-      return next({ status: 500, message: "No puede ser administrador" });
+            return next({ status: 500, message: `Usuario ${req.params.email} no puede ser administrador` });
     }
   }
 );
 
-userRouter.delete('/:email', async (req, res) => {
-  const { email } = req.params;
-  const user = await User.findOne({ where: { email } });
-  if (user) {
-      await user.destroy();
+//userRouter.delete('/:email', async (req, res) => {
+//    const { email } = req.params;
+//    console.log(req.param.email)
+//    console.log(email)
+//  const user = await User.findOne({ where: { email } });
+//  if (user) {
+//      await user.destroy();
 
-      res.send('The user has been deleted successfully');
-  } else {
-      res.send('The user does not exist');
-  }
-});
+//      res.send('The user has been deleted successfully');
+//  } else {
+//      res.send('The user does not exist');
+//  }
+//});
 
 userRouter.delete('/:email', async (req, res) => {
     const { email } = req.params;

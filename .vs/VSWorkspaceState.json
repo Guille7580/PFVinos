@@ -3,16 +3,14 @@
     "",
     "\\api",
     "\\api\\src",
+    "\\api\\src\\routes",
     "\\client",
+    "\\client\\public",
     "\\client\\src",
     "\\client\\src\\actions",
-    "\\client\\src\\components",
-    "\\client\\src\\components\\Modal",
     "\\client\\src\\Pages",
-    "\\client\\src\\Pages\\Dashboard",
-    "\\client\\src\\Pages\\Dashboard\\Principal",
     "\\client\\src\\reducer"
   ],
-  "SelectedNode": "\\client\\src\\components\\Modal\\modal.jsx",
+  "SelectedNode": "\\api\\src\\routes\\user.js",
   "PreviewInSolutionExplorer": false
 }
