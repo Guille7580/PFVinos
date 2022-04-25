@@ -10,11 +10,11 @@ function PerfilGoogle () {
   return user ? (
     <div className='perfilContainer'>
       <div>
-        <Link className='edit_btn' to='/profile/edit'>
+        <Link className='editBtn' to='/profile/edit'>
           Editar
         </Link>
         <Link
-          className='edit_btn'
+          className='editBtn'
           to='/profile/orders'
           style={{ textAlign: 'center' }}
         >
