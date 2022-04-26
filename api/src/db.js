@@ -7,7 +7,7 @@ const {
 } = process.env;
 
 const URL = ENVIRONMENT === "development" ? `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}` : DATABASE_URL;
-
+//lpm
 
 const options = ENVIRONMENT === "development" ? {
   logging: false,
