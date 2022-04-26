@@ -19,11 +19,7 @@
     "react-dom": "^17.0.1",
     "react-google-maps": "^9.4.5",
     "react-hot-toast": "^2.2.0",
-<<<<<<< Updated upstream
-    "react-icons": "^4.3.1",
-=======
     "react-icon": "^1.0.0",
->>>>>>> Stashed changes
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^4.0.3",
@@ -45,17 +41,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": ["react-app", "react-app/jest"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
