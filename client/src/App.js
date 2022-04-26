@@ -10,6 +10,7 @@ import Perfil from './Pages/Perfil/perfil.jsx'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar'
+import { RecoverPass } from "./components/Recover_password/RecoverPass";
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
@@ -125,6 +126,7 @@ const App = () => {
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
+          <Route path="/login/recoverpassword" element={<RecoverPass />} />
 
           <Route exact path="/dashboard/admin" element={<Dashboard />} />
 

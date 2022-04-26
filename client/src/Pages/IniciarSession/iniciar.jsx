@@ -214,7 +214,7 @@ export default function SignIn(isAuth,user ) {
               <h4>Aún no te has registrado? </h4>
               <Link to='/register'>Registrarse</Link>
             </div>
-            {/* <Link to="/login/recoverpassword">¿Olvidaste la contraseña?</Link> */}
+            <Link to="/login/recoverpassword">¿Olvidaste la contraseña?</Link>
           </div>
         </form>
       </div>
