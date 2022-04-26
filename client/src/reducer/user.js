@@ -1,24 +1,36 @@
-import { GET_USER_DETAIL, GET_ALL_USERS, POST_USER, DELETE_USER, GET_BY_EMAIL } from '../actions/types.js'
-console.log('Hola Reducer')
+import {
+    GET_USER_DETAIL,
+    GET_ALL_USERS,
+    POST_USER,
+    GET_BY_EMAIL,
+    DELETE_USER,
+    CHANGE_CATEGORY,
+    GET_CARRITO
+} from '../actions/types.js'
+
 
 const initialState = {
-    getUser: [],
-    allUser: [],
-    userByMail: {}
+  getUser: [],
+  allUser: [],
+  userByEmail: {}
 }
 
 export default function users (state = initialState, action) {
-
   switch (action.type) {
     case POST_USER:
       return {
         ...state
-          }
+      }
 
-      case DELETE_USER:
-          return {
-              ...state,
-          }
+    case DELETE_USER:
+      return {
+        ...state
+      }
+
+      case GET_CARRITO : 
+      return {
+        ...state
+      }
 
     case GET_USER_DETAIL:
       return { ...state, getUser: action.payload }
@@ -27,12 +39,15 @@ export default function users (state = initialState, action) {
       return {
         ...state,
         allUser: action.payload
+      }
+    case GET_BY_EMAIL:
+      return {
+        ...state,
+        userByEmail: action.payload.filter(el => el.email === action.payload)
           }
-
-      case GET_BY_EMAIL:
+      case CHANGE_CATEGORY:
           return {
-              ...state,
-              userByMail: state.allUser.filter(el => el.mail === action.payload)
+              ...state
           }
     default:
       return state

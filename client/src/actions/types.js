@@ -20,6 +20,7 @@ export const ORD_BYPRICE = 'ORD_BYPRICE'
 export const ADD_ITEM = 'ADD_ITEM'
 export const REST_ITEM = "REST_ITEM"
 export const DELETE_ITEM = 'DELETE_ITEM'
+export const GET_CARRITO = "GET_CARRITO"
 
 // export const SUM_CART = "SUM_CART"
 export const UPDATE_CART = "UPDATE_CART"
@@ -39,12 +40,13 @@ export const AUTHENTICATION_ERROR = "AUTHENTICATION_ERROR";
 export const UPDATE_USER = "UPDATE_USER";
 export const RECOVERY_PASSWORD = "RECOVERY_PASSWORD"
 export const GET_ALL_USERS = "GET_ALL_USERS"
+export const GET_BY_EMAIL = "GET_BY_EMAIL"
 
 //Usuario
 
 export const POST_USER = 'POST_USER'
 export const DELETE_USER = 'DELETE_USER'
-export const GET_BY_EMAIL = 'GET_BY_EMAIL'
+export const CHANGE_CATEGORY ='CHANGE_CATEGORY'
 
 
 // PEDIDOS

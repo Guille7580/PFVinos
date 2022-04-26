@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './navBar.css'
 import logo from './LasMoritasLogo.png'
@@ -7,8 +7,13 @@ import { useState, useEffect } from 'react'
 import { logout } from '../../actions/auth'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import SearchBar from '../SearchBar/searchBar'
-import Footer from '../Footer/footer'
+import Select from 'react-select'
+
+const options = [
+  { value: 'Perfil', label: 'Perfil' },
+  { value: 'Editar', label: 'Editar' },
+  { value: 'Tus Compras', label: 'Tus Compras' }
+]
 
 const NavBarAll = () => {
   return (
@@ -16,7 +21,7 @@ const NavBarAll = () => {
       <Link to='/aboutUs' className='navButton'>
         Sobre Nosotros
       </Link>
-      <Link to='#' className='navButton'>
+      <Link to='/contact' className='navButton'>
         Contacta
       </Link>
       <Link to='/carrito' className='navButton'>
@@ -82,12 +87,20 @@ const NavBarAdmin = () => {
 }
 
 const NavBarAuthenticated = () => {
+  // let navigate = useNavigate()
+  //   const handleClickPerfil=(e)=>{
+  //     e.preventDefault
+  //     navigate("/perfil")
+  //   }
+
   return (
     <>
       <NavBarAll />
-      <Link to='/perfil' className='navButton'>
-        Perfil
-      </Link>
+
+      <Select options={options} />
+      {/* <Link to='/perfil' className='navButton'>
+       Perfil
+      </Link> */}
     </>
   )
 }

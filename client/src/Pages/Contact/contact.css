@@ -1,0 +1,18 @@
+.contactContainer {
+  background-image: linear-gradient(to bottom right, rgb(243, 220, 245), #523e);
+  color: black;
+  padding-bottom: 20px;
+  
+}
+
+.contactForm {
+  margin-top: 30px;
+  display: flex;
+  padding-left: 20px;
+}
+
+.bkButton {
+  margin-left: 50%;
+  height: 30px;
+  width: 60px;
+}

@@ -8,7 +8,6 @@ import jenny from './jenny.jpg'
 import luciana from './luciana.jpg'
 import guille from './guille.jpeg'
 
-
 export default function AboutUs () {
   const navigate = useNavigate()
   const handleClick = () => {
@@ -16,27 +15,32 @@ export default function AboutUs () {
   }
   return (
     <div className='containerAbout'>
-     
-      <button className="backBtn" onClick={handleClick}>Back</button> 
+      <button className='backBtn' onClick={handleClick}>
+        Back
+      </button>
       <h1>Sobre Nosotros</h1>
       <h2>Hola!</h2>
       <div>
         <p>
-
-      Somos un grupo de seis personas que se unieron para realizar este proyecto tan maravilloso. 
-      Aquí encontrarás una breve descripción de cada uno de nosotros junto a los links de contacto.
-      ¡Espero que disfrutes de nuestro proyecto!
-
+          Somos un grupo de seis personas que se unieron para realizar este
+          proyecto tan maravilloso. Aquí encontrarás una breve descripción de
+          cada uno de nosotros junto a los links de contacto. ¡Espero que
+          disfrutes de nuestro proyecto!
         </p>
       </div>
       <div className='members'>
         <div>
           <h3>
             Andrea Gutierrez
-            <a href='https://www.linkedin.com/in/andrea-gutierrez-507919135/'>
+            <a
+              href='https://www.linkedin.com/in/andrea-gutierrez-507919135/'
+              target='_blank'
+            >
               LinkedIn
             </a>
-            <a href='https://github.com/andrea198824'>Github</a>
+            <a href='https://github.com/andrea198824' target='_blank'>
+              Github
+            </a>
           </h3>
           <img src={andrea} alt='Foto de Andrea Gutierrez' height={'250px'} />
           <p className='para'>
@@ -50,10 +54,15 @@ export default function AboutUs () {
         <div>
           <h3>
             Luciana Zanetti
-            <a href='https://www.linkedin.com/in/luciana-zanetti-dev/'>
+            <a
+              href='https://www.linkedin.com/in/luciana-zanetti-dev/'
+              target='_blank'
+            >
               LinkedIn
             </a>
-            <a href='https://github.com/LulaZeta'>Github</a>
+            <a href='https://github.com/LulaZeta' target='_blank'>
+              Github
+            </a>
           </h3>
           <img src={luciana} alt='Foto de Luciana Zanetti' height={'250px'} />
           <p className='para'>
@@ -70,10 +79,15 @@ export default function AboutUs () {
         <div>
           <h3>
             Javier Irigoyen
-            <a href='https://www.linkedin.com/in/javier-irigoyen-terre-desarrollador-web-full-stack/'>
+            <a
+              href='https://www.linkedin.com/in/javier-irigoyen-terre-desarrollador-web-full-stack/'
+              target='_blank'
+            >
               LinkedIn
             </a>
-            <a href='https://github.com/javiirigoyen'>Github</a>
+            <a href='https://github.com/javiirigoyen' target='_blank'>
+              Github
+            </a>
           </h3>
           <img src={javi} alt='Foto de Javier Irigoyen' height={'250px'} />
           <p className='para'>
@@ -89,8 +103,12 @@ export default function AboutUs () {
         <div>
           <h3>
             Jennifer Lombardo
-            <a href='https://www.linkedin.com/in/jml-060915/'>LinkedIn</a>
-            <a href='https://github.com/jennyxlombardo'>Github</a>
+            <a href='https://www.linkedin.com/in/jml-060915/' target='_blank'>
+              LinkedIn
+            </a>
+            <a href='https://github.com/jennyxlombardo' target='_blank'>
+              Github
+            </a>
           </h3>
           <img src={jenny} alt='Foto de Jennifer Lombardo' height={'250px'} />
           <p className='para'>
@@ -106,8 +124,12 @@ export default function AboutUs () {
         <div>
           <h3>
             Jose Miro Erdmann
-            <a href='https://www.linkedin.com/in/joseamiro/'>LinkedIn</a>
-            <a href='https://github.com/Joseacode'>Github</a>
+            <a href='https://www.linkedin.com/in/joseamiro/' target='_blank'>
+              LinkedIn
+            </a>
+            <a href='https://github.com/Joseacode' target='_blank'>
+              Github
+            </a>
           </h3>
           <img src={jose} alt='Foto de Jose Erdmann' height={'250px'} />
           <p className='para'>
@@ -127,10 +149,15 @@ export default function AboutUs () {
         <div>
           <h3>
             Julio Guille Appendino
-            <a href='https://www.linkedin.com/in/guille-appe-fullstack/'>
+            <a
+              href='https://www.linkedin.com/in/guille-appe-fullstack/'
+              target='_blank'
+            >
               LinkedIn
             </a>
-            <a href='https://github.com/Guille7580'>Github</a>
+            <a href='https://github.com/Guille7580' target='_blank'>
+              Github
+            </a>
           </h3>
           <img
             src={guille}

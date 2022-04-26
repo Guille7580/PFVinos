@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './modal.css';
+import { alpha } from '@material-ui/core/styles'
 import MaterialTable from 'material-table'
-import { deleteUser, getAllUser, postUser } from '../../actions/user';
+import { deleteUser, getAllUser, postUser, changCategory } from '../../actions/user';
 
 function Modall() {
 
@@ -20,100 +21,72 @@ function Modall() {
         setData(allUsers)
     }, [allUsers]);
 
-    const getStudents = () => {
-        setData(allUsers)
-        
-    }
-
-    const addUser = (nuevoUsuario) => {
-        console.log('nuevoUsuario', nuevoUsuario)
-        dispatch(postUser(nuevoUsuario))
-        
-    }
-
     const delUser = (email) => {
         dispatch(deleteUser(email))
-        getStudents()
     }
 
-    function valideMail(rowData) {
-        let re = /^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
-        return (!re.exec(rowData.email) || rowData.email === undefined || rowData.email === "") 
+    const changCategories = (email) => {
+        console.log(email)
+        dispatch(changCategory(email))
     }
 
-    function validateNumber(rowData) {
-        let re = /^([0-9])*$/
-        return (!re.exec(rowData.telefono) || rowData.telefono === undefined || rowData.telefono === "")
-
+    const deleteUseres = (id) => {
+        dispatch(deleteUser(id))
     }
-
-   console.log(data)
 
     const columns = [
         {
-            title: "Name", field: "nombre", validate: rowData => rowData.nombre === undefined || rowData.nombre === "" ? "Required" : true,
+            title: "Name", field: "nombre",
+            editable: 'never',
             headerStyle: {
                 backgroundColor: '#039be5',
             }
         },
         {
             title: "Usuario", field: "usuario",
-            validate: rowData => rowData.usuario === undefined || rowData.usuario === "" ? "Required" : true,
+            editable: 'never',
             headerStyle: {
                 backgroundColor: '#039be5',
             }
         },
-
         {
             title: "Rol", field: "rol",
-            validate: rowData => rowData.rol === undefined || rowData.rol === "" ? "Required" : true,
+            lookup: { 1: 'Usuario', 2: 'Administrador' },
             headerStyle: {
                 backgroundColor: '#039be5',
             }
         },
-        
         {
             title: "Email", field: "email",
-            validate: rowData => valideMail(rowData) ? "Required" : true,
+            editable: 'never',
             headerStyle: {
                 backgroundColor: '#039be5',
             }
         },
-
-        
-
-        {
-            title: "Contrasena", field: "contrasena",
-            validate: rowData => rowData.contrasena === undefined || rowData.contrasena === "" ? "Required" : true,
-            headerStyle: {
-                backgroundColor: '#039be5',
-            }
-        },
-
         {
             title: "Pais", field: "pais",
-            validate: rowData => rowData.pais === undefined || rowData.pais === "" ? "Required" : true,
+            editable: 'never',
             headerStyle: {
                 backgroundColor: '#039be5',
             }
         },
         {
             title: "Provincia", field: 'provincia',
-            validate: rowData => rowData.provincia === undefined || rowData.provincia === "" ? "Required" : true,
+            editable: 'never',
             headerStyle: {
                 backgroundColor: '#039be5',
             }
         },
         {
             title: "Direccion", field: "direccion",
-            validate: rowData => rowData.direccion === undefined || rowData.direccion === "" ? "Required" : true,
+            editable: 'never',
             headerStyle: {
                 backgroundColor: '#039be5',
             }
         },
         {
             title: "Telefono", field: "telefono",
-            validate: rowData => validateNumber(rowData) ? "Required" : true,
+            editable: 'never',
             headerStyle: {
                 backgroundColor: '#039be5',
             }
@@ -128,18 +101,38 @@ function Modall() {
                 title="Usuarios"
                 columns={columns}
                 data={data}
-                options={{ actionsColumnIndex: -1, addRowPosition: "first", exportButton: true, gruoping: true }}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#039be5',
+                    },
+                    actionsColumnIndex: -1,
+                    addRowPosition: "first",
+                    exportButton: true, gruoping: true
+                }}
                 editable={{
-                    onRowAdd: newData =>
+                    onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                addUser(newData)
-                                getStudents()
-                                console.log(newData)
-                               resolve();
-                            }, 1000);
+                                console.log('HOLAAAAAAAAA', oldData.email)
+                                const dataUpdate = [...data];
+                                const index = oldData.tableData.id;
+                                dataUpdate[index] = newData;
+                                setData([...dataUpdate]);
+                                changCategories(oldData.email)
+                                resolve();
+                            }, 1000)
                         }),
-                    
+                    onRowDelete: oldData =>
+                        new Promise((resolve, reject) => {
+                            setTimeout(() => {
+                                const dataDelete = [...data];
+                                const index = oldData.tableData.id;
+                                dataDelete.splice(index, 1);
+                                setData([...dataDelete]);
+                                deleteUseres(oldData.email)
+                                resolve()
+                            }, 1000)
+                        }),
                 }}
             />
         </div>

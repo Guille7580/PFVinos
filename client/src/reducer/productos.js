@@ -11,16 +11,15 @@ import {
   ADD_ITEM,
   DELETE_ITEM,
   GET_CART,
-  DELETE_CART,
+  DELETE_CART
 } from '../actions/types'
-
 
 import {
   getCartLocalStorage,
   saveCartLocalStorage
 } from '../Helpers/localstorage'
 
-//import { putCart, deleteProductCart } from '../actions/types'
+import { putCart } from '../actions/carrito'
 
 const initialState = {
   allProducts: [],
@@ -39,17 +38,18 @@ export default function productsReducer (state = initialState, action) {
 
   switch (type) {
     //Carrito
-    // case UPDATE_CART:
-    //   if (localStorage.getItem('token_ecommerce')) {
-    //     const localS = getCartLocalStorage()
-    //     if (state.flag && state.carts.id) {
-    //       localS.products?.forEach(el => putCart(el, state.carts.id))
-    //     }
-    //   }
-    //   return {
-    //     ...state,
-    //     cart: getCartLocalStorage()
-    //   }
+    case UPDATE_CART:
+      if (localStorage.getItem('token_ecommerce')) {
+        const localS = getCartLocalStorage()
+        if ( state.carts.id) {
+          localS.products?.forEach(el => putCart(el, state.carts.id))
+        }
+        console.log('-----------------' + localS)
+      }
+      return {
+        ...state,
+        cart: getCartLocalStorage()
+      }
 
     // case ADD_ITEM:
     //   itemCart = state.cart.products.find(e => e.id === payload)
@@ -159,7 +159,7 @@ export default function productsReducer (state = initialState, action) {
     //     carts: payload,
     //     flag: true
     //   }
-    
+
     case DELETE_CART:
       newCart = {
         products: [],
@@ -185,15 +185,14 @@ export default function productsReducer (state = initialState, action) {
     case GET_DETAIL:
       return {
         ...state,
-        detalles: payload,
-      };
+        detalles: payload
+      }
 
-      // case RESET_DETAIL : 
-      // return {
-      //   ...state,
-      //   detalles : []
-      // }
-
+    // case RESET_DETAIL :
+    // return {
+    //   ...state,
+    //   detalles : []
+    // }
 
     case GET_NAME_PRODUCTS:
       return {
