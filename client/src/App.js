@@ -155,7 +155,11 @@ const App = () => {
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
+          
+          
           <Route path='/contact' element={<Contact />} />
+
+
           <Route exact path='/dashboard/admin' element={<Dashboard />} />
 
           <Route
