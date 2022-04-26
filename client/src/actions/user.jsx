@@ -6,7 +6,8 @@ import {
     POST_USER,
     DELETE_USER,
     GET_BY_EMAIL,
-    CHANGE_CATEGORY
+    CHANGE_CATEGORY,
+
 
 } from './types'
 
@@ -23,6 +24,8 @@ export function getUser () {
     }
   };
 }
+
+
 
 export function getAllUser () {
   return async function (dispatch) {

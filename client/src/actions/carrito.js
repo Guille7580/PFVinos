@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
 import getHeaderToken from "../Helpers/getHeaderToken"
-import { ADD_ITEM, DELETE_CART, DELETE_CART_DB, DELETE_ITEM, GET_CART, REST_ITEM, UPDATE_CART } from "./types"
+import { ADD_ITEM, DELETE_CART, DELETE_CART_DB, DELETE_ITEM, GET_CART, REST_ITEM, UPDATE_CART, GET_CARRITO } from "./types"
 
 export const addItem = id => {
   return {
@@ -75,5 +75,26 @@ export const deleteAllCartDB = id => async dispatch => {
 export const deleteAllCart = () => {
   return {
     type: DELETE_CART
+  }
+}
+
+export function getCarrito () {
+  return async function (dispatch) {
+    try {
+      var json = await axios(`${BASEURL}/pagar`)
+      console.log(json.data)
+      return dispatch({
+        type: GET_CARRITO,
+        payload: json.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export function postOrder(order) {
+  return async() => {
+    await axios.post(`${BASEURL}/order`, order)
   }
 }
