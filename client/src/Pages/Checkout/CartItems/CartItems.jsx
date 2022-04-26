@@ -5,7 +5,8 @@ const CartItems = ({
   product,
   handleAddToCart,
   handleRemoveFromCart,
-  handleDeleteFromCart
+  handleDeleteFromCart,
+  handleAddToCartButton
 }) => {
   return (
     <div className='cartItemContainer'>
