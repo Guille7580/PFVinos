@@ -20,6 +20,7 @@ export default function Cart({
   handleAddToCart,
   cartItems,
   setCartItems,
+  handleAddToCartButton,
   handleRemoveFromCart,
   handleDeleteFromCart,
   getTotalItems,
@@ -95,6 +96,7 @@ items = items?.filter((e) => e);
                 handleAddToCart={handleAddToCart}
                 handleRemoveFromCart={handleRemoveFromCart}
                 handleDeleteFromCart={handleDeleteFromCart}
+                handleAddToCartButton={handleAddToCartButton}
               />
             ))}
           </ul>
