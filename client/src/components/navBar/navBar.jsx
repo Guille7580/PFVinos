@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import SearchBar from '../SearchBar/searchBar'
 import Footer from '../Footer/footer'
 
+
 const NavBarAll = () => {
   return (
     <>
