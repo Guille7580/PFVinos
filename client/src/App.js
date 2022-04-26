@@ -155,6 +155,7 @@ const App = () => {
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
+          <Route path="/login/recoverpassword" element={<RecoverPass />} />
           
           
           <Route path='/contact' element={<Contact />} />
