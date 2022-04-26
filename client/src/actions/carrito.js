@@ -32,7 +32,7 @@ export const getCartDB = userId => async dispatch => {
   try {
     // let config = getHeaderToken();
     const { data } = await axios.get(
-      `${BASEURL}/carrito/${userId}`
+      `/carrito/${userId}`
       //config
     )
     return dispatch({ type: GET_CART, payload: data })
@@ -42,12 +42,12 @@ export const getCartDB = userId => async dispatch => {
 }
 
 export const postCart = async () => {
-  await axios.post(`${BASEURL}/carrito`, {})
+  await axios.post(`/carrito`, {})
 }
 //getHeaderToken()
 
 export const putCart = async (cart, id) => {
-  await axios.put(`${BASEURL}/carrito/add`, {
+  await axios.put(`/carrito/add`, {
     carritoId: id,
     productoId: cart.id,
     cantidad: cart.quantity
@@ -56,7 +56,7 @@ export const putCart = async (cart, id) => {
 //, getHeaderToken()
 
 export const deleteProductCart = async (product, id) => {
-  await axios.put(`${BASEURL}/carrito/delete`, {
+  await axios.put(`/carrito/delete`, {
     carritoId: id,
     productoId: product
   })
