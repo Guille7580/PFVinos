@@ -4,7 +4,8 @@ import {
     POST_USER,
     GET_BY_EMAIL,
     DELETE_USER,
-    CHANGE_CATEGORY
+    CHANGE_CATEGORY,
+    GET_CARRITO
 } from '../actions/types.js'
 
 
@@ -22,6 +23,11 @@ export default function users (state = initialState, action) {
       }
 
     case DELETE_USER:
+      return {
+        ...state
+      }
+
+      case GET_CARRITO : 
       return {
         ...state
       }

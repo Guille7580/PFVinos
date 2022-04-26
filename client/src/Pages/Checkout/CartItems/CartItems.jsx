@@ -34,7 +34,7 @@ className='btnItems2'
           </button>
         <button className='btnItems3' onClick={() => handleAddToCart(product)}>
           +
-          -
+          
         </button>
       </div>
       <div className='subtotalItem'>
