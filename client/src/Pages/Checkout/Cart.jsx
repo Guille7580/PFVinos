@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 //import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
 //import Swal from 'sweetalert2'
 import CartItems from './CartItems/CartItems'
-import AnimatedText from 'react-animated-text-content'
 
 export function calculateTotal (items) {
   return items
@@ -62,26 +61,10 @@ items = items?.filter((e) => e);
   return (
     <div>
       <div div className='cartContainer'>
-      <AnimatedText
-        type='words' // animate words or chars
-        animation={{
-          x: '200px',
-          y: '-20px',
-          scale: 1.1,
-          ease: 'ease-in-out'
-        }}
-        animationType='float'
-        interval={0.06}
-        duration={2.5}
-        tag='p'
-        className='animatedShopping'
-        includeWhiteSpaces
-        threshold={0.1}
-        rootMargin='20%'
-      >
-        Shopping Cart
-      </AnimatedText>
-     
+        <h1>Shopping Cart</h1>
+        <div className='cartButtons'>
+          <div className='cartButton'></div>
+        </div>
         <div>
           <ul>
             {cartItems?.length === 0 ? <p>No hay items en el carrito</p> : null}

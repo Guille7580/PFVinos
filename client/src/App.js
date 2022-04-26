@@ -17,7 +17,6 @@ import NavBar from './components/navBar/navBar'
 import { getAllProducts } from './actions/productos'
 import { getUserDetail } from './actions/auth'
 import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx';
-import Swal from "sweetalert2";
 
 const App = () => {
   const token = useSelector(state => state.loginReducer.token)
@@ -53,13 +52,6 @@ const App = () => {
 
       return [...prev, { ...clickedItem, amount: 1 }]
     })
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Producto agregado al carrito",
-      showConfirmButton: false,
-      timer: 2000,
-    });
   }
 
   const handleRemoveFromCart = id => {
