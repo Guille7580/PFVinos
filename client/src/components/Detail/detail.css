@@ -8,18 +8,18 @@
   height: 600px;
 }
 .btnDetails {
-    font-size: 20px;
-    height: 50px;
-    color: #523c27;
-    border-radius: 5px;
-    background-color: lightgray;
-  }
-
-.detailButtons {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 20px;
+  font-size: 20px;
+  height: 50px;
+  color: #523c27;
+
+  margin-top: 50px;
+}
+
+.detailButtons {
+  border-radius: 5px;
   font-size: 20px;
   height: 50px;
   color: #523c27;
@@ -28,6 +28,8 @@
 .detailButtons:hover {
   background-color: #e8cfc1;
   box-shadow: 6px 7px 8px -6px #e8cfc1;
+  background-color: rgb(70, 69, 69);
+  color: white;
 }
 
 .info {
