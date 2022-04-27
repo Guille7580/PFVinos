@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { getDetail } from '../../actions/productos'
 import './detail.css'
 
-export default function Detail ({ handleAddToCart, cartItems, setCartItems }) {
+export default function Detail ({ handleAddToCart, handleAddToCartButton, cartItems, setCartItems }) {
   const dispatch = useDispatch()
   const { id } = useParams()
 
@@ -50,9 +50,14 @@ export default function Detail ({ handleAddToCart, cartItems, setCartItems }) {
           <button className='detailButtons'>Sigue Comprando</button>
         </Link>
 
-       {/* <Link to="/carrito">  */}
-        <button onClick = {() => handleAddToCart(myProducts)} className="detailButtons">Agrega a Carrito</button>
-      {/* </Link>  */}
+        {/* <Link to="/carrito">  */}
+        <button
+          onClick={() => handleAddToCartButton(myProducts)}
+          className='detailButtons'
+        >
+          Agrega a Carrito
+        </button>
+        {/* </Link>  */}
       </div>
     </div>
   )

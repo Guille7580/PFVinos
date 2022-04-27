@@ -20,15 +20,21 @@ export default function SearchBar () {
   }
 
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <input
         className='searchBar'
         value={title}
         type='text'
         placeholder='Buscar Productos...'
-        onChange={(e) => handleInputProducts(e)}
+        onChange={e => handleInputProducts(e)}
       />
-      <button type='submit' onClick={(e) => handleSubmit(e)}>Buscar</button>
-    </div>
+      <button
+        className='searchBtn'
+        type='submit'
+        onClick={e => handleSubmit(e)}
+      >
+        Buscar
+      </button>
+    </form>
   )
 }

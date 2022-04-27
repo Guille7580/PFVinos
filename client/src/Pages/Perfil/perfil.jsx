@@ -9,12 +9,12 @@ function PerfilGoogle () {
   const { nombre, usuario, email } = user || {}
   return user ? (
     <div className='perfilContainer'>
-      <div>
-        <Link className='edit_btn' to='/profile/edit'>
+      <div className='btnContainer'>
+        <Link className='editBtn' to='/profile/edit' >
           Editar
         </Link>
         <Link
-          className='edit_btn'
+          className='editBtn'
           to='/profile/orders'
           style={{ textAlign: 'center' }}
         >

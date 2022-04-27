@@ -23,6 +23,7 @@ export const ORD_BYPRICE = 'ORD_BYPRICE'
 export const ADD_ITEM = 'ADD_ITEM'
 export const REST_ITEM = "REST_ITEM"
 export const DELETE_ITEM = 'DELETE_ITEM'
+export const GET_CARRITO = "GET_CARRITO"
 
 // export const SUM_CART = "SUM_CART"
 export const UPDATE_CART = "UPDATE_CART"
