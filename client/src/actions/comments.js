@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
-import getHeaderToken from '../helpers/getHeaderToken'
+import getHeaderToken from '../Helpers/getHeaderToken'
 import {
   COMMENT_DELETE,
   COMMENT_DELETE_FAIL,
