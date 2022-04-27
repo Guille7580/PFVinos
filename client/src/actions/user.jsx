@@ -23,7 +23,6 @@ export function getUser () {
     }
   };
 }
-
 export function getAllUser () {
   return async function (dispatch) {
     try {
@@ -38,10 +37,8 @@ export function getAllUser () {
     }
   }
 }
-
-
-
 export function postUser(payload) {
+    
   return async function (dispatch) {
     try {
       const response = await axios.post(
@@ -57,8 +54,6 @@ export function postUser(payload) {
     }
   };
 }
-
-
 export function changCategory(payload) {
     console.log(payload)
     return async function (dispatch) {
@@ -75,10 +70,9 @@ export function changCategory(payload) {
     }
     
 }
-
 export function deleteUser(payload) {
   return async function (dispatch) {
-      const response = await axios.delete(`${BASEURL}/user/${payload}`);
+      const response = await axios.delete(`${BASEURL}/user`,payload);
     dispatch({
       type: DELETE_USER,
       payload: response.data,

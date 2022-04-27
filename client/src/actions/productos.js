@@ -1,7 +1,7 @@
 import axios from "axios"; 
 import Swal from "sweetalert2"
 import { BASEURL } from "../assets/URLS";
-import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL } from "./types";
+import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL, DELETE_PRODUCT, POST_PRODUCT } from "./types";
 
 
 export const getAllProducts = () => async (dispatch) => {
@@ -49,12 +49,41 @@ export function getNameProducts(title) {
     }
   }
   };
-
-  export function resetDetail() {
+export function deleteProduct(payload) {
+    console.log(payload)
+    return async function (dispatch) {
+        try {
+            const response = await axios.delete(`${BASEURL}/products/${payload}`);
+            dispatch({
+                type: DELETE_PRODUCT,
+                payload: response.data,
+            });
+        } catch (err) {
+            console.log(err.response.data);
+        }
+    };
+}
+export function resetDetail() {
     return {
       type: RESET_DETAIL
       
     }
-  }
-  
+}
+export function postProduct(payload) {
+
+    return async function (dispatch) {
+        console.log('Desde Actions Producto',payload)
+        try {
+            const response = await axios.post(
+                `${BASEURL}/products`, payload
+            );
+            return dispatch({
+                type: POST_PRODUCT,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log("desde error request", error);
+        }
+    };
+}
 

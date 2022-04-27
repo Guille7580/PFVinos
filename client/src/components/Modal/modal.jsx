@@ -26,7 +26,6 @@ function Modall() {
     }
 
     const changCategories = (email) => {
-        console.log(email)
         dispatch(changCategory(email))
     }
 
@@ -107,7 +106,20 @@ function Modall() {
                     },
                     actionsColumnIndex: -1,
                     addRowPosition: "first",
-                    exportButton: true, gruoping: true
+                    exportButton: true, gruoping: true,
+                    rowStyle: {
+                        backgroundColor: rowData => rowData.id % 2 === 0 ? '#917351' : '#FFA500',
+                    },
+                    searchFieldStyle: {
+                        backgroundColor: '#FFA500'
+                    },
+                    draggable: true,
+                    searchAutoFocus: true,
+                    search: true,
+                    exportAllData: true,
+                    columnsButton: true,
+                    filtering: true,
+                    grouping: true,
                 }}
                 editable={{
                     onRowUpdate: (newData, oldData) =>
@@ -131,9 +143,17 @@ function Modall() {
                                 setData([...dataDelete]);
                                 deleteUseres(oldData.email)
                                 resolve()
+                                
                             }, 1000)
                         }),
                 }}
+                actions={[
+                    {
+                        icon: 'outgoing_mail',
+                        tooltip: 'Reset Password',
+                        onClick: (event, rowData) => alert("You saved " + rowData.name)
+                    }
+                ]}
             />
         </div>
     );

@@ -1,16 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\api",
-    "\\api\\src",
-    "\\api\\src\\routes",
     "\\client",
-    "\\client\\public",
     "\\client\\src",
     "\\client\\src\\actions",
+    "\\client\\src\\components",
+    "\\client\\src\\components\\Modal",
     "\\client\\src\\Pages",
+    "\\client\\src\\Pages\\Dashboard",
+    "\\client\\src\\Pages\\Dashboard\\Principal",
+    "\\client\\src\\Pages\\Home",
     "\\client\\src\\reducer"
   ],
-  "SelectedNode": "\\api\\src\\routes\\user.js",
+  "SelectedNode": "\\client\\src\\components\\Modal\\modal.jsx",
   "PreviewInSolutionExplorer": false
 }
