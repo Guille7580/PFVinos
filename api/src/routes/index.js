@@ -9,8 +9,13 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-//-------------------categorias---------------------------------------
-const categorRoute= require('./categorias')
+const categorRoute= require('./categorias');
+const user = require('./user');
+const pedidoRouter = require("./pedido");
+const carritoRouter = require("./carrito");
+const forgotPassword = require("./forgotPassword");
+const resetPassword = require("./resetPassword");
+
 
 //------------------- product -----------------------------------------
 var product = require('./product')
@@ -24,8 +29,7 @@ router.delete('/products/:id', product.deleteProduct)
 router.put('/products/:id', product.putProduct)
 
 //User
-const user = require('./user')
-const pedidoRouter = require("./pedido");
+
 
 
 router.use('/user', user);
@@ -40,8 +44,12 @@ router.use('/categoria',categorRoute)
 // router.post('/carritos', carro.carritoPost)
 // router.get('/carritos/:usuarioId', carro.carritoGet)
 
-const carritoRouter = require("./carrito");
+
 router.use("/carrito", carritoRouter);
+
+//----------------------Password-------------------------
+router.use("/password", forgotPassword);
+router.use("/resetPassword", resetPassword);
 
 
 
