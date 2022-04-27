@@ -1,21 +1,19 @@
-const { Router } = require('express');
+const { Router } = require('express')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const { Sequelize } = require('sequelize')
-const { Categoria, Product, User, Carrito} = require('../db')
-const userRouter = require("./user");
-const router = Router();
-
+const { Categoria, Product, User, Carrito } = require('../db')
+const userRouter = require('./user')
+const router = Router()
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-const categorRoute= require('./categorias');
-const user = require('./user');
-const pedidoRouter = require("./pedido");
-const carritoRouter = require("./carrito");
-const forgotPassword = require("./forgotPassword");
-const resetPassword = require("./resetPassword");
-
+const categorRoute = require('./categorias')
+const user = require('./user')
+const pedidoRouter = require('./pedido')
+const carritoRouter = require('./carrito')
+const forgotPassword = require('./forgotPassword')
+const resetPassword = require('./resetPassword')
 
 //------------------- product -----------------------------------------
 var product = require('./product')
@@ -23,20 +21,21 @@ var product = require('./product')
 
 //Product//////
 router.get('/products', product.getAllProducts)
-router.get('/products/:id',product.getProductById)
+router.get('/products/:id', product.getProductById)
 router.post('/products', product.postProduct)
 router.delete('/products/:id', product.deleteProduct)
 router.put('/products/:id', product.putProduct)
 
 //User
 
-
-
-router.use('/user', user);
-router.use("/pedidos", pedidoRouter);
+router.use('/user', user)
+router.use('/pedidos', pedidoRouter)
 
 //Categorias
-router.use('/categoria',categorRoute)
+router.use('/categoria', categorRoute)
+router.post('/categoria', categorRoute)
+router.put('/categoria', categorRoute)
+router.delete('/categoria/:nombre', categorRoute)
 
 // ------------------- Carrito -----------------------------------
 // var carro = require('./carrito')
@@ -44,13 +43,10 @@ router.use('/categoria',categorRoute)
 // router.post('/carritos', carro.carritoPost)
 // router.get('/carritos/:usuarioId', carro.carritoGet)
 
-
-router.use("/carrito", carritoRouter);
+router.use('/carrito', carritoRouter)
 
 //----------------------Password-------------------------
-router.use("/password", forgotPassword);
-router.use("/resetPassword", resetPassword);
+router.use('/password', forgotPassword)
+router.use('/resetPassword', resetPassword)
 
-
-
-module.exports = router;
+module.exports = router

@@ -1,6 +1,6 @@
 import React from "react"
 import { toast, cssTransition } from "react-toastify"
-import "animate.css/animate.min.css"
+//import "animate.css/animate.min.css"
 
 import "react-toastify/dist/ReactToastify.css"
 

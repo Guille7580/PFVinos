@@ -1,107 +1,110 @@
-import axios from "axios"; 
-import Swal from "sweetalert2"
-import { BASEURL } from "../assets/URLS";
-import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL, DELETE_PRODUCT, POST_PRODUCT } from "./types";
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { BASEURL } from '../assets/URLS'
+import {
+  GET_PRODUCTS,
+  GET_DETAIL,
+  GET_NAME_PRODUCTS,
+  RESET_DETAIL,
+  DELETE_PRODUCT,
+  RATE_PRODUCT,
+  POST_PRODUCT
+} from './types'
+import getHeaderToken from '../Helpers/getHeaderToken'
 
-
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts = () => async dispatch => {
   try {
-    const responseProduct = await axios.get(`${BASEURL}/products`);
+    const responseProduct = await axios.get(`${BASEURL}/products`)
     return dispatch({
       type: GET_PRODUCTS,
-      payload: responseProduct.data,
-    });
+      payload: responseProduct.data
+    })
   } catch (err) {
-    console.log(err.response.data);
+    console.log(err.response.data)
   }
-};
+}
 
-export const getDetail = (id) => async (dispatch) => {
+export const getDetail = id => async dispatch => {
   try {
-    const json = await axios.get(`${BASEURL}/products/` + id);
+    const json = await axios.get(`${BASEURL}/products/` + id)
     return dispatch({
       type: GET_DETAIL,
-      payload: json.data,
-    });
+      payload: json.data
+    })
   } catch (err) {
-    console.log(err.response.data);
+    console.log(err.response.data)
   }
-};
+}
 
-export function getNameProducts(title) {
+export function getNameProducts (title) {
   return async function (dispatch) {
     try {
-      
-      let response = await axios(`${BASEURL}/products?title=${title}`);
+      let response = await axios(`${BASEURL}/products?title=${title}`)
       //console.log(response)
       return dispatch({
         type: GET_NAME_PRODUCTS,
-        payload: response.data,
-        
-      });
+        payload: response.data
+      })
     } catch (error) {
       Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Oops...",
-        text: "No se encontro el producto!",
-      });
+        position: 'center',
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No se encontro el producto!'
+      })
     }
   }
-  };
-export function deleteProduct(payload) {
-    console.log(payload)
-    return async function (dispatch) {
-        try {
-            const response = await axios.delete(`${BASEURL}/products/${payload}`);
-            dispatch({
-                type: DELETE_PRODUCT,
-                payload: response.data,
-            });
-        } catch (err) {
-            console.log(err.response.data);
-        }
-    };
 }
-export function resetDetail() {
-    return {
-      type: RESET_DETAIL
-      
+export function deleteProduct (payload) {
+  console.log(payload)
+  return async function (dispatch) {
+    try {
+      const response = await axios.delete(`${BASEURL}/products/${payload}`)
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: response.data
+      })
+    } catch (err) {
+      console.log(err.response.data)
     }
   }
-
-
-  export function rateProduct(product){
-    return async function (dispatch) {
-        try {
-            const config = getHeaderToken();
-            var response = await axios.put(`${BASEURL}/products/rate`, product, config);
-            return {
-                type: RATE_PRODUCT,
-                payload: response.data
-            }
-        }catch(err){
-            console.log("No se pudo puntuar el producto")
-        }
-    }
- }
-  
-
-export function postProduct(payload) {
-
-    return async function (dispatch) {
-        console.log('Desde Actions Producto',payload)
-        try {
-            const response = await axios.post(
-                `${BASEURL}/products`, payload
-            );
-            return dispatch({
-                type: POST_PRODUCT,
-                payload: response.data,
-            });
-        } catch (error) {
-            console.log("desde error request", error);
-        }
-    };
+}
+export function resetDetail () {
+  return {
+    type: RESET_DETAIL
+  }
 }
 
+export function rateProduct (product) {
+  return async function (dispatch) {
+    try {
+      const config = getHeaderToken()
+      var response = await axios.put(
+        `${BASEURL}/products/rate`,
+        product,
+        config
+      )
+      return {
+        type: RATE_PRODUCT,
+        payload: response.data
+      }
+    } catch (err) {
+      console.log('No se pudo puntuar el producto')
+    }
+  }
+}
+
+export function postProduct (payload) {
+  return async function (dispatch) {
+    console.log('Desde Actions Producto', payload)
+    try {
+      const response = await axios.post(`${BASEURL}/products`, payload)
+      return dispatch({
+        type: POST_PRODUCT,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log('desde error request', error)
+    }
+  }
+}
