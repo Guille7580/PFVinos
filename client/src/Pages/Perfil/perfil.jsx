@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './perfil.css'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { WineLoader } from '../../components/wineLoader/wineLoader'
+import WineLoader from '../../components/wineLoader/wineLoader'
 
 function PerfilGoogle () {
   let user = useSelector(state => state.loginReducer.userDetail)

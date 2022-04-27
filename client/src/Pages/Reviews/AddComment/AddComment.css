@@ -1,0 +1,39 @@
+.input-form {
+  width: 100%;
+  background: var(--white);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 95%;
+}
+
+.input {
+  width: 100%;
+  height: 10rem;
+  resize: none;
+  font-size: 1rem;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: 2px solid var(--light-gray);
+}
+
+.input__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.input__footer img {
+  height: 3rem;
+}
+
+.send-btn {
+  background: var(--moderate-blue);
+  border: none;
+  padding: 0.8rem;
+  color: white;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}

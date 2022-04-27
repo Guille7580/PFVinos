@@ -1,0 +1,18 @@
+.replybox {
+  width: 94%;
+  margin-top: 1rem;
+  background-color: var(--white);
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+}
+
+.reply-btn {
+  background: var(--moderate-blue);
+  border: none;
+  padding: 0.8rem;
+  color: white;
+  font-family: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
