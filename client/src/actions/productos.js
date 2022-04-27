@@ -68,25 +68,7 @@ export function resetDetail() {
       type: RESET_DETAIL
       
     }
-  }
-
-
-  export function rateProduct(product){
-    return async function (dispatch) {
-        try {
-            const config = getHeaderToken();
-            var response = await axios.put(`${BASEURL}/products/rate`, product, config);
-            return {
-                type: RATE_PRODUCT,
-                payload: response.data
-            }
-        }catch(err){
-            console.log("No se pudo puntuar el producto")
-        }
-    }
- }
-  
-
+}
 export function postProduct(payload) {
 
     return async function (dispatch) {

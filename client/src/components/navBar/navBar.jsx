@@ -87,16 +87,20 @@ const NavBarAdmin = () => {
 }
 
 const NavBarAuthenticated = () => {
- 
+  // let navigate = useNavigate()
+  //   const handleClickPerfil=(e)=>{
+  //     e.preventDefault
+  //     navigate("/perfil")
+  //   }
 
   return (
     <>
       <NavBarAll />
 
       <Select options={options} />
-      <Link to='/perfil' className='navButton'>
+      {/* <Link to='/perfil' className='navButton'>
        Perfil
-      </Link>
+      </Link> */}
     </>
   )
 }
@@ -115,6 +119,10 @@ function NavBar () {
     navigate('/home')
   }
 
+  // useEffect(() => {
+  //   if (flag) dispatch(updateCart());
+  //   setFlag(false);
+  // }, [setFlag, updateCart, dispatch]);
 
   return (
     <div className='navContainer'>
