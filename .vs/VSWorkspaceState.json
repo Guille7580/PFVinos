@@ -1,17 +1,17 @@
 {
   "ExpandedNodes": [
     "",
+    "\\api",
+    "\\api\\src",
+    "\\api\\src\\routes",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\actions",
-    "\\client\\src\\components",
-    "\\client\\src\\components\\Modal",
     "\\client\\src\\Pages",
     "\\client\\src\\Pages\\Dashboard",
     "\\client\\src\\Pages\\Dashboard\\Principal",
     "\\client\\src\\Pages\\Home",
     "\\client\\src\\reducer"
   ],
-  "SelectedNode": "\\client\\src\\components\\Modal\\modal.jsx",
+  "SelectedNode": "\\client\\src\\actions\\carrito.js",
   "PreviewInSolutionExplorer": false
 }
