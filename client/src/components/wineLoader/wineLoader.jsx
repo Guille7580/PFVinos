@@ -1,7 +1,7 @@
 import React from 'react'
 import './wineLoader.css'
 
-export default function WineLoader () {
+export const WineLoader = () => {
   return (
         <div> 
       <div className='containerWine'>

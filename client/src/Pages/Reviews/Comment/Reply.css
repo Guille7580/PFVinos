@@ -1,9 +1,0 @@
-.comment-reply-container {
-  width: 100%;
-}
-
-.replies {
-  max-width: 90%;
-  margin-left: auto;
-  border-left: 2px solid var(--light-gray);
-}
