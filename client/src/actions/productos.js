@@ -1,7 +1,8 @@
 import axios from "axios"; 
 import Swal from "sweetalert2"
 import { BASEURL } from "../assets/URLS";
-import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL } from "./types";
+import getHeaderToken from '../Helpers/getHeaderToken';
+import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL, RATE_PRODUCT } from "./types";
 
 
 export const getAllProducts = () => async (dispatch) => {
@@ -56,5 +57,21 @@ export function getNameProducts(title) {
       
     }
   }
+
+
+  export function rateProduct(product){
+    return async function (dispatch) {
+        try {
+            const config = getHeaderToken();
+            var response = await axios.put(`${BASEURL}/products/rate`, product, config);
+            return {
+                type: RATE_PRODUCT,
+                payload: response.data
+            }
+        }catch(err){
+            console.log("No se pudo puntuar el producto")
+        }
+    }
+ }
   
 
