@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 //import Swal from 'sweetalert2'
 import CartItems from "./CartItems/CartItems";
 import AnimatedText from "react-animated-text-content";
+import { useNavigate } from "react-router-dom";
 
 export function calculateTotal(items) {
   return items
@@ -31,6 +32,7 @@ export default function Cart({
 
   const products = cartItems.map((product) => ({
     id: product.id,
+    title: product.title,
     amount: product.amount,
   }));
   console.log(products);
@@ -42,7 +44,15 @@ export default function Cart({
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
-  console.log(order);
+  console.log("-------------------", order);
+
+  const navigate = useNavigate();
+
+  function onFinishPay(e) {
+    e.preventDefault();
+    return navigate('/checkout-page')
+
+}
 
   /* const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -106,7 +116,7 @@ items = items?.filter((e) => e);
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
             <Link to="/chekout">
-              <button className="btnBottom">Pagar</button>
+              <button className="btnBottom" onClick={onFinishPay}>Pagar</button>
             </Link>
           </div>
         </div>

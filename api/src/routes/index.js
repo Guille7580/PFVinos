@@ -45,7 +45,7 @@ router.use('/categoria',categorRoute)
 // router.get('/carritos/:usuarioId', carro.carritoGet)
 
 
-router.use("/carrito", carritoRouter);
+router.use("/carritos", carritoRouter);
 
 //----------------------Password-------------------------
 router.use("/password", forgotPassword);
