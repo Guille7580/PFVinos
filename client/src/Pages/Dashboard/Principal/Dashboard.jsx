@@ -6,6 +6,7 @@ import { getAllUser } from "../../../actions/user.jsx"
 import { useEffect } from "react";
 import UserCards from "../../../components/cards/userCards.jsx";
 import Modall from "../../../components/Modal/modal.jsx";
+import Productos from "../../../components/Modal/productos.jsx";
 
 
 export default function Admin() {
@@ -20,6 +21,7 @@ export default function Admin() {
 
     const hundleChangue = (e, newvalue)=>{
         setSelectedTab(newvalue)
+        console.log('Desde Evento Tab',e, newvalue)
     }
 
     return (
@@ -33,8 +35,11 @@ export default function Admin() {
                 </Tabs>
             </AppBar>
             
-            {selectedTab === 0 && <Modall />
-               
+            {
+                selectedTab === 0 && <Modall />
+            }
+            {
+                selectedTab === 1 && <Productos />
             }
         </>
     )
