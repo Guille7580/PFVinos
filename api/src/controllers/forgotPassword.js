@@ -1,10 +1,12 @@
 const { User } = require("../db");
+const bcrypt = require("bcryptjs"); //encriptar contraseña
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const { JWT_SECRET } = process.env
+const { JWT_SECRET , EMAIL_ADDRESS ,EMAIL_PASSWORD } = process.env
 const { sendEmail } = require("../Util/sendEmail")
 const generateRandomString = require("../Util/getRandomString")
+
 
 const forgotPassword = async (req, res, next) => {
   const { email } = req.body
@@ -16,15 +18,39 @@ const forgotPassword = async (req, res, next) => {
 
   let temporalPassword = generateRandomString()
   console.log(temporalPassword)
-
+  let temppasAct = await bcrypt.hash(temporalPassword , 10);
 
   try {
     const user = await User.findOne({ where: { email } })
     console.log(user.email)
+    
     if (user) {
       try {
-        await User.update({ contrasena: temporalPassword }, { where: { email } })
-        // console.log(User.contrasena)
+        await User.update({ contrasena: temppasAct }, { where: { email } })
+        const transporter = nodemailer.createTransport({
+                 service: "gmail",
+                 auth: {
+                   user: process.env.EMAIL_ADDRESS,
+                   pass: process.env.EMAIL_PASSWORD,
+                 },
+                 tls: {
+                  rejectUnauthorized: false}
+        });
+      
+        const mailOptions = {
+                 from: `${EMAIL_ADDRESS}`,
+                 to: `${user.email}`,
+                 subject: "Enlace para recuperar su contraseña ",
+                 text: `<h2>Contraseña temporal para su cuenta de Rental App</h2><div>Su contraseña temporal es: <code>${temporalPassword}</code><br>Cambiela lo antes posible.</div>`,
+               };
+          
+        transporter.sendMail(mailOptions, (err, response) => {
+            if (err) {
+              console.error("Ha ocurrido un error :", err);
+            }
+            res.status(200).json("El email para la recuperacion ha sido enviado");
+        });
+
         // await sendEmail(
         //   "Recuperación de contraseña",
         //   "",
