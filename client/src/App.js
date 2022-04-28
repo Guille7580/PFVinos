@@ -125,7 +125,10 @@ const App = () => {
     <div>
       <BrowserRouter>
         <ToastContainer />
-        <NavBar />
+        <NavBar 
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        />
         <Routes>
           <Route
             path='/'

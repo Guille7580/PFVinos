@@ -49,7 +49,7 @@ router.use("/carrito", carritoRouter);
 router.use('/categoria', categorRoute)
 router.post('/categoria', categorRoute)
 router.put('/categoria', categorRoute)
-router.delete('/categoria/:nombre', categorRoute)
+router.delete('/categoria/:id', categorRoute)
 
 
 router.delete('/categoria/:id',async (req,res)=>{
