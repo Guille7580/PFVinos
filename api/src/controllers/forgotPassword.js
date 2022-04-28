@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { JWT_SECRET , EMAIL_ADDRESS ,EMAIL_PASSWORD } = process.env
-const { sendEmail } = require("../Util/sendEmail")
+
 const generateRandomString = require("../Util/getRandomString")
 
 
@@ -41,7 +41,7 @@ const forgotPassword = async (req, res, next) => {
                  from: `${EMAIL_ADDRESS}`,
                  to: `${user.email}`,
                  subject: "Enlace para recuperar su contraseña ",
-                 text: `<h2>Contraseña temporal para su cuenta de Rental App</h2><div>Su contraseña temporal es: <code>${temporalPassword}</code><br>Cambiela lo antes posible.</div>`,
+                 text: `Contraseña temporal para su cuenta de Las Moritas App . Su contraseña temporal es: ${temporalPassword} .Cambiela lo antes posible.`,
                };
           
         transporter.sendMail(mailOptions, (err, response) => {
