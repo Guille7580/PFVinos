@@ -1,5 +1,8 @@
 // PRODUCTOS
 export const GET_PRODUCTS = 'GET_PRODUCTS'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const POST_PRODUCT = 'POST_PRODUCT'
+
 
 //detalles
 export const GET_DETAIL = "GET_DETAIL"

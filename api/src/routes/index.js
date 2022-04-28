@@ -45,7 +45,26 @@ router.use('/categoria',categorRoute)
 // router.get('/carritos/:usuarioId', carro.carritoGet)
 
 
-router.use("/carritos", carritoRouter);
+router.use("/carrito", carritoRouter);
+router.use('/categoria', categorRoute)
+router.post('/categoria', categorRoute)
+router.put('/categoria', categorRoute)
+router.delete('/categoria/:nombre', categorRoute)
+
+
+router.delete('/categoria/:id',async (req,res)=>{
+    const {id} = req.params;
+    try{
+const catId = await Categoria.findByPk(id)
+if(catId) {
+    await catId.destroy()
+    res.send('Eliminado')
+}else{
+    res.send("No encontrado")
+}} catch(error){
+    console.log(error)
+}
+})
 
 //----------------------Password-------------------------
 router.use("/password", forgotPassword);
