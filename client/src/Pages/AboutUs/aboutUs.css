@@ -1,15 +1,17 @@
 .containerAbout {
   color: black;
-  background-color: #523e;
+  background-image: linear-gradient(to bottom right, rgb(243, 220, 245), #523e);
   text-align: center;
-  color: #e8cfc1;
+  color: black;
+  padding-top: 20px;
+  padding-left: 10px;
 }
 
 .members {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   padding-bottom: 50px;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-right: 20px;
 }
 
@@ -22,12 +24,16 @@ h3 {
 .para {
   border: black solid 1px;
   border-radius: 5px;
-  margin: 5px;
+  margin: 20px;
 }
 
 .backBtn {
   border-radius: 5px;
   height: 35px;
-  margin-top: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 60px;
+  background-color: #e8cfc1;
 }

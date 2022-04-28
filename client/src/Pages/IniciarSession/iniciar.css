@@ -1,31 +1,163 @@
 .iniciar {
-  background-color: #532c27;
-  color: #e8cfc1;
-  height: 520px;
+  color: #eeddd3;
+  width: 100%;
+  height: 600px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 }
-
 .containerIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   border: #e8cfc1 solid 1px;
   padding: 40px;
-  margin: 20px;
+  margin: 10px;
+  height: 300px;
 }
 
+.box {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(224, 211, 175),
+    #5e4b0e
+  );
+  padding: 20px;
+}
+.containerWine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 150px;
+  padding-top: 150px;
+}
+.buttonsSession {
+  display: flex;
+  flex-direction: column;
+}
 .buttonSess {
-  margin-left: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   border-radius: 5px;
   height: 35px;
   margin-top: 10px;
   width: 70px;
   background-color: #e8cfc1;
 }
+.box1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
 
-input{
-    border-radius: 5px;
-    background-color: #e8cfc1;
-    padding: 20px;
-    margin: 20px;
+.box2{
+  text-align: center;
+  display: flex;
+  justify-items: space-between;
+  flex-direction: column;
+}
+
+input {
+  border-radius: 5px;
+  background-color: #e8cfc1;
+  padding: 15px;
+  margin: 15px;
+}
+
+.endLinks{
+  display: flex;
+  justify-content: space-between;
+ 
+}
+
+ .endLink{
+  background: none;
+  border-radius: 5px;
+  justify-content: space-around;
+  color: #e8cfc1;
+  margin: 5px;
+ }
+
+
+.googleBtn {
+  margin-top: 10px;
+  height: 35px;
+  background-color: #e8cfc1;
+  border-radius: 5px;
+}
+
+.wine-glass {
+  height: 100px;
+  width: 60px;
+  border: 3px solid #000;
+  border-radius: 5% 5% 50% 50%;
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.wine-glass:before {
+  margin-top: 80px;
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-color: #722f37;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 130px;
+  /* animation: fill 4s ease-in-out infinite; */
+  animation: wave 20s infinite linear;
+  transition: all 2s ease-in-out;
+  z-index: -1px;
+}
+.comentario:hover:before {
+  text-decoration: none;
+  color: transparent;
+}
+
+.wine-glass:hover:before {
+  top: -50px;
+}
+
+@keyframes wave {
+  0% {
+    transform: translate(-50%) rotate(-180deg);
+  }
+
+  100% {
+    transform: translate(-50%) rotate(360deg);
+  }
+}
+
+/* @keyframes skew {
+  from {
+    transform: skewX(40deg);
+  }
+  to {
+    transform: skewX(50deg);
+  }
+} */
+.glass-stem {
+  height: 70px;
+  width: 6px;
+  background-color: #000;
+  right: 20px;
+}
+.glass-base {
+  height: 15px;
+  width: 55px;
+  background-color: #000;
+  border-radius: 50%;
+  margin: 0;
 }

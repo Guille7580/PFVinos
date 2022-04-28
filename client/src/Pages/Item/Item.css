@@ -1,0 +1,130 @@
+.container {
+    display: flex;
+    flex-basis: 20%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 900px;
+    height: 100px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border-radius: 10px;
+    padding: 3%;
+    background-color: white;
+  }
+  
+  .Img {
+    max-width: 90px;
+    max-height: 90px;
+  }
+  .name {
+    width: 180px;
+    height: 80px;
+  }
+  .text {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .button {
+    width: 4%;
+    height: 15%;
+    background-color: #3e0471;
+    color: white;
+    border-radius: 10%;
+    border-color: white;
+  }
+  
+  .button:hover {
+    background-color: rgb(226, 12, 12);
+    color: white;
+    border-color: white;
+  }
+  
+  .cantidad > h3 {
+    font-size: 22px;
+    /* text-align: center;
+    width: auto; */
+  }
+  .cantidad > input {
+    text-align: center;
+    text-decoration: none;
+  }
+  .cantidad > button {
+    background-color: white;
+    color: black;
+    border-color: #3e0471;
+    font-size: 15px;
+  }
+  .cantidad > button:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: white;
+    border-color: white;
+    color: black;
+  }
+  
+  .precio {
+    height: 80px;
+    align-items: center;
+    width: 150px;
+  }
+  .precio > h3 {
+    font-size: 22px;
+    /* padding-left: 30px;
+    padding-top: -2px; */
+  }
+  .precio > h4 {
+    color: black;
+    font-size: 25px;
+  }
+  
+  @media (max-width: 939px) {
+    .container {
+      display: block;
+      width: auto;
+    }
+    .cantidad > h3 {
+      display: block;
+    }
+    .Img {
+      margin-left: 30px;
+      margin-bottom: 10px;
+    }
+    .button{
+      background-color: white;
+      color: #3e0471;
+      font-weight: bold;
+      border: #3e0471 solid 1px;
+      width: auto;
+    }
+    .cantidad > input {
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btnMenos, .btnMas{
+      font-weight: bold;
+     
+    }
+  }
+  
+  @media (max-width: 627px) {
+    .container {
+      display: block;
+      width: auto;
+    }
+    .button{
+      background-color: white;
+      color: #3e0471;
+      font-weight: bold;
+      border: #3e0471 solid 1px;
+      width: auto;
+    }
+    .cantidad > input {
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+  

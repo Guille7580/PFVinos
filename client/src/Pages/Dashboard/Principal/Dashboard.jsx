@@ -1,12 +1,47 @@
 import React from "react";
-import "./Dashboard.css"
+
+import { useDispatch, useSelector } from "react-redux";
+import { AppBar, Modal, Tab, Tabs } from "@material-ui/core";
+import { getAllUser } from "../../../actions/user.jsx"
+import { useEffect } from "react";
+import UserCards from "../../../components/cards/userCards.jsx";
+import Modall from "../../../components/Modal/modal.jsx";
+import Productos from "../../../components/Modal/productos.jsx";
 
 
-export default function Dashboard() {
+export default function Admin() {
+    const dispatch = useDispatch()
+    const [selectedTab, setSelectedTab] = React.useState(0);
+
+    useEffect(() => {
+        dispatch(getAllUser());
+    }, [dispatch]);
+
+    const allUsers = useSelector(state => state.users.allUser)
+
+    const hundleChangue = (e, newvalue)=>{
+        setSelectedTab(newvalue)
+        console.log('Desde Evento Tab',e, newvalue)
+    }
+
     return (
-        <div className="adminContainer">
-        <h1 >ADMIN</h1>
-        </div>
+        <>
+            <AppBar position="static">
+                <Tabs value={selectedTab} onChange={hundleChangue}>
+                    <Tab label="Usuarios" />
+                    <Tab label="Productos" />
+                    <Tab label="Ordenes" />
+                    <Tab label="Categorias" />
+                </Tabs>
+            </AppBar>
+            
+            {
+                selectedTab === 0 && <Modall />
+            }
+            {
+                selectedTab === 1 && <Productos />
+            }
+        </>
     )
-  
 }
+

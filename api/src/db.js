@@ -1,13 +1,14 @@
 require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, ENVIRONMENT, DB_NAME, DATABASE_URL
 } = process.env;
 
-const URL = ENVIRONMENT === "development" ? `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}` : DATABASE_URL;
 
+const URL = ENVIRONMENT === "development" ? `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}` : DATABASE_URL;
+//lpm
 
 const options = ENVIRONMENT === "development" ? {
   logging: false,
@@ -36,15 +37,22 @@ fs.readdirSync(path.join(__dirname, '/models'))
   });
 
 // Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach(model => model(sequelize));
+modelDefiners.forEach((model) => model(sequelize, DataTypes));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-sequelize.models = Object.fromEntries(capsEntries);
+let models = Object.fromEntries(capsEntries);
+Object.keys(models).forEach((modelName) => {
+  if (models[modelName].associate) {
+    models[modelName].associate(models);
+  }
+});
+
+sequelize.models = models;
 
 // En sequelize.models están todos los modelos importados como propiedades 
 // Para relacionarlos hacemos un destructuring
-const { Product, Categoria, User, Order, Carrito, CarritoDetalle } = sequelize.models;
+const { Product, Categoria, User, Order, Carrito, CarritoDetalle, LineaDePedido, Pedido } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -92,7 +100,18 @@ Carrito.hasMany(CarritoDetalle, {
   foreignKey: "carritoId",
   }); 
 
+  LineaDePedido.belongsTo(Pedido, {
+    sourceKey: 'id',
+    foreignKey: 'pedidoId'
+ });
+
+ LineaDePedido.belongsTo(Product, {
+  sourceKey: 'id',
+  foreignKey: 'productoId'
+});
+
 module.exports = {
-  ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  ...sequelize.models,
+   // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };

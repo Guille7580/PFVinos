@@ -1,5 +1,11 @@
 .containReg {
-  background-color: rgb(90, 90, 90);
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(70, 69, 69),
+    rgb(230, 227, 219)
+    
+  );
+
   text-align: center;
   color: #e8cfc1;
   border: #e8cfc1 solid 1px;
@@ -31,7 +37,6 @@
   display: flex;
   justify-content: space-around;
   margin: 50px;
-
 }
 
 .buttonReg {

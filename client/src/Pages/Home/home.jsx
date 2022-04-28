@@ -6,19 +6,18 @@ import {
   order_ByName,
   order_ByPrice
 } from '../../actions/categorias'
+import { getDetail, resetDetail ,getAllProducts } from '../../actions/productos'
 import Swal from 'sweetalert2'
 
-// import {getAllProducts } from '../../actions/productos';
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
-import Footer from '../../components/Footer/footer'
 import SearchBar from '../../components/SearchBar/searchBar'
 import NavBar from '../../components/navBar/navBar'
 import './home.css'
 import image from './PurpleGrapesSmall.jpg'
 import AnimatedText from 'react-animated-text-content'
 
-function Home () {
+function Home ({handleAddToCart, setCartItems, cartItems}) {
   const dispatch = useDispatch()
   const allProduct = useSelector(state => state.productosReducer.allProducts)
   const allActivities = useSelector(state => state.countryActivity)
@@ -38,6 +37,11 @@ function Home () {
 
   const pagination = pageNumbers => {
     setCurrentPage(pageNumbers)
+  }
+
+  function handleClick (e) {
+    e.preventDefault()
+    dispatch(getAllProducts())
   }
 
   const handleFilterCat = e => {
@@ -64,9 +68,13 @@ function Home () {
     setCurrentPage(1)
   }, [allProduct])
 
+  useEffect(() => {
+    dispatch(resetDetail())
+  }, [])
+
+
   return (
     <div>
-      <NavBar />
 
       <img className='imageHome' src={image} alt='' />
       <AnimatedText
@@ -90,6 +98,7 @@ function Home () {
       </AnimatedText>
       <div className='pinkBar'></div>
       <div className='filters'>
+        
         <label className='labelHome'>  </label>
         <select onChange={handleorderPrice}>
           <option value='nada'>Precio</option>
@@ -109,7 +118,9 @@ function Home () {
           <option value='Tinto'>Tinto</option>
           <option value='Rosado'>Rosado</option>
         </select>
-        <SearchBar className='searchHome' />
+        <SearchBar className= 'searchHome' />
+        <button className='searchBtn' onClick={e=>{handleClick(e)}}>Recargar Vinos</button>
+        
       </div>
       <div className='containerBody'>
         <Paginado
@@ -120,7 +131,7 @@ function Home () {
           page={currentPage}
         />
         {currentProducts.length > 0 ? (
-          <Cards currentProducts={currentProducts} />
+          <Cards currentProducts={currentProducts} handleAddToCart = {handleAddToCart} cartItems = {cartItems} setCartItems = {setCartItems}/>
         ) : (
           ''
         )}

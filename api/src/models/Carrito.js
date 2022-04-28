@@ -6,4 +6,5 @@ module.exports = (sequelize) => {
     
         cantidad: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
       }, { timestamps: false });
+      
 }
