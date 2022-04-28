@@ -100,28 +100,27 @@ exports.deleteProduct = async function (req, res, next) {
 }
 
 exports.putProduct = async function (req, res, next) {
-
+    const category = req.body.Categorium.id
     const id = req.params.id
     const {
         title,
         price,
         descriptions,
-        categoriaId,
         image,
         stock,
         bodega,
         cepa,
         age
     } = req.body;
-    console.log(title, id, req)
+    
     try {
         let ProductDB = await getProdDB()
-        console.log(ProductDB)
+        console.log('Categorium:', req.body.Categorium)
             let prodName = await Product.update({
                 title,
                 price,
                 descriptions,
-                categoriaId,
+                categoriaId: category,
                 image,
                 stock,
                 bodega,
