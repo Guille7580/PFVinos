@@ -7,6 +7,7 @@ import {
     DELETE_USER,
     GET_BY_EMAIL,
     CHANGE_CATEGORY,
+    RECOVERY_PASSWORD,
 
 
 } from './types'
@@ -24,7 +25,6 @@ export function getUser () {
     }
   };
 }
-
 export function getAllUser () {
   return async function (dispatch) {
     try {
@@ -73,11 +73,30 @@ export function changCategory(payload) {
     
 }
 export function deleteUser(payload) {
-  return async function (dispatch) {
-      const response = await axios.delete(`${BASEURL}/user`,payload);
-    dispatch({
-      type: DELETE_USER,
-      payload: response.data,
-    });
-  };
+    return async function (dispatch) {
+        try {
+            const response = await axios.delete(`${BASEURL}/user`, payload);
+            dispatch({
+                type: DELETE_USER,
+                payload: response.data,
+            })
+        } catch (error) {
+            console.log("No se cambio categoria")
+        }
+  }
+}
+export function recoveryPassword(payload) {
+    console.log(payload)
+    return async function (dispatch) {
+        try {
+            const response = await axios.post(`${BASEURL}/password/payload` )
+            console.log(response)
+            dispatch({
+                type: RECOVERY_PASSWORD,
+                payload: response.data,
+            });
+        } catch (error) {
+            console.log("No se recupero email")
+        }
+    }
 }

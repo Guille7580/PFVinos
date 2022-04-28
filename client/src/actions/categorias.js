@@ -2,8 +2,6 @@ import axios from 'axios';
 import { BASEURL } from '../assets/URLS';
 import {GET_CATEGORIA, FILTER_BY_CATEGORY, ORD_BYPRICE, ORD_BYNAME  } from './types';
 
-
-
 export function getShowActivity(){
     return async function(dispatch){
         try{
