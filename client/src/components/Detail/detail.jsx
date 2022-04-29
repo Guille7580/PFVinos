@@ -2,17 +2,23 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getDetail } from '../../actions/productos'
 import './detail.css'
 
 export default function Detail ({ handleAddToCart, handleAddToCartButton, cartItems, setCartItems }) {
   const dispatch = useDispatch()
   const { id } = useParams()
-
+const [cart , setCart ] = useState()
   useEffect(() => {
     dispatch(getDetail(id))
   }, [dispatch])
+
+  function changeNumber(e){
+    const item = e.target.value;
+    console.log(item)
+    setCart([...cart, item])
+  }
 
   const myProducts = useSelector(state => state.productosReducer.detalles)
   console.log(myProducts)
@@ -47,12 +53,12 @@ export default function Detail ({ handleAddToCart, handleAddToCartButton, cartIt
       )}
       <div className='btnDetails'>
         <Link to='/'>
-          <button className='detailButtons'>Sigue Comprando</button>
+          <button className='detailButtons' >Sigue Comprando</button>
         </Link>
 
         {/* <Link to="/carrito">  */}
         <button
-          onClick={() => handleAddToCartButton(myProducts)}
+          onClick={() => handleAddToCartButton(myProducts) + window.location.reload(false)}
           className='detailButtons'
         >
           Agrega a Carrito

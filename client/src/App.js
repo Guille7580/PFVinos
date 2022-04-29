@@ -11,7 +11,7 @@ import Perfil from './Pages/Perfil/perfil.jsx'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar'
-import { RecoverPass } from "./components/Recover_password/RecoverPass";
+import { RecoverPass } from './components/Recover_password/RecoverPass'
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
@@ -57,6 +57,8 @@ const App = () => {
     })
   }
 
+ 
+
   const handleAddToCartButton = clickedItem => {
     setCartItems(prev => {
       const isItemInCart = prev.find(item => item.id === clickedItem.id)
@@ -73,14 +75,21 @@ const App = () => {
       }
 
       return [...prev, { ...clickedItem, amount: 1 }]
-    })
+    }, addItemToIcon() )
     Swal.fire({
       position: 'center',
       icon: 'success',
       title: 'Producto agregado al carrito',
       showConfirmButton: false,
       timer: 2000
+     
     })
+  }
+
+  const [count, setCount] = useState(0)
+  
+  function addItemToIcon () {
+    setCount(count + 1)
   }
 
   const handleRemoveFromCart = id => {
@@ -125,10 +134,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <ToastContainer />
-        <NavBar 
-        cartItems={cartItems}
-        setCartItems={setCartItems}
-        />
+        <NavBar cartItems={cartItems} setCartItems={setCartItems} />
         <Routes>
           <Route
             path='/'
@@ -159,11 +165,9 @@ const App = () => {
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
-          <Route path="/login/recoverpassword" element={<RecoverPass />} />
-          
-          
-          <Route path='/contact' element={<Contact />} />
+          <Route path='/login/recoverpassword' element={<RecoverPass />} />
 
+          <Route path='/contact' element={<Contact />} />
 
           <Route exact path='/dashboard/admin' element={<Dashboard />} />
 
