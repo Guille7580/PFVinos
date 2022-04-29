@@ -3,14 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './modal.css';
 import { alpha } from '@material-ui/core/styles'
 import MaterialTable from 'material-table'
-import { deleteProduct, getAllProducts, postProduct } from '../../actions/productos';
+import { deleteProduct, getAllProducts, postProduct, updateProduct } from '../../actions/productos';
 import { getShowActivity } from '../../actions/categorias';
 
-
 function Productos() {
-
     const dispatch = useDispatch();
-
     const [data, setData] = useState([])
     const [status, setStatus] = useState({})
 
@@ -23,40 +20,32 @@ function Productos() {
     const empStatus = useSelector(state => state.catReducer.allCategory)
 
     useEffect(() => {
-        setData(allProduct)
-      }, [allProduct]);
-
-    console.log(allProduct)
-    console.log(empStatus)
-     
-    useEffect(() => {
         const status = {}
         empStatus.map((row) => status[row.id] = row.nombre)
         setStatus(status)
-    }, [empStatus])
-
-    console.log(status)
+        setData(allProduct)
+    }, [allProduct, empStatus]);
 
     const postProducts = (newData) => {
         dispatch(postProduct(newData))
     }
 
-    const updateProduct = () => {
-
+    const updateProducts = (newData) => {
+        dispatch(updateProduct(newData))
     }
 
     const deleteProducts = (id) => {
         dispatch(deleteProduct(id))
     }
-    
-    
 
     const columns = [
+
         {
-            title: '', field: 'image', render: item => <img src={item.image} alt="" border="3" height="100" width="100" />,
+            title: '', field: 'image', render: item => <img src={item.image} alt="Imagen" border="3" height="100" width="100" />,
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             },
             cellStyle: {
 
@@ -67,8 +56,9 @@ function Productos() {
         {
             title: "Name", field: "title",
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             },
             cellStyle: {
 
@@ -81,18 +71,20 @@ function Productos() {
             title: "Categoria", field: "Categorium.id", lookup: status,
            
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             }
         },
         {
             title: "Año", field: "age",
             
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 minWidth: 1,
                 textAlign: "center",
-                maxWidth: 1
+                maxWidth: 1,
+                color: '#ffffff'
             },
             cellStyle: {
 
@@ -104,8 +96,9 @@ function Productos() {
             title: "Bodega", field: "bodega",
 
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             },
             cellStyle: {
 
@@ -118,8 +111,9 @@ function Productos() {
             title: "Varietal", field: "cepa",
 
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             },
              cellStyle: {
 
@@ -131,10 +125,11 @@ function Productos() {
             title: "Descripcion", field: "descriptions",
             
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 minWidth: 350,
                 maxWidth: 350,
-                fontSize: 15
+                fontSize: 15,
+                color: '#ffffff'
             },
             cellStyle: {
                
@@ -147,8 +142,9 @@ function Productos() {
             title: "Precio", field: "price",
 
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             },
             cellStyle: {
                 fontSize: 15
@@ -159,8 +155,9 @@ function Productos() {
             title: "Rate", field: "rate",
 
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             },
             cellStyle: {
 
@@ -172,8 +169,9 @@ function Productos() {
             title: "Stock", field: "stock",
 
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
+                color: '#ffffff'
             },
             cellStyle: {
 
@@ -183,25 +181,36 @@ function Productos() {
         },
     ]
 
-    console.log(data)
-
     return (
         <div className="App">
-            <h1 align="center">PANEL ADMINISTRACION DE PRODUCTOS</h1>
+            <h1 align="center">PANEL ADMINISTRACION DE PRODUCTOS</h1>  
 
             <MaterialTable
 
                 title="Productos"
                 columns={columns}
                 data={data}
+
+                localization={{
+                    header: {
+                        actions: 'Acciones',
+                    },
+                    body: { editRow: { deleteText: 'Confirmar Borrar' } }
+
+
+                }}
+                
                 options={{
+                    
                     headerStyle: {
-                        backgroundColor: '#039be5',
+                        backgroundColor: '#5f3252',
+                        color: '#ffffff'
                     },
                     actionsColumnIndex: -1,
                     addRowPosition: "first",
                     exportButton: true,
                     gruoping: true,
+                                       
                     rowStyle: {
                         backgroundColor: rowData => rowData.id % 2 === 0 ? '#917351' : '#FFA500',
                     },
@@ -216,10 +225,8 @@ function Productos() {
                     filtering: true,
                     grouping: true,
                     doubleHorizontalScroll: true,
-                    tableLayout: 'auto',
-                    
+                    tableLayout: 'auto',                   
                 }}
-                
                 editable={{
                     onRowAddCancelled: rowData => console.log('Row adding cancelled'),
                     onRowUpdateCancelled: rowData => console.log('Row editing cancelled'),
@@ -237,12 +244,11 @@ function Productos() {
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                console.log('HOLAAAAAAAAA', oldData.email)
                                 const dataUpdate = [...data];
                                 const index = oldData.tableData.id;
                                 dataUpdate[index] = newData;
                                 setData([...dataUpdate]);
-                                
+                                updateProducts(newData)
                                 resolve();
                             }, 1000)
                         }),
@@ -262,5 +268,4 @@ function Productos() {
         </div>
     );
 }
-
 export default Productos;

@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { BASEURL } from '../assets/URLS';
-import {GET_CATEGORIA, FILTER_BY_CATEGORY, ORD_BYPRICE, ORD_BYNAME  } from './types';
-
-
+import { GET_CATEGORIA, FILTER_BY_CATEGORY, ORD_BYPRICE, ORD_BYNAME, CREATE_CATEGORY, UPDATE_CATEGORY  } from './types';
 
 export function getShowActivity(){
     return async function(dispatch){
@@ -18,7 +16,41 @@ export function getShowActivity(){
         }
         
     }
-  }
+}
+export function CreateCategory(payload) {
+
+    let value = { nombre: payload }
+
+    return async function (dispatch) {
+        try {
+            var json = await axios.post(`${BASEURL}/categoria`,value);
+            console.log(json)
+            return dispatch({
+                type: CREATE_CATEGORY,
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+}
+
+export function UpdateCategory(payload) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.put(`${BASEURL}/categoria`, payload);
+            console.log(json)
+            return dispatch({
+                type: UPDATE_CATEGORY,
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export function filterByCategory(payload) {
     return {
        type: FILTER_BY_CATEGORY,

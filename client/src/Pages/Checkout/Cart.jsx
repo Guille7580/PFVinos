@@ -81,7 +81,7 @@ items = items?.filter((e) => e);
   return (
     <div>
       <div div className="cartContainer">
-        <AnimatedText
+        {/* <AnimatedText
           type="words" // animate words or chars
           animation={{
             x: "200px",
@@ -97,9 +97,12 @@ items = items?.filter((e) => e);
           includeWhiteSpaces
           threshold={0.1}
           rootMargin="20%"
-        >
+         
+        > */}
+        <div className="animatedShopping">
           Shopping Cart
-        </AnimatedText>
+          </div>
+        {/* </AnimatedText> */}
         <div>
           <ul>
             {cartItems?.length === 0 ? <p>No hay items en el carrito</p> : null}

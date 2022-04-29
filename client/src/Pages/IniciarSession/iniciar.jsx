@@ -92,31 +92,30 @@ export default function SignIn (isAuth, user) {
   //     if (rol === "2") return navigate("/dashboard/admin");
   //   }
   // }, [isAuth, navigate, user]);
-  const handleSesionGoogle = async (e) => {
-    e.preventDefault();
-    const userG = await signInWithPopup(auth, provider);
+  const handleSesionGoogle = async e => {
+    e.preventDefault()
+    const userG = await signInWithPopup(auth, provider)
     try {
       const userGoogle = {
         contrasena: userG._tokenResponse.localId,
-        email: userG._tokenResponse.email,
-      };
-      console.log(userGoogle);
-      dispatch (login(userGoogle));
-      navigate('/');
+        email: userG._tokenResponse.email
+      }
+      console.log(userGoogle)
+      dispatch(login(userGoogle))
+      navigate('/')
     } catch (e) {
       if (
-        e.message.split("/")[1] === "account-exists-with-different-credential)."
+        e.message.split('/')[1] === 'account-exists-with-different-credential).'
       ) {
         Swal.fire({
-          title: "Ya tiene una cuenta con el mismo email",
-          text: "No puede iniciar sesión en una cuenta no registrada en la base de datos que tenga el mismo email. Use la cuenta con la que se haya registrado",
-          icon: "error",
-        });
+          title: 'Ya tiene una cuenta con el mismo email',
+          text:
+            'No puede iniciar sesión en una cuenta no registrada en la base de datos que tenga el mismo email. Use la cuenta con la que se haya registrado',
+          icon: 'error'
+        })
       }
     }
-  };
-
-
+  }
 
   return (
     <div className='box'>
@@ -164,9 +163,15 @@ export default function SignIn (isAuth, user) {
             </div>
             <div className='box2'>
               <h4>Aún no te has registrado? </h4>
-              <Link to='/register'>Registrarse</Link>
+            <div className='endLinks'>
+              <Link to='/register'>
+                <button className='endLink'>Registrarse </button>{' '}
+              </Link>
+              <Link to='/login/recoverpassword'>
+                <button className='endLink'> ¿Olvidaste la contraseña?</button>
+              </Link>
             </div>
-             <Link to="/login/recoverpassword">¿Olvidaste la contraseña?</Link> 
+            </div>
           </div>
         </form>
       </div>

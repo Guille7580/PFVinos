@@ -2,7 +2,7 @@
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const POST_PRODUCT = 'POST_PRODUCT'
-
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
 //detalles
 export const GET_DETAIL = "GET_DETAIL"
@@ -17,7 +17,8 @@ export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY'
 export const EDIT_CATEGORIA = 'EDIT_CATEGORIA'
 export const ORD_BYNAME = 'ORD_BYNAME'
 export const ORD_BYPRICE = 'ORD_BYPRICE'
-
+export const CREATE_CATEGORY = 'CREATE_CATEGORY'
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY'
 
 // CARRITO
 export const ADD_ITEM = 'ADD_ITEM'
@@ -30,7 +31,6 @@ export const UPDATE_CART = "UPDATE_CART"
 export const DELETE_CART = 'DELETE_CART'
 export const GET_CART = "GET_CART"
 export const DELETE_CART_DB = "DELETE_CART_DB"
-
 
 // AUTENTICACION Y USUARIO
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -50,7 +50,6 @@ export const GET_BY_EMAIL = "GET_BY_EMAIL"
 export const POST_USER = 'POST_USER'
 export const DELETE_USER = 'DELETE_USER'
 export const CHANGE_CATEGORY ='CHANGE_CATEGORY'
-
 
 // PEDIDOS
 export const GET_PEDIDOS = "GET_PEDIDOS" //all
