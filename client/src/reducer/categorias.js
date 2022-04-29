@@ -1,4 +1,4 @@
-import { GET_CATEGORIA, CREATE_CATEGORY } from "../actions/types";
+import { GET_CATEGORIA, CREATE_CATEGORY, UPDATE_CATEGORY } from "../actions/types";
 
 const initialState = {
   allCategory: [],
