@@ -1,12 +1,25 @@
 const { createPedido } = require('../controllers/controlerPedido');
-const DATA_PEDIDOS = require("../data/pedido");
+const DATA_PEDIDOS = require("../data/pedidos.db");
 console.log(DATA_PEDIDOS)
+const { Pedido } = require('../db')
 
-const loadCategorias = async () => {
+const loadPedidos = async () => {
    try {
-      await Promise.all(DATA_PEDIDOS.map(async (e) => {
-         await createPedido(e.pedidos, e.usuarioId);
+      const pedidosMaped =await Promise.all(DATA_PEDIDOS.map(async (e) => {
+        return {
+           usuarioId:e.usuarioId, 
+           productoId: e.productoId, 
+           title: e.title, 
+           amount: e.amount, 
+           total: e.total, 
+           date: e.date};
       }));
+      await Promise.all(pedidosMaped.map(async (e) => {
+         const pedido = await Pedido.findOne({ where: { usuarioId:e.usuarioId } });
+         !pedido && await Pedido.create({
+            ...e
+         })
+      }))
 
       console.log("Pedidos cargados exitosamente");
    } catch (error) {
@@ -15,5 +28,4 @@ const loadCategorias = async () => {
    }
 }
 
-
-module.exports = loadCategorias;
+module.exports = loadPedidos;
