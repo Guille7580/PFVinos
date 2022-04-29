@@ -100,7 +100,9 @@ const NavBarAuthenticated = () => {
 
       <Select options={options}
               onChange = { handleClickPerfil } />
-    
+      {/* <Link to='/perfil' className='navButton'>
+       Perfil
+      </Link> */}
     </>
   )
 }
