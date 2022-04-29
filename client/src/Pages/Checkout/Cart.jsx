@@ -54,7 +54,7 @@ export default function Cart({
   function onFinishPay(e) {
     e.preventDefault();
     dispatch(postPedido(order))
-    return navigate('/checkout-page')
+    return navigate('/checkout')
 
 }
 
@@ -122,7 +122,7 @@ items = items?.filter((e) => e);
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="/chekout">
+            <Link to="/checkout">
               <button className="btnBottom" onClick={onFinishPay}>Pagar</button>
             </Link>
           </div>

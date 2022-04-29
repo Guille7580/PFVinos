@@ -15,6 +15,7 @@ import { RecoverPass } from './components/Recover_password/RecoverPass'
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
+import Checkout from './Pages/Checkout/Checkout/checkout.jsx'
 import CartBtn from './Pages/Checkout/ShoppingCartButton/CartBtn.jsx'
 import { getAllProducts } from './actions/productos'
 import { getUserDetail } from './actions/auth'
@@ -156,6 +157,7 @@ const App = () => {
               />
             }
           />
+          <Route path='/checkout' element={<Checkout   cartItems={cartItems} />}/>
           <Route path='/chekout' element={<VerificacionDeChekout />} />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />

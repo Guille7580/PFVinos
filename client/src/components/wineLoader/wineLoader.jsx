@@ -10,7 +10,7 @@ export const WineLoader = () => {
       </div>
       <div className='glass-stem'></div>
       <div className='glass-base'></div>
-      Loading...
+     <h1>Loading...</h1>
     </div>
     </div>
   )

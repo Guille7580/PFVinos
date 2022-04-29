@@ -18,7 +18,7 @@ export const postPedido = (pedido) => {
    return async function (dispatch) {
       try {
          const { data } = await axios.post(
-            `${BASEURL}/pedidos`,
+            `${BASEURL}/pedidos/:email`,
             pedido,
             getHeaderToken()
          );
@@ -64,7 +64,7 @@ export const getPedidosByUser = (userId) => async dispatch => {
    try {
       let config = getHeaderToken();
       const { data } = await axios.get(
-         `${BASEURL}/pedidos/user/${userId}`,
+         `${BASEURL}/pedidos/:email`,
          config
       );
       return dispatch({ type: GET_PEDIDO_BY_USER, payload: data });

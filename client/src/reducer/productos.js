@@ -136,29 +136,29 @@ export default function productsReducer (state = initialState, action) {
     //     cart: newCart,
     //     flag: false
     //   }
-    // case GET_CART:
-    //   const localS = getCartLocalStorage()
-    //   if (state.flag && state.carts.id) {
-    //     const carritoDB = state.carts.CarritoDetalles?.map(el => {
-    //       return { ...el, id: el.productoId, quantity: el.cantidad }
-    //     })
-    //     const cartDB = {
-    //       products: carritoDB || localS.products,
-    //       precioTotal:
-    //         carritoDB?.reduce((prev, e) => {
-    //           let prod = state.allProducts.find(el => el.id === e.id)
+    case GET_CART:
+      const localS = getCartLocalStorage()
+      if (state.flag && state.carts.id) {
+        const carritoDB = state.carts.CarritoDetalles?.map(el => {
+          return { ...el, id: el.productoId, quantity: el.cantidad }
+        })
+        const cartDB = {
+          products: carritoDB || localS.products,
+          precioTotal:
+            carritoDB?.reduce((prev, e) => {
+              let prod = state.allProducts.find(el => el.id === e.id)
 
-    //           return Math.round((prev + prod.price * e.quantity) * 100) / 100
-    //         }, 0) || localS.precioTotal
-    //     }
-    //     saveCartLocalStorage(cartDB)
-    //   }
+              return Math.round((prev + prod.price * e.quantity) * 100) / 100
+            }, 0) || localS.precioTotal
+        }
+        saveCartLocalStorage(cartDB)
+      }
 
-    //   return {
-    //     ...state,
-    //     carts: payload,
-    //     flag: true
-    //   }
+      return {
+        ...state,
+        carts: payload,
+        flag: true
+      }
 
     case DELETE_CART:
       newCart = {
