@@ -174,12 +174,13 @@ const App = () => {
             }
           />
 
-          <Route path='*' element={<Navigate replace to='/' />} />
-
           <Route
             path='/detalles/:id'
             element={<Detail handleAddToCart={handleAddToCart} />}
           />
+
+          <Route path='*' element={<Navigate replace to='/' />} />
+          
         </Routes>
       </BrowserRouter>
     </div>
