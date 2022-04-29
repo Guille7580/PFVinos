@@ -33,7 +33,7 @@ className='btnItems2'
         >
           Borrar
           </button>
-        <button className='btnItems3' onClick={() => handleAddToCart(product)}>
+        <button className='btnItems3' onClick={() => handleAddToCart(product) }>
           +
           
         </button>

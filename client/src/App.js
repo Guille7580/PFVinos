@@ -11,10 +11,11 @@ import Perfil from './Pages/Perfil/perfil.jsx'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar'
-import { RecoverPass } from "./components/Recover_password/RecoverPass";
+import { RecoverPass } from './components/Recover_password/RecoverPass'
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
+import CartBtn from './Pages/Checkout/ShoppingCartButton/CartBtn.jsx'
 import { getAllProducts } from './actions/productos'
 import { getUserDetail } from './actions/auth'
 import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx'
@@ -58,22 +59,25 @@ const App = () => {
   }
 
   const handleAddToCartButton = clickedItem => {
-    setCartItems(prev => {
-      const isItemInCart = prev.find(item => item.id === clickedItem.id)
+    setCartItems(
+      prev => {
+        const isItemInCart = prev.find(item => item.id === clickedItem.id)
 
-      if (isItemInCart) {
-        return prev.map(item =>
-          item.id === clickedItem.id
-            ? {
-                ...item,
-                amount: item.amount < item.stock ? item.amount + 1 : item.amount
-              }
-            : item
-        )
-      }
+        if (isItemInCart) {
+          return prev.map(item =>
+            item.id === clickedItem.id
+              ? {
+                  ...item,
+                  amount:
+                    item.amount < item.stock ? item.amount + 1 : item.amount
+                }
+              : item
+          )
+        }
 
-      return [...prev, { ...clickedItem, amount: 1 }]
-    })
+        return [...prev, { ...clickedItem, amount: 1 }]
+      } /* addItemToIcon() */
+    )
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -125,7 +129,8 @@ const App = () => {
     <div>
       <BrowserRouter>
         <ToastContainer />
-        <NavBar />
+        <NavBar cartItems={cartItems} setCartItems={setCartItems} />
+
         <Routes>
           <Route
             path='/'
@@ -156,11 +161,9 @@ const App = () => {
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
-          <Route path="/login/recoverpassword" element={<RecoverPass />} />
-          
-          
-          <Route path='/contact' element={<Contact />} />
+          <Route path='/login/recoverpassword' element={<RecoverPass />} />
 
+          <Route path='/contact' element={<Contact />} />
 
           <Route exact path='/dashboard/admin' element={<Dashboard />} />
 
@@ -174,13 +177,14 @@ const App = () => {
             }
           />
 
+          <Route path='*' element={<Navigate replace to='/' />} />
+
           <Route
             path='/detalles/:id'
             element={<Detail handleAddToCart={handleAddToCart} />}
           />
 
           <Route path='*' element={<Navigate replace to='/' />} />
-          
         </Routes>
       </BrowserRouter>
     </div>
