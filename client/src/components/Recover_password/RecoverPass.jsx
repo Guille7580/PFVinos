@@ -24,7 +24,7 @@ export const RecoverPass = () => {
     e.preventDefault()
 
     if (!email || !validateEmail(email))
-      return WarningAlert('COMPLETE SU CORREO')
+      return WarningAlert('Complete su Correo')
     try {
       await axios.post(`${BASEURL}/password`, {
         email
