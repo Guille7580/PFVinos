@@ -9,16 +9,9 @@ module.exports = (sequelize) => {
          type: DataTypes.INTEGER,
          allowNull: false,
       },
-       productoId:{
-         type: DataTypes.INTEGER,
-       },
-      amount:{
-         type: DataTypes.INTEGER,
+      products:{
+         type: DataTypes.ARRAY(DataTypes.STRING)
       },
-       title: {
-         type: DataTypes.STRING,
-         allowNull: true
-       },
       status: {
          type: DataTypes.ENUM(PENDIENTE, COMPLETADO),
          allowNull: false,

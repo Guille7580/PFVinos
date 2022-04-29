@@ -53,7 +53,7 @@ export default function Cart({
 
   function onFinishPay(e) {
     e.preventDefault();
-    dispatch(postPedido)
+    dispatch(postPedido(order))
     return navigate('/checkout-page')
 
 }

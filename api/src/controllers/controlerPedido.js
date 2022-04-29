@@ -236,9 +236,9 @@ const Op = Sequelize.Op;
 
 async function pedidoPost(req, res, next) {
   try {
-    const {usuarioId, productoId, title, amount, total, date} = req.body, {email} = req.params
+    const {usuarioId, products, total, date} = req.body, {email} = req.params
 
-    const nuevoCarrito = await Pedido.create({ usuarioId, productoId, title, amount, total, date, status: "PENDIENTE" });
+    const nuevoCarrito = await Pedido.create({ usuarioId, products, total, date, status: "PENDIENTE" });
 
     return res.status(201).json(nuevoCarrito);
 

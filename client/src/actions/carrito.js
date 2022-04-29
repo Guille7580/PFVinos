@@ -94,14 +94,9 @@ export function getCarrito () {
 }
 
 export function postPedido(order) {
-  return async function (dispatch) {
+  return async function () {
     try {
     var json = await axios.post(`${BASEURL}/pedidos/:email`, order)
-    console.log(order)
-    return dispatch({
-      type: GET_CARRITO,
-      payload: json.data
-    })
   } catch (error) {
     console.log(error)
   }
