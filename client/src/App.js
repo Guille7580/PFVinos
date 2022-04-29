@@ -59,9 +59,11 @@ const App = () => {
     });
   };
 
-  const handleAddToCartButton = (clickedItem) => {
-    setCartItems((prev) => {
-      const isItemInCart = prev.find((item) => item.id === clickedItem.id);
+ 
+
+  const handleAddToCartButton = clickedItem => {
+    setCartItems(prev => {
+      const isItemInCart = prev.find(item => item.id === clickedItem.id)
 
       if (isItemInCart) {
         return prev.map((item) =>
@@ -75,8 +77,8 @@ const App = () => {
         );
       }
 
-      return [...prev, { ...clickedItem, amount: 1 }];
-    });
+      return [...prev, { ...clickedItem, amount: 1 }]
+    }, /* addItemToIcon() */ )
     Swal.fire({
       position: "center",
       icon: "success",
@@ -182,6 +184,9 @@ const App = () => {
             path="/detalles/:id"
             element={<Detail handleAddToCart={handleAddToCart} />}
           />
+
+          <Route path='*' element={<Navigate replace to='/' />} />
+          
         </Routes>
       </BrowserRouter>
     </div>
