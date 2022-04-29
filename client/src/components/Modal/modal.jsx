@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import './modal.css';
 import { alpha } from '@material-ui/core/styles'
 import MaterialTable from 'material-table'
-import { deleteUser, getAllUser, postUser, changCategory } from '../../actions/user';
+import { deleteUser, getAllUser, postUser, changCategory, recoveryPassword } from '../../actions/user';
+import axios from 'axios';
+import { BASEURL } from '../../assets/URLS';
+
 
 function Modall() {
 
@@ -21,16 +24,17 @@ function Modall() {
         setData(allUsers)
     }, [allUsers]);
 
-    const delUser = (email) => {
-        dispatch(deleteUser(email))
-    }
-
+    
     const changCategories = (email) => {
         dispatch(changCategory(email))
     }
 
     const deleteUseres = (id) => {
         dispatch(deleteUser(id))
+    }
+
+    const recoveryPasswords = async (email) => {   
+        dispatch(recoveryPassword(email))
     }
 
     const columns = [
@@ -100,6 +104,15 @@ function Modall() {
                 title="Usuarios"
                 columns={columns}
                 data={data}
+
+                actions={[
+                    {
+                        icon: 'outgoing_mail',
+                        tooltip: 'Reset Password',
+                        onClick: (event, rowData) => recoveryPasswords(rowData.email)
+                    }
+                ]}
+
                 options={{
                     headerStyle: {
                         backgroundColor: '#039be5',
@@ -147,13 +160,7 @@ function Modall() {
                             }, 1000)
                         }),
                 }}
-                actions={[
-                    {
-                        icon: 'outgoing_mail',
-                        tooltip: 'Reset Password',
-                        onClick: (event, rowData) => alert("You saved " + rowData.name)
-                    }
-                ]}
+                
             />
         </div>
     );

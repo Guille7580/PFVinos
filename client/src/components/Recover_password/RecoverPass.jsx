@@ -8,7 +8,6 @@ import { BASEURL } from '../../assets/URLS'
 export const RecoverPass = () => {
   function validateEmail (value) {
     let validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
-
     return validRegex.test(value)
   }
 
@@ -16,7 +15,6 @@ export const RecoverPass = () => {
 
   const handleChange = e => {
     const { value } = e.target
-
     setEmail(value)
   }
 
@@ -26,9 +24,7 @@ export const RecoverPass = () => {
     if (!email || !validateEmail(email))
       return WarningAlert('Complete su Correo')
     try {
-      await axios.post(`${BASEURL}/password`, {
-        email
-      })
+      await axios.post(`${BASEURL}/password/:email`)
       setEmail('')
       SuccessAlert('Revisa tu email')
     } catch (error) {
