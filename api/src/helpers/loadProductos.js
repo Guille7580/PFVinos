@@ -14,7 +14,7 @@ const loadProductos = async () => {
             price: e.price,
             descriptions: e.description,
             image: e.image,
-            stock : 25 ,
+            stock : e.stock,
             bodega: e.bodega,
             cepa: e.cepa,
             age: e.age,
