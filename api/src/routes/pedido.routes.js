@@ -6,6 +6,7 @@ const { check, validationResult } = require('express-validator');
 
 
 pedidoRouter.post("/:email", pedidoPost);
+pedidoRouter.get("/all", getAllPedidos);
 // // Requerimos los middlewares de autenticación
 // const { authentication, adminAuthentication } = require("../middlewares");
 // const { PENDIENTE, COMPLETADO } = require('../data/constantes');

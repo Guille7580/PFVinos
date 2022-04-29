@@ -1,4 +1,3 @@
-// const { Pedido, LineaDePedido, Product, User } = require("../db");
 // const { Op } = require('sequelize');
 
 // const mapPedido = async (el) => {
@@ -123,62 +122,6 @@
 //       }
 //    },
 
-//    getAllPedidos: async (desde, hasta) => {
-//       try {
-//          let pedidos;
-//          if (!desde && !hasta) {
-//             pedidos = await Pedido.findAll({
-//                // Incluyo también la información del usuario para que se pueda realizar el envío, etc
-//                include: {
-//                   model: User,
-//                   // No me interesa toda la info del usuario, solo la de contacto y direccion
-//                   attributes: ["id", "nombre", "email", "telefono", "pais", "direccion", "provincia"]
-//                }
-//             });
-//          } else {
-
-//             if (!desde || !hasta) return { error: { status: 400, message: "Para filtrar por fecha debe poner tanto una fecha de inicio (desde) como de fin (hasta)" } };
-
-//             // Si tengo una fecha de inicio y fin filtro los pedidos que estén en esas fechas
-//             pedidos = await Pedido.findAll({
-//                // Incluyo también la información del usuario para que se pueda realizar el envío, etc
-//                include: {
-//                   model: User,
-//                   // No me interesa toda la info del usuario, solo la de contacto y direccion
-//                   attributes: ["id", "nombre", "email", "telefono", "pais", "direccion", "provincia"]
-//                }, where: {
-//                   // Agrego las restricciones de filtrado por fecha
-//                   fechaCreacion: {
-//                      [Op.between]: [new Date(desde), new Date(hasta)],
-//                   }
-//                }
-//             });
-//          }
-
-//          if (!pedidos.length) {
-//             if (desde && hasta) return { error: { status: 404, message: "No hay pedidos registrados en este periodo" } };
-
-//             return { error: { status: 404, message: "No hay pedidos registrados" } };
-//          } else {
-//             pedidos = await Promise.all(pedidos.map(mapPedido));
-
-//             // Le cambio de nombre y quito algunos campos a cada pedido
-//             pedidos = pedidos.map(pedido => {
-//                pedido.usuario = pedido.User;
-//                // Le quito campos que está repetidos
-//                delete pedido.usuarioId;
-//                delete pedido.User;
-
-//                return pedido;
-//             });
-
-//             return pedidos;
-//          }
-//       } catch (error) {
-//          console.log(error);
-//          return { error: {} }
-//       }
-//    },
 
 //    getPedidosByUsuario: async (userId) => {
 //       try {
@@ -287,15 +230,15 @@
 //    }
 // };
 
-const { Pedido } = require("../db");
+const { Pedido, User } = require("../db");
 const { Sequelize } = require("sequelize");
 const Op = Sequelize.Op;
 
 async function pedidoPost(req, res, next) {
   try {
-    const {usuarioId, productoId, amount, total, date} = req.body, {email} = req.params
+    const {usuarioId, productoId, title, amount, total, date} = req.body, {email} = req.params
 
-    const nuevoCarrito = await Pedido.create({ usuarioId, productoId, amount, total, date, status: "PENDIENTE" });
+    const nuevoCarrito = await Pedido.create({ usuarioId, productoId, title, amount, total, date, status: "PENDIENTE" });
 
     return res.status(201).json(nuevoCarrito);
 
@@ -304,7 +247,23 @@ async function pedidoPost(req, res, next) {
     return next({});
   }
 }
+async function getAllPedidos(req, res, next) {
+
+  try {
+     let pedidos = await Pedido.findAll()
+
+
+                  // Le cambio de nombre y quito algunos campos a cada pedido
+                  res.json(pedidos);
+     }
+   catch (error) {
+     console.log(error);
+     return { error: {} }
+  }
+}
+
 
 module.exports = {
-   pedidoPost
+   pedidoPost,
+   getAllPedidos
   };

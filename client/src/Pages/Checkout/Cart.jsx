@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import CartItems from "./CartItems/CartItems";
 import AnimatedText from "react-animated-text-content";
 import { useNavigate } from "react-router-dom";
+import { postPedido } from "../../actions/carrito";
+
 
 export function calculateTotal(items) {
   return items
@@ -28,6 +30,7 @@ export default function Cart({
 }) {
  
   const user = useSelector((state) => state.loginReducer.userDetail);
+  const dispatch = useDispatch();
   console.log(user);
 
   const products = cartItems.map((product) => ({
@@ -50,6 +53,7 @@ export default function Cart({
 
   function onFinishPay(e) {
     e.preventDefault();
+    dispatch(postPedido)
     return navigate('/checkout-page')
 
 }

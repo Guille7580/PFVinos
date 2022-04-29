@@ -45,7 +45,7 @@ router.use('/categoria',categorRoute)
 // router.get('/carritos/:usuarioId', carro.carritoGet)
 
 // carrito
-router.use("/carrito", carritoRouter);
+
 router.use("/pagos", pagosRouter);
 
 
