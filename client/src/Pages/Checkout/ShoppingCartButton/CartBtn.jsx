@@ -1,54 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import cart from './shoppingCartIcon.png'
-import { wineLoading } from '../../../components/wineLoader/wineLoader'
-import './CartBtn.css'
- import { BsCart3 } from 'react-icons/bs'
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import cart from "./shoppingCartIcon.png";
+//import  {cartItems}  from '../../../App'
+import "./CartBtn.css";
+import { BsCart3 } from "react-icons/bs";
+//import Cart from '../Cart'
 
-
-function CartBtn ({addItemToIcon}) {
-   const [item, setItem ] = useState([])
+function CartBtn() {
+  const [items, setItems] = useState([]);
    useEffect(() => {
-     setItem(JSON.parse(localStorage.getItem("carrito")))
-   }, [])
-   
-   const items = JSON.parse(localStorage.getItem('carrito'))
+    setItems(JSON.parse(localStorage.getItem("carrito")));
+  }, []);
+  const json= JSON.parse(localStorage.getItem("carrito")); 
+  const [contador, setContador] = useState(0)
+ /*  if(items && items.length > 0) {
+    console.log(items)
+  for (let i = 0; i < [...items].length; i++) {
+    setContador(contador + items[i].amount)
 
-   console.log(items)
+  }
+  }  */
+  /* items.length > 0
+      ? items.reduce((a, b) => ({ amountTotal: a.amount + b.amount }))
+      : []; */
   
-{if(items?.length > 0){
-    return (
-      <div>
-       <BsCart3 /> 
-       {items.length} 
-      
-       </div>
-    )
-} else {
+
   return (
     <div>
-  <BsCart3 />
-  <wineLoading />
-  </div>
-  )
-}}
-    
-  
+    {/*   { items.length > 0
+      ? items.reduce((a, b) => ({ amountTotal: a.amount + b.amount })).amountTotal
+      : [] } */}
+      {/* <img src={cart} className='cartButton' alt='icon of a cart' /> */}
+      <BsCart3 /> 
+    {json?.length}
+    </div>
+  );
 }
 
-export default CartBtn
-
-
-//  const products = cartItems.map((product) => ({
-  //   id: product.id,
-  //   amount: product.amount,
-  // }));
- 
-  // {cartItems?.map((product) => (
-  // <Cart
-  // product={product} />
-  // ))}
-  // console.log(cartItems);
-  // const products = cart
-   //console.log('=================' + Object.keys(cartItems).length)
-    {/* <img src={cart} className='cartButton' alt='icon of a cart' /> */}
+export default CartBtn;
