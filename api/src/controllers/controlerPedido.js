@@ -195,6 +195,22 @@ async function getAllPedidos(req, res, next) {
   }
 }
 
+async function getPedidosByUser(req, res, next) {
+   const email = req.params.email
+
+   if (email) {
+      let userId = await User.findOne({
+         where: { email: email},
+      })
+   const info = await Pedido.findAll({
+      where: {usuarioId: userId.id},
+   })
+
+   if(info) res.send(info)
+   else res.status(404).send('Cart not found')
+}}
+
+
 async function deletePedido(id, userIdToken) {
 
   try {
@@ -236,5 +252,6 @@ module.exports = {
    pedidoPost,
    getAllPedidos,
    deletePedido,
-   updateStatusPedido
+   updateStatusPedido,
+   getPedidosByUser
   };

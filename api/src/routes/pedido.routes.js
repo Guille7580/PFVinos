@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { pedidoPost, getAllPedidos, getPedidosByUsuario, createPedido, updateStatusPedido, deletePedido, getPedidosById } = require('../controllers/controlerPedido');
+const { pedidoPost, getAllPedidos, getPedidosByUser, updateStatusPedido, deletePedido,  } = require('../controllers/controlerPedido');
 const { User } = require('../db');
 const pedidoRouter = Router();
 const { check, validationResult } = require('express-validator');
@@ -10,28 +10,11 @@ const { PENDIENTE, COMPLETADO } = require('../data/constantes');
 pedidoRouter.post("/:email", pedidoPost);
 pedidoRouter.get("/all", getAllPedidos);
 
-// // @route GET pedidos/user/:userId
-// // @desc Obtener todos los pedidos que ha realizado un usuario
-// // @access Private
-// pedidoRouter.get('/user/:userId',
-//    authentication,
-//    async (req, res, next) => {
-//       const { userId } = req.params;
 
-//       // Traigo el usuario que me proporcionó el token
-//       let user = await Usuario.findByPk(req.usuario.id);
-//       user = user.toJSON();
-
-//       // Le permito el acceso si el usuario es el propietario del token o es admin
-//       if (req.usuario.id === parseInt(userId) || user.rol == "2") {
-//          let get = await getPedidosByUsuario(userId);
-//          if (get.error) return next(get.error);
-//          return res.json(get);
-//       }
-
-//       next({ status: 403, message: "No está autorizado para esta acción" });
-//    }
-// )
+pedidoRouter.get('/:email',
+   // authentication,
+   getPedidosByUser
+)
 
 // // FALTA AÑADIR SEGURIDAD
 // // @route GET pedidos/pedidoId
