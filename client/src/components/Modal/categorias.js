@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './modal.css';
+import './categorias.css'
 import MaterialTable from 'material-table'
-import { getShowActivity } from '../../actions/categorias';
+import { CreateCategory, getShowActivity, UpdateCategory } from '../../actions/categorias';
 
 function Categories() {
     const dispatch = useDispatch();
@@ -25,12 +25,12 @@ function Categories() {
     console.log(data)
 
 
-    const createCategory = (newData) => {
-        
+    const createCategories = (newData) => {
+        dispatch(CreateCategory(newData))
     }
 
-    const updateCategory = (newData) => {
-
+    const updateCategories = (newData) => {
+        dispatch(UpdateCategory(newData))
     }
 
     const deleteCategory = (id) => {
@@ -39,14 +39,15 @@ function Categories() {
 
     const columns = [
         
-        {
-            title: "Categoria", field: "id",
-            headerStyle: {
-                backgroundColor: '#5f3252',
-                whiteSpace: 'nowrap',
-                color: '#ffffff'
-            }
-        },
+        //{
+        //    title: "Categoria", field: "id", editable: 'never',
+        //    headerStyle: {
+        //        backgroundColor: '#5f3252',
+        //        whiteSpace: 'nowrap',
+        //        color: '#ffffff',
+                
+        //    }
+        //},
         {
             title: "Nombre", field: "nombre",
             headerStyle: {
@@ -58,15 +59,14 @@ function Categories() {
     ]
 
     return (
-        <div className="App">
+        <div>
             <h1 align="center">PANEL ADMINISTRACION DE CATEGORIAS</h1>
-
+            <div className="Tabla">
             <MaterialTable
+               
                 data={data}
-                title="Categoria"
+                title=""
                 columns={columns}
-                
-
                 localization={{
                     header: {
                         actions: 'Acciones',
@@ -76,8 +76,10 @@ function Categories() {
 
                 }}
 
-                options={{
-
+                options={
+                 
+                    {
+                
                     headerStyle: {
                         backgroundColor: '#5f3252',
                         color: '#ffffff'
@@ -85,22 +87,22 @@ function Categories() {
                     actionsColumnIndex: -1,
                     addRowPosition: "first",
                     exportButton: true,
-                    gruoping: true,
+                   
 
                     rowStyle: {
                         backgroundColor: rowData => rowData.id % 2 === 0 ? '#917351' : '#FFA500',
                     },
                     searchFieldStyle: {
                         backgroundColor: '#FFA500'
-                    },
-                    draggable: true,
+                        },
+                        paging: false,
+                    
                     searchAutoFocus: true,
                     search: true,
                     exportAllData: true,
                     columnsButton: true,
-                    filtering: true,
-                    grouping: true,
-                    doubleHorizontalScroll: true,
+                    
+                    
                     tableLayout: 'auto',
                 }}
                 editable={{
@@ -110,7 +112,8 @@ function Categories() {
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
                                 setData([...data, newData])
-                              
+                                console.log(newData.nombre)
+                                createCategories(newData.nombre)
                                 resolve();
                             }, 1000);
                         }),
@@ -122,7 +125,7 @@ function Categories() {
                                 const index = oldData.tableData.id;
                                 dataUpdate[index] = newData;
                                 setData([...dataUpdate]);
-
+                                updateCategories(newData)
                                 resolve();
                             }, 1000)
                         }),
@@ -138,7 +141,9 @@ function Categories() {
                             }, 1000)
                         }),
                 }}
-            />
+                />
+            </div>
+
         </div>
     );
 }
