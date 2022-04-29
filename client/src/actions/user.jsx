@@ -8,8 +8,6 @@ import {
     GET_BY_EMAIL,
     CHANGE_CATEGORY,
     RECOVERY_PASSWORD,
-
-
 } from './types'
 
 export function getUser () {
@@ -89,7 +87,7 @@ export function recoveryPassword(payload) {
     console.log(payload)
     return async function (dispatch) {
         try {
-            const response = await axios.post(`${BASEURL}/password/payload` )
+            const response = await axios.post(`${BASEURL}/password/${payload}`)
             console.log(response)
             dispatch({
                 type: RECOVERY_PASSWORD,
