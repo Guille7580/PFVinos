@@ -165,3 +165,21 @@
 //       return { ...state }
 //   }
 // }
+const initialState = {
+    pedidos: [],
+    allPedidos: [],
+  };
+  
+  export function rootReducer(state = initialState, action) {
+    switch (action.type) {
+
+        case "POST_PEDIDO":
+            return {
+              ...state,
+            };
+
+        }
+    }
+    
+    export default rootReducer;
+    

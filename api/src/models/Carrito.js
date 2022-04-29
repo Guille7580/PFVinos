@@ -3,8 +3,8 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   sequelize.define('Carrito', {
-    
-        cantidad: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
-      }, { timestamps: false });
-      
-}
+    amount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+  }, { timestamps: false 
+})}
+
+

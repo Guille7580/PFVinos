@@ -18,6 +18,7 @@ export default function productsReducer(state = initialState, action) {
           }
       case UPDATE_CATEGORY: {
           return {
+            
               ...state
           }
       }

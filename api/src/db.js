@@ -52,12 +52,7 @@ sequelize.models = models;
 
 // En sequelize.models están todos los modelos importados como propiedades 
 // Para relacionarlos hacemos un destructuring
-const { Product, Categoria, User, Order, Carrito, CarritoDetalle, LineaDePedido, Pedido } = sequelize.models;
-
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-//  Category.hasMany(Product);
-//  Product.belongsTo(Category);
+const { Product, Categoria, User, Pedido, Carrito, LineaDePedido, CarritoDetalle } = sequelize.models;
 
  Product.belongsTo(Categoria, {
   sourceKey: 'id',
@@ -68,46 +63,45 @@ const { Product, Categoria, User, Order, Carrito, CarritoDetalle, LineaDePedido,
   foreignKey: 'categoriaId'
 });
 
- User.hasMany(Order, {
+User.hasMany(Pedido, {
   sourceKey: 'id',
   foreignKey: 'usuarioId'
 });
 
-// Relacionando Pedido y Usuario
-Order.belongsTo(User, {
-  sourceKey: 'id',
-  foreignKey: 'usuarioId'
-});
-
-//------- Carrito Detalle ---------
-// Relacionando con Product   (1:1)
-CarritoDetalle.belongsTo(Product, {
-  sourceKey: "id",
-  foreignKey: "productoId",
-});
-
-
-
-    // Relacionando con Usuario   (1:1)
 Carrito.belongsTo(User, {
   sourceKey: "id",
   foreignKey: "usuarioId",
- });
- 
-   // Relacionando con CarritoDetalle (productos)  (1:m)
+});
+// Relacionando con CarritoDetalle (productos)  (1:m)
 Carrito.hasMany(CarritoDetalle, {
   sourceKey: "id",
   foreignKey: "carritoId",
-  }); 
+});
 
-  LineaDePedido.belongsTo(Pedido, {
-    sourceKey: 'id',
-    foreignKey: 'pedidoId'
- });
+CarritoDetalle.belongsTo(Product, {
+  sourceKey: "id",
+  foreignKey: "productoId",
+});   
 
- LineaDePedido.belongsTo(Product, {
+LineaDePedido.belongsTo(Pedido, {
+  sourceKey: 'id',
+  foreignKey: 'pedidoId'
+});
+
+// Relacionando LineaDePedido con Producto 1:m
+LineaDePedido.belongsTo(Product, {
   sourceKey: 'id',
   foreignKey: 'productoId'
+});
+Pedido.hasMany(LineaDePedido, {
+  sourceKey: 'id',
+  foreignKey: 'pedidoId'
+});
+
+// Relacionando Pedido y Usuario
+Pedido.belongsTo(User, {
+  sourceKey: 'id',
+  foreignKey: 'usuarioId'
 });
 
 module.exports = {
