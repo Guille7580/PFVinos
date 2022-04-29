@@ -22,7 +22,7 @@ const NavBarAll = () => {
         Sobre Nosotros
       </Link>
       <Link to='/contact' className='navButton'>
-        Contacta
+        Contacto
       </Link>
       <Link to='/carrito' className='navButton'>
         <CartBtn />
@@ -87,20 +87,20 @@ const NavBarAdmin = () => {
 }
 
 const NavBarAuthenticated = () => {
-  // let navigate = useNavigate()
-  //   const handleClickPerfil=(e)=>{
-  //     e.preventDefault
-  //     navigate("/perfil")
-  //   }
+  let navigate = useNavigate()
+    const handleClickPerfil=(e)=>{
+      
+      if (e.value === "Perfil") {
+      navigate("/perfil")}
+    }
 
   return (
     <>
       <NavBarAll />
 
-      <Select options={options} />
-      {/* <Link to='/perfil' className='navButton'>
-       Perfil
-      </Link> */}
+      <Select options={options}
+              onChange = { handleClickPerfil } />
+    
     </>
   )
 }
