@@ -39,8 +39,8 @@ const forgotPassword = async (req, res, next) => {
         const mailOptions = {
                  from: `${EMAIL_ADDRESS}`,
                  to: `${user.email}`,
-                 subject: "Enlace para recuperar su contraseña ",
-                 text: `Contraseña temporal para su cuenta de Las Moritas App . Su contraseña temporal es: ${temporalPassword} .Cambiela lo antes posible.`,
+                 subject: "Contraseña de recuperacion",
+                 text: `Contraseña temporal para su cuenta de Las Moritas App . Su contraseña temporal es:   ${temporalPassword}  .Cambiela lo antes posible.`,
                };
           
         transporter.sendMail(mailOptions, (err, response) => {
