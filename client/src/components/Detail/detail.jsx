@@ -58,7 +58,7 @@ const [cart , setCart ] = useState()
 
         {/* <Link to="/carrito">  */}
         <button
-          onClick={() => handleAddToCartButton(myProducts) + window.location.reload(false)}
+          onClick={() => handleAddToCartButton(myProducts) }
           className='detailButtons'
         >
           Agrega a Carrito

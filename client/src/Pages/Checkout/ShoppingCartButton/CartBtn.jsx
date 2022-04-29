@@ -31,7 +31,7 @@ function CartBtn() {
       ? items.reduce((a, b) => ({ amountTotal: a.amount + b.amount })).amountTotal
       : [] } */}
       {/* <img src={cart} className='cartButton' alt='icon of a cart' /> */}
-      <BsCart3 />
+      <BsCart3 /> 
     {json?.length}
     </div>
   );
