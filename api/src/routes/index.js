@@ -11,11 +11,11 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 const categorRoute= require('./categorias');
 const user = require('./user');
-const pedidoRouter = require("./pedido");
 const carritoRouter = require("./carrito");
 const forgotPassword = require("./forgotPassword");
 const resetPassword = require("./resetPassword");
-
+const pagosRouter = require("./pagos.routes");
+const pedidoRouter = require("./pedido.routes");
 
 //------------------- product -----------------------------------------
 var product = require('./product')
@@ -33,7 +33,7 @@ router.put('/products/:id', product.putProduct)
 
 
 router.use('/user', user);
-router.use("/pedidos", pedidoRouter);
+router.use('/pedidos', pedidoRouter);
 
 //Categorias
 router.use('/categoria',categorRoute)
@@ -44,8 +44,11 @@ router.use('/categoria',categorRoute)
 // router.post('/carritos', carro.carritoPost)
 // router.get('/carritos/:usuarioId', carro.carritoGet)
 
-
+// carrito
 router.use("/carrito", carritoRouter);
+router.use("/pagos", pagosRouter);
+
+
 router.use('/categoria', categorRoute)
 router.post('/categoria', categorRoute)
 router.put('/categoria', categorRoute)

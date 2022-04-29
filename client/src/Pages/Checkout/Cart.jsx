@@ -31,14 +31,14 @@ export default function Cart({
   console.log(user);
 
   const products = cartItems.map((product) => ({
-    id: product.id,
+    productoId: product.id,
     title: product.title,
     amount: product.amount,
   }));
   console.log(products);
 
   let order = {
-    id: user?.id,
+    usuarioId: user?.id,
     email: user?.email,
     products: products,
     total: Number(calculateTotal(cartItems)),

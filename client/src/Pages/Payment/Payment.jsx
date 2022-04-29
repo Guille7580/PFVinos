@@ -59,8 +59,8 @@ export default function Checkout() {
                         {cartProducts.Products.map((element) => {
                             return(
                             <CheckoutCard
-                                key={element.Product_Line.ProductId}
-                                id={element.Product_Line.ProductId}
+                                key={element.Product_Line.ProductoId}
+                                id={element.Product_Line.ProductoId}
                                 name= {element.name}
                                 image= {element.image}
                                 price= {element.Product_Line.price}

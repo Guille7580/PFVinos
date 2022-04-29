@@ -1,16 +1,28 @@
+
+const { COMPLETADO, PENDIENTE } = require("../data/constantes");
 const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  sequelize.define('Order', {
+  sequelize.define('Pedido', {
       usuarioId: {
          type: DataTypes.INTEGER,
          allowNull: false,
       },
+       productoId:{
+         type: DataTypes.INTEGER,
+       },
+      amount:{
+         type: DataTypes.INTEGER,
+      },
+       title: {
+         type: DataTypes.STRING,
+         allowNull: true
+       },
       status: {
-         type: DataTypes.ENUM("PENDIENTE", "COMPLETADO"),
+         type: DataTypes.ENUM(PENDIENTE, COMPLETADO),
          allowNull: false,
-         defaultValue: "PENDIENTE"
+         defaultValue: PENDIENTE
       },
       pagado: {
          type: DataTypes.BOOLEAN,
@@ -32,6 +44,6 @@ module.exports = (sequelize) => {
       }
    }, {
       timestamps: false
-   })}
+   });
 
-
+};
