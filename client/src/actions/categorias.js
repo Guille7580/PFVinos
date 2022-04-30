@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BASEURL } from '../assets/URLS';
-import { GET_CATEGORIA, FILTER_BY_CATEGORY, ORD_BYPRICE, ORD_BYNAME, CREATE_CATEGORY, UPDATE_CATEGORY  } from './types';
+import { GET_CATEGORIA, FILTER_BY_CATEGORY, ORD_BYPRICE, ORD_BYNAME, CREATE_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY  } from './types';
 
 export function getShowActivity(){
     return async function(dispatch){
@@ -35,7 +35,6 @@ export function CreateCategory(payload) {
 
     }
 }
-
 export function UpdateCategory(payload) {
     return async function (dispatch) {
         try {
@@ -50,6 +49,24 @@ export function UpdateCategory(payload) {
         }
     }
 }
+
+export function DeleteCategory(payload) {
+    console.log(payload)
+    return async function (dispatch) {
+        try {
+            var json = await axios.delete(`${BASEURL}/categoria/${payload}`);
+            console.log(json)
+            return dispatch({
+                type: DELETE_CATEGORY,
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+
 
 export function filterByCategory(payload) {
     return {
