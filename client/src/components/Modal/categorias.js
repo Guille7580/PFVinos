@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './categorias.css'
 import MaterialTable from 'material-table'
-import { CreateCategory, getShowActivity, UpdateCategory } from '../../actions/categorias';
+import { CreateCategory, DeleteCategory, getShowActivity, UpdateCategory } from '../../actions/categorias';
 
 function Categories() {
     const dispatch = useDispatch();
@@ -33,8 +33,8 @@ function Categories() {
         dispatch(UpdateCategory(newData))
     }
 
-    const deleteCategory = (id) => {
-
+    const deleteCategories = (id) => {
+        dispatch(DeleteCategory(id))
     }
 
     const columns = [
@@ -136,7 +136,7 @@ function Categories() {
                                 const index = oldData.tableData.id;
                                 dataDelete.splice(index, 1);
                                 setData([...dataDelete]);
-
+                                deleteCategories(oldData.id)
                                 resolve()
                             }, 1000)
                         }),

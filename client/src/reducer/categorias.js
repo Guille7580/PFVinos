@@ -1,4 +1,4 @@
-import { GET_CATEGORIA, CREATE_CATEGORY } from "../actions/types";
+import { GET_CATEGORIA, CREATE_CATEGORY, UPDATE_CATEGORY, DELETE_CATEGORY } from "../actions/types";
 
 const initialState = {
   allCategory: [],
@@ -17,6 +17,11 @@ export default function productsReducer(state = initialState, action) {
               ...state
           }
       case UPDATE_CATEGORY: {
+          return {
+              ...state
+          }
+      }
+      case DELETE_CATEGORY: {
           return {
               ...state
           }

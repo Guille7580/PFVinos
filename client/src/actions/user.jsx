@@ -71,15 +71,16 @@ export function changCategory(payload) {
     
 }
 export function deleteUser(payload) {
+    console.log(payload)
     return async function (dispatch) {
         try {
-            const response = await axios.delete(`${BASEURL}/user`, payload);
+            const response = await axios.delete(`${BASEURL}/user/${payload}`);
             dispatch({
                 type: DELETE_USER,
                 payload: response.data,
             })
         } catch (error) {
-            console.log("No se cambio categoria")
+            console.log("No se borro el Usuario")
         }
   }
 }

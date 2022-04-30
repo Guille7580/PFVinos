@@ -19,6 +19,7 @@ export const ORD_BYNAME = 'ORD_BYNAME'
 export const ORD_BYPRICE = 'ORD_BYPRICE'
 export const CREATE_CATEGORY = 'CREATE_CATEGORY'
 export const UPDATE_CATEGORY = 'UPDATE_CATEGORY'
+export const DELETE_CATEGORY = 'DELETE_CATEGORY'
 
 // CARRITO
 export const ADD_ITEM = 'ADD_ITEM'
