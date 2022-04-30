@@ -91,7 +91,10 @@ const NavBarAuthenticated = () => {
     const handleClickPerfil=(e)=>{
       
       if (e.value === "Perfil") {
-      navigate("/perfil")}
+        navigate("/perfil")}
+      if (e.value === "Editar"){
+        navigate("/perfil/edit")
+      }
     }
 
   return (
