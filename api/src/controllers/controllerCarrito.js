@@ -1,12 +1,12 @@
-const { Carrito, CarritoDetalle } = require("../db");
+const { Pedido, CarritoDetalle } = require("../db");
 const { Sequelize } = require("sequelize");
 const Op = Sequelize.Op;
 
 async function carritoPost(req, res, next) {
   try {
-    const { id: usuarioId } = req.usuario;
+    const {usuarioId, productoId, amount, total, date} = req.body, {email} = req.params
 
-    const nuevoCarrito = await Carrito.create({ usuarioId });
+    const nuevoCarrito = await Pedido.create({ usuarioId, productoId, amount, total, date, status: "PENDIENTE" });
 
     return res.status(201).json(nuevoCarrito);
 
@@ -15,6 +15,21 @@ async function carritoPost(req, res, next) {
     return next({});
   }
 }
+// async function carritoPost(req, res, next) {
+//     const {productoId, amount, total, date, pais, direccion, telefono } = req.body, {email} = req.params
+
+//   try {
+
+//     const nuevoCarrito = await Carrito.create({ email });
+
+//     return res.status(201).json(nuevoCarrito);
+
+//   } catch (error) {
+//     console.log(error);
+//     return next({});
+//   }
+// }
+
 
 async function carritoGet(req, res, next) {
   const { usuarioId } = req.params;

@@ -1,12 +1,13 @@
 const PENDIENTE = "PENDIENTE";
+const PAGADO = "PAGADO";
 const COMPLETADO = "COMPLETADO";
-const ACTIVA = "ACTIVA";
-const INACTIVA = "INACTIVA";
+const CANCELADO = "CANCELADO";
+
 
 
 module.exports = {
    PENDIENTE,
+   PAGADO,
    COMPLETADO,
-   ACTIVA,
-   INACTIVA
+   CANCELADO
 }

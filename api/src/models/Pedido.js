@@ -1,21 +1,21 @@
-const { COMPLETADO, PENDIENTE } = require("../data/constantes");
 
-module.exports = (sequelize, DataTypes) => {
-   // defino el modelo
-   const Pedido = sequelize.define('Pedido', {
+const { COMPLETADO, PENDIENTE, PAGADO, CANCELADO } = require("../data/constantes");
+const { DataTypes } = require('sequelize');
+// Exportamos una funcion que define el modelo
+// Luego le injectamos la conexion a sequelize.
+module.exports = (sequelize) => {
+  sequelize.define('Pedido', {
       usuarioId: {
          type: DataTypes.INTEGER,
          allowNull: false,
       },
+      products:{
+         type: DataTypes.ARRAY(DataTypes.STRING)
+      },
       status: {
-         type: DataTypes.ENUM(PENDIENTE, COMPLETADO),
+         type: DataTypes.ENUM(PENDIENTE, PAGADO, COMPLETADO, CANCELADO),
          allowNull: false,
          defaultValue: PENDIENTE
-      },
-      pagado: {
-         type: DataTypes.BOOLEAN,
-         allowNull: false,
-         defaultValue: false
       },
       total: {
          type: DataTypes.DOUBLE,
@@ -34,19 +34,4 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: false
    });
 
-
-   Pedido.associate = models => {
-
-      // Relacionando Pedido y Lineas de pedido
-      Pedido.hasMany(models.LineaDePedido, {
-         sourceKey: 'id',
-         foreignKey: 'pedidoId'
-      });
-
-      // Relacionando Pedido y Usuario
-      Pedido.belongsTo(models.User, {
-         sourceKey: 'id',
-         foreignKey: 'usuarioId'
-      });
-   }
 };

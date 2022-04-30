@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './navBar.css'
 import logo from './LasMoritasLogo.png'
-import CartBtn from '../ShoppingCartButton/CartBtn'
+import CartBtn from '../../Pages/Checkout/ShoppingCartButton/CartBtn'
 import { useState, useEffect } from 'react'
 import { logout } from '../../actions/auth'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -91,7 +91,10 @@ const NavBarAuthenticated = () => {
     const handleClickPerfil=(e)=>{
       
       if (e.value === "Perfil") {
-      navigate("/perfil")}
+        navigate("/perfil")}
+      if (e.value === "Editar"){
+        navigate("/perfil/edit")
+      }
     }
 
   return (
@@ -100,7 +103,9 @@ const NavBarAuthenticated = () => {
 
       <Select options={options}
               onChange = { handleClickPerfil } />
-    
+      {/* <Link to='/perfil' className='navButton'>
+       Perfil
+      </Link> */}
     </>
   )
 }

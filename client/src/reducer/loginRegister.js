@@ -13,7 +13,7 @@ const initialState = {
     token: localStorage.getItem('token_ecommerce'),
     isAuth: null,
     userDetail: null,
-    recoveryPass:[],
+    recoveryPass:{},
     isLoggedIn:null,
     User: [],
 }
@@ -55,7 +55,7 @@ export default function loginReducer(state = initialState, action) {
         case RECOVERY_PASSWORD:
             return {
                 ...state,
-                recoveryPass:[...action.payload]
+                // recoveryPass:[...state , action.payload]
             }
 
         default: return state;
