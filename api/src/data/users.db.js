@@ -11,7 +11,7 @@ module.exports = [
        "rol": "2",
     },
     {
-       "nombre": "Luis",
+       "nombre": "Luis Perez",
        "usuario": "luis001",
        "contrasena": "contraseña1",
        "email": "luis@gmail.com",
@@ -22,7 +22,7 @@ module.exports = [
        "rol": "1",
     },
     {
-       "nombre": "Rodrigo",
+       "nombre": "Rodrigo Gomez",
        "usuario": "rodri001",
        "contrasena": "contraseña2",
        "email": "rodrigo.lopez@gmail.com",
@@ -33,7 +33,7 @@ module.exports = [
        "rol": "1",
     },
     {
-       "nombre": "Maria",
+       "nombre": "Maria Zambrano",
        "usuario": "mari123",
        "contrasena": "contraseña3",
        "email": "maria@gmail.com",
@@ -44,7 +44,7 @@ module.exports = [
        "rol": "1",
     },
     {
-       "nombre": "Federico",
+       "nombre": "Federico Gonzalez",
        "usuario": "fede",
        "contrasena": "contraseña5",
        "email": "fede@gmail.com",
@@ -53,5 +53,16 @@ module.exports = [
        "direccion": "Av. Occidental",
        "telefono": "0919823198",
        "rol": "1",
-    }
+    },
+    {
+      "nombre": "Javier Vargas",
+      "usuario": "Javi",
+      "contrasena": "contraseña6",
+      "email": "javi@gmail.com",
+      "pais": "Argentina",
+      "provincia": "Pepito",
+      "direccion": "Av. Occidental",
+      "telefono": "51236521452",
+      "rol": "1",
+   }
  ]

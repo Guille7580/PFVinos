@@ -1,6 +1,5 @@
 const { createPedido } = require('../controllers/controlerPedido');
 const DATA_PEDIDOS = require("../data/pedidos.db");
-console.log(DATA_PEDIDOS)
 const { Pedido } = require('../db')
 
 const loadPedidos = async () => {
@@ -8,11 +7,10 @@ const loadPedidos = async () => {
       const pedidosMaped =await Promise.all(DATA_PEDIDOS.map(async (e) => {
         return {
            usuarioId:e.usuarioId, 
-           productoId: e.productoId, 
-           title: e.title, 
-           amount: e.amount, 
+           products: e.products,  
            total: e.total, 
-           date: e.date};
+           date: e.date,
+           status: e.status};
       }));
       await Promise.all(pedidosMaped.map(async (e) => {
          const pedido = await Pedido.findOne({ where: { usuarioId:e.usuarioId } });

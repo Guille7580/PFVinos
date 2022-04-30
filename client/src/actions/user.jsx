@@ -88,7 +88,7 @@ export function recoveryPassword(payload) {
     return async function (dispatch) {
         try {
             const response = await axios.post(`${BASEURL}/password/${payload}`)
-            console.log(response)
+            console.log(response.data)
             dispatch({
                 type: RECOVERY_PASSWORD,
                 payload: response.data,
