@@ -10,7 +10,7 @@ async function pedidoPost(req, res, next) {
 
     const nuevoCarrito = await Pedido.create({ usuarioId, products, total, date, status: "PENDIENTE" });
 
-    return res.status(201).json(nuevoCarrito);
+    return res.status(201).res(nuevoCarrito);
 
   } catch (error) {
     console.log(error);
