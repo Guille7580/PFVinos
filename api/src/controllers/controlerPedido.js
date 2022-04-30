@@ -159,76 +159,9 @@
 //       }
 //    },
 
-//    updateStatusPedido: async (idPedido, newStatus) => {
-//       try {
-//          await Pedido.update({
-//             status: newStatus
-//          }, {
-//             where: {
-//                id: idPedido
-//             }
-//          });
 
-//          return "Pedido actualizado correctamente";
-//       } catch (error) {
-//          console.log(error);
-//          return { error: {} }
-//       }
-//    },
 
-//    deletePedido: async (id, userIdToken) => {
-//       try {
-//          let pedido = await Pedido.findByPk(id);
-
-//          if (!pedido) return { error: { status: 404, message: "Ningún pedido coincide con el id proporcionado" } };
-
-//          pedido = pedido.toJSON();
-
-//          if (pedido.pagado === true) return { error: { status: 400, message: "No puede eliminar un pedido que ya está pagado" } };
-
-//          let user = await User.findByPk(userIdToken);
-//          user = user.toJSON();
-
-//          // console.log(user);
-
-//          // Valido que sea el usuario propietario del pedido o el administrador
-//          if (user.id !== pedido.usuarioId && user.rol !== "2") return { error: { status: 403, message: "No está autorizado para realizar esta acción" } };
-
-//          // Traigo todas las líneas de pedido que pertenezcan a ese pedido para devolver los productos al stock y eliminar las lineas
-//          const lineasPedido = await LineaDePedido.findAll({ where: { pedidoId: id } });
-//          await Promise.all(lineasPedido.map(async (e) => {
-//             // Lo paso a JSON para tener solo los valores útiles
-//             e.toJSON();
-
-//             // console.log(e);
-
-//             // Traigo el producto para obtener su stock y luego poder devolver los productos pedidos
-//             let producto = await Product.findByPk(e.productoId);
-//             producto = Product.toJSON();
-
-//             // Actualizo el producto sumandole la stock que había reservado para el pedido
-//             await Product.update({
-//                stock: Product.stock + e.stock
-//             }, {
-//                where: { id: e.productoId }
-//             });
-
-//             // Luego tengo que eliminar la línea de pedido
-//             await LineaDePedido.destroy({ where: { id: e.id } });
-//          }));
-
-//          // Ya que se eliminaron todas las lineas de pedido, elimino finalmente el pedido
-
-//          await Pedido.destroy({ where: { id } });
-
-//          return {};
-//       } catch (err) {
-//          console.log(err);
-
-//          return { error: {} };
-//       }
-//    }
-// };
+   
 
 const { Pedido, User } = require("../db");
 const { Sequelize } = require("sequelize");
@@ -262,8 +195,63 @@ async function getAllPedidos(req, res, next) {
   }
 }
 
+async function getPedidosByUser(req, res, next) {
+   const email = req.params.email
+
+   if (email) {
+      let userId = await User.findOne({
+         where: { email: email},
+      })
+   const info = await Pedido.findAll({
+      where: {usuarioId: userId.id},
+   })
+
+   if(info) res.send(info)
+   else res.status(404).send('Cart not found')
+}}
+
+
+async function deletePedido(id, userIdToken) {
+
+  try {
+     let pedido = await Pedido.findByPk(id);
+
+     if (!pedido) return { error: { status: 404, message: "Ningún pedido coincide con el id proporcionado" } };
+
+     if (pedido.pagado === true) return { error: { status: 400, message: "No puede eliminar un pedido que ya está pagado" } };
+
+        await Pedido.destroy({ where: { id } });
+
+     return {};
+  } catch (err) {
+     console.log(err);
+
+     return { error: {} };
+  }
+}
+
+async function updateStatusPedido(idPedido, newStatus) {
+
+   try {
+      await Pedido.update({
+         status: newStatus
+      }, {
+         where: {
+            id: idPedido
+         }
+      });
+
+      return "Pedido actualizado correctamente";
+   } catch (error) {
+      console.log(error);
+      return { error: {} }
+   }
+}
 
 module.exports = {
    pedidoPost,
-   getAllPedidos
+   getAllPedidos,
+   deletePedido,
+   updateStatusPedido,
+   getPedidosByUser
   };

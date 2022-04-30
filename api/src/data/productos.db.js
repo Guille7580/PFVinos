@@ -8,6 +8,7 @@ module.exports = [
     category: 'Blanco',
     image: 'https://s03.s3c.es/imag/_v0/770x420/9/f/6/mejor-vino.jpg',
     age: 2015,
+    stock: 36,
     cepa: 'Malbec',
     bodega: 'Zuccardi',
     rating: {
@@ -25,6 +26,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-50.jpg',
     age: 2009,
+    stock: 20,
     cepa: 'Malbec',
     bodega: 'Zuccardi',
     rating: {
@@ -42,6 +44,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-49.jpg',
     age: 2012,
+    stock: 195,
     cepa: 'Cabernet',
     bodega: 'Zuccardi',
     rating: {
@@ -59,6 +62,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-48.jpg',
     age: 2019,
+    stock: 12,
     cepa: 'Sauvignon',
     bodega: 'Zuccardi',
     rating: {
@@ -76,6 +80,8 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-47.jpg',
     age: 2017,
+    stock: 320,
+    stock: 30,
     cepa: 'Merlot',
     bodega: 'Zuccardi',
     rating: {
@@ -93,6 +99,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-46.jpg',
     age: 2016,
+    stock: 136,
     cepa: 'Malbec',
     bodega: 'Zuccardi',
     rating: {
@@ -110,6 +117,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-45.jpg',
     age: 2016,
+    stock: 65,
     cepa: 'Sauvignon',
     bodega: 'Zuccardi',
     rating: {
@@ -127,6 +135,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-44.jpg',
     age: 2020,
+    stock: 63,
     cepa: 'Merlot',
     bodega: 'Zuccardi',
     rating: {
@@ -144,6 +153,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-43.jpg',
     age: 2005,
+    stock: 126,
     cepa: 'Malbec',
     bodega: 'Zuccardi',
     rating: {
@@ -161,6 +171,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-42.jpg',
     age: 2019,
+    stock: 310,
     cepa: 'Merlot',
     bodega: 'Zuccardi',
     rating: {
@@ -178,6 +189,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-41.jpg',
     age: 2019,
+    stock: 36,
     cepa: 'Cabernet',
     bodega: 'Zuccardi',
     rating: {
@@ -195,6 +207,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-40.jpg',
     age: 2020,
+    stock: 19,
     cepa: 'Chardonnay',
     bodega: 'Zuccardi',
     rating: {
@@ -212,6 +225,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-39.jpg',
     age: 2018,
+    stock: 21,
     cepa: 'Malbec',
     bodega: 'Zuccardi',
     rating: {
@@ -229,6 +243,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-38.jpg',
     age: 2019,
+    stock: 30,
     cepa: 'Pinot',
     bodega: 'Zuccardi',
     rating: {
@@ -246,6 +261,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-37.jpg',
     age: 2018,
+    stock: 10,
     cepa: 'Malbec',
     bodega: 'Nebbiolo',
     rating: {
@@ -263,6 +279,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-36.jpg',
     age: 2015,
+    stock: 6,
     cepa: "Crémant d'Alsace",
     bodega: 'Nv',
     rating: {
@@ -280,6 +297,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-35.jpg',
     age: 2019,
+    stock: 102,
     cepa: 'Chardonnay',
     bodega: 'Estate Vineyard',
     rating: {
@@ -297,6 +315,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-34.jpg',
     age: 2019,
+    stock: 64,
     cepa: 'Sauvignon',
     bodega: 'Agriolas Costera',
     rating: {
@@ -314,6 +333,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-33.jpg',
     age: 2018,
+    stock: 80,
     cepa: 'Pinot',
     bodega: 'Zuccardi',
     rating: {
@@ -331,6 +351,7 @@ module.exports = [
     image:
       'https://vinepair.com/wp-content/uploads/2021/11/50-best-wines-2021_internal_wine-32.jpg',
     age: 2019,
+    stock: 63,
     cepa: 'Malbec',
     bodega: 'Vineyard',
     rating: {

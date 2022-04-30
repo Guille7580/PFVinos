@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { BASEURL } from '../assets/URLS'
 import {
-    GET_USER_DETAIL,
+    GET_USER_D,
     GET_ALL_USERS,
     POST_USER,
     DELETE_USER,
@@ -15,7 +15,7 @@ export function getUser () {
     try {
       var json = await axios(`/user/reg`);
       return dispatch({
-        type: GET_USER_DETAIL,
+        type: GET_USER_D,
         payload: json.data,
       });
     } catch (error) {
@@ -87,8 +87,8 @@ export function recoveryPassword(payload) {
     console.log(payload)
     return async function (dispatch) {
         try {
-            const response = await axios.post(`/password/${payload}`)
-            console.log(response)
+            const response = await axios.post(`${BASEURL}/password/${payload}`)
+            console.log(response.data)
             dispatch({
                 type: RECOVERY_PASSWORD,
                 payload: response.data,

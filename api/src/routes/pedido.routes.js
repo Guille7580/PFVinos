@@ -1,56 +1,20 @@
 const { Router } = require('express');
-const { pedidoPost, getAllPedidos, getPedidosByUsuario, createPedido, updateStatusPedido, deletePedido, getPedidosById } = require('../controllers/controlerPedido');
+const { pedidoPost, getAllPedidos, getPedidosByUser, updateStatusPedido, deletePedido,  } = require('../controllers/controlerPedido');
 const { User } = require('../db');
 const pedidoRouter = Router();
 const { check, validationResult } = require('express-validator');
+const { authentication, adminAuthentication } = require("../middlewares");
+const { PENDIENTE, COMPLETADO } = require('../data/constantes');
 
 
 pedidoRouter.post("/:email", pedidoPost);
 pedidoRouter.get("/all", getAllPedidos);
-// // Requerimos los middlewares de autenticación
-// const { authentication, adminAuthentication } = require("../middlewares");
-// const { PENDIENTE, COMPLETADO } = require('../data/constantes');
 
 
-// // @route GET pedidos/
-// // @desc Obtener todos los pedidos realizados o filtrar por fecha si se especifica
-// // @access Private Admin
-// pedidoRouter.get('/',
-//    authentication,
-//    adminAuthentication,
-//    async (req, res, next) => {
-//       const { desde, hasta } = req.query;
-
-//       let get = await getAllPedidos(desde, hasta);
-//       if (get.error) return next(get.error);
-
-//       return res.json(get);
-//    }
-// )
-
-
-// // @route GET pedidos/user/:userId
-// // @desc Obtener todos los pedidos que ha realizado un usuario
-// // @access Private
-// pedidoRouter.get('/user/:userId',
-//    authentication,
-//    async (req, res, next) => {
-//       const { userId } = req.params;
-
-//       // Traigo el usuario que me proporcionó el token
-//       let user = await Usuario.findByPk(req.usuario.id);
-//       user = user.toJSON();
-
-//       // Le permito el acceso si el usuario es el propietario del token o es admin
-//       if (req.usuario.id === parseInt(userId) || user.rol == "2") {
-//          let get = await getPedidosByUsuario(userId);
-//          if (get.error) return next(get.error);
-//          return res.json(get);
-//       }
-
-//       next({ status: 403, message: "No está autorizado para esta acción" });
-//    }
-// )
+pedidoRouter.get('/:email',
+   // authentication,
+   getPedidosByUser
+)
 
 // // FALTA AÑADIR SEGURIDAD
 // // @route GET pedidos/pedidoId
@@ -110,47 +74,43 @@ pedidoRouter.get("/all", getAllPedidos);
 // // @route PUT pedidos/:idPedido
 // // @desc Actualizar el estado de un pedido
 // // @access Private Admin
-// pedidoRouter.put('/:pedidoId', [
-//    check('status', `El campo "status" es requerido y debe ser igual a ${PENDIENTE} o ${COMPLETADO}`).isString().trim().custom(status =>
-//       [PENDIENTE, COMPLETADO].includes(status)
-//    ),
-// ],
-//    authentication,
-//    adminAuthentication,
-//    async (req, res, next) => {
-//       // Validaciones de express-validator
-//       const errors = validationResult(req);
+pedidoRouter.put('/:pedidoId', [
+   check('status', `El campo "status" es requerido y debe ser igual a ${PENDIENTE} o ${COMPLETADO}`).isString().trim().custom(status =>
+      [PENDIENTE, COMPLETADO].includes(status)
+   ),
+],
+   // authentication,
+   // adminAuthentication,
+   async (req, res, next) => {
+      // Validaciones de express-validator
+      const errors = validationResult(req);
 
-//       if (!errors.isEmpty()) {
-//          return next({ status: 400, errors });
-//       }
+      if (!errors.isEmpty()) {
+         return next({ status: 400, errors });
+      }
 
-//       // Si no hay errores, continúo
-//       const { pedidoId } = req.params;
-//       const { status } = req.body;
+      // Si no hay errores, continúo
+      const { pedidoId } = req.params;
+      const { status } = req.body;
 
-//       let get = await updateStatusPedido(pedidoId, status);
+      let get = await updateStatusPedido(pedidoId, status);
 
-//       if (get.error) return next(get.error);
+      if (get.error) return next(get.error);
 
-//       return res.json(get);
-//    }
-// );
+      return res.json(get);
+   }
+);
 
-
-
-// // @route PUT pedidos/:idPedido
-// // @desc Actualizar el estado de un pedido
 // // @access Private Admin
-// pedidoRouter.delete('/:pedidoId', authentication, async (req, res, next) => {
-//    const { pedidoId } = req.params;
+pedidoRouter.delete('/:id',  async (req, res, next) => {
+   const  id  = req.params.id;
 
-//    const deleted = await deletePedido(pedidoId, req.usuario.id);
+   const deleted = await deletePedido(id);
 
-//    if (deleted.error) return next(deleted.error);
+   if (deleted.error) return next(deleted.error);
 
-//    res.status(204).end();
-// })
+   res.status(204).end();
+})
 
 module.exports = pedidoRouter;
 

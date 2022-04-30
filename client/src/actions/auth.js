@@ -12,23 +12,22 @@ import {
   REGISTER_FAILED,
   REGISTER_SUCCESS,
   UPDATE_USER,
-  RECOVERY_PASSWORD,
 } from "./types";
 //import { getPedidosByUser } from './pedidos'
 
 
 
-export const recoveryPassword = async (email) => {
-  let post = await axios.post(
-    `/password`,
-    { email: `${email}` },
-    {
-      "Content-Type": "application/json",
-    }
-  );
+// export const recoveryPassword = async (email) => {
+//   let post = await axios.post(
+//     `${BASEURL}/password`,
+//     { email: `${email}` },
+//     {
+//       "Content-Type": "application/json",
+//     }
+//   );
 
-  console.log("el retorno de post", post);
-};
+//   console.log("el retorno de post", post);
+// };
 
 export function updateUser(newUser) {
   return async function (dispatch) {
