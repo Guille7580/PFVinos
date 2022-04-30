@@ -13,20 +13,20 @@ export default function pedidosReducer(state = initialState, action) {
     switch (type) {
         case GET_PEDIDO_BY_USER:
             return { ...state, userPedidos: payload };
-        case GET_PEDIDO_DETAIL:
-            return { ...state, pedidoDetail: payload }
-        case GET_PEDIDOS:
-            return {
-                ...state,
-                allPedidos: payload,
-                filteredPedidos: payload
-            }
-        case EDIT_STATUS_PEDIDO:
-            return {
-                ...state,
-                allPedidos: payload,
-                filteredPedidos: payload
-            }
+        // case GET_PEDIDO_DETAIL:
+        //     return { ...state, pedidoDetail: payload }
+        // case GET_PEDIDOS:
+        //     return {
+        //         ...state,
+        //         allPedidos: payload,
+        //         filteredPedidos: payload
+        //     }
+        // case EDIT_STATUS_PEDIDO:
+        //     return {
+        //         ...state,
+        //         allPedidos: payload,
+        //         filteredPedidos: payload
+        //     }
         default:
             return { ...state }
     }

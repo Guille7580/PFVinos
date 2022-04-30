@@ -1,21 +1,35 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
 import './checkout.css'
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from 'react-router-dom'
 import { WineLoader } from '../../../components/wineLoader/wineLoader'
+import { getPedidosByUser } from '../../../actions/pedidos'
 
-export default function Checkout () {
-    const user = useSelector(state => state.pedidosReducer.userPedidos)
-    console.log(user + "++++++++++++++++" )
+// let order = {
+//   usuarioId: user?.id,
+//   email: user?.email,
+//   products: products,
+//   total: Number(calculateTotal(cartItems)),
+//   date: new Date().toLocaleString(),
+// };
 
+export default function Checkout (order) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  //  const email = useSelector(state => state.pedidosReducer.getPedidosByUser)
+  //  console.log(email + "++++++++++++++++" )
+  //  const user = useSelector((state) => state.loginReducer.userDetail);
+  let user = order.map(el => {
+    el.usuario,
+    el.email ,
+    el.products ,
+    el.total,
+    el.date
+  })
+  console.log(user)
 
-  const { nombre, email, pais, provincia, direccion, telefono } =
-    user || {}
-
-
-  return user ? (
+  return (
     <div className='perfilContainer'>
       <div className='btnContainer'>
         <Link to='#'>
@@ -33,9 +47,8 @@ export default function Checkout () {
           <h5>País: </h5>
           <h5>Provincia: </h5>
           <h5>Teléfono: </h5>
-         
         </div>
-
+        {/* 
         <div className='infoPerfil'>
           <h5> {nombre}</h5>
           <span></span>
@@ -52,12 +65,11 @@ export default function Checkout () {
           <span></span>
         
    
-        </div>
-        {/* <CartItems /> */}
+        </div> */}
       </div>
     </div>
-  ) : (
-    <WineLoader />
   )
-
+  // ) : (
+  //   <WineLoader />
+  // )
 }
