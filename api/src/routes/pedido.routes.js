@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { pedidoPost, getAllPedidos, getPedidosByUser, updateStatusPedido, deletePedido,  } = require('../controllers/controlerPedido');
+const { pedidoPost, getAllPedidos, getPedidosByUser, updateStatusPedido, deletePedido, statusPendiente  } = require('../controllers/controlerPedido');
 const { User } = require('../db');
 const pedidoRouter = Router();
 const { check, validationResult } = require('express-validator');
@@ -11,10 +11,19 @@ pedidoRouter.post("/:email", pedidoPost);
 pedidoRouter.get("/all", getAllPedidos);
 
 
+//pedidos por user
 pedidoRouter.get('/:email',
    // authentication,
    getPedidosByUser
 )
+
+// rutas de estado pendiente para checkout
+
+pedidoRouter.get('/status/:email',
+   // authentication,
+   statusPendiente
+)
+
 
 // // FALTA AÑADIR SEGURIDAD
 // // @route GET pedidos/pedidoId
