@@ -2,18 +2,19 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import './checkout.css'
 import { Link } from "react-router-dom";
-// import CartItems from '../CartItems/CartItems'
+
 
 import { WineLoader } from '../../../components/wineLoader/wineLoader'
 
-export default function Checkout ({product}) {
-    let user = useSelector(state => state.loginReducer.userDetail)
+export default function Checkout () {
+    const user = useSelector(state => state.pedidosReducer.userPedidos)
+    console.log(user + "++++++++++++++++" )
+
+
   const { nombre, email, pais, provincia, direccion, telefono } =
     user || {}
 
 
-    let cart = useSelector(state=> state.getCarrito)
-    const {productoId, title, amount } = cart || {}
   return user ? (
     <div className='perfilContainer'>
       <div className='btnContainer'>
@@ -32,9 +33,7 @@ export default function Checkout ({product}) {
           <h5>País: </h5>
           <h5>Provincia: </h5>
           <h5>Teléfono: </h5>
-          <h5>Product Id: </h5>
-          <h5>Title: </h5>
-          <h5>Cantidad: </h5>
+         
         </div>
 
         <div className='infoPerfil'>
@@ -51,12 +50,7 @@ export default function Checkout ({product}) {
           <span></span>
           <h5>{telefono}</h5>
           <span></span>
-          <h5>{productoId}</h5>
-          <span></span>
-          <h5>{title}</h5>
-          <span></span>
-          <h5>{amount}</h5>
-          <span></span>
+        
    
         </div>
         {/* <CartItems /> */}
