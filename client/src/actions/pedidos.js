@@ -60,20 +60,20 @@ export const getAllPedidos = () => {
    }
 }
 
-export const getPedidosByUser = (userId) => async dispatch => {
-   try {
-      let config = getHeaderToken();
-      const { data } = await axios.get(
-         `${BASEURL}/pedidos/user/${userId}`,
-         config
-      );
-      return dispatch({ type: GET_PEDIDO_BY_USER, payload: data });
-   } catch (err) {
-      toast.error("No se han podido cargar los pedidos");
-      return console.log(err.response.data);
+export function getPedidosByUser (payload) {
+   console.log(payload + 'HOla accionessssss')
+   const { email } = payload
+   return async function (dispatch) {
+     try {
+       const { data } = await axios.get(`${BASEURL}/pedidos/${email}`)
+       return dispatch({ type: GET_PEDIDO_BY_USER, payload: data })
+     } catch (err) {
+       //toast.error('No se han podido cargar los pedidos')
+       return console.log(err.response.data)
+     }
    }
-}
-
+ }
+ 
 export function editStatusPedido(pedidoId, newStatus) {
    return async function (dispatch) {
       try {
