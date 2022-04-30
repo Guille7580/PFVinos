@@ -17,12 +17,6 @@ export const validateform =  (form) =>{
     } else if (form.usuario.length > 15) {
       errors.usuario = 'Máximo 15 caracteres'
     }
-
-    if (!form.contrasena.trim()) {
-      errors.contrasena = 'Campo requerido'
-    } else if (form.contrasena.length < 10) {
-      errors.contrasena = 'Mínimo 10 caracteres'
-    }
   
     if (!form.email.trim()) {
       errors.email = 'Campo requerido'
@@ -50,10 +44,6 @@ export const validateform =  (form) =>{
       errors.telefono = 'Campo requerido'
     } else if (!validateTlf(form.telefono)) {
       errors.telefono = 'Escriba un número de telefono válido'
-    }
-
-    if (form.confirm_contrasena !== form.contrasena) {
-      errors.confirm_contrasena = 'Las contraseñas no coinciden'
     }
   
     return errors

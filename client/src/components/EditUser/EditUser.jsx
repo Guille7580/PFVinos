@@ -14,8 +14,6 @@ import {validateform} from './Validate/Validate'
 const initialForm = {
   nombre: '',
   usuario: '',
-  contrasena: '',
-  confirm_contrasena: '',
   email: '',
   pais: '',
   provincia: '',
@@ -27,13 +25,12 @@ const initialForm = {
 function Createform ({ updateUser, register, isAuth, user, edit = false }) {
   const navigate = useNavigate()
   const [form, setForm] = useState(
-   { ...user, confirm_contrasena: '', contrasena: ''  } 
+   { ...user } 
   )
   const [errors, setErrors] = useState({})
   const [input, setInput] = useState({
     nombre: '',
     usuario: '',
-    contrasena: '',
     email: '',
     pais: '',
     provincia: '',
@@ -59,6 +56,10 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
     const userForm = { ...form }
 
     updateUser(userForm) 
+  }
+
+  const handleClick = () => {
+    navigate('/')
   }
 
 
@@ -89,32 +90,6 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
                 value={form.usuario}
               />
               {errors.usuario && <p>{errors.usuario}</p>}
-            </label>
-
-            <label className='label'>
-
-              <input
-                onChange={e => handleChange(e)}
-                className='regInput'
-                type='password'
-                name='contrasena'
-                placeholder='Contraseña...'
-                value={form.contrasena}
-              />
-              {errors.contrasena && <p>{errors.contrasena}</p>}
-            </label>
-
-            <label className='label'>
-    
-              <input
-                onChange={e => handleChange(e)}
-                className='regInput'
-                type='password'
-                name='confirm_contrasena'
-                placeholder='Confirme Contraseña...'
-                value={form.confirm_contrasena}
-              />
-              {errors.confirm_contrasena && <p>{errors.confirm_contrasena}</p>}
             </label>
             
             <label className='label'>
@@ -177,16 +152,19 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
               />
             </label>
             {errors.telefono && <p>{errors.telefono}</p>}
+
             <div className='regButtons'>
             <button type='submit' className='buttonReg'>
               Registrar Cambios
             </button>
+
+            <button className='buttonReg'>
+              Cambiar Contraseña
+            </button>
             
-            <Link className='editBtn' to='/' >
-              <button  className='buttonReg'>
+            <button  className='buttonReg' onClick = {handleClick}>          
               Volver
-              </button>
-            </Link>
+            </button>
 
             </div> 
           </form>
