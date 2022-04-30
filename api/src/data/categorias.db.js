@@ -8,7 +8,4 @@ module.exports = [
    {
       nombre: "Tinto"
    },  
-   {
-      nombre:""
-   }
 ]
