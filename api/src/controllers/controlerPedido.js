@@ -184,10 +184,8 @@ async function getAllPedidos(req, res, next) {
 
   try {
      let pedidos = await Pedido.findAll()
-
-
                   // Le cambio de nombre y quito algunos campos a cada pedido
-                  res.json(pedidos);
+   res.json(pedidos);
      }
    catch (error) {
      console.log(error);
