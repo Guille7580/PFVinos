@@ -5,7 +5,7 @@ import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL, DELETE_PRODU
 
 export const getAllProducts = () => async (dispatch) => {
   try {
-    const responseProduct = await axios.get(`${BASEURL}/products`);
+    const responseProduct = await axios.get(`/products`);
     return dispatch({
       type: GET_PRODUCTS,
       payload: responseProduct.data,
@@ -16,7 +16,7 @@ export const getAllProducts = () => async (dispatch) => {
 };
 export const getDetail = (id) => async (dispatch) => {
   try {
-    const json = await axios.get(`${BASEURL}/products/` + id);
+    const json = await axios.get(`/products/` + id);
     return dispatch({
       type: GET_DETAIL,
       payload: json.data,
@@ -29,7 +29,7 @@ export function getNameProducts(title) {
   return async function (dispatch) {
     try {
       
-      let response = await axios(`${BASEURL}/products?title=${title}`);
+      let response = await axios(`/products?title=${title}`);
     
       return dispatch({
         type: GET_NAME_PRODUCTS,
@@ -50,7 +50,7 @@ export function deleteProduct(payload) {
   
     return async function (dispatch) {
         try {
-            const response = await axios.delete(`${BASEURL}/products/${payload}`);
+            const response = await axios.delete(`/products/${payload}`);
             dispatch({
                 type: DELETE_PRODUCT,
                 payload: response.data,
@@ -72,7 +72,7 @@ export function postProduct(payload) {
        
         try {
             const response = await axios.post(
-                `${BASEURL}/products`, payload
+                `/products`, payload
             );
             return dispatch({
                 type: POST_PRODUCT,
@@ -87,7 +87,7 @@ export function updateProduct(payload) {
    
     return async function (dispatch) {
         try {
-            const response = await axios.put(`${BASEURL}/products/${payload.id}`, payload)
+            const response = await axios.put(`/products/${payload.id}`, payload)
             return dispatch({
                 type: UPDATE_PRODUCT,
                 payload: response.data,

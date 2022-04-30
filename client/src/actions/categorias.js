@@ -5,7 +5,7 @@ import { GET_CATEGORIA, FILTER_BY_CATEGORY, ORD_BYPRICE, ORD_BYNAME, CREATE_CATE
 export function getShowActivity(){
     return async function(dispatch){
         try{
-          var json= await axios(`${BASEURL}/categoria`);
+          var json= await axios(`/categoria`);
           console.log(json)
           return dispatch({
             type: GET_CATEGORIA,
@@ -23,7 +23,7 @@ export function CreateCategory(payload) {
 
     return async function (dispatch) {
         try {
-            var json = await axios.post(`${BASEURL}/categoria`,value);
+            var json = await axios.post(`/categoria`,value);
             console.log(json)
             return dispatch({
                 type: CREATE_CATEGORY,
@@ -39,7 +39,7 @@ export function CreateCategory(payload) {
 export function UpdateCategory(payload) {
     return async function (dispatch) {
         try {
-            var json = await axios.put(`${BASEURL}/categoria`, payload);
+            var json = await axios.put(`/categoria`, payload);
             console.log(json)
             return dispatch({
                 type: UPDATE_CATEGORY,

@@ -32,7 +32,7 @@ export const getCartDB = userId => async dispatch => {
   try {
     // let config = getHeaderToken();
     const { data } = await axios.get(
-      `${BASEURL}/carrito/${userId}`
+      `/carrito/${userId}`
       //config
     )
     return dispatch({ type: GET_CART, payload: data })
@@ -42,12 +42,12 @@ export const getCartDB = userId => async dispatch => {
 }
 
 export const postCart = async () => {
-  await axios.post(`${BASEURL}/carrito`, {})
+  await axios.post(`/carrito`, {})
 }
 //getHeaderToken()
 
 export const putCart = async (cart, id) => {
-  await axios.put(`${BASEURL}/carrito/add`, {
+  await axios.put(`/carrito/add`, {
     carritoId: id,
     productoId: cart.id,
     cantidad: cart.quantity
@@ -56,7 +56,7 @@ export const putCart = async (cart, id) => {
 //, getHeaderToken()
 
 export const deleteProductCart = async (product, id) => {
-  await axios.put(`${BASEURL}/carrito/delete`, {
+  await axios.put(`/carrito/delete`, {
     carritoId: id,
     productoId: product
   })
@@ -64,7 +64,7 @@ export const deleteProductCart = async (product, id) => {
 //, getHeaderToken()
 export const deleteAllCartDB = id => async dispatch => {
   try {
-    const res = await axios.delete(`${BASEURL}/carrito/${id}`)
+    const res = await axios.delete(`/carrito/${id}`)
     const data = res.data
     return dispatch({ type: DELETE_CART_DB, payload: data })
   } catch (err) {
@@ -81,7 +81,7 @@ export const deleteAllCart = () => {
 export function getCarrito () {
   return async function (dispatch) {
     try {
-      var json = await axios(`${BASEURL}/pagar`)
+      var json = await axios(`/pagar`)
       console.log(json.data)
       return dispatch({
         type: GET_CARRITO,
@@ -96,7 +96,7 @@ export function getCarrito () {
 export function postPedido(order) {
   return async function () {
     try {
-    var json = await axios.post(`${BASEURL}/pedidos/:email`, order)
+    var json = await axios.post(`/pedidos/:email`, order)
   } catch (error) {
     console.log(error)
   }

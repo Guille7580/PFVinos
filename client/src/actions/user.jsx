@@ -13,7 +13,7 @@ import {
 export function getUser () {
   return async function (dispatch) {
     try {
-      var json = await axios(`${BASEURL}/user/reg`);
+      var json = await axios(`/user/reg`);
       return dispatch({
         type: GET_USER_DETAIL,
         payload: json.data,
@@ -26,7 +26,7 @@ export function getUser () {
 export function getAllUser () {
   return async function (dispatch) {
     try {
-      var json = await axios(`${BASEURL}/user/all`)
+      var json = await axios(`/user/all`)
       console.log(json.data)
       return dispatch({
         type: GET_ALL_USERS,
@@ -42,7 +42,7 @@ export function postUser(payload) {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        `${BASEURL}/user/admin/userRegister`,
+        `/user/admin/userRegister`,
         payload
       );  
       return dispatch({
@@ -58,7 +58,7 @@ export function changCategory(payload) {
     console.log(payload)
     return async function (dispatch) {
         try {
-            const response = await axios.put(`${BASEURL}/user/userAdmin/${payload}`)
+            const response = await axios.put(`/user/userAdmin/${payload}`)
             return dispatch({
                 type: CHANGE_CATEGORY,
                 payload: response.data,
@@ -73,7 +73,7 @@ export function changCategory(payload) {
 export function deleteUser(payload) {
     return async function (dispatch) {
         try {
-            const response = await axios.delete(`${BASEURL}/user`, payload);
+            const response = await axios.delete(`/user`, payload);
             dispatch({
                 type: DELETE_USER,
                 payload: response.data,
@@ -87,7 +87,7 @@ export function recoveryPassword(payload) {
     console.log(payload)
     return async function (dispatch) {
         try {
-            const response = await axios.post(`${BASEURL}/password/${payload}`)
+            const response = await axios.post(`/password/${payload}`)
             console.log(response)
             dispatch({
                 type: RECOVERY_PASSWORD,

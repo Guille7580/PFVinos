@@ -18,7 +18,7 @@ export const postPedido = (pedido) => {
    return async function (dispatch) {
       try {
          const { data } = await axios.post(
-            `${BASEURL}/pedidos`,
+            `/pedidos`,
             pedido,
             getHeaderToken()
          );
@@ -34,7 +34,7 @@ export const deletePedido = (pedidoId) => {
    return async function (dispatch) {
       try {
          await axios.delete(
-            `${BASEURL}/pedidos/${pedidoId}`,
+            `/pedidos/${pedidoId}`,
             getHeaderToken()
          );
          toast.success("Pedido eliminado exitosamente");
@@ -50,7 +50,7 @@ export const getAllPedidos = () => {
    return async function (dispatch) {
       try {
          const { data } = await axios.get(
-            `${BASEURL}/pedidos`,
+            `/pedidos`,
             getHeaderToken()
          );
          return dispatch({ type: GET_PEDIDOS, payload: data });
@@ -64,7 +64,7 @@ export const getPedidosByUser = (userId) => async dispatch => {
    try {
       let config = getHeaderToken();
       const { data } = await axios.get(
-         `${BASEURL}/pedidos/user/${userId}`,
+         `/pedidos/user/${userId}`,
          config
       );
       return dispatch({ type: GET_PEDIDO_BY_USER, payload: data });
@@ -78,7 +78,7 @@ export function editStatusPedido(pedidoId, newStatus) {
    return async function (dispatch) {
       try {
          const config = getHeaderToken()
-         const response = await axios.put(`${BASEURL}/pedidos/${pedidoId}`, newStatus, config)
+         const response = await axios.put(`/pedidos/${pedidoId}`, newStatus, config)
          return {
             type: EDIT_STATUS_PEDIDO,
             payload: response.data
