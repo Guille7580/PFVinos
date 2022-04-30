@@ -213,6 +213,18 @@ userRouter.get("/all", async (req, res, next) => {
   }
 });
 
+userRouter.get("/:email", async (req, res, next) => {
+  const {email}= req.params
+  console.log(email)
+  try {
+    let user = await User.findOne({ where: { email } });
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    next({});
+  }
+});
+
 userRouter.put(
   "/block/:userId",
   authentication,
