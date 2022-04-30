@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./Cart.css";
-import { getUserDetail } from "../../actions/auth";
+import "../Cart.css";
+//import { getUserDetail } from "../../actions/auth";
 //import NavBar from '../../components/navBar/navBar'
 import { Link } from "react-router-dom";
 //import { Loader } from '../../components/Loader/Loader'
 //import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
 //import Swal from 'sweetalert2'
-import CartItems from "./CartItems/CartItems";
+import CartItems from "../CartItems/CartItems";
 import AnimatedText from "react-animated-text-content";
 import { useNavigate } from "react-router-dom";
-import { postPedido } from "../../actions/carrito";
+import { postPedido } from "../../../actions/carrito";
 
 
 export function calculateTotal(items) {
@@ -19,7 +19,7 @@ export function calculateTotal(items) {
     .toFixed(2);
 }
 
-export default function Cart({
+export default function CheckOut({
   handleAddToCart,
   cartItems,
   setCartItems,
@@ -58,49 +58,12 @@ export default function Cart({
 
 }
 
-  /* const navigate = useNavigate();
-  const dispatch = useDispatch();
-
- let items = useSelector((state) => {
-    let completeProducts = state.productsReducer.cart.products;
-    completeProducts = completeProducts.map((e) => {
-      const found = state.productsReducer.allProducts.find((el) => el.id === e.id)
-      return found ? { ...found, quantity : e.quantity } : null;
-    })
-     return completeProducts
-   });
-
- 
-
- const total = useSelector((state)  => state.productsReducer.cart.precioTotal)
-const isAuth = useSelector((state) => state.loginReducer.isAuth);
-items = items?.filter((e) => e);
- const products = useSelector((state) => state.productsReducer.allProducts)
- const user = useSelector((state) => state.loginReducer.userDetail)
- const cartDB = useSelector((state) => state.productsReducer.carts) */
   return (
     <div>
       <div div className="cartContainer">
-        {/* <AnimatedText
-          type="words" // animate words or chars
-          animation={{
-            x: "200px",
-            y: "-20px",
-            scale: 1.1,
-            ease: "ease-in-out",
-          }}
-          animationType="float"
-          interval={0.06}
-          duration={2.5}
-          tag="p"
-          className="animatedShopping"
-          includeWhiteSpaces
-          threshold={0.1}
-          rootMargin="20%"
-         
-        > */}
+
         <div className="animatedShopping">
-          Shopping Cart
+          CheckOut
           </div>
         {/* </AnimatedText> */}
         <div>

@@ -48,15 +48,13 @@ export default function Cart({
     date: new Date().toLocaleString(),
   };
   console.log("-------------------", order);
-
   const navigate = useNavigate();
-
-  function onFinishPay(e) {
+  function onCheckOut(e) {
     e.preventDefault();
-    dispatch(postPedido(order))
-    return navigate('/checkout-page')
+    return navigate('/checkout')
 
 }
+
 
   /* const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -122,8 +120,8 @@ items = items?.filter((e) => e);
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="/chekout">
-              <button className="btnBottom" onClick={onFinishPay}>Pagar</button>
+            <Link to="/checkout">
+              <button className="btnBottom" >Continuar</button>
             </Link>
           </div>
         </div>
