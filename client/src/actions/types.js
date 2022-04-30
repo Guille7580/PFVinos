@@ -44,6 +44,7 @@ export const UPDATE_USER = "UPDATE_USER";
 export const RECOVERY_PASSWORD = "RECOVERY_PASSWORD"
 export const GET_ALL_USERS = "GET_ALL_USERS"
 export const GET_BY_EMAIL = "GET_BY_EMAIL"
+export const GET_USER_D ="GET_USER_D"
 
 //Usuario
 

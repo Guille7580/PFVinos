@@ -17,9 +17,10 @@
   border: black solid 1px;
   justify-content: space-around;
   align-items: center;
-  margin: 50px;
+  margin: 10px;
   margin-right: 200px;
   margin-left: 200px;
+  padding: 5px;
 }
 
 .editBtn{
