@@ -50,12 +50,13 @@ function RegPerfil () {
   return user ? (
     <div className='perfilContainer'>
       <div className='btnContainer'>
-        <Link to='/profile/edit'>
+        <h3>Datos de Perfil</h3>
+        {/* <Link to='/profile/edit'>
           <button className='editBtn'> Editar</button>
         </Link>
         <Link to='/profile/orders'>
           <button className='editBtn'> Ver mis compras</button>
-        </Link>
+        </Link> */}
       </div>
       <div className='dataContainer'>
         {/* <div>
