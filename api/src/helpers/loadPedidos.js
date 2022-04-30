@@ -9,7 +9,8 @@ const loadPedidos = async () => {
            usuarioId:e.usuarioId, 
            products: e.products,  
            total: e.total, 
-           date: e.date};
+           date: e.date,
+           status: e.status};
       }));
       await Promise.all(pedidosMaped.map(async (e) => {
          const pedido = await Pedido.findOne({ where: { usuarioId:e.usuarioId } });

@@ -1,5 +1,5 @@
 
-const { COMPLETADO, PENDIENTE } = require("../data/constantes");
+const { COMPLETADO, PENDIENTE, PAGADO, CANCELADO } = require("../data/constantes");
 const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
@@ -13,14 +13,9 @@ module.exports = (sequelize) => {
          type: DataTypes.ARRAY(DataTypes.STRING)
       },
       status: {
-         type: DataTypes.ENUM(PENDIENTE, COMPLETADO),
+         type: DataTypes.ENUM(PENDIENTE, PAGADO, COMPLETADO, CANCELADO),
          allowNull: false,
          defaultValue: PENDIENTE
-      },
-      pagado: {
-         type: DataTypes.BOOLEAN,
-         allowNull: false,
-         defaultValue: false
       },
       total: {
          type: DataTypes.DOUBLE,

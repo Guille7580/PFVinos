@@ -11,7 +11,7 @@ module.exports = [
       "total": "1935.4",
       "pagado": true,
       "date": "26/4/2022, 23:13:28",
-      "status": "COMPLETADO"
+      "status": "PAGADO"
    },
    {
       "id": 2,
@@ -39,7 +39,7 @@ module.exports = [
 
       "total": "652.3",
       "date": "23/4/2022, 16:54:28",
-      "status": "PENDIENTE"
+      "status": "PAGADO"
    },
    {
       "id": 4,
@@ -52,7 +52,7 @@ module.exports = [
 
       "total": "213.8",
       "date": "21/4/2022, 63:23:28",
-      "status": "COMPLETADO"
+      "status": "PAGADO"
    },
    {
       "id": 5,
@@ -66,7 +66,7 @@ module.exports = [
 
       "total": "985.2",
       "date": "21/4/2022, 18:24:28",
-      "status": "PENDIENTE"
+      "status": "PAGADO"
    },
    {
       "id": 6,
@@ -93,7 +93,7 @@ module.exports = [
 
       "total": "453.5",
       "date": "20/3/2022, 08:09:28",
-      "status": "COMPLETADO"
+      "status": "PENDIENTE"
    },
    {
       "id": 8,
@@ -105,7 +105,7 @@ module.exports = [
 
       "total": "659.7",
       "date": "20/4/2022, 13:08:28",
-      "status": "COMPLETADO"
+      "status": "CANCELADO"
    },
    {
       "id": 9,
@@ -132,7 +132,7 @@ module.exports = [
 
       "total": "325.9",
       "date": "26/4/2022, 17:52:28",
-      "status": "COMPLETADO"
+      "status": "PENDIENTE"
    },
    {
       "id": 11,
@@ -160,7 +160,7 @@ module.exports = [
 
       "total": "968.7",
       "date": "24/4/2022, 18:47:28",
-      "status": "COMPLETADO"
+      "status": "PAGADO"
    },
    {
       "id": 13,
@@ -173,7 +173,7 @@ module.exports = [
 
       "total": "856.7",
       "date": "20/4/2022, 11:38:28",
-      "status": "COMPLETADO"
+      "status": "CANCELADO"
    },
    {
       "id": 14,
@@ -200,7 +200,7 @@ module.exports = [
 
       "total": "526.7",
       "date": "21/4/2022, 14:26:28",
-      "status": "COMPLETADO"
+      "status": "CANCELADO"
    },
 
 ];
