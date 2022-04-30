@@ -93,6 +93,7 @@ function RegPerfil () {
 
 export default function Perfil () {
   let user = useSelector(state => state.loginReducer.userDetail)
+  console.log(user)
   if (user.email.includes('gmail')) {
     
     return (

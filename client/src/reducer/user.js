@@ -1,5 +1,5 @@
 import {
-    GET_USER_DETAIL,
+    GET_USER_D,
     GET_ALL_USERS,
     POST_USER,
     GET_BY_EMAIL,
@@ -33,7 +33,7 @@ export default function users (state = initialState, action) {
         ...state
       }
 
-    case GET_USER_DETAIL:
+    case GET_USER_D:
       return { ...state, getUser: action.payload }
 
     case GET_ALL_USERS:
