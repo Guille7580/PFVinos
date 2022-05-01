@@ -93,6 +93,11 @@ function Createform ({ updateUser, register, isAuth, user }) {
     const userForm = { ...form }
 
     updateUser(userForm) 
+    Swal.fire({
+      text: `Perfil Editado con exito `,
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    })
     navigate('/')
   }
 
