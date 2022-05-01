@@ -21,9 +21,10 @@ export default function CheckOut ({ product, cartItems }) {
   const products = cartItems.map(product => ({
     productoId: product.id,
     title: product.title,
-    amount: product.amount
-  }))
-  console.log(products)
+    amount: product.amount,
+    price: product.price,
+  }));
+  console.log(products);
 
   let order = {
     usuarioId: user?.id,
