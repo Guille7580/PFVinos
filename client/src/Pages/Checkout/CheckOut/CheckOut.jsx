@@ -37,6 +37,7 @@ export default function CheckOut({
     productoId: product.id,
     title: product.title,
     amount: product.amount,
+    price: product.price,
   }));
   console.log(products);
 
