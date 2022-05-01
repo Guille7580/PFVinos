@@ -11,6 +11,7 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 const categorRoute= require('./categorias');
 const user = require('./user');
+const userupdate = require('./Usuario');
 const carritoRouter = require("./carrito");
 const forgotPassword = require("./forgotPassword");
 const resetPassword = require("./resetPassword");
@@ -73,6 +74,8 @@ if(catId) {
 router.use("/password", forgotPassword);
 router.use("/resetPassword", resetPassword);
 
+//-----------------------usuario-----------------------
 
+router.use("/usuario/update", userupdate);
 
 module.exports = router;
