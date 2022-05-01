@@ -22,9 +22,9 @@ export default function CheckOut ({ product, cartItems }) {
     productoId: product.id,
     title: product.title,
     amount: product.amount,
-    price: product.price,
-  }));
-  console.log(products);
+    price: product.price
+  }))
+  console.log(products)
 
   let order = {
     usuarioId: user?.id,
@@ -49,39 +49,41 @@ export default function CheckOut ({ product, cartItems }) {
 
   return users ? (
     <div>
-      <div div className='cartContainer'>
-        <div>CheckOut</div>
-
-        <div >
+      <h1 className='title'>CheckOut</h1>
+      <div className='CKOContainer'>
+        <div className='cartItems'>
+          <h2>Resumen:</h2>
           <ul>
             {cartItems?.length === 0 ? <p>No hay items en el carrito</p> : null}
             {cartItems?.map(product => (
               <CheckOutItems key={product.id} product={product} />
             ))}
-          </ul>
-        <div>
-            <Link to='/'>
-              <button>Seguir Comprando</button>
-            </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to='/chekout'>
-              <button onClick={onFinishPay}>Pagar</button>
+          </ul>
+        </div>
+
+        <div className='infoUsuario'>
+          <div>
+            <h5> Email: {email} </h5>
+            <h5> Dirección: {direccion} </h5>
+            <h5> Provincia: {provincia} </h5>
+            <h5> País: {pais} </h5>
+          </div>
+
+          <div className='totyBtnCont'>
+            <Link to='/'>
+              <button className='totandBut'>Volver</button>
+            </Link>
+            <Link to='/#'>
+              <button className='totandBut' onClick={onFinishPay}>
+                Pagar
+              </button>
+            </Link>
+            <Link to='/perfil/edit'>
+              <button className='totandBut'>Editar Direccion</button>
             </Link>
           </div>
-          
         </div>
-        <div className='infoPerfil'>
-          <div>
-    
-            <h5>  Email:   {email} </h5>
-            <h5>  Dirección:   {direccion} </h5>
-            <h5>  Provincia:   {provincia} </h5>
-            <h5>  País:   {pais} </h5>
-           
-          </div>
-   
-        </div>
-  
       </div>
     </div>
   ) : (
