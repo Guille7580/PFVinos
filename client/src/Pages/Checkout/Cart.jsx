@@ -36,10 +36,10 @@ export default function Cart({
   const products = cartItems.map((product) => ({
     productoId: product.id,
     title: product.title,
+    price: product.price,
     amount: product.amount,
   }));
-  console.log(products);
-
+  
   let order = {
     usuarioId: user?.id,
     email: user?.email,
@@ -47,7 +47,7 @@ export default function Cart({
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
-  console.log("-------------------", order);
+  console.log("****************************", order);
   const navigate = useNavigate();
   function onCheckOut(e) {
     e.preventDefault();
