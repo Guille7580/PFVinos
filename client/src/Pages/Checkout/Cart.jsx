@@ -48,12 +48,7 @@ export default function Cart({
     date: new Date().toLocaleString(),
   };
   console.log("****************************", order);
-  const navigate = useNavigate();
-  function onCheckOut(e) {
-    e.preventDefault();
-    return navigate('/checkout')
 
-}
 
 
   /* const navigate = useNavigate();

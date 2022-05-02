@@ -11,12 +11,31 @@ import CartItems from "../CartItems/CartItems";
 import AnimatedText from "react-animated-text-content";
 import { useNavigate } from "react-router-dom";
 import { postPedido } from "../../../actions/carrito";
+import { getMercadoPago } from "../../../actions/checkout";
+//import './Payment.css'
 
 
 export function calculateTotal(items) {
   return items
     ?.reduce((acc, item) => acc + item.amount * item.price, 0)
     .toFixed(2);
+}
+
+export function addCheckout(prefId, check) {
+
+  var mp = new window.MercadoPago('TEST-4639441c-428c-455b-a470-ff0171c740b0', {
+      locale: 'es-AR'
+  })
+
+  mp.checkout({
+      preference: {
+          id: prefId,
+      },
+      render: {
+          container: `#pay_button`, // Indica el nombre de la clase donde se mostrará el botón de pago
+          label: 'Comprar', // Cambia el texto del botón de pago 
+      },
+  });
 }
 
 export default function CheckOut({
@@ -31,6 +50,7 @@ export default function CheckOut({
  
   const user = useSelector((state) => state.loginReducer.userDetail);
   const dispatch = useDispatch();
+  //const Url = useSelector((state) => state.mercadoPago.url);
   console.log(user);
 
   const products = cartItems.map((product) => ({
@@ -55,8 +75,9 @@ export default function CheckOut({
   function onFinishPay(e) {
     e.preventDefault();
     dispatch(postPedido(order))
-    return navigate('/checkout-page')
-
+    dispatch(getMercadoPago({email: user.email, products: products}));
+    return navigate('/mercadopago')
+    //window.location.href = Url;
 }
 
   return (
@@ -86,8 +107,10 @@ export default function CheckOut({
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="/chekout">
-              <button className="btnBottom" onClick={onFinishPay}>Pagar</button>
+            <Link to="/pedido/payment">
+            <button className="button-mercadopago-payment">
+                    Pagar 
+                </button>
             </Link>
           </div>
         </div>

@@ -22,6 +22,9 @@ import { getUserDetail } from './actions/auth'
 import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx'
 import Swal from 'sweetalert2'
 import CheckOut from './Pages/Checkout/CheckOut/CheckOut.jsx'
+import BuyProduct from "./components/BuyProduct/BuyProduct";
+
+
 
 const App = () => {
   const token = useSelector(state => state.loginReducer.token)
@@ -158,6 +161,7 @@ const App = () => {
               />
             }
           />
+          <Route path="/pedido/payment" element={<BuyProduct />} />
           <Route path='/checkout' element={<CheckOut cartItems={cartItems}/>} />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />

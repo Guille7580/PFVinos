@@ -14,11 +14,13 @@ const user = require('./user');
 const carritoRouter = require("./carrito");
 const forgotPassword = require("./forgotPassword");
 const resetPassword = require("./resetPassword");
-const pagosRouter = require("./pagos.routes");
+//const pagosRouter = require("./pagos.routes");
 const pedidoRouter = require("./pedido.routes");
 
+
 //------------------- product -----------------------------------------
-var product = require('./product')
+var product = require('./product');
+const { route } = require('./pedido.routes');
 //userRouter.post("/register"var user = require('./user')
 
 //Product//////
@@ -46,7 +48,7 @@ router.use('/categoria',categorRoute)
 
 // carrito
 
-router.use("/pagos", pagosRouter);
+//router.use("/pagos", pagosRouter);
 
 
 router.use('/categoria', categorRoute)
@@ -72,6 +74,8 @@ if(catId) {
 //----------------------Password-------------------------
 router.use("/password", forgotPassword);
 router.use("/resetPassword", resetPassword);
+
+//----------------------Mercadopago____________________
 
 
 

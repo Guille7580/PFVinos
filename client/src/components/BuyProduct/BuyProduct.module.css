@@ -1,0 +1,81 @@
+.contenedortarjeta{
+
+    display: flex;
+    gap:1rem; 
+    border: solid 2x black;
+    box-shadow:   2px 2px 4px #000000;
+    padding: 20px;
+}
+  
+.botoncentrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+    .botontarjeta{
+    
+        background-color: rgb(76, 93, 105);
+        width: 6rem;
+        height: 2.2rem;
+        font-weight:normal;
+        border-radius: 2rem;
+        color: #e3e8f8;
+        border: none;
+        cursor: pointer;
+        box-shadow: 2px 2px 4px #000000;
+        margin-bottom: 50%;
+        margin-top: auto;
+        justify-content: center;
+      }
+      
+      .boton {
+        width: 6rem;
+      }
+      
+      .boton:hover {
+        background-color: #203562;
+        color: #ffffff;
+        border: none;
+        font-weight: normal;
+      }
+      .boton span {
+          margin-right: 10px;  
+      }
+      .header{
+        background-color:  rgb(211, 222, 220); 
+          border-bottom: solid 1.5px #000000;
+          text-align: center;
+          
+          
+      }
+      .contenedorgeneral{
+        border: #000000 solid 1.5px;
+        border-radius: 5px;
+        box-shadow:   2px 2px 4px #000000;
+        display: inline-block;
+        width: 100%;
+        background-color:rgb(211, 222, 220);
+        
+
+      }
+
+.boton {
+  width: 6rem;
+}
+
+.boton:hover {
+  background-color: #203562;
+  color: #ffffff;
+  border: none;
+  font-weight: normal;
+}
+.boton span {
+  margin-right: 10px;
+}
+.header {
+  background-color: rgb(211, 222, 220);
+  border-bottom: solid 0px #000000;
+  text-align: center;
+}
