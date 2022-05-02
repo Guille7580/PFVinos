@@ -93,7 +93,8 @@ function Categories() {
                         backgroundColor: rowData => rowData.id % 2 === 0 ? '#917351' : '#FFA500',
                     },
                     searchFieldStyle: {
-                        backgroundColor: '#FFA500'
+                        backgroundColor: '#5f3252',
+                        color: "#FFF"
                         },
                         paging: false,
                     

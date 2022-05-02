@@ -26,8 +26,10 @@ const initialState = {
   filtered: [],
   detalles: [],
   cart: getCartLocalStorage(),
-  carts: {}
+  carts: {},
+  allProductsStock: []
 }
+
 
 export default function productsReducer (state = initialState, action) {
   const { type, payload } = action
