@@ -95,6 +95,9 @@ const NavBarAuthenticated = () => {
       if (e.value === "Editar"){
         navigate("/perfil/edit")
       }
+      if ( e.value === 'Tus Compras'){
+        navigate("./perfil/ordenes")
+      }
     }
 
   return (

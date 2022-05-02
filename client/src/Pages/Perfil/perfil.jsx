@@ -50,7 +50,7 @@ function RegPerfil () {
   return user ? (
     <div className='perfilContainer'>
       <div className='btnContainer'>
-        <h3>Datos de Perfil</h3>
+      <h1>Datos de Perfil</h1>
         {/* <Link to='/profile/edit'>
           <button className='editBtn'> Editar</button>
         </Link>
@@ -72,25 +72,25 @@ function RegPerfil () {
         
         <div className='infoPerfil'>
           <div className='dataContainer'>
-            <h5>  Nombre:   {nombre}</h5>
+          <h3> Nombre: {nombre}</h3>
           </div>
           <div className='dataContainer'>
-            <h5>  Email:   {email} </h5>
+          <h3> Email: {email} </h3>
           </div>
           <div className='dataContainer'>
-            <h5>  Teléfono:   {telefono} </h5>
+          <h3> Teléfono: {telefono} </h3>
           </div>
           <div className='dataContainer'>
-            <h5>  Usuario:   {usuario} </h5>
+          <h3> Usuario: {usuario} </h3>
           </div>
           <div className='dataContainer'>
-            <h5>  País:   {pais} </h5>
+          <h3> País: {pais} </h3>
           </div>
           <div className='dataContainer'>
-            <h5>  Provincia:   {provincia} </h5>
+          <h3> Provincia: {provincia} </h3>
           </div>
           <div className='dataContainer'>
-            <h5>  Dirección:   {direccion} </h5>
+          <h3> Dirección: {direccion} </h3>
           </div>
         </div>
       </div>
