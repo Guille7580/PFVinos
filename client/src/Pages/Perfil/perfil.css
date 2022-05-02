@@ -4,7 +4,7 @@
     rgb(70, 69, 69),
     rgb(230, 227, 219)
   );
-  height: 600px;
+  height: 700px;
   padding-top: 20px;
   width: 100%;
   display: flex;
@@ -13,13 +13,13 @@
 
 .dataContainer {
   display: flex;
-  background-color: rgb(208, 228, 245);
+  width: auto;
   border: black solid 1px;
   justify-content: space-around;
   align-items: center;
   margin: 10px;
-  margin-right: 200px;
-  margin-left: 200px;
+  margin-right: 400px;
+  margin-left: 400px;
   padding: 5px;
 }
 
