@@ -26,8 +26,10 @@ const initialState = {
   filtered: [],
   detalles: [],
   cart: getCartLocalStorage(),
-  carts: {}
+  carts: {},
+  allProductsStock: []
 }
+
 
 export default function productsReducer (state = initialState, action) {
   const { type, payload } = action
@@ -178,8 +180,9 @@ export default function productsReducer (state = initialState, action) {
     //Productos
     case GET_PRODUCTS:
       return {
+     
         ...state,
-        allProducts: payload,
+        allProducts: payload.filter(e => e.stock > 0),
         filtered: payload
       }
     case GET_DETAIL:
@@ -197,7 +200,7 @@ export default function productsReducer (state = initialState, action) {
     case GET_NAME_PRODUCTS:
       return {
         ...state,
-        allProducts: payload
+        allProducts: payload.filter(e => e.stock > 0)
       }
 
     case FILTER_BY_CATEGORY:

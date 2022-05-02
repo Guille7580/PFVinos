@@ -50,7 +50,7 @@ function RegPerfil () {
   return user ? (
     <div className='perfilContainer'>
       <div className='btnContainer'>
-      <h1>Datos de Perfil</h1>
+        <h1>Datos de Perfil</h1>
         {/* <Link to='/profile/edit'>
           <button className='editBtn'> Editar</button>
         </Link>
@@ -68,29 +68,28 @@ function RegPerfil () {
           <h5>Provincia: </h5>
           <h5>Dirección: </h5>
         </div> */}
-        
-        
+
         <div className='infoPerfil'>
-          <div className='dataContainer'>
-          <h3> Nombre: {nombre}</h3>
+          <div>
+            <h3> Nombre: {nombre}</h3>
           </div>
-          <div className='dataContainer'>
-          <h3> Email: {email} </h3>
+          <div>
+            <h3> Email: {email} </h3>
           </div>
-          <div className='dataContainer'>
-          <h3> Teléfono: {telefono} </h3>
+          <div>
+            <h3> Teléfono: {telefono} </h3>
           </div>
-          <div className='dataContainer'>
-          <h3> Usuario: {usuario} </h3>
+          <div>
+            <h3> Usuario: {usuario} </h3>
           </div>
-          <div className='dataContainer'>
-          <h3> País: {pais} </h3>
+          <div>
+            <h3> País: {pais} </h3>
           </div>
-          <div className='dataContainer'>
-          <h3> Provincia: {provincia} </h3>
+          <div>
+            <h3> Provincia: {provincia} </h3>
           </div>
-          <div className='dataContainer'>
-          <h3> Dirección: {direccion} </h3>
+          <div>
+            <h3> Dirección: {direccion} </h3>
           </div>
         </div>
       </div>
@@ -104,13 +103,13 @@ export default function Perfil () {
   let user = useSelector(state => state.loginReducer.userDetail)
   //console.log(user)
 
-  return(
+  return (
     <div>
-       <RegPerfil />
+      <RegPerfil />
     </div>
   )
   // if (user.email.includes('gmail')) {
-    
+
   //   return (
   //     <div>
   //       <PerfilGoogle />
