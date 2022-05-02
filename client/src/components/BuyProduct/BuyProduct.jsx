@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 //import getHeaderToken from "../../helpers/getHeaderToken";
@@ -13,23 +13,49 @@ import { PUBLIC_KEY_STRIPE } from "../../assets/constants";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Modal } from "react-bootstrap";
+import { Button, InputGroup, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import SendEmail from "./ConfirmationEmail";
 import styles from "./BuyProduct.module.css";
+import { useDispatch} from "react-redux"
+//import CartItems from "../../Pages/Checkout/CartItems";
 
 //const headers = getHeaderToken();
+
+export function calculateTotal (items) {
+  return items
+    ?.reduce((acc, item) => acc + item.amount * item.price, 0)
+    .toFixed(2)
+}
+
+
 const stripePromise = loadStripe(PUBLIC_KEY_STRIPE);
 
-const CheckoutForm = () => {
+
+const CheckoutForm = ({ product, cartItems }) => {  
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [popUp, setPopUp] = useState(false);
-  const pedido = useSelector((state) => state.pedidosReducer.CheckoutForm);
-  const comprador = useSelector((state) => state.loginReducer.userDetail)
+  const user = useSelector(state => state.loginReducer.userDetail)
 
+
+  const products = cartItems?.map(product => ({
+    title: product.title,
+    amount: product.amount,
+    price: product.price
+  }))
+  
+  let order = {
+    usuarioId: user?.id,
+    email: user?.email,
+    products: products,
+    total: Number(calculateTotal(cartItems)),
+    date: new Date().toLocaleString()
+  }
+  console.log("++++++++++++++++++++++++++",order)
+  
   const PagoPopUp = (props) => {
     return (
       <Modal
@@ -51,8 +77,8 @@ const CheckoutForm = () => {
           <Button onClick={() => navigate("/profile/orders")}>Aceptar</Button>
         </Modal.Footer>
       </Modal>
-    );
-  };
+    )}
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,7 +96,7 @@ const CheckoutForm = () => {
           `${BASEURL}/pagos`,
           {
             transaccionId: id,
-            pedidoId: pedido.pedidoId,
+            order: order.products,
           },
           // headers
         );
@@ -88,7 +114,7 @@ const CheckoutForm = () => {
       });
       setLoading(false);
     }
-  };
+  }
 
   return (
     <div className={styles.contenedor}>
@@ -116,9 +142,9 @@ const CheckoutForm = () => {
       </form>
       <PagoPopUp show={popUp} onHide={() => setPopUp(false)} />
       {popUp && <SendEmail 
-      nombre = {comprador.nombre}
-      email = {comprador.email}
-      total = {pedido.totalPedido}
+      nombre = {user.nombre}
+      email = {user.email}
+      total = {order.total}
       />}
     </div>
     </div>

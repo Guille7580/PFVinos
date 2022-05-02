@@ -47,7 +47,7 @@ export default function Cart({
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
-  console.log("****************************", order);
+
 
 
 

@@ -24,7 +24,7 @@ export default function CheckOut ({ product, cartItems }) {
     amount: product.amount,
     price: product.price
   }))
-  console.log(products)
+
 
   let order = {
     usuarioId: user?.id,
@@ -33,14 +33,13 @@ export default function CheckOut ({ product, cartItems }) {
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString()
   }
-  console.log('-------------------', order)
 
   const navigate = useNavigate()
 
   function onFinishPay (e) {
     e.preventDefault()
     dispatch(postPedido(order))
-    return navigate('/checkout-page')
+    return navigate('/pedido/payment')
   }
 
   let users = useSelector(state => state.loginReducer.userDetail)
