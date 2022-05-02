@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './modal.css';
-import { alpha } from '@material-ui/core/styles'
 import MaterialTable from 'material-table'
 import { deleteProduct, getAllProducts, postProduct, updateProduct } from '../../actions/productos';
 import { getShowActivity } from '../../actions/categorias';
@@ -18,6 +17,8 @@ function Productos() {
 
     const allProduct = useSelector(state => state.productosReducer.allProducts)
     const empStatus = useSelector(state => state.catReducer.allCategory)
+
+    console.log(allProduct)
 
     useEffect(() => {
         const status = {}
