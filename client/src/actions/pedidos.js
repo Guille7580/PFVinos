@@ -63,10 +63,10 @@ export const getAllPedidos = () => {
 }
 export function getPedidosByUser (payload) {
    console.log(payload + 'HOla accionessssss')
-   const { email } = payload
+   const userEmail = payload
    return async function (dispatch) {
      try {
-       const { data } = await axios.get(`${BASEURL}/pedidos/${email}`)
+       const { data } = await axios.get(`${BASEURL}/pedidos/${userEmail}`)
        return dispatch({ type: GET_PEDIDO_BY_USER, payload: data })
      } catch (err) {
        //toast.error('No se han podido cargar los pedidos')
