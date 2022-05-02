@@ -71,16 +71,3 @@
   display: flex;
   justify-content: space-around;
 }
-.animatedShopping{
-  font-size: 50px;
-  color:#3b3b3a;
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(70, 69, 69),
-    rgb(230, 227, 219)
-  );
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  border-bottom: #523e27 solid 1px;
-  height: 70px;
-  margin-top: 5px;
-}

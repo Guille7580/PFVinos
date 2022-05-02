@@ -36,10 +36,10 @@ export default function Cart({
   const products = cartItems.map((product) => ({
     productoId: product.id,
     title: product.title,
+    price: product.price,
     amount: product.amount,
   }));
-  console.log(products);
-
+  
   let order = {
     usuarioId: user?.id,
     email: user?.email,
@@ -47,16 +47,14 @@ export default function Cart({
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
-  console.log("-------------------", order);
-
+  console.log("****************************", order);
   const navigate = useNavigate();
-
-  function onFinishPay(e) {
+  function onCheckOut(e) {
     e.preventDefault();
-    dispatch(postPedido(order))
-    return navigate('/checkout-page')
+    return navigate('/checkout')
 
 }
+
 
   /* const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -81,24 +79,7 @@ items = items?.filter((e) => e);
   return (
     <div>
       <div div className="cartContainer">
-        {/* <AnimatedText
-          type="words" // animate words or chars
-          animation={{
-            x: "200px",
-            y: "-20px",
-            scale: 1.1,
-            ease: "ease-in-out",
-          }}
-          animationType="float"
-          interval={0.06}
-          duration={2.5}
-          tag="p"
-          className="animatedShopping"
-          includeWhiteSpaces
-          threshold={0.1}
-          rootMargin="20%"
-         
-        > */}
+        
         <div className="animatedShopping">
           Shopping Cart
           </div>
@@ -122,8 +103,8 @@ items = items?.filter((e) => e);
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="/chekout">
-              <button className="btnBottom" onClick={onFinishPay}>Pagar</button>
+            <Link to="/checkout">
+              <button className="btnBottom" >Continuar</button>
             </Link>
           </div>
         </div>

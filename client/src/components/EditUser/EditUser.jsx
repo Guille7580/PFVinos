@@ -9,33 +9,70 @@ import { Button } from 'react-bootstrap'
 import { toast } from 'react-toastify'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../../Helpers/firebase'
-import {validateform} from './Validate/Validate'
+import { validateEmail, validateTlf } from '../../Helpers/validateForm'
+
 
 const initialForm = {
   nombre: '',
   usuario: '',
-  email: '',
   pais: '',
   provincia: '',
   direccion: '',
-  telefono: ''
+  telefono: '',
+}
+const validateform = function (form) {
+  const errors = {}
+  if (!form.nombre.trim()) {
+    errors.nombre = 'Campo requerido'
+  } else if (form.nombre.length < 4) {
+    errors.nombre = 'Mínimo 4 caracteres'
+  } else if (form.nombre.length > 25) {
+    errors.nombre = 'Máximo 25 caracteres'
+  }
+
+  if (!form.usuario.trim()) {
+    errors.usuario = 'Campo requerido'
+  } else if (form.usuario.length < 5) {
+    errors.usuario = 'Mínimo 5 caracteres'
+  } else if (form.usuario.length > 15) {
+    errors.usuario = 'Máximo 15 caracteres'
+  }
+
+  if (!form.pais.trim()) {
+    errors.pais = 'Campo requerido'
+  }
+
+  if (!form.provincia.trim()) {
+    errors.provincia = 'Campo requerido'
+  }
+
+  if (!form.direccion.trim()) {
+    errors.direccion = 'Campo requerido'
+  } else if (form.direccion.length < 10) {
+    errors.direccion = 'Mínimo 10 caracteres'
+  } else if (form.direccion.length > 40) {
+    errors.direccion = 'Máximo 40 caracteres'
+  }
+
+  if (!form.telefono.trim()) {
+    errors.telefono = 'Campo requerido'
+  } else if (!validateTlf(form.telefono)) {
+    errors.telefono = 'Escriba un número de telefono válido'
+  }
+
+
+  return errors
 }
 
 
-function Createform ({ updateUser, register, isAuth, user, edit = false }) {
+function Createform ({ updateUser, register, isAuth, user }) {
   const navigate = useNavigate()
   const [form, setForm] = useState(
    { ...user } 
   )
   const [errors, setErrors] = useState({})
   const [input, setInput] = useState({
-    nombre: '',
-    usuario: '',
-    email: '',
-    pais: '',
-    provincia: '',
-    direccion: '',
-    telefono: ''
+  ...user
   })
 
   const handleChange = e => {
@@ -43,7 +80,7 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
 
     const newform = { ...form, [name]: value }
     setForm(newform)
-    const errors = validateform(newform, edit)
+    const errors = validateform(newform)
     setErrors(errors)
     return newform
   }
@@ -56,12 +93,18 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
     const userForm = { ...form }
 
     updateUser(userForm) 
+    Swal.fire({
+      text: `Perfil Editado con exito `,
+      icon: 'success',
+      confirmButtonText: 'Ok'
+    })
+    navigate('/')
   }
 
   const handleClick = () => {
     navigate('/')
   }
-
+ 
 
   return (
         <div className='containReg'>
@@ -92,7 +135,7 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
               {errors.usuario && <p>{errors.usuario}</p>}
             </label>
             
-            <label className='label'>
+            {/* <label className='label'>
     
               <input
                 onChange={e => handleChange(e)}
@@ -103,7 +146,7 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
                 value={form.email}
               />
               {errors.email && <p>{errors.email}</p>}
-            </label>
+            </label> */}
             <label className='label'>
     
               <input
@@ -140,9 +183,9 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
               />
               {errors.direccion && <p>{errors.direccion}</p>}
             </label>
-            <label className='label'>
+            <label className='label'> 
     
-              <input
+               <input
                 onChange={e => handleChange(e)}
                 className='regInput'
                 type='text'
@@ -150,8 +193,9 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
                 placeholder='Teléfono...'
                 value={form.telefono}
               />
+             {errors.telefono && <p>{errors.telefono}</p>} 
             </label>
-            {errors.telefono && <p>{errors.telefono}</p>}
+            
 
             <div className='regButtons'>
             <button type='submit' className='buttonReg'>
