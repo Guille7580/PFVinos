@@ -9,10 +9,10 @@ import {
    GET_PEDIDO_DETAIL
 } from './types';
 
-
 export const getDetailPedido = (pedido) => {
    return { type: GET_PEDIDO_DETAIL, payload: pedido };
 }
+
 
 export const postPedido = (pedido) => {
    return async function (dispatch) {
@@ -29,7 +29,6 @@ export const postPedido = (pedido) => {
       }
    }
 }
-
 export const deletePedido = (pedidoId) => {
    return async function (dispatch) {
       try {
@@ -45,21 +44,23 @@ export const deletePedido = (pedidoId) => {
       }
    }
 }
-
 export const getAllPedidos = () => {
    return async function (dispatch) {
       try {
          const { data } = await axios.get(
-            `${BASEURL}/pedidos`,
+            `${BASEURL}/pedidos/all`,
             getHeaderToken()
-         );
-         return dispatch({ type: GET_PEDIDOS, payload: data });
+          );
+          console.log(data)
+          return dispatch({
+              type: GET_PEDIDOS,
+              payload: data
+          });
       } catch (err) {
          console.log(err);
       }
    }
 }
-
 export function getPedidosByUser (payload) {
    console.log(payload + 'HOla accionessssss')
    const { email } = payload
@@ -73,12 +74,14 @@ export function getPedidosByUser (payload) {
      }
    }
  }
- 
 export function editStatusPedido(pedidoId, newStatus) {
+    const data = {
+        status: newStatus
+    }
    return async function (dispatch) {
       try {
-         const config = getHeaderToken()
-         const response = await axios.put(`${BASEURL}/pedidos/${pedidoId}`, newStatus, config)
+          const config = getHeaderToken()
+          const response = await axios.put(`${BASEURL}/pedidos/${pedidoId}`, data, config)
          return {
             type: EDIT_STATUS_PEDIDO,
             payload: response.data

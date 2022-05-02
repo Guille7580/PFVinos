@@ -9,6 +9,7 @@ import Cart from './Pages/Checkout/Cart'
 import Contact from './Pages/Contact/contact.jsx'
 import Perfil from './Pages/Perfil/perfil.jsx'
 import EditUser from './components/EditUser/EditUser'
+import VerOrdenes from './components/Ordenes/verOrdenes.jsx'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar'
@@ -166,6 +167,7 @@ const App = () => {
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/perfil/edit' element={<EditUser />} />
+          <Route path='/perfil/ordenes' element={<VerOrdenes />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
           <Route path='/login/recoverpassword' element={<RecoverPass />} />
