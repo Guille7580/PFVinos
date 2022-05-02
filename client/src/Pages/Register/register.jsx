@@ -152,7 +152,7 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
         pais: '',
         provincia: '',
         direccion: '',
-        telefono: userG.user.phoneNumber,
+        telefono: '',
         token: userG._tokenResponse.idToken
       }
       console.log(userGoogle)
