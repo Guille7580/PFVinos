@@ -8,6 +8,7 @@ import UserCards from "../../../components/cards/userCards.jsx";
 import Modall from "../../../components/Modal/modal.jsx";
 import Productos from "../../../components/Modal/productos.jsx";
 import Categories from "../../../components/Modal/categorias.js";
+import Ordenes from "../../../components/Modal/ordenes.jsx";
 
 
 export default function Admin() {
@@ -41,6 +42,9 @@ export default function Admin() {
             }
             {
                 selectedTab === 1 && <Productos />
+            }
+            {
+                selectedTab === 2 && <Ordenes />
             }
             {
                 selectedTab === 3 && <Categories />

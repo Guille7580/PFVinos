@@ -47,7 +47,7 @@ export function getNameProducts(title) {
   }
   };
 export function deleteProduct(payload) {
-  
+    
     return async function (dispatch) {
         try {
             const response = await axios.delete(`${BASEURL}/products/${payload}`);

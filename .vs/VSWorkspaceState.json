@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\api\\src\\routes",
     "\\api\\tests",
+    "\\api\\tests\\routes",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\components\\Map",
+    "\\client\\src\\components",
     "\\client\\src\\components\\Modal",
-    "\\client\\src\\reducer"
+    "\\client\\src\\Pages",
+    "\\client\\src\\Pages\\Home"
   ],
-  "SelectedNode": "\\client\\src\\reducer\\categorias.js",
+  "SelectedNode": "\\client\\src\\actions\\categorias.js",
   "PreviewInSolutionExplorer": false
 }

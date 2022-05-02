@@ -22,12 +22,12 @@ module.exports = (sequelize) => {
          allowNull: false,
       },
       fechaCreacion: {
-         type: DataTypes.DATE,
+         type: DataTypes.DATEONLY,
          get() {
             return new Date(this.getDataValue('fechaCreacion'));
          },
          set(fechaCreacion) {
-            this.setDataValue('fechaCreacion', fechaCreacion.toISOString().split('T')[0])
+             this.setDataValue('fechaCreacion', fechaCreacion.toISOString().split('T')[0])
          }
       }
    }, {
