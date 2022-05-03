@@ -178,13 +178,13 @@ export default function productsReducer (state = initialState, action) {
         carts: payload
       }
     //Productos
-    case GET_PRODUCTS:
-      return {
-     
-        ...state,
-        allProducts: payload.filter(e => e.stock > 0),
-        filtered: payload
-      }
+      case GET_PRODUCTS:
+          return {
+
+              ...state,
+              allProducts: payload.filter(e => e.stock > 0),
+              filtered: payload
+          }
     case GET_DETAIL:
       return {
         ...state,
@@ -197,11 +197,11 @@ export default function productsReducer (state = initialState, action) {
     //   detalles : []
     // }
 
-    case GET_NAME_PRODUCTS:
-      return {
-        ...state,
-        allProducts: payload.filter(e => e.stock > 0)
-      }
+      case GET_NAME_PRODUCTS:
+          return {
+              ...state,
+              allProducts: payload.filter(e => e.stock > 0)
+          }
 
     case FILTER_BY_CATEGORY:
       const Todos = state.filtered
