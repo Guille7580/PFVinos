@@ -91,7 +91,7 @@ function Createform ({ updateUser, register, isAuth, user }) {
     const errors = validateform(form)
 
     const userForm = { ...form }
-
+    console.log(userForm)
     updateUser(userForm) 
     Swal.fire({
       text: `Perfil Editado con exito `,
@@ -103,6 +103,9 @@ function Createform ({ updateUser, register, isAuth, user }) {
 
   const handleClick = () => {
     navigate('/')
+  }
+  const handleClickx = () => {
+    navigate('/login/resetpassword')
   }
  
 
@@ -202,7 +205,7 @@ function Createform ({ updateUser, register, isAuth, user }) {
               Registrar Cambios
             </button>
 
-            <button className='buttonReg'>
+            <button className='buttonReg' onClick = {handleClickx}>
               Cambiar Contraseña
             </button>
             

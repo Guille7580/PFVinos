@@ -12,14 +12,16 @@ const router = Router();
 const categorRoute= require('./categorias');
 const user = require('./user');
 const userupdate = require('./Usuario');
-const carritoRouter = require("./carrito");
 const forgotPassword = require("./forgotPassword");
 const resetPassword = require("./resetPassword");
-const pagosRouter = require("./pagos.routes");
-const pedidoRouter = require("./pedido.routes");
+const mercadoPagoRoute = require('./Mercadopago');
+const pedidoRouter = require ("./pedido.routes")
+
+
 
 //------------------- product -----------------------------------------
-var product = require('./product')
+var product = require('./product');
+const { route } = require('./pedido.routes');
 //userRouter.post("/register"var user = require('./user')
 
 //Product//////
@@ -39,15 +41,11 @@ router.use('/pedidos', pedidoRouter);
 //Categorias
 router.use('/categoria',categorRoute)
 
-// ------------------- Carrito -----------------------------------
-// var carro = require('./carrito')
+// ------------------- Mercado Pago-----------------------------------
 
-// router.post('/carritos', carro.carritoPost)
-// router.get('/carritos/:usuarioId', carro.carritoGet)
+router.use('/', mercadoPagoRoute);
 
-// carrito
 
-router.use("/pagos", pagosRouter);
 
 
 router.use('/categoria', categorRoute)

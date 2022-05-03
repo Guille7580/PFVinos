@@ -3,11 +3,14 @@ import { toast } from 'react-toastify'
 import { BASEURL } from '../assets/URLS'
 import getHeaderToken from '../Helpers/getHeaderToken'
 import {
-  EDIT_STATUS_PEDIDO,
-  GET_PEDIDOS,
-  GET_PEDIDO_BY_USER,
-  GET_PEDIDO_DETAIL
-} from './types'
+   EDIT_STATUS_PEDIDO,
+   GET_PEDIDOS,
+   GET_PEDIDO_BY_USER,
+   GET_PEDIDO_DETAIL,
+   GET_PEDIDOS_STATUS,
+   GET_BASKET_LOCAL_STORAGE,
+   GET_PREF_ID
+} from './types';
 
 export const getDetailPedido = pedido => {
   return { type: GET_PEDIDO_DETAIL, payload: pedido }

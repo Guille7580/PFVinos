@@ -14,6 +14,7 @@ import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar'
 import { RecoverPass } from './components/Recover_password/RecoverPass'
+import  ResetPass  from './components/Reset_password/Resetpasword'
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
@@ -23,6 +24,9 @@ import { getUserDetail } from './actions/auth'
 import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx'
 import Swal from 'sweetalert2'
 import CheckOut from './Pages/Checkout/CheckOut/CheckOut.jsx'
+
+
+
 
 const App = () => {
   const token = useSelector(state => state.loginReducer.token)
@@ -159,6 +163,7 @@ const App = () => {
               />
             }
           />
+
           <Route path='/checkout' element={<CheckOut cartItems={cartItems}/>} />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />
@@ -167,6 +172,7 @@ const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<IniciarSession />} />
           <Route path='/login/recoverpassword' element={<RecoverPass />} />
+          <Route path='/login/resetpassword' element={<ResetPass />} />
 
           <Route path='/contact' element={<Contact />} />
 

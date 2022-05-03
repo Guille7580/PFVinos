@@ -1,0 +1,11 @@
+.contenedorhistorial {
+  background-color: rgb(211, 222, 220);
+  border: solid 4px black;
+  border-radius: 4px;
+  margin-top: 25px;
+}
+
+.miscompras {
+  background-color: white;
+  padding: 10px;
+}
