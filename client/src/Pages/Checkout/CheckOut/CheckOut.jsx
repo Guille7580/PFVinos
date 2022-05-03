@@ -106,9 +106,9 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
   } else {
     
     setTimeout(() => {
+       window.location.href = url;
       setCartItems([]);
       localStorage.removeItem("carrito");
-      window.location.href = url;
       
      }, 1500);
     

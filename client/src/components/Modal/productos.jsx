@@ -25,12 +25,12 @@ function Productos () {
 
   console.log(allProduct)
 
-  useEffect(() => {
+  /* useEffect(() => {
     const status = {}
     empStatus.map(row => (status[row.id] = row.nombre))
     setStatus(status)
     setData(allProduct)
-  }, [allProduct, empStatus])
+  }, [allProduct, empStatus]) */
 
   const postProducts = newData => {
     dispatch(postProduct(newData))
