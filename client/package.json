@@ -18,6 +18,7 @@
     "emailjs": "^4.0.0",
     "firebase": "^9.6.11",
     "material-table": "^1.69.3",
+    "mercadopago": "^1.5.12",
     "react": "^v17.0.2",
     "react-animated-text-content": "^1.0.1",
     "react-bootstrap": "^2.1.2",
@@ -46,7 +47,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -66,4 +66,3 @@
     ]
   }
 }
-
