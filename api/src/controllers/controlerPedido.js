@@ -42,7 +42,7 @@ async function getPedidosByUser(req, res, next) {
    })
 
    if(info) res.send(info)
-   else res.status(404).send('No hay pedidos en progreso')
+     else res.status(404).send('No hay pedidos en progreso')
 }}
 
 async function statusPendiente(req, res) {

@@ -24,7 +24,7 @@ module.exports = [
   {
     nombre: 'Rodrigo Gomez',
     usuario: 'rodri001',
-    contrasena: 'contraseña2',
+    contrasena: 'alligator',
     email: 'rodrigo.lopez@gmail.com',
     pais: 'Peru',
     provincia: 'Lima',

@@ -14,12 +14,13 @@ const initialState = {
 }
 
 export default function pedidosReducer (state = initialState, action) {
-  console.log(JSON.stringify(state) + ' aaaaaaaaaaaaaaaaaaaa')
-  const { type, payload } = action
-
-  switch (type) {
+  // console.log(JSON.stringify(state.userPedidos) + ' aaaaaaaaaaaaaaaaaaaa')
+  //console.log(JSON.stringify(action) + "EEEEEEEEEEEEEEE")
+  //const { type } = action
+  console.log(JSON.stringify(action.payload) + ' ZZZZZZZZZZZreducerZZZZZZZZZZzzz')
+  switch (action) {
     case GET_PEDIDO_BY_USER:
-      return { ...state, userPedidos: payload }
+      return { state, userPedidos: action.payload }
 
     case EDIT_STATUS_PEDIDO:
       return {
