@@ -39,59 +39,66 @@ function Modall() {
 
     const columns = [
         {
-            title: "Name", field: "nombre",
+            title: "Nombre", field: "nombre",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
             }
         },
         {
             title: "Usuario", field: "usuario",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Rol", field: "rol",
             lookup: { 1: 'Usuario', 2: 'Administrador' },
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Email", field: "email",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Pais", field: "pais",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Provincia", field: 'provincia',
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Direccion", field: "direccion",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Telefono", field: "telefono",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
     ]
@@ -115,7 +122,8 @@ function Modall() {
 
                 options={{
                     headerStyle: {
-                        backgroundColor: '#039be5',
+                        backgroundColor: '#5f3252',
+                        color: '#fff'
                     },
                     actionsColumnIndex: -1,
                     addRowPosition: "first",
@@ -124,7 +132,9 @@ function Modall() {
                         backgroundColor: rowData => rowData.id % 2 === 0 ? '#917351' : '#FFA500',
                     },
                     searchFieldStyle: {
-                        backgroundColor: '#FFA500'
+                        backgroundColor: '#5f3252',
+                        color: '#fff',
+                        borderRadius: '2px'
                     },
                     draggable: true,
                     searchAutoFocus: true,
@@ -138,7 +148,7 @@ function Modall() {
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                console.log('HOLAAAAAAAAA', oldData.email)
+
                                 const dataUpdate = [...data];
                                 const index = oldData.tableData.id;
                                 dataUpdate[index] = newData;

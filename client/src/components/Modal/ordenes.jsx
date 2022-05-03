@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ordenes.css';
 import MaterialTable from 'material-table'
-import { editStatusPedido, getAllPedidos } from '../../actions/pedidos';
-import { Link } from 'react-router-dom';
-import { Visibility } from '@material-ui/icons';
+import { editStatusPedido, getAllPedidos } from '../../actions/pedidos'
+import { Link } from 'react-router-dom'
+import { Visibility } from '@material-ui/icons'
 
-function Ordenes() {
+function Ordenes () {
+  const [data, setData] = useState([])
 
-     const [data, setData] = useState([])
+  const dispatch = useDispatch()
 
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getAllPedidos())
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllPedidos())
+  }, [dispatch])
 
     const pedidos = useSelector(state => state.pedidosReducer.pedidos)
     console.log(pedidos)
@@ -22,56 +21,62 @@ function Ordenes() {
         setData(pedidos)
     }, [pedidos])
 
-    const editStatusPedidos = (id, newstatus) => {
-        console.log(id, newstatus)
-        dispatch(editStatusPedido(id, newstatus))
+  useEffect(() => {
+    setData(pedidos)
+  }, [pedidos])
+
+  const editStatusPedidos = (id, newstatus) => {
+    console.log(id, newstatus)
+    dispatch(editStatusPedido(id, newstatus))
+  }
+
+
+  console.log(pedidos)
+
+  const columns = [
+    {
+      title: 'Fecha',
+      field: 'date',
+      headerStyle: {
+        backgroundColor: '#5f3252',
+        whiteSpace: 'nowrap',
+        color: '#ffffff'
+      },
+      cellStyle: {
+        fontSize: 15
+      }
+    },
+
+    {
+      title: 'Estado',
+      field: 'status',
+      lookup: {
+        PENDIENTE: 'PENDIENTE',
+        COMPLETADO: 'COMPLETADO',
+        PAGADO: 'PAGADO'
+      },
+      headerStyle: {
+        backgroundColor: '#5f3252',
+        whiteSpace: 'nowrap',
+        color: '#ffffff'
+      },
+      cellStyle: {
+        fontSize: 15
+      }
+    },
+    {
+      title: 'Total',
+      field: 'total',
+      headerStyle: {
+        backgroundColor: '#5f3252',
+        whiteSpace: 'nowrap',
+        color: '#ffffff'
+      },
+      cellStyle: {
+        fontSize: 15
+      }
     }
-
-    console.log(pedidos)
-
-    const columns = [
-        {
-            title: 'Fecha', field: 'fechaCreacion',
-            headerStyle: {
-                backgroundColor: '#5f3252',
-                whiteSpace: 'nowrap',
-                color: '#ffffff'
-            },
-            cellStyle: {
-
-
-                fontSize: 15
-            }
-        },
-        
-        {
-            title: 'Estado', field: 'status', lookup: { 'PENDIENTE': 'PENDIENTE', 'COMPLETADO': 'COMPLETADO', 'PAGADO':'PAGADO' },
-            headerStyle: {
-                backgroundColor: '#5f3252',
-                whiteSpace: 'nowrap',
-                color: '#ffffff'
-            },
-            cellStyle: {
-
-
-                fontSize: 15
-            }
-        },
-        {
-            title: 'Total', field: 'total',
-            headerStyle: {
-                backgroundColor: '#5f3252',
-                whiteSpace: 'nowrap',
-                color: '#ffffff'
-            },
-            cellStyle: {
-
-
-                fontSize: 15
-            }
-        },
-
-    ]
+  ]
 
     return (
         <div className="App">
@@ -175,4 +180,4 @@ function Ordenes() {
         </div>
     );
 }
-export default Ordenes;
+export default  Ordenes

@@ -9,7 +9,7 @@ const generateRandomString = require("../Util/getRandomString")
 
 const forgotPassword = async (req, res, next) => {
   const { email } = req.params
-  console.log(email)
+
 
   if (!email) {
     return next({ status: 400, message: "Email is required" })
@@ -21,7 +21,7 @@ const forgotPassword = async (req, res, next) => {
 
   try {
     const user = await User.findOne({ where: { email } })
-    console.log(user.email)
+  
     
     if (user) {
       try {

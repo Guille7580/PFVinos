@@ -6,13 +6,15 @@ import {
    EDIT_STATUS_PEDIDO,
    GET_PEDIDOS,
    GET_PEDIDO_BY_USER,
-   GET_PEDIDO_DETAIL
+   GET_PEDIDO_DETAIL,
+   GET_PEDIDOS_STATUS,
+   GET_BASKET_LOCAL_STORAGE,
+   GET_PREF_ID
 } from './types';
 
 export const getDetailPedido = (pedido) => {
    return { type: GET_PEDIDO_DETAIL, payload: pedido };
 }
-
 
 export const postPedido = (pedido) => {
    return async function (dispatch) {
@@ -61,19 +63,59 @@ export const getAllPedidos = () => {
       }
    }
 }
-export function getPedidosByUser (payload) {
-   console.log(payload + 'HOla accionessssss')
+export function getPedidosByUser(payload) {
+
+    return async function (dispatch) {
+        try {
+            const datas = await axios.get(
+                `${BASEURL}/pedidos/${payload}`
+
+                // getHeaderToken()
+            )
+            console.log(JSON.stringify(datas) + 'ddddddACTIONSddddddd')
+            return dispatch({
+                type: GET_PEDIDO_BY_USER,
+                payload: datas
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+}
+ export function getPedidosPendiente(payload) {
+
    const { email } = payload
+   console.log(payload)
    return async function (dispatch) {
      try {
-       const { data } = await axios.get(`${BASEURL}/pedidos/${email}`)
-       return dispatch({ type: GET_PEDIDO_BY_USER, payload: data })
+       const { data } = await axios.get(`${BASEURL}/pedidos/status/${email}`)
+       return dispatch({ type: GET_PEDIDOS_STATUS, payload: data })
      } catch (err) {
        //toast.error('No se han podido cargar los pedidos')
        return console.log(err.response.data)
      }
    }
  }
+
+ export function cargarCarrito(payload){
+   return ({
+       type: GET_BASKET_LOCAL_STORAGE,
+       payload
+   })
+}
+export function getMercadoPago(payload){
+   return async(dispatch) => {
+      console.log(`${BASEURL}/mercadoPago`)
+       const mercadopago = await axios.post(`${BASEURL}/mercadoPago`, payload);
+
+       console.log("response.data  :",mercadopago.data)
+       dispatch({
+           type: GET_PREF_ID,
+           payload: mercadopago.data
+       })
+   }
+}
+
 export function editStatusPedido(pedidoId, newStatus) {
     const data = {
         status: newStatus

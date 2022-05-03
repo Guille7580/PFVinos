@@ -32,7 +32,7 @@ import {
 export function updateUser(newUser) {
   return async function (dispatch) {
     try {
-      await axios.put(`${BASEURL}/user/update`, newUser, getHeaderToken());
+      await axios.put(`${BASEURL}/usuario/update`, newUser, getHeaderToken());
       dispatch(getUserDetail());
       return {
         type: UPDATE_USER,
@@ -139,7 +139,7 @@ export function register({
 export const getUserDetail = () => {
   return async (dispatch) => {
      const headers = getHeaderToken();
-     console.log(headers);
+
      try {
         const { data } = await axios.get(`${BASEURL}/user`, headers);
         toast(`Bienvenido ${data.nombre}`)

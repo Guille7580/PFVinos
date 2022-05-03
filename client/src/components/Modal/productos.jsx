@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './modal.css';
-import './productos.css'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import './modal.css'
 import MaterialTable from 'material-table'
-import { deleteProduct, getAllProducts, postProduct, updateProduct } from '../../actions/productos';
-import { getShowActivity } from '../../actions/categorias';
+import {deleteProduct, getAllProducts, postProduct, updateProduct } from '../../actions/productos'
+import { getShowActivity } from '../../actions/categorias'
 
 function Productos() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const [data, setData] = useState([])
     const [status, setStatus] = useState({})
 
     useEffect(() => {
-        dispatch(getAllProducts());
-        dispatch(getShowActivity());
-    }, [dispatch]);
+        dispatch(getAllProducts())
+        dispatch(getShowActivity())
+    }, [dispatch])
 
     const allProduct = useSelector(state => state.productosReducer.allProducts)
     const empStatus = useSelector(state => state.catReducer.allCategory)
@@ -23,55 +22,64 @@ function Productos() {
 
     useEffect(() => {
         const status = {}
-        empStatus.map((row) => status[row.id] = row.nombre)
+        empStatus.map(row => (status[row.id] = row.nombre))
         setStatus(status)
         setData(allProduct)
-    }, [allProduct, empStatus]);
+    }, [allProduct, empStatus])
 
-    const postProducts = (newData) => {
+    const postProducts = newData => {
         dispatch(postProduct(newData))
     }
 
-    const updateProducts = (newData) => {
+    const updateProducts = newData => {
         dispatch(updateProduct(newData))
     }
 
-    const deleteProducts = (id) => {
+    const deleteProducts = id => {
         dispatch(deleteProduct(id))
     }
 
     const columns = [
-
         {
-            title: '', field: 'image', render: item => <img src={item.image} alt="Imagen" border="3" height="100" width="100" />,
+            title: '',
+            field: 'image',
+            render: item => (
+                <img
+                    src={item.image}
+                    alt='Imagen'
+                    border='3'
+                    height='100'
+                    width='100'
+                />
+            ),
             headerStyle: {
                 backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
                 color: '#ffffff'
             },
             cellStyle: {
-
-                
                 fontSize: 15
             }
         },
         {
-            title: "Name", field: "title",
+            title: 'Nombre',
+            field: 'title',
             headerStyle: {
                 backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
                 color: '#ffffff'
             },
             cellStyle: {
-
                 minWidth: 180,
                 maxWidth: 180,
                 fontSize: 15
             }
         },
         {
-            title: "Categoria", field: "Categorium.id", lookup: status,
-           
+            title: 'Categoria',
+            field: 'Categorium.id',
+            lookup: status,
+
             headerStyle: {
                 backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
@@ -79,23 +87,23 @@ function Productos() {
             }
         },
         {
-            title: "Año", field: "age",
-            
+            title: 'AÃ±o',
+            field: 'age',
+
             headerStyle: {
                 backgroundColor: '#5f3252',
                 minWidth: 1,
-                textAlign: "center",
+                textAlign: 'center',
                 maxWidth: 1,
                 color: '#ffffff'
             },
             cellStyle: {
-
-
                 fontSize: 15
             }
         },
         {
-            title: "Bodega", field: "bodega",
+            title: 'Bodega',
+            field: 'bodega',
 
             headerStyle: {
                 backgroundColor: '#5f3252',
@@ -103,29 +111,26 @@ function Productos() {
                 color: '#ffffff'
             },
             cellStyle: {
-
-
                 fontSize: 15
             }
-
         },
         {
-            title: "Varietal", field: "cepa",
+            title: 'Varietal',
+            field: 'cepa',
 
             headerStyle: {
                 backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
                 color: '#ffffff'
             },
-             cellStyle: {
-
-
+            cellStyle: {
                 fontSize: 15
             }
         },
         {
-            title: "Descripcion", field: "descriptions",
-            
+            title: 'Descripcion',
+            field: 'descriptions',
+
             headerStyle: {
                 backgroundColor: '#5f3252',
                 minWidth: 350,
@@ -134,14 +139,14 @@ function Productos() {
                 color: '#ffffff'
             },
             cellStyle: {
-               
                 minWidth: 350,
                 maxWidth: 350,
                 fontSize: 15
             }
         },
         {
-            title: "Precio", field: "price",
+            title: 'Precio',
+            field: 'price',
 
             headerStyle: {
                 backgroundColor: '#5f3252',
@@ -149,72 +154,65 @@ function Productos() {
                 color: '#ffffff'
             },
             cellStyle: {
-                fontSize: 15
-            }
-
-        },
-        {
-            title: "Rate", field: "rate",
-
-            headerStyle: {
-                backgroundColor: '#5f3252',
-                whiteSpace: 'nowrap',
-                color: '#ffffff'
-            },
-            cellStyle: {
-
-
                 fontSize: 15
             }
         },
         {
-            title: "Stock", field: "stock", render: rowData => <div className={rowData.stock>0?'ok':'danger'}>{rowData.stock}</div>,
-            
+            title: 'Rate',
+            field: 'rate',
+
             headerStyle: {
                 backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',
                 color: '#ffffff'
             },
             cellStyle: {
-
-
                 fontSize: 15
             }
         },
+        {
+            title: 'Stock',
+            field: 'stock',
+
+
+            headerStyle: {
+                backgroundColor: '#5f3252',
+                whiteSpace: 'nowrap',
+                color: '#ffffff'
+            },
+            cellStyle: {
+                fontSize: 15
+            }
+        }
     ]
 
     return (
-        <div className="App">
-            <h1 align="center">PANEL ADMINISTRACION DE PRODUCTOS</h1>  
+        <div className='App'>
+            <h1 align='center'>PANEL ADMINISTRACION DE PRODUCTOS</h1>
 
             <MaterialTable
-
-                title="Productos"
+                title='Productos'
                 columns={columns}
                 data={data}
-
                 localization={{
                     header: {
-                        actions: 'Acciones',
+                        actions: 'Acciones'
                     },
                     body: { editRow: { deleteText: 'Confirmar Borrar' } }
-
-
                 }}
-                
                 options={{
-                    
                     headerStyle: {
                         backgroundColor: '#5f3252',
                         color: '#ffffff'
                     },
                     actionsColumnIndex: -1,
-                    addRowPosition: "first",
+                    addRowPosition: 'first',
                     exportButton: true,
                     gruoping: true,
-                                       
+
                     rowStyle: {
-                        backgroundColor: rowData => rowData.id % 2 === 0 ? '#917351' : '#FFA500',
+                        backgroundColor: rowData =>
+                            rowData.id % 2 === 0 ? '#917351' : '#FFA500'
                     },
                     searchFieldStyle: {
                         backgroundColor: '#FFA500'
@@ -227,7 +225,7 @@ function Productos() {
                     filtering: true,
                     grouping: true,
                     doubleHorizontalScroll: true,
-                    tableLayout: 'auto',                   
+                    tableLayout: 'auto'
                 }}
                 editable={{
                     onRowAddCancelled: rowData => console.log('Row adding cancelled'),
@@ -235,39 +233,48 @@ function Productos() {
                     onRowAdd: newData =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                setData([...data, newData]);
+                                setData([...data, newData])
                                 /*postProducts(newData);*/
-                                let datas = {title:newData.title,price:newData.price,category:newData.Categorium.id,descriptions:newData.descriptions,stock:newData.stock,bodega:newData.bodega,cepa:newData.cepa,age:newData.age}
+                                let datas = {
+                                    title: newData.title,
+                                    price: newData.price,
+                                    category: newData.Categorium.id,
+                                    descriptions: newData.descriptions,
+                                    stock: newData.stock,
+                                    bodega: newData.bodega,
+                                    cepa: newData.cepa,
+                                    age: newData.age
+                                }
                                 postProducts(datas)
-                                resolve();
-                            }, 1000);
+                                resolve()
+                            }, 1000)
                         }),
 
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                const dataUpdate = [...data];
-                                const index = oldData.tableData.id;
-                                dataUpdate[index] = newData;
-                                setData([...dataUpdate]);
+                                const dataUpdate = [...data]
+                                const index = oldData.tableData.id
+                                dataUpdate[index] = newData
+                                setData([...dataUpdate])
                                 updateProducts(newData)
-                                resolve();
+                                resolve()
                             }, 1000)
                         }),
                     onRowDelete: oldData =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                const dataDelete = [...data];
-                                const index = oldData.tableData.id;
-                                dataDelete.splice(index, 1);
-                                setData([...dataDelete]);
+                                const dataDelete = [...data]
+                                const index = oldData.tableData.id
+                                dataDelete.splice(index, 1)
+                                setData([...dataDelete])
                                 deleteProducts(oldData.id)
                                 resolve()
                             }, 1000)
-                        }),
+                        })
                 }}
             />
         </div>
-    );
+    )
 }
-export default Productos;
+export default Productos

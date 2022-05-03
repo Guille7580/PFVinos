@@ -6,7 +6,7 @@ export function getShowActivity(){
     return async function(dispatch){
         try{
           var json= await axios(`${BASEURL}/categoria`);
-          console.log('Holaaaaa',json)
+
           return dispatch({
             type: GET_CATEGORIA,
             payload:json.data
