@@ -12,9 +12,6 @@ module.exports = sequelize => {
       type: DataTypes.STRING,
       defaultValue: ""
     },
-    email: {
-      type: DataTypes.STRING,
-    },
   payment_status:{
       type: DataTypes.STRING,
       defaultValue: ""
@@ -23,13 +20,8 @@ module.exports = sequelize => {
       type: DataTypes.BIGINT,
       defaultValue: 0
   },
-  total: {
-      type: DataTypes.BIGINT,
-      defaultValue: 0
-  },
-  detail: {
-      type: DataTypes.TEXT,
-      defaultValue: 0
-  },
+  cartId:{
+    type: DataTypes.STRING,
+  }
   })
 }

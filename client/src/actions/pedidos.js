@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import { BASEURL } from '../assets/URLS';
 import getHeaderToken from '../Helpers/getHeaderToken'
@@ -9,8 +8,10 @@ import {
    GET_PEDIDO_DETAIL,
    GET_PEDIDOS_STATUS,
    GET_BASKET_LOCAL_STORAGE,
-   GET_PREF_ID
+   GET_PREF_ID,
+   EDIT_STATUS_PAGADO
 } from './types';
+import axios from 'axios';
 
 export const getDetailPedido = (pedido) => {
    return { type: GET_PEDIDO_DETAIL, payload: pedido };
@@ -127,4 +128,22 @@ export function editStatusPedido(pedidoId, newStatus) {
          return console.log(err.response.data);
       }
    }
+}
+
+export function editStatusPagado(pedidoId, newStatus) {
+   const data = {
+       status: newStatus
+   }
+  return async function (dispatch) {
+     try {
+         // const config = getHeaderToken()
+         const response = await axios.put(`${BASEURL}/pedidos/${pedidoId}/pago`, data)
+        return {
+           type: EDIT_STATUS_PAGADO,
+           payload: response.data
+        }
+     } catch (err) {
+        return console.log(err.response.data);
+     }
+  }
 }
