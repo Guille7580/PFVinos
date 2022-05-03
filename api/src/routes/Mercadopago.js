@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const mercadopago = require('mercadopago');
-//const { pedidosReducer } = require('../../../client/src/reducer/pedidos');
+const { COMPLETADO, PENDIENTE, PAGADO, CANCELADO } = require("../data/constantes");
 const { Payment, Pedido, User } = require("../db");
 require('dotenv').config()
 
@@ -84,9 +84,9 @@ router.get('/mercadoPago/pagos', async (req, res, next) => {
             })
             if(cart){
                 const info = await Pedido.findAll({
-                    where: {usuarioId: userId.id, status: 'PENDIENTE'},
+                    where: {usuarioId: userId.id, status: PENDIENTE},
                  })
-                 info.status = 'In progress'
+                 info.status = PAGADO
                  await info.save()
                  res.send('El status ha cambiado correctamente')
             }
