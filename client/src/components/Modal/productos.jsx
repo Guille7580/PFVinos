@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './modal.css';
+import './productos.css'
 import MaterialTable from 'material-table'
 import { deleteProduct, getAllProducts, postProduct, updateProduct } from '../../actions/productos';
 import { getShowActivity } from '../../actions/categorias';
@@ -167,8 +168,8 @@ function Productos() {
             }
         },
         {
-            title: "Stock", field: "stock",
-
+            title: "Stock", field: "stock", render: rowData => <div className={rowData.stock>0?'ok':'danger'}>{rowData.stock}</div>,
+            
             headerStyle: {
                 backgroundColor: '#5f3252',
                 whiteSpace: 'nowrap',

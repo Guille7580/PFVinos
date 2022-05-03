@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './modal.css';
+import './ordenes.css';
 import MaterialTable from 'material-table'
 import { editStatusPedido, getAllPedidos } from '../../actions/pedidos';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ function Ordenes() {
     }, [dispatch]);
 
     const pedidos = useSelector(state => state.pedidosReducer.pedidos)
-
+    console.log(pedidos)
     useEffect(() => {
         setData(pedidos)
     }, [pedidos])
@@ -143,20 +143,43 @@ function Ordenes() {
                         tooltip: 'Show Name',
                         render: rowData => {
                             return (
-                                <div
-                                    style={{
-                                        fontSize: 40,
-                                        textAlign: 'center',
-                                        color: 'white',
-                                        backgroundColor: '#43A047',
-                                    }}
-                                >
-                                    {rowData.products.map(el => (<div>
-                                        <h5>Nombre: {JSON.parse(el).title}</h5>
-                                        <h5>Cantidad: {JSON.parse(el).amount}</h5>
-                                    </div>))}
 
-                                </div>
+                                <body className='body'>
+                                <div class="container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                    <th>Id Producto</th>
+                                                <th>Producto</th>
+                                                <th>Cantidad</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                {rowData.products.map(el => (<tr>
+                                                    <td>{JSON.parse(el).productoId}</td>
+                                                    <td>{JSON.parse(el).title}</td>
+                                                    <td>{JSON.parse(el).amount}</td>
+                                                </tr>))}
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </body>
+
+                                //<div
+                                //    style={{
+                                //        fontSize: 40,
+                                //        textAlign: 'center',
+                                //        color: 'white',
+                                //        backgroundColor: '#43A047',
+                                //    }}
+                                //>
+                                //    {rowData.products.map(el => (<div>
+                                //        <h5>Nombre: {JSON.parse(el).title}</h5>
+                                //        <h5>Cantidad: {JSON.parse(el).amount}</h5>
+                                //    </div>))}
+
+                                //</div>
                             )
                         },
                     },
