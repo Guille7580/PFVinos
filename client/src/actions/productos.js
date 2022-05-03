@@ -60,12 +60,17 @@ export function deleteProduct(payload) {
         }
     };
 }
-export function resetDetail() {
+export const resetDetail = () => (dispatch) => {
+  dispatch({
+    type: RESET_DETAIL,
+  });
+};
+/* export function resetDetail() {
     return {
       type: RESET_DETAIL
       
     }
-}
+} */
 export function postProduct(payload) {
 
     return async function (dispatch) {

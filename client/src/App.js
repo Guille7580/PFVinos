@@ -8,13 +8,14 @@ import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
 import Contact from './Pages/Contact/contact.jsx'
 import Perfil from './Pages/Perfil/perfil.jsx'
+import PagoExitoso from './Pages/PagoExitoso/PagoExitoso.jsx'
 import EditUser from './components/EditUser/EditUser'
 import VerOrdenes from './components/Ordenes/verOrdenes.jsx'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
 import Register from './Pages/Register/register.jsx'
 import IniciarSession from './Pages/IniciarSession/iniciar'
 import { RecoverPass } from './components/Recover_password/RecoverPass'
-import  ResetPass  from './components/Reset_password/Resetpasword'
+import ResetPass from './components/Reset_password/Resetpasword'
 import Detail from './components/Detail/detail.jsx'
 import Dashboard from './Pages/Dashboard/Principal/Dashboard'
 import NavBar from './components/navBar/navBar'
@@ -24,9 +25,6 @@ import { getUserDetail } from './actions/auth'
 import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx'
 import Swal from 'sweetalert2'
 import CheckOut from './Pages/Checkout/CheckOut/CheckOut.jsx'
-
-
-
 
 const App = () => {
   const token = useSelector(state => state.loginReducer.token)
@@ -89,6 +87,19 @@ const App = () => {
       position: 'center',
       icon: 'success',
       title: 'Producto agregado al carrito',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  }
+
+  const handleEmptyCart = id => {
+    if (cartItems.length === 1) localStorage.removeItem('carrito')
+
+    setCartItems(0)
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Gracias por tu compra',
       showConfirmButton: false,
       timer: 2000
     })
@@ -164,7 +175,14 @@ const App = () => {
             }
           />
 
-          <Route path='/checkout' element={<CheckOut cartItems={cartItems}/>} />
+          <Route
+            path='/checkout'
+            element={<CheckOut cartItems={cartItems} />}
+          />
+          <Route
+            path='/pagoexitoso'
+            element={<PagoExitoso handleEmptyCart={handleEmptyCart} />}
+          />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/perfil/edit' element={<EditUser />} />
