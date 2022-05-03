@@ -4,11 +4,9 @@ export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const POST_PRODUCT = 'POST_PRODUCT'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
-
 //detalles
 export const GET_DETAIL = "GET_DETAIL"
 export const RESET_DETAIL = "RESET_DETAIL"
-
 
 //searchbar
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS'
@@ -67,4 +65,3 @@ export const CREATE_PRODUCT = "CREATE_PRODUCT"
 export const GET_BASKET_LOCAL_STORAGE = "GET_BASKET_LOCAL_STORAGE"
 export const GET_MERCADOPAGO = "GET_MERCADOPAGO"
 export const GET_PREF_ID = "GET_PREF_ID";
-export const EDIT_STATUS_PAGADO = "EDIT_STATUS_PAGADO"

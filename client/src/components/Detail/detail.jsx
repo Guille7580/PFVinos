@@ -1,53 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { getDetail, resetDetail } from "../../actions/productos";
-import "./detail.css";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { getDetail } from '../../actions/productos'
+import './detail.css'
 
-export default function Detail({
-  handleAddToCart,
-  handleAddToCartButton,
-  cartItems,
-  setCartItems,
-}) {
-  const myProducts = useSelector((state) => state.productosReducer.detalles);
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const [cart, setCart] = useState();
-
+export default function Detail ({ handleAddToCart, handleAddToCartButton, cartItems, setCartItems }) {
+  const dispatch = useDispatch()
+  const { id } = useParams()
+const [cart , setCart ] = useState()
   useEffect(() => {
-    dispatch(getDetail(id));
-    return () => {
-      dispatch(resetDetail())
-    }
-  }, [dispatch ]);
+    dispatch(getDetail(id))
+  }, [dispatch])
 
-  function changeNumber(e) {
+  function changeNumber(e){
     const item = e.target.value;
-    console.log(item);
-    setCart([...cart, item]);
+    console.log(item)
+    setCart([...cart, item])
   }
 
-  console.log(myProducts);
-  console.log(cartItems);
+  const myProducts = useSelector(state => state.productosReducer.detalles)
+  console.log(myProducts)
+  console.log(cartItems)
   return (
-    <div className="detailContainer">
+    <div className='detailContainer'>
       {Object.keys(myProducts).length > 0 ? (
-        <div className="info">
-          <div className="titleDet">
+        <div className='info'>
+          <div className='titleDet'>
             <h1>{myProducts.title}</h1>
             <img
-              className="detailImage"
+              className='detailImage'
               src={myProducts.image}
-              alt="img not found"
+              alt='img not found'
             />
           </div>
-          <div className="description">
+          <div className='description'>
             <h3>{myProducts.descriptions}</h3>
           </div>
-          <div className="extraInfo">
+          <div className='extraInfo'>
             <h3>Bodega: {myProducts.bodega}</h3>
             <h3>Cepa: {myProducts.cepa}</h3>
             <h3>Year: {myProducts.age}</h3>
@@ -58,22 +49,22 @@ export default function Detail({
           </div>
         </div>
       ) : (
-        console.log("error")
+        console.log('error')
       )}
-      <div className="btnDetails">
-        <Link to="/">
-          <button className="detailButtons">Sigue Comprando</button>
+      <div className='btnDetails'>
+        <Link to='/'>
+          <button className='detailButtons' >Sigue Comprando</button>
         </Link>
 
         {/* <Link to="/carrito">  */}
         <button
-          onClick={() => handleAddToCartButton(myProducts)}
-          className="detailButtons"
+          onClick={() => handleAddToCartButton(myProducts) }
+          className='detailButtons'
         >
           Agrega a Carrito
         </button>
         {/* </Link>  */}
       </div>
     </div>
-  );
+  )
 }
