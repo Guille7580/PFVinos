@@ -1,20 +1,17 @@
-import {
-  EDIT_STATUS_PEDIDO,
-  GET_PEDIDOS,
-  GET_PEDIDO_DETAIL,
-  GET_PEDIDO_BY_USER
-} from '../actions/types'
+import { EDIT_STATUS_PEDIDO, GET_PEDIDOS, GET_PEDIDO_DETAIL, GET_PEDIDO_BY_USER, GET_PREF_ID } from '../actions/types';
 
 const initialState = {
   allPedidos: [],
   filteredPedidos: [],
   pedidoDetail: null,
   userPedidos: [],
-  pedidos: []
+  pedidos: [],
+  prefId: "",
+  url: ""
 }
 
 export default function pedidosReducer (state = initialState, action) {
-  console.log(JSON.stringify(state) + ' aaaaaaaaaaaaaaaaaaaa')
+
   const { type, payload } = action
 
   switch (type) {
@@ -31,6 +28,8 @@ export default function pedidosReducer (state = initialState, action) {
         ...state,
         pedidos: action.payload
       }
+      case GET_PREF_ID:
+        return {...state, prefId: action.payload.id , url: action.payload.url}
     default:
       return { ...state }
   }

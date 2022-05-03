@@ -25,6 +25,7 @@ module.exports = (sequelize) => {
       date: {
          type: DataTypes.STRING
       }
+      
    }, {
       timestamps: false
    });

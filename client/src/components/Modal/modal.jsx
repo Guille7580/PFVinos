@@ -148,7 +148,7 @@ function Modall() {
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                console.log('HOLAAAAAAAAA', oldData.email)
+
                                 const dataUpdate = [...data];
                                 const index = oldData.tableData.id;
                                 dataUpdate[index] = newData;

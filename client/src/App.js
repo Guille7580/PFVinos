@@ -25,6 +25,9 @@ import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx'
 import Swal from 'sweetalert2'
 import CheckOut from './Pages/Checkout/CheckOut/CheckOut.jsx'
 
+
+
+
 const App = () => {
   const token = useSelector(state => state.loginReducer.token)
   const isAuth = useSelector(state => state.loginReducer.isAuth)
@@ -160,6 +163,7 @@ const App = () => {
               />
             }
           />
+
           <Route path='/checkout' element={<CheckOut cartItems={cartItems}/>} />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/perfil' element={<Perfil />} />

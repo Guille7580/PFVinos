@@ -139,7 +139,7 @@ export function register({
 export const getUserDetail = () => {
   return async (dispatch) => {
      const headers = getHeaderToken();
-     console.log(headers);
+
      try {
         const { data } = await axios.get(`${BASEURL}/user`, headers);
         toast(`Bienvenido ${data.nombre}`)

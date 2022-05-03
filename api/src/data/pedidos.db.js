@@ -102,7 +102,7 @@ module.exports = [
 
       "total": "453.5",
       "date": "20/3/2022, 08:09:28",
-      "status": "PENDIENTE"
+      "status": "PAGADO"
    },
    {
       "id": 8,
@@ -146,7 +146,7 @@ module.exports = [
 
       "total": "325.9",
       "date": "26/4/2022, 17:52:28",
-      "status": "PENDIENTE"
+      "status": "PAGADO"
    },
    {
       "id": 11,
