@@ -44,7 +44,7 @@ router.post('/mercadoPago', async (req, res, next) => {
                 console.log("response.body    :", response.body)
                 global.init_point = response.body.sandbox_init_point;
                 //console.log(response.body);
-                res.json({ id: global.id, url: global.init_point }); 
+                res.send({ id: global.id, url: global.init_point }); 
 
             })
             .catch(function (error) {
@@ -57,7 +57,7 @@ router.post('/mercadoPago', async (req, res, next) => {
     }
 })
 
-router.post('/mercadoPago/pagos', async (req, res, next) => {
+router.get('/mercadoPago/pagos', async (req, res, next) => {
     try {
       console.info("EN LA RUTA PAGOS ", req)
       const payment_id= req.query.payment_id
@@ -80,7 +80,8 @@ router.post('/mercadoPago/pagos', async (req, res, next) => {
             total:Total,
             detail:JSON.stringify(detail),
         })
-    
+        
+        
     
     
         return res.redirect("http://localhost:3000")

@@ -8,7 +8,8 @@ import {
    GET_PEDIDO_BY_USER,
    GET_PEDIDO_DETAIL,
    GET_PEDIDOS_STATUS,
-   GET_BASKET_LOCAL_STORAGE
+   GET_BASKET_LOCAL_STORAGE,
+   GET_PREF_ID
 } from './types';
 
 export const getDetailPedido = (pedido) => {
@@ -102,12 +103,14 @@ export function getMercadoPago(payload){
       console.log(`${BASEURL}/mercadoPago`)
        const mercadopago = await axios.post(`${BASEURL}/mercadoPago`, payload);
 
-       return dispatch({
-           type:"GET_MERCADOPAGO",
+       console.log("response.data  :",mercadopago.data)
+       dispatch({
+           type: GET_PREF_ID,
            payload: mercadopago.data
        })
    }
 }
+
 export function editStatusPedido(pedidoId, newStatus) {
     const data = {
         status: newStatus

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import './CheckOut.css'
 import { Link } from 'react-router-dom'
@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import { postPedido } from '../../../actions/carrito'
 import CheckOutItems from './CheckOutItems/checkoutItems'
 import { WineLoader } from '../../../components/wineLoader/wineLoader'
-import {getMercadoPago, getPedidosPendiente} from '../../../actions/pedidos'
-import {login} from '../../../actions/auth'
+import { getMercadoPago, getPedidosPendiente } from '../../../actions/pedidos'
+import { login } from '../../../actions/auth'
 
-export function calculateTotal (items) {
+export function calculateTotal(items) {
   return items
     ?.reduce((acc, item) => acc + item.amount * item.price, 0)
     .toFixed(2)
@@ -19,41 +19,42 @@ export function calculateTotal (items) {
 function addCheckout(prefId, check) {
 
   var mp = new window.MercadoPago('TEST-ea9e8942-0e18-4582-8050-97e6da6d6ad6', {
-      locale: 'es-CO'
+    locale: 'es-CO'
   })
 
   mp.checkout({
-      preference: {
-          id: prefId,
-      },
-      render: {
-          container: `#pay_button`, // Indica el nombre de la clase donde se mostrará el botón de pago
-          label: 'Comprar', // Cambia el texto del botón de pago 
-      },
+    preference: {
+      id: prefId,
+    },
+    render: {
+      container: `#pay_button`, // Indica el nombre de la clase donde se mostrará el botón de pago
+      label: 'Comprar', // Cambia el texto del botón de pago 
+    },
   });
 }
 
 
-export default function CheckOut ({ product, cartItems }) {
+export default function CheckOut({ product, cartItems }) {
   const user = useSelector((state) => state.loginReducer.userDetail);
   //const Inicie = () => toast(`Por Favor Inicie sesion`, {duration: 4000, position: 'bottom-center',})
-  //const url = useSelector((state) => state.mercadoPago.url);
+  const url = useSelector(state => state.url)
+console.log(url)
   const dispatch = useDispatch()
 
 
 
-useEffect(() => {
-  let inicioSesion =JSON.parse(localStorage.getItem('userData'))
-  if(inicioSesion){
+  useEffect(() => {
+    let inicioSesion = JSON.parse(localStorage.getItem('userData'))
+    if (inicioSesion) {
       const fetchData = async () => {
-          await   dispatch(login({
-              'email':inicioSesion.email,
-              'password':inicioSesion.password
-          }))
+        await dispatch(login({
+          'email': inicioSesion.email,
+          'password': inicioSesion.password
+        }))
       }
       fetchData()
-  }
-}, []);
+    }
+  }, []);
 
   const products = cartItems.map(product => ({
     productoId: product.id,
@@ -71,15 +72,19 @@ useEffect(() => {
     date: new Date().toLocaleString()
   }
 
-  console.log("biiiiiiiiiiiiiiiiiiiitch", order)
-
   const navigate = useNavigate()
+  
 
-  function onFinishPay (e) {
+  function onFinishPay(e) {
     e.preventDefault()
     dispatch(postPedido(order))
-    dispatch(getMercadoPago({email: order.email, items: order.products}));
-    }
+    dispatch(getMercadoPago({ email: order.email, items: order.products }));
+  }
+  function onFinish(e) {
+    e.preventDefault();
+    if(!url) return navigate('/checkout')
+    window.location.href = url;
+}
 
 
   let users = useSelector(state => state.loginReducer.userDetail)
@@ -114,6 +119,11 @@ useEffect(() => {
             </Link>
             <Link to='/#'>
               <button className='totandBut' onClick={onFinishPay} >
+                Confirmar dirección
+              </button>
+            </Link>
+            <Link to='/#'>
+              <button type = "module" className='totandBut' onClick={onFinish} >
                 Pagar
               </button>
             </Link>
