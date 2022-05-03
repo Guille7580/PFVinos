@@ -37,8 +37,8 @@ function addCheckout(prefId, check) {
 export default function CheckOut({ product, cartItems }) {
   const user = useSelector((state) => state.loginReducer.userDetail);
   //const Inicie = () => toast(`Por Favor Inicie sesion`, {duration: 4000, position: 'bottom-center',})
-  const url = useSelector(state => state.url)
-console.log(url)
+  const url = useSelector(state => state.pedidosReducer.url)
+console.log("checkkkkkkkkkout",url)
   const dispatch = useDispatch()
 
 

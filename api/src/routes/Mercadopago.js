@@ -44,7 +44,7 @@ router.post('/mercadoPago', async (req, res, next) => {
                 console.log("response.body    :", response.body)
                 global.init_point = response.body.sandbox_init_point;
                 //console.log(response.body);
-                res.send({ id: global.id, url: global.init_point }); 
+                res.send({url: global.init_point}); 
 
             })
             .catch(function (error) {
