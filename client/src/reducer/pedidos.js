@@ -1,5 +1,4 @@
-
-import { EDIT_STATUS_PEDIDO, GET_PEDIDOS, GET_PEDIDO_DETAIL, GET_PEDIDO_BY_USER, GET_PREF_ID, EDIT_STATUS_PAGADO } from '../actions/types';
+import { EDIT_STATUS_PEDIDO, GET_PEDIDOS, GET_PEDIDO_DETAIL, GET_PEDIDO_BY_USER, GET_PREF_ID } from '../actions/types';
 
 const initialState = {
   allPedidos: [],
@@ -36,10 +35,6 @@ export default function pedidosReducer (state = initialState, action) {
       case GET_PREF_ID:
         console.log("reducer: ",action.payload.url)
         return {...state, url: action.payload.url}
-        case EDIT_STATUS_PAGADO:
-          return {
-            ...state
-          }
     default:
       return { ...state }
   }

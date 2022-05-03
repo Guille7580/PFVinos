@@ -99,30 +99,11 @@ async function updateStatusPedido(idPedido, newStatus) {
    }
 }
 
-async function updateStatusPagado(idPedido, newStatus) {
-
-   try {
-      await Pedido.update({
-         status: "PAGADO"
-      }, {
-         where: {
-            id: idPedido
-         }
-      });
-
-      return "Pago realizado";
-   } catch (error) {
-      console.log(error);
-      return { error: {} }
-   }
-}
-
 module.exports = {
    pedidoPost,
    getAllPedidos,
    deletePedido,
    updateStatusPedido,
    getPedidosByUser,
-   statusPendiente,
-   updateStatusPagado
+   statusPendiente
   };
