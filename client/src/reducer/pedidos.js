@@ -6,8 +6,7 @@ const initialState = {
   pedidoDetail: null,
   userPedidos: [],
   pedidos: [],
-  prefId: "",
-  url: ""
+  url: {}
 }
 
 export default function pedidosReducer (state = initialState, action) {
@@ -29,7 +28,8 @@ export default function pedidosReducer (state = initialState, action) {
         pedidos: action.payload
       }
       case GET_PREF_ID:
-        return {...state, prefId: action.payload.id , url: action.payload.url}
+        console.log("reducer: ",action.payload.url)
+        return {...state, url: action.payload.url}
     default:
       return { ...state }
   }
