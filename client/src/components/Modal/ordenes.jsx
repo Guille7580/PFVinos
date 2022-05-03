@@ -165,21 +165,7 @@ function Ordenes() {
                                     </table>
                                     </div>
                                 </body>
-
-                                //<div
-                                //    style={{
-                                //        fontSize: 40,
-                                //        textAlign: 'center',
-                                //        color: 'white',
-                                //        backgroundColor: '#43A047',
-                                //    }}
-                                //>
-                                //    {rowData.products.map(el => (<div>
-                                //        <h5>Nombre: {JSON.parse(el).title}</h5>
-                                //        <h5>Cantidad: {JSON.parse(el).amount}</h5>
-                                //    </div>))}
-
-                                //</div>
+                             
                             )
                         },
                     },
