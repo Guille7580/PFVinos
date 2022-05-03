@@ -4,9 +4,11 @@ export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const POST_PRODUCT = 'POST_PRODUCT'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
+
 //detalles
 export const GET_DETAIL = "GET_DETAIL"
 export const RESET_DETAIL = "RESET_DETAIL"
+
 
 //searchbar
 export const GET_NAME_PRODUCTS = 'GET_NAME_PRODUCTS'

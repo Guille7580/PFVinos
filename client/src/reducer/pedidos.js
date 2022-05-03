@@ -13,10 +13,15 @@ const initialState = {
 export default function pedidosReducer (state = initialState, action) {
 
   const { type, payload } = action
-
+    console.log(type)
   switch (type) {
-    case GET_PEDIDO_BY_USER:
-      return { ...state, userPedidos: payload }
+
+      case GET_PEDIDO_BY_USER:
+          console.log(type)
+          return {
+              ...state,
+              userPedidos: payload
+          }
 
     case EDIT_STATUS_PEDIDO:
       return {

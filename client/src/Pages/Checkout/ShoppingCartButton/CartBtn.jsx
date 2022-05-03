@@ -8,31 +8,17 @@ import { BsCart3 } from "react-icons/bs";
 
 function CartBtn() {
   const [items, setItems] = useState([]);
-   useEffect(() => {
-    setItems(JSON.parse(localStorage.getItem("carrito")));
-  }, []);
-  const json= JSON.parse(localStorage.getItem("carrito")); 
-  const [contador, setContador] = useState(0)
- /*  if(items && items.length > 0) {
-    console.log(items)
-  for (let i = 0; i < [...items].length; i++) {
-    setContador(contador + items[i].amount)
+  const json = JSON.parse(localStorage.getItem("carrito"));
+  const [contador, setContador] = useState(0);
 
-  }
-  }  */
-  /* items.length > 0
-      ? items.reduce((a, b) => ({ amountTotal: a.amount + b.amount }))
-      : []; */
-  
+  useEffect(() => {
+    setItems(JSON.parse(localStorage.getItem("carrito")));
+  }, [json]);
 
   return (
     <div>
-    {/*   { items.length > 0
-      ? items.reduce((a, b) => ({ amountTotal: a.amount + b.amount })).amountTotal
-      : [] } */}
-      {/* <img src={cart} className='cartButton' alt='icon of a cart' /> */}
-      <BsCart3 /> 
-    {json?.length}
+      <BsCart3 />
+      {json?.length}
     </div>
   );
 }
