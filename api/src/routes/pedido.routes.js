@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { pedidoPost, getAllPedidos, getPedidosByUser, updateStatusPedido, deletePedido, statusPendiente  } = require('../controllers/controlerPedido');
+const { pedidoPost,updateStatusPagado, getAllPedidos, getPedidosByUser, updateStatusPedido, deletePedido, statusPendiente  } = require('../controllers/controlerPedido');
 const { User } = require('../db');
 const pedidoRouter = Router();
 const { check, validationResult } = require('express-validator');
@@ -22,6 +22,10 @@ pedidoRouter.get('/:email',
 pedidoRouter.get('/status/:email',
    // authentication,
    statusPendiente
+)
+pedidoRouter.put('/status/:email',
+   // authentication,
+   updateStatusPagado
 )
 
 
