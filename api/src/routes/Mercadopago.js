@@ -59,14 +59,13 @@ router.post('/mercadoPago', async (req, res, next) => {
     }
 })
 
-router.get('/mercadoPago/pagos', async (req, res, next) => {
+router.put('/mercadoPago/pagos', async (req, res, next) => {
     try {
       console.info("EN LA RUTA PAGOS ", req)
       const payment_id= req.query.payment_id
       const payment_status= req.query.status
       const external_reference = req.query.external_reference
       const merchant_order_id= req.query.merchant_order_id
-      const email= req.query.email
       // const items = req.query.items
       const status = req.query.status
      
@@ -77,24 +76,21 @@ router.get('/mercadoPago/pagos', async (req, res, next) => {
             payment_status: payment_status,
             merchant_order_id : merchant_order_id,
             status : status,
-            email: email,
-            cartId: external_reference,
-            total:Total,
-            detail:JSON.stringify(detail),
+            cartId: external_reference
         })
         
-        const cart = await User.findOne({
+        const usuarioId = await User.findOne({
             where: {email: external_reference},
             })
-            if(cart){
+
                 const info = await Pedido.findAll({
-                    where: {usuarioId: userId.id, status: PENDIENTE},
+                    where: {usuarioId: usuarioId, status: PENDIENTE},
                  })
-                 info.status = PAGADO
-                 await info.save()
+                 info = await Pedido.update({status: PAGADO}, { where: { usuarioId: usuarioId } })
+
                  res.send('El status ha cambiado correctamente')
-            }
-        console.log(info)
+            
+        console.log(info )
            // if(cart){
             //     cart.Products.map( async product => {
             //         product.stock = product.stock - product.Pedido.amount
