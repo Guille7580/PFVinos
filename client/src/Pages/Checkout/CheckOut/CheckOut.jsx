@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { postPedido } from '../../../actions/carrito'
 import CheckOutItems from './CheckOutItems/checkoutItems'
 import { WineLoader } from '../../../components/wineLoader/wineLoader'
+import {getMercadoPago, getPedidosPendiente} from '../../../actions/pedidos'
+import {login} from '../../../actions/auth'
 
 export function calculateTotal (items) {
   return items
@@ -13,15 +15,50 @@ export function calculateTotal (items) {
     .toFixed(2)
 }
 
+
+function addCheckout(prefId, check) {
+
+  var mp = new window.MercadoPago('TEST-ea9e8942-0e18-4582-8050-97e6da6d6ad6', {
+      locale: 'es-CO'
+  })
+
+  mp.checkout({
+      preference: {
+          id: prefId,
+      },
+      render: {
+          container: `#pay_button`, // Indica el nombre de la clase donde se mostrará el botón de pago
+          label: 'Comprar', // Cambia el texto del botón de pago 
+      },
+  });
+}
+
+
 export default function CheckOut ({ product, cartItems }) {
-  const user = useSelector(state => state.loginReducer.userDetail)
+  const user = useSelector((state) => state.loginReducer.userDetail);
+  //const Inicie = () => toast(`Por Favor Inicie sesion`, {duration: 4000, position: 'bottom-center',})
+  //const url = useSelector((state) => state.mercadoPago.url);
   const dispatch = useDispatch()
-  console.log(user)
+
+
+
+useEffect(() => {
+  let inicioSesion =JSON.parse(localStorage.getItem('userData'))
+  if(inicioSesion){
+      const fetchData = async () => {
+          await   dispatch(login({
+              'email':inicioSesion.email,
+              'password':inicioSesion.password
+          }))
+      }
+      fetchData()
+  }
+}, []);
 
   const products = cartItems.map(product => ({
     productoId: product.id,
     title: product.title,
-    amount: product.amount,
+    quantity: product.amount,
     price: product.price
   }))
 
@@ -34,17 +71,19 @@ export default function CheckOut ({ product, cartItems }) {
     date: new Date().toLocaleString()
   }
 
+  console.log("biiiiiiiiiiiiiiiiiiiitch", order)
+
   const navigate = useNavigate()
 
   function onFinishPay (e) {
     e.preventDefault()
     dispatch(postPedido(order))
-    return navigate('/pedido/payment')
-  }
+    dispatch(getMercadoPago({email: order.email, items: order.products}));
+    }
+
 
   let users = useSelector(state => state.loginReducer.userDetail)
-  const { nombre, usuario, email, pais, provincia, direccion, telefono } =
-    user || {}
+  const { nombre, usuario, email, pais, provincia, direccion, telefono } = user || {}
 
   return users ? (
     <div>
@@ -74,7 +113,7 @@ export default function CheckOut ({ product, cartItems }) {
               <button className='totandBut'>Volver</button>
             </Link>
             <Link to='/#'>
-              <button className='totandBut' onClick={onFinishPay}>
+              <button className='totandBut' onClick={onFinishPay} >
                 Pagar
               </button>
             </Link>

@@ -78,8 +78,6 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
 
    const categories = useSelector(state => state.catReducer.allCategory)
 
-    console.log(categories)
-
   return (
     <div>
 

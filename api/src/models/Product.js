@@ -9,7 +9,7 @@ module.exports = sequelize => {
       allowNull: true
     },
     price: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     descriptions: {
