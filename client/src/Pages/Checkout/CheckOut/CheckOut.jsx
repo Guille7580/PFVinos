@@ -8,6 +8,7 @@ import CheckOutItems from "./CheckOutItems/checkoutItems";
 import { WineLoader } from "../../../components/wineLoader/wineLoader";
 import { getMercadoPago, getPedidosPendiente } from "../../../actions/pedidos";
 import { login } from "../../../actions/auth";
+import Swal from "sweetalert2"
 
 export function calculateTotal(items) {
   return items
@@ -86,14 +87,33 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
     e.preventDefault();
     dispatch(postPedido(order));
     dispatch(getMercadoPago({ email: order.email, items: order.products }));
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Exitoso!",
+      text: "Confirmaste direccion",
+    }) 
   }
   function onFinish(e) {
     e.preventDefault();
-    if (!url) return navigate("/checkout");
-    window.location.href = url;
-    setCartItems([]);
-    if (cartItems.length === 0) localStorage.removeItem("carrito");
-  }
+    if (typeof url === "object") {
+      Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Oops...",
+      text: "Primero confirmar direccion",
+    }) 
+  } else {
+    
+    setTimeout(() => {
+      setCartItems([]);
+      localStorage.removeItem("carrito");
+      window.location.href = url;
+      
+     }, 1500);
+    
+    
+  }}
 
   let users = useSelector((state) => state.loginReducer.userDetail);
   const { nombre, usuario, email, pais, provincia, direccion, telefono } =
