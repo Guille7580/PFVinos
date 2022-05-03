@@ -11,16 +11,11 @@ export default function VerOrdenes(){
     const dispatch = useDispatch()
     const user = useSelector((state) => state.loginReducer.userDetail);
     const pedidos = useSelector((state) => state.pedidosReducer.userPedidos)
-
-    useEffect(() => {
-        dispatch(getUser())
-        return () => {
-            dispatch(getPedidosByUser(user.email))
-        }
-    }, [dispatch])
-
     console.log(user)
-    console.log(pedidos)
+    
+    useEffect(() => {
+      dispatch(getPedidosByUser(user.email))
+      }, [user])
 
     //useEffect(() => {
     //    dispatch(getPedidosByUser(user.email));
