@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Cart.css";
 import { getUserDetail } from "../../actions/auth";
 //import NavBar from '../../components/navBar/navBar'
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 //import { Loader } from '../../components/Loader/Loader'
 //import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
 //import Swal from 'sweetalert2'
 import CartItems from "./CartItems/CartItems";
 import AnimatedText from "react-animated-text-content";
-import { useNavigate } from "react-router-dom";
+
 
 
 export function calculateTotal(items) {
@@ -27,7 +27,7 @@ export default function Cart({
   handleDeleteFromCart,
   getTotalItems,
 }) {
- 
+  const navigate = useNavigate()
   const user = useSelector((state) => state.loginReducer.userDetail);
   const dispatch = useDispatch();
 
@@ -47,7 +47,9 @@ export default function Cart({
     date: new Date().toLocaleString(),
   };
 
-  
+  const handleClick = () => {
+    !user ? navigate('/login') : navigate('/checkout')
+  }
 
   return (
     <div>
@@ -76,9 +78,9 @@ export default function Cart({
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="/checkout">
-              <button className="btnBottom" >Continuar</button>
-            </Link>
+            
+            <button className="btnBottom" onClick={handleClick} >Continuar</button>
+            
           </div>
         </div>
       </div>
