@@ -102,7 +102,7 @@ const NavBarAuthenticated = ({cartItems}) => {
     }
 
   return (
-    <div className="navContainer">
+    <>
       <NavBarAll cartItems={cartItems}/>
 
       <Select options={options}
@@ -110,7 +110,7 @@ const NavBarAuthenticated = ({cartItems}) => {
       {/* <Link to='/perfil' className='navButton'>
        Perfil
       </Link> */}
-    </div>
+    </>
   )
 }
 
@@ -141,7 +141,7 @@ function NavBar ({cartItems}) {
 
       {isAuth && user ? (
         <>
-          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated className="navAuth" cartItems={cartItems}/>}
+          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated  cartItems={cartItems}/>}
           <div className='navButtonHola'> Hola, {user.usuario} </div>
           <Link to='/' className='navButton' onClick={handleLogout}>
             Salir
