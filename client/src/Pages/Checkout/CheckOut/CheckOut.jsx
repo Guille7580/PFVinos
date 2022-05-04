@@ -98,7 +98,7 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
       localStorage.removeItem("carrito");
       
      }, 1500);
-    
+     //localStorage.clear();
     
   }}
 

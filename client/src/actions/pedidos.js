@@ -132,13 +132,10 @@ export function editStatusPedido(pedidoId, newStatus) {
 export function changeStatusToComplete(email){
    return async function (dispatch)
     {
-      console.log("actiooooooooooooooons",email)
        const json = await axios.put(`${BASEURL}/pedidos/${email}/changeToComplete`);
-       console.log("actiooooooooooooooonssssss",json)
        return dispatch({
            type: CHANGE_ORDER_TO_COMPLETE,
            payload: json.data
-
        })
    }
 
