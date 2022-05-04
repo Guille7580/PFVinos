@@ -30,6 +30,7 @@ router.get('/products/:id',product.getProductById)
 router.post('/products', product.postProduct)
 router.delete('/products/:id', product.deleteProduct)
 router.put('/products/:id', product.putProduct)
+router.put('/products/stock/:email', product.stockProduct)
 
 //User
 

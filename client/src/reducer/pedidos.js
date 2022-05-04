@@ -1,4 +1,4 @@
-import { EDIT_STATUS_PEDIDO, GET_PEDIDOS, GET_PEDIDO_DETAIL, GET_PEDIDO_BY_USER, GET_PREF_ID } from '../actions/types';
+import { EDIT_STATUS_PEDIDO,CHANGE_ORDER_TO_COMPLETE, GET_PEDIDOS, GET_PEDIDO_DETAIL, GET_PEDIDO_BY_USER, GET_PREF_ID } from '../actions/types';
 
 const initialState = {
   allPedidos: [],
@@ -21,6 +21,10 @@ export default function pedidosReducer (state = initialState, action) {
       return {
         ...state
       }
+      case CHANGE_ORDER_TO_COMPLETE:
+        return {
+          ...state
+        }
 
     case GET_PEDIDOS:
       return {

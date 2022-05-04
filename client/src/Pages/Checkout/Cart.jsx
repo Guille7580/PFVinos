@@ -42,7 +42,7 @@ export default function Cart({
     amount: product.amount,
   }));
   //console.log(products)
-  
+    
   let order = {
     usuarioId: user?.id,
     email: user?.email,
@@ -51,6 +51,14 @@ export default function Cart({
     date: new Date().toLocaleString(),
   };
   console.log(user)
+
+  let stock = cartItems.map((product) => ({
+    productoId: product.id,
+    title: product.title,
+    price: product.price,
+    amount: product.amount,
+  }));
+
 
   const handleContinuar = () => {
     Swal.fire({
