@@ -2,7 +2,7 @@ module.exports = [
   {
     nombre: 'Admin',
     usuario: 'Admin',
-    contrasena: 'admin123',
+    contrasena: '7pgnsfldhbk00',
     email: 'admin@gmail.com',
     pais: 'Ecuador',
     provincia: 'Quito',

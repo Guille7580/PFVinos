@@ -31,6 +31,8 @@ export default function Cart({
  
   const user = useSelector((state) => state.loginReducer.userDetail);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
 
 
   const products = cartItems.map((product) => ({
@@ -48,6 +50,7 @@ export default function Cart({
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
+  console.log(user)
 
   const handleContinuar = () => {
     Swal.fire({
@@ -57,6 +60,22 @@ export default function Cart({
       text: "No puedes continuar si no hay productos en carrito!",
     });
   }
+
+  const handleLogin = () => {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Oops...",
+      text: "No puedes continuar si no iniciaste sesion",
+    }).then(r => {
+      if(r.isConfirmed) {
+    navigate("/login")
+      }
+    })
+
+    
+  }
+
 
   
 
@@ -88,9 +107,9 @@ export default function Cart({
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
 
-            {products.length !==0? (<Link to="/checkout">
-            <button className="btnBottom" >Continuar</button>
-            </Link>) : <button className="btnBottom" onClick={() => handleContinuar()}>Continuar</button>}
+            {products.length !==0? (
+            <button className="btnBottom" onClick={user !== null?(() => navigate("/checkout")) : (() => handleLogin())  }>Continuar</button>
+            ) : <button className="btnBottom" onClick={() => handleContinuar() }>Continuar</button>}
             
           </div>
         </div>
