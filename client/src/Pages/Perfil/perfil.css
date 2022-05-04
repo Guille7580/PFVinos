@@ -23,7 +23,7 @@
   padding: 5px;
 }
 
-.editBtn{
+.editBtn {
   color: #523e27;
   font-size: 16px;
   margin-left: 1rem;
@@ -34,9 +34,7 @@
   border-radius: 5px;
   background-color: whitesmoke;
   max-height: 40px;
-  
 }
-
 
 .editBtn:hover {
   color: #523e27;
@@ -46,4 +44,9 @@
   transition: 0.5s;
   border-bottom: #523e27 solid 1px;
   border-right: #523e27 solid 1px;
+}
+@media screen and (max-width: 600px) {
+  .perfilContainer {
+    background-color: white;
+  }
 }
