@@ -36,15 +36,15 @@
 }
 
 .btnItems1:hover {
-  background-color: rgb(95, 50, 82);
+  background-color: gray;
 }
 
 .btnItems2:hover {
-  background-color: #a07794;
+  background-color: gray;
 }
 
 .btnItems3:hover {
-  background-color: #dfc6d7;
+  background-color: gray;
 }
 
 .subtotalItem {
