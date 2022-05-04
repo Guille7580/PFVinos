@@ -76,7 +76,8 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
       dispatch(getShowActivity())
   }, [])
 
-   const categories = useSelector(state => state.catReducer.allCategory)
+    const categories = useSelector(state => state.catReducer.allCategory)
+    console.log(categories)
 
   return (
     <div>
@@ -120,7 +121,7 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
         <select onChange={handleFilterCat}>
                   <option value='All'>Categoría</option>
 
-                  {categories.map(el => <option value={el.nombre}>{el.nombre}</option>)}
+                  {categories.map(el => <option key={el.id}value={el.nombre}>{el.nombre}</option>)}
 
           {/*<option value='Blanco'>Blanco</option>*/}
           {/*<option value='Tinto'>Tinto</option>*/}
