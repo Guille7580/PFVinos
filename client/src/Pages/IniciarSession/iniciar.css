@@ -60,7 +60,7 @@
   padding: 10px;
 }
 
-.box2{
+.box2 {
   text-align: center;
   display: flex;
   justify-items: space-between;
@@ -74,20 +74,18 @@ input {
   margin: 15px;
 }
 
-.endLinks{
+.endLinks {
   display: flex;
   justify-content: space-between;
- 
 }
 
- .endLink{
+.endLink {
   background: none;
   border-radius: 5px;
   justify-content: space-around;
   color: #e8cfc1;
   margin: 5px;
- }
-
+}
 
 .googleBtn {
   margin-top: 10px;
@@ -160,4 +158,47 @@ input {
   background-color: #000;
   border-radius: 50%;
   margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .containerWine {
+    display: none;
+  }
+  .box {
+    height: fit-content;
+    margin: 0%;
+    padding: 0%;
+    width: 415px;
+  }
+  .iniciar {
+    align-items: center;
+    justify-content: start;
+    height: 844px;
+    width: 400px;
+  }
+  .buttonSess{
+    font-size: 20px;
+  }
+  .googleBtn{
+    font-size: 16px;
+  }
+  .containerIn{
+    justify-items: center;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .iniciar {
+    height: 850px;
+    font-size: 24px;
+  }
+  .buttonSess{
+    font-size: 20px;
+  }
+  .googleBtn{
+    font-size: 16px;
+  }
+  .containerIn{
+    justify-items: center;
+  }
 }
