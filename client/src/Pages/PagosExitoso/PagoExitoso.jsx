@@ -9,21 +9,14 @@ import { changeStatusToComplete, getPedidosByUser } from '../../actions/pedidos'
 export default function PagoExitoso (handleEmptyCart) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginReducer.userDetail);
-  const [mail, setmail] = useState("")
   console.log("lpmmmmmmmmmmmmmmm",user)
 
   useEffect(() => {
     console.log("pruebaaaaaaaaaaa")
-    setmail(user.email)
-    
     return (()=>dispatch(changeStatusToComplete(user.email)))
-    }, [user]);
+    }, [dispatch]);
 
-const datos = getPedidosByUser.map((product) => ({
-  products:product.products
-}))
 
-console.log("aaaaaaaaaaaaaaaaaaa",datos)
 
   return (
     <div className='pagoContainer'>
