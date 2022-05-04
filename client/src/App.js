@@ -8,6 +8,7 @@ import Home from './Pages/Home/home.jsx'
 import Cart from './Pages/Checkout/Cart'
 import Contact from './Pages/Contact/contact.jsx'
 import Perfil from './Pages/Perfil/perfil.jsx'
+import PagoExitoso from './Pages/PagosExitoso/PagoExitoso.jsx'
 import EditUser from './components/EditUser/EditUser'
 import VerOrdenes from './components/Ordenes/verOrdenes.jsx'
 import AboutUs from './Pages/AboutUs/aboutUs.jsx'
@@ -166,6 +167,7 @@ const App = () => {
 
           <Route path='/checkout' element={<CheckOut cartItems={cartItems}/>} />
           <Route path='/aboutUs' element={<AboutUs />} />
+          <Route path='/pagoexitoso' element={<PagoExitoso />} />
           <Route path='/perfil' element={<Perfil />} />
           <Route path='/perfil/edit' element={<EditUser />} />
           <Route path='/perfil/ordenes' element={<VerOrdenes />} />
