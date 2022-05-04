@@ -9,7 +9,7 @@ import {
    GET_PEDIDO_DETAIL,
    GET_PEDIDOS_STATUS,
    GET_BASKET_LOCAL_STORAGE,
-   GET_PREF_ID
+   GET_PREF_ID, CHANGE_ORDER_TO_COMPLETE
 } from './types';
 
 export const getDetailPedido = (pedido) => {
@@ -132,13 +132,26 @@ export function editStatusPedido(pedidoId, newStatus) {
 export function changeStatusToComplete(email){
    return async function (dispatch)
     {
-       const json = await axios.put(`${BASEURL}/users/${email}/changeToComplete`);
-       
+      console.log("actiooooooooooooooons",email)
+       const json = await axios.put(`${BASEURL}/pedidos/${email}/changeToComplete`);
+       console.log("actiooooooooooooooonssssss",json)
        return dispatch({
-           type: "CHANGE_ORDER_TO_COMPLETE",
+           type: CHANGE_ORDER_TO_COMPLETE,
            payload: json.data
 
        })
    }
 
+}
+export function getPayments(payload){
+   return async(dispatch) => {
+      
+       const mercadopago = await axios.post(`${BASEURL}/pedidos/payment/:email`, payload);
+
+       console.log("response.data  :",mercadopago.data)
+       dispatch({
+           type: GET_PREF_ID,
+           payload: mercadopago.data
+       })
+   }
 }

@@ -1,8 +1,9 @@
  
 
-const { Pedido, User } = require("../db");
+const { Pedido, User, Payment } = require("../db");
 const { Sequelize } = require("sequelize");
 const Op = Sequelize.Op;
+const {PENDIENTE, PAGADO} = require("../data/constantes")
 
 async function pedidoPost(req, res, next) {
   try {
@@ -17,18 +18,33 @@ async function pedidoPost(req, res, next) {
     return next({});
   }
 }
-async function getAllPedidos(req, res, next) {
-
+async function getAllPyments(req, res, next) {
+   const email = req.params.email
   try {
-     let pedidos = await Pedido.findAll()
+     
+     let pagos = await Payment.findAll({where: {cartId: email}})
                   // Le cambio de nombre y quito algunos campos a cada pedido
-   res.json(pedidos);
+   res.json(pagos);
+   console.log(pagos)
      }
    catch (error) {
      console.log(error);
      return { error: {} }
   }
 }
+
+async function getAllPedidos(req, res, next) {
+
+   try {
+      let pedidos = await Pedido.findAll()
+                   // Le cambio de nombre y quito algunos campos a cada pedido
+    res.json(pedidos);
+      }
+    catch (error) {
+      console.log(error);
+      return { error: {} }
+   }
+ }
 
 async function getPedidosByUser(req, res, next) {
    const email = req.params.email
@@ -82,22 +98,22 @@ async function deletePedido(id, userIdToken) {
 
 
 async function changePedido (req, res) {
-   const {email} = req.params; 
-   console.log(email)
+   const email = req.params.email; 
+
       if (email) {
       let userId = await User.findOne({
          where: { email: email},
       })
    const info = await Pedido.findAll({
-      where: {usuarioId: userId.id, status: 'PENDIENTE'},
+      where: {usuarioId: userId.id, status: PENDIENTE},
    })
+   console.log("infooooooooooooooo",info)
            if(info ){
-               console.log(info )
-               info .status = 'PAGADO'
-               await cart.save()
+            
+               await Pedido.update({status: PAGADO}, {where: {status: PENDIENTE}})
                
                res.send('El status ha cambiado correctamente')
-               await transporter.sendMail(orderComplete(email,cart))
+               //await transporter.sendMail(orderComplete(email,cart))
            } else res.status(404).send('Cart not found')
    
 }}
@@ -108,5 +124,6 @@ module.exports = {
    deletePedido,
    getPedidosByUser,
    statusPendiente,
-   changePedido
+   changePedido,
+   getAllPyments
   };
