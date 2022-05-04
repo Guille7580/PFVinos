@@ -1,3 +1,15 @@
-.ordenContainer {
-    background-color: darkgrey #523e27;
+.imagenimgOrden {
+    background-color: darkgray;
+    position: absolute;
 }
+.infoverorden{
+    font-size: 26px;
+    color:white;
+    position: relative;
+    padding-left: 1100px;
+}
+
+/*.containerOrden{
+
+}
+*/

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import vino from './vino.jpeg'
+import './verOrdenes.css'
 import { getPedidosByUser } from '../../actions/pedidos'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +24,12 @@ export default function VerOrdenes(){
     console.log(pepe)
     return (
         <div>
-            {<div>{pepe?.map((el) => <div key={el.index}>{el}</div>)}</div>}
+            <div className='containerOrden'>
+                <img className='imagenimgOrden ' src={vino} alt='vino' height='720px' />
+                {<div className='infoverorden'>{pepe?.map((el) =>
+                    <div key={el.index}>{el}</div>)}</div>}
+            </div>
+
         </div>
     )
 }
