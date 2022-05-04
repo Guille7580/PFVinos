@@ -47,3 +47,9 @@
   border-bottom: #523e27 solid 1px;
   border-right: #523e27 solid 1px;
 }
+
+@media screen and (max-width: 600px) {
+  .perfilContainer{
+    background-color: white;
+  }
+}

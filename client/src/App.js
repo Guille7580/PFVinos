@@ -109,6 +109,13 @@ const App = () => {
       }, [])
     )
   }
+const [cart, setCart] = useState()
+const emptyCart = ( ) => {
+  cart.empty()
+  .then(res=> {
+    setCart(null)
+  })
+}
 
   const getTotalItems = items => {
     return items.reduce((acc, item) => acc + item.amount, 0)
