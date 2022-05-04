@@ -78,39 +78,8 @@ router.put('/mercadoPago/pagos', async (req, res, next) => {
             status : status,
             cartId: external_reference
         })
-        
-        const usuarioId = await User.findOne({
-            where: {email: external_reference},
-            })
-
-                const info = await Pedido.findAll({
-                    where: {usuarioId: usuarioId, status: PENDIENTE},
-                 })
-                 info = await Pedido.update({status: PAGADO}, { where: { usuarioId: usuarioId } })
-
-                 res.send('El status ha cambiado correctamente')
-            
-        console.log(info )
-           // if(cart){
-            //     cart.Products.map( async product => {
-            //         product.stock = product.stock - product.Pedido.amount
-            //         await product.save()
-            //     })
 
         return res.redirect("http://localhost:3000")
-        
-    //     .catch((err) =>{
-    //       console.error('error al salvar', err)
-    //       return res.redirect(`http://localhost:3000/?error=${err}&where=al+salvar`)
-    //     })
-    //   })
-    //   .catch(err =>{
-    //     console.error('error al buscar', err)
-    //     return res.redirect(`http://localhost:3000/?error=${err}&where=al+buscar`)
-    //   })
-    
-      //proceso los datos del pago 
-      //redirijo de nuevo a react con mensaje de exito, falla o pendiente
    
     } catch (error) {
       console.log("error  :",error)
