@@ -11,9 +11,7 @@ import {
   ADD_ITEM,
   DELETE_ITEM,
   GET_CART,
-  DELETE_CART,
-  RESET_DETAIL
-  
+  DELETE_CART
 } from '../actions/types'
 
 import {
@@ -92,12 +90,6 @@ export default function productsReducer (state = initialState, action) {
     //     cart: newCart,
     //     flag: true
     //   }
-
-     case RESET_DETAIL:
-      return {
-        ...state,
-        detalles: [],
-      };
 
     case REST_ITEM:
       itemCart = state.cart.products.find(e => e.id === payload)

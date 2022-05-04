@@ -15,7 +15,8 @@ const options = [
   { value: 'Tus Compras', label: 'Tus Compras' }
 ]
 
-const NavBarAll = () => {
+const NavBarAll = ({cartItems}) => {
+ // console.log(cartItems)
   return (
     <>
       <Link to='/aboutUs' className='navButton'>
@@ -25,7 +26,7 @@ const NavBarAll = () => {
         Contacto
       </Link>
       <Link to='/carrito' className='navButton'>
-        <CartBtn />
+        <CartBtn cartItems={cartItems}/>
       </Link>
     </>
   )
@@ -86,7 +87,7 @@ const NavBarAdmin = () => {
   )
 }
 
-const NavBarAuthenticated = () => {
+const NavBarAuthenticated = ({cartItems}) => {
   let navigate = useNavigate()
     const handleClickPerfil=(e)=>{
       
@@ -102,7 +103,7 @@ const NavBarAuthenticated = () => {
 
   return (
     <>
-      <NavBarAll />
+      <NavBarAll cartItems={cartItems}/>
 
       <Select options={options}
               onChange = { handleClickPerfil } />
@@ -113,7 +114,7 @@ const NavBarAuthenticated = () => {
   )
 }
 
-function NavBar () {
+function NavBar ({cartItems}) {
   const [flag, setFlag] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -140,7 +141,7 @@ function NavBar () {
 
       {isAuth && user ? (
         <>
-          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated />}
+          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated cartItems={cartItems}/>}
           <div className='navButton'> Hola, {user.usuario} </div>
           <Link to='/' className='navButton' onClick={handleLogout}>
             Salir
@@ -149,7 +150,8 @@ function NavBar () {
       ) : (
         <>
           <NavBarLogin />
-          <NavBarAll />
+          <NavBarAll cartItems={cartItems}/>
+          
         </>
       )}
     </div>

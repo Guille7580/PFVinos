@@ -16,6 +16,7 @@ export const getDetailPedido = (pedido) => {
    return { type: GET_PEDIDO_DETAIL, payload: pedido };
 }
 
+
 export const postPedido = (pedido) => {
    return async function (dispatch) {
       try {
@@ -63,25 +64,19 @@ export const getAllPedidos = () => {
       }
    }
 }
-export function getPedidosByUser(payload) {
-
-    return async function (dispatch) {
-        try {
-            const datas = await axios.get(
-                `${BASEURL}/pedidos/${payload}`
-
-                // getHeaderToken()
-            )
-            console.log(JSON.stringify(datas) + 'ddddddACTIONSddddddd')
-            return dispatch({
-                type: GET_PEDIDO_BY_USER,
-                payload: datas
-            })
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
+export function getPedidosByUser (payload) {
+   console.log(payload + 'HOla accionessssss')
+   const userEmail = payload
+   return async function (dispatch) {
+     try {
+       const { data } = await axios.get(`${BASEURL}/pedidos/${userEmail}`)
+       return dispatch({ type: GET_PEDIDO_BY_USER, payload: data })
+     } catch (err) {
+       //toast.error('No se han podido cargar los pedidos')
+       return console.log(err.response.data)
+     }
+   }
+ }
  export function getPedidosPendiente(payload) {
 
    const { email } = payload

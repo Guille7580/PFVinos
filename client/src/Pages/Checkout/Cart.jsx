@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Cart.css";
 import { getUserDetail } from "../../actions/auth";
 //import NavBar from '../../components/navBar/navBar'
-import { Link , useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2"
 //import { Loader } from '../../components/Loader/Loader'
 //import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
 //import Swal from 'sweetalert2'
 import CartItems from "./CartItems/CartItems";
 import AnimatedText from "react-animated-text-content";
-
+import { useNavigate } from "react-router-dom";
 
 
 export function calculateTotal(items) {
@@ -27,7 +28,7 @@ export default function Cart({
   handleDeleteFromCart,
   getTotalItems,
 }) {
-  const navigate = useNavigate()
+ 
   const user = useSelector((state) => state.loginReducer.userDetail);
   const dispatch = useDispatch();
 
@@ -38,6 +39,7 @@ export default function Cart({
     price: product.price,
     amount: product.amount,
   }));
+  //console.log(products)
   
   let order = {
     usuarioId: user?.id,
@@ -47,9 +49,16 @@ export default function Cart({
     date: new Date().toLocaleString(),
   };
 
-  const handleClick = () => {
-    !user ? navigate('/login') : navigate('/checkout')
+  const handleContinuar = () => {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Oops...",
+      text: "No puedes continuar si no hay productos en carrito!",
+    });
   }
+
+  
 
   return (
     <div>
@@ -78,8 +87,10 @@ export default function Cart({
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            
-            <button className="btnBottom" onClick={handleClick} >Continuar</button>
+
+            {products.length !==0? (<Link to="/checkout">
+            <button className="btnBottom" >Continuar</button>
+            </Link>) : <button className="btnBottom" onClick={() => handleContinuar()}>Continuar</button>}
             
           </div>
         </div>
