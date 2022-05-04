@@ -20,7 +20,7 @@ const NavBarAll = ({cartItems}) => {
   return (
     <>
       <Link to='/aboutUs' className='navButton'>
-         Nosotros
+        Sobre Nosotros
       </Link>
       <Link to='/contact' className='navButton'>
         Contacto
@@ -72,7 +72,7 @@ const NavBarAdmin = () => {
           <NavLink to='/dashboard/offers'>Ofertas</NavLink>
         </>
       ) : (
-        <NavBarAuthenticated className="navAuth" />
+        <NavBarAuthenticated />
       )}
       {admin ? (
         <button className='btn btn-success' onClick={handleUsuarioNormal}>
@@ -102,7 +102,7 @@ const NavBarAuthenticated = ({cartItems}) => {
     }
 
   return (
-    <div className="navContainer">
+    <>
       <NavBarAll cartItems={cartItems}/>
 
       <Select options={options}
@@ -110,7 +110,7 @@ const NavBarAuthenticated = ({cartItems}) => {
       {/* <Link to='/perfil' className='navButton'>
        Perfil
       </Link> */}
-    </div>
+    </>
   )
 }
 
@@ -141,8 +141,8 @@ function NavBar ({cartItems}) {
 
       {isAuth && user ? (
         <>
-          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated className="navAuth" cartItems={cartItems}/>}
-          <div className='navButtonHola'> Hola, {user.usuario} </div>
+          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated cartItems={cartItems}/>}
+          <div className='navButton'> Hola, {user.usuario} </div>
           <Link to='/' className='navButton' onClick={handleLogout}>
             Salir
           </Link>
