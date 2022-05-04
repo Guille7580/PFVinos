@@ -69,7 +69,7 @@ export default function Cart({
           </div>
         {/* </AnimatedText> */}
         <div>
-          <ul className='ulItems'>
+          <ul>
             {cartItems?.length === 0 ? <p>No hay items en el carrito</p> : null}
             {cartItems?.map((product) => (
               <CartItems

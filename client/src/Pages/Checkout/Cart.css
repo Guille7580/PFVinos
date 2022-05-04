@@ -71,39 +71,3 @@
   display: flex;
   justify-content: space-around;
 }
-
-@media screen and (max-width: 420px) {
-  .cartContainer{
-    /* flex-direction: column; */
-    flex-wrap: wrap;
-  }
-  .totalContainer{
-    
-    padding-top: 80px;
-    padding-bottom: 50px;
-  }
-  /* .ulItems{
-    margin: 0%;
-    padding: 0%;
-  } */
-  .btnBottom{
-    margin-top: 0px;
-  }
-  .animatedShopping{
-    font-size: 26px;
-  }
- 
-}
-@media screen and (max-width: 600px) {
-  .totalContainer{
-    flex-direction: column;
-    padding-top: 80px;
-    padding-bottom: 50px;
-  }
-  .btnBottom{
-    margin-top: 0px;
-  }
-  .animatedShopping{
-    font-size: 26px;
-  }
-}
