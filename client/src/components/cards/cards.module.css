@@ -27,3 +27,11 @@
     
 }
 a:link {text-decoration:none} 
+
+@media screen and (max-width: 600px){
+    .cards{
+        grid-template-columns: repeat(1, 1fr);
+        margin: 10px;
+        height: 0;
+    }
+}
