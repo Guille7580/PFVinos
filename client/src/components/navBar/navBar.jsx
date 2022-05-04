@@ -103,7 +103,7 @@ const NavBarAuthenticated = ({ cartItems }) => {
 
   return (
     <>
-      <NavBarAll cartItems={cartItems} />
+      <NavBarAll cartItems={cartItems}/>
 
       <Select options={options} onChange={handleClickPerfil} />
       {/* <Link to='/perfil' className='navButton'>

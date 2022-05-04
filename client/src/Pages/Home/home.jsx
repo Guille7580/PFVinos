@@ -131,7 +131,6 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
         
       </div>
       <div className='containerBody'>
-        
         <Paginado
           className='numberPag'
           productPerPage={productPerPage}

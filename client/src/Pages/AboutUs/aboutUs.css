@@ -37,13 +37,3 @@ h3 {
   width: 60px;
   background-color: #e8cfc1;
 }
-
-@media screen and (max-width: 600px) {
-  .members {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .containerAbout {
-    background-image: linear-gradient(white white);
-    width: 410px;
-  }
-}

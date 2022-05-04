@@ -51,7 +51,31 @@ export default function AboutUs () {
             programación y la tecnología.
           </p>
         </div>
-       
+        <div>
+          <h3>
+            Luciana Zanetti
+            <a
+              href='https://www.linkedin.com/in/luciana-zanetti-dev/'
+              target='_blank'
+            >
+              LinkedIn
+            </a>
+            <a href='https://github.com/LulaZeta' target='_blank'>
+              Github
+            </a>
+          </h3>
+          <img src={luciana} alt='Foto de Luciana Zanetti' height={'250px'} />
+          <p className='para'>
+            Soy Luciana Full Stack Developer. El lugar donde combino todo lo que
+            soy. La parte más dura habiendo estudiado ingeniería y la parte
+            creativa de la fotografía. Programming: JavasScript Web Technology:
+            HTML5, CSS3, NodeJS DataBase: PostgreSQL Framework/Library: ReactJS,
+            Redux, Express Project Management: Trello, Asana, Slack Processes:
+            Scrum Version Control: Git & GitHub Photography: Photoshop,
+            Lightroom Design: Illustrator{' '}
+          </p>
+        </div>
+
         <div>
           <h3>
             Javier Irigoyen
@@ -150,31 +174,6 @@ export default function AboutUs () {
             perfil .
           </p>
         </div>
-        <div>
-          <h3>
-            Luciana Zanetti
-            <a
-              href='https://www.linkedin.com/in/luciana-zanetti-dev/'
-              target='_blank'
-            >
-              LinkedIn
-            </a>
-            <a href='https://github.com/LulaZeta' target='_blank'>
-              Github
-            </a>
-          </h3>
-          <img src={luciana} alt='Foto de Luciana Zanetti' height={'250px'} />
-          <p className='para'>
-            Soy Luciana Full Stack Developer. El lugar donde combino todo lo que
-            soy. La parte más dura habiendo estudiado ingeniería y la parte
-            creativa de la fotografía. Programming: JavasScript Web Technology:
-            HTML5, CSS3, NodeJS DataBase: PostgreSQL Framework/Library: ReactJS,
-            Redux, Express Project Management: Trello, Asana, Slack Processes:
-            Scrum Version Control: Git & GitHub Photography: Photoshop,
-            Lightroom Design: Illustrator{' '}
-          </p>
-        </div>
-
       </div>
     </div>
   )
