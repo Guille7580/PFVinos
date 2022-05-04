@@ -36,20 +36,7 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
   const user = useSelector((state) => state.loginReducer.userDetail);
   //const Inicie = () => toast(`Por Favor Inicie sesion`, {duration: 4000, position: 'bottom-center',})
   const url = useSelector((state) => state.pedidosReducer.url);
-  console.log("checkkkkkkkkkout", url);
-  const dispatch = useDispatch();
-
-  /* useEffect(() => {
-    if (cartItems.length !== 0)
-      localStorage.setItem('carrito', JSON.stringify(cartItems))
-  }, [cartItems])
-
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('carrito'))
-
-    if (items) setCartItems(items)
-    else setCartItems([])
-  }, []) */
+   const dispatch = useDispatch();
 
   useEffect(() => {
     let inicioSesion = JSON.parse(localStorage.getItem("userData"));
@@ -111,7 +98,7 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
       localStorage.removeItem("carrito");
       
      }, 1500);
-    
+     //localStorage.clear();
     
   }}
 

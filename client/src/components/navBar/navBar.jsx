@@ -124,6 +124,7 @@ function NavBar ({ cartItems }) {
   const handleLogout = () => {
     setFlag(true)
     dispatch(logout())
+    localStorage.clear();
     navigate('/home')
   }
 
