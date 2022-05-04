@@ -128,3 +128,17 @@ export function editStatusPedido(pedidoId, newStatus) {
       }
    }
 }
+
+export function changeStatusToComplete(email){
+   return async function (dispatch)
+    {
+       const json = await axios.put(`${BASEURL}/users/${email}/changeToComplete`);
+       
+       return dispatch({
+           type: "CHANGE_ORDER_TO_COMPLETE",
+           payload: json.data
+
+       })
+   }
+
+}

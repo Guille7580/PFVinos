@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const mercadopago = require('mercadopago');
-const { COMPLETADO, PENDIENTE, PAGADO, CANCELADO } = require("../data/constantes");
-const { Payment, Pedido, User } = require("../db");
+
+const { Payment } = require("../db");
 require('dotenv').config()
 
 mercadopago.configure({
@@ -32,9 +32,7 @@ router.post('/mercadoPago', async (req, res, next) => {
                 installments: 3  //Cantidad máximo de cuotas
             },
             back_urls: {
-                success: 'http://localhost:3001/mercadopago/pagos',
-                failure: 'http://localhost:3001/mercadopago/pagos',
-                pending: 'http://localhost:3001/mercadopago/pagos',
+                success: 'http://localhost:3001/mercadoPago/pagos',
             },
         };
 
@@ -43,10 +41,9 @@ router.post('/mercadoPago', async (req, res, next) => {
                 console.info('respondio')
                 //Este valor reemplazará el string"<%= global.id %>" en tu HTML
                 global.id = response.body.id;
-                console.log("response.body    :", response.body)
                 global.init_point = response.body.sandbox_init_point;
                 //console.log(response.body);
-                res.send({url: global.init_point}); 
+                res.send({id: global.id, url: global.init_point}); 
 
             })
             .catch(function (error) {
@@ -59,27 +56,22 @@ router.post('/mercadoPago', async (req, res, next) => {
     }
 })
 
-router.put('/mercadoPago/pagos', async (req, res, next) => {
+router.get('/mercadoPago/pagos', async (req, res, next) => {
     try {
       console.info("EN LA RUTA PAGOS ", req)
       const payment_id= req.query.payment_id
       const payment_status= req.query.status
       const external_reference = req.query.external_reference
-      const merchant_order_id= req.query.merchant_order_id
-      // const items = req.query.items
-      const status = req.query.status
-     
-    
+      const merchant_order_id= req.query.merchant_order_id 
       //Aquí edito el status de mi orden
       Payment.create({
             payment_id: payment_id,
             payment_status: payment_status,
             merchant_order_id : merchant_order_id,
-            status : status,
             cartId: external_reference
         })
-
-        return res.redirect("http://localhost:3000")
+     
+        return res.redirect("http://localhost:3000/pagoexitoso")
    
     } catch (error) {
       console.log("error  :",error)

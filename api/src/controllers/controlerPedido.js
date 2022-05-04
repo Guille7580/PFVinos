@@ -81,29 +81,32 @@ async function deletePedido(id, userIdToken) {
 }
 
 
-async function updateStatusPedido(idPedido, newStatus) {
-
-   try {
-      await Pedido.update({
-         status: newStatus
-      }, {
-         where: {
-            id: idPedido
-         }
-      });
-
-      return "Pedido actualizado correctamente";
-   } catch (error) {
-      console.log(error);
-      return { error: {} }
-   }
-}
+async function changePedido (req, res) {
+   const {email} = req.params; 
+   console.log(email)
+      if (email) {
+      let userId = await User.findOne({
+         where: { email: email},
+      })
+   const info = await Pedido.findAll({
+      where: {usuarioId: userId.id, status: 'PENDIENTE'},
+   })
+           if(info ){
+               console.log(info )
+               info .status = 'PAGADO'
+               await cart.save()
+               
+               res.send('El status ha cambiado correctamente')
+               await transporter.sendMail(orderComplete(email,cart))
+           } else res.status(404).send('Cart not found')
+   
+}}
 
 module.exports = {
    pedidoPost,
    getAllPedidos,
    deletePedido,
-   updateStatusPedido,
    getPedidosByUser,
-   statusPendiente
+   statusPendiente,
+   changePedido
   };
