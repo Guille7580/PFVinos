@@ -96,7 +96,7 @@ export function getCarrito () {
 export function postPedido(order) {
   return async function () {
     try {
-    var json = await axios.post(`${BASEURL}/pedidos/:email`, order)
+   await axios.post(`${BASEURL}/pedidos/:email`, order)
   } catch (error) {
     console.log(error)
   }
