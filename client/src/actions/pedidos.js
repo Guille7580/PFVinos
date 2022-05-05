@@ -9,12 +9,13 @@ import {
    GET_PEDIDO_DETAIL,
    GET_PEDIDOS_STATUS,
    GET_BASKET_LOCAL_STORAGE,
-   GET_PREF_ID
+   GET_PREF_ID, CHANGE_ORDER_TO_COMPLETE
 } from './types';
 
 export const getDetailPedido = (pedido) => {
    return { type: GET_PEDIDO_DETAIL, payload: pedido };
 }
+
 
 export const postPedido = (pedido) => {
    return async function (dispatch) {
@@ -63,25 +64,19 @@ export const getAllPedidos = () => {
       }
    }
 }
-export function getPedidosByUser(payload) {
-
-    return async function (dispatch) {
-        try {
-            const datas = await axios.get(
-                `${BASEURL}/pedidos/${payload}`
-
-                // getHeaderToken()
-            )
-            console.log(JSON.stringify(datas) + 'ddddddACTIONSddddddd')
-            return dispatch({
-                type: GET_PEDIDO_BY_USER,
-                payload: datas
-            })
-        } catch (err) {
-            console.log(err)
-        }
-    }
-}
+export function getPedidosByUser (payload) {
+   console.log(payload + 'HOla accionessssss')
+   const userEmail = payload
+   return async function (dispatch) {
+     try {
+       const { data } = await axios.get(`${BASEURL}/pedidos/${userEmail}`)
+       return dispatch({ type: GET_PEDIDO_BY_USER, payload: data })
+     } catch (err) {
+       //toast.error('No se han podido cargar los pedidos')
+       return console.log(err.response.data)
+     }
+   }
+ }
  export function getPedidosPendiente(payload) {
 
    const { email } = payload
@@ -131,5 +126,29 @@ export function editStatusPedido(pedidoId, newStatus) {
       } catch (err) {
          return console.log(err.response.data);
       }
+   }
+}
+
+export function changeStatusToComplete(email){
+   return async function (dispatch)
+    {
+       const json = await axios.put(`${BASEURL}/pedidos/${email}/changeToComplete`);
+       return dispatch({
+           type: CHANGE_ORDER_TO_COMPLETE,
+           payload: json.data
+       })
+   }
+
+}
+export function getPayments(payload){
+   return async(dispatch) => {
+      
+       const mercadopago = await axios.post(`${BASEURL}/pedidos/payment/:email`, payload);
+
+       console.log("response.data  :",mercadopago.data)
+       dispatch({
+           type: GET_PREF_ID,
+           payload: mercadopago.data
+       })
    }
 }

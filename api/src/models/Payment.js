@@ -4,31 +4,19 @@ const { DataTypes, DatabaseError } = require('sequelize')
 module.exports = sequelize => {
   // defino el modelo
   sequelize.define('Payment', {
-    status:{  
-      type: DataTypes.STRING,
-      allowNull: false
-  },
   payment_id:{
       type: DataTypes.STRING,
       defaultValue: ""
-    },
-    email: {
-      type: DataTypes.STRING,
     },
   payment_status:{
       type: DataTypes.STRING,
       defaultValue: ""
   },
+  cartId: {
+    type: DataTypes.STRING,
+  },
   merchant_order_id: {
       type: DataTypes.BIGINT,
-      defaultValue: 0
-  },
-  total: {
-      type: DataTypes.BIGINT,
-      defaultValue: 0
-  },
-  detail: {
-      type: DataTypes.TEXT,
       defaultValue: 0
   },
   })

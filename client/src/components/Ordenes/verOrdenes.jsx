@@ -4,12 +4,8 @@ import './verOrdenes.css'
 import { getPedidosByUser } from '../../actions/pedidos'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../actions/user';
-
-
 
 export default function VerOrdenes(){
-
     const dispatch = useDispatch()
     const user = useSelector((state) => state.loginReducer.userDetail);
     const pedidos = useSelector((state) => state.pedidosReducer.userPedidos)
@@ -17,11 +13,19 @@ export default function VerOrdenes(){
     console.log(pedidos)
     
     useEffect(() => {
-        dispatch(getPedidosByUser(user.email))
-    }, [user])
+        dispatch(getUser())
+        return () => {
+            dispatch(getPedidosByUser(user.email))
+        }
+    }, [dispatch])
 
-    const pepe = pedidos.data?.map(el => el.products.map(ell => JSON.parse(ell))).flat().map(elll => elll.title)
-    console.log(pepe)
+    console.log(user)
+    console.log(pedidos)
+
+    //useEffect(() => {
+    //    dispatch(getPedidosByUser(user.email));
+    //}, [user])
+
     return (
         <div>
             <div className='containerOrden'>

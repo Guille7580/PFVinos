@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const { pedidoPost, getAllPedidos, getPedidosByUser, updateStatusPedido, deletePedido, statusPendiente  } = require('../controllers/controlerPedido');
+const { pedidoPost, changePedido, getAllPyments, getAllPedidos, getPedidosByUser, deletePedido, statusPendiente  } = require('../controllers/controlerPedido');
 const { User } = require('../db');
 const pedidoRouter = Router();
 const { check, validationResult } = require('express-validator');
 const { authentication, adminAuthentication } = require("../middlewares");
-const { PENDIENTE, COMPLETADO } = require('../data/constantes');
+
 
 
 pedidoRouter.post("/:email", pedidoPost);
@@ -23,34 +23,14 @@ pedidoRouter.get('/status/:email',
    // authentication,
    statusPendiente
 )
-
-
-pedidoRouter.put('/:pedidoId', [
-   check('status', `El campo "status" es requerido y debe ser igual a ${PENDIENTE} o ${COMPLETADO}`).isString().trim().custom(status =>
-      [PENDIENTE, COMPLETADO].includes(status)
-   ),
-],
+pedidoRouter.get('/payment/:email',
    // authentication,
-   // adminAuthentication,
-   async (req, res, next) => {
-      // Validaciones de express-validator
-      const errors = validationResult(req);
+   getAllPyments
+)
 
-      if (!errors.isEmpty()) {
-         return next({ status: 400, errors });
-      }
 
-      // Si no hay errores, continúo
-      const { pedidoId } = req.params;
-      const { status } = req.body;
+pedidoRouter.put('/:email/changeToComplete', changePedido)
 
-      let get = await updateStatusPedido(pedidoId, status);
-
-      if (get.error) return next(get.error);
-
-      return res.json(get);
-   }
-);
 
 // // @access Private Admin
 pedidoRouter.delete('/:id',  async (req, res, next) => {

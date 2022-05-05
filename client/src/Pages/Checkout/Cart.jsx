@@ -4,6 +4,7 @@ import "./Cart.css";
 import { getUserDetail } from "../../actions/auth";
 //import NavBar from '../../components/navBar/navBar'
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2"
 //import { Loader } from '../../components/Loader/Loader'
 //import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
 //import Swal from 'sweetalert2'
@@ -30,6 +31,8 @@ export default function Cart({
  
   const user = useSelector((state) => state.loginReducer.userDetail);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
 
 
   const products = cartItems.map((product) => ({
@@ -38,7 +41,8 @@ export default function Cart({
     price: product.price,
     amount: product.amount,
   }));
-  
+  //console.log(products)
+    
   let order = {
     usuarioId: user?.id,
     email: user?.email,
@@ -46,6 +50,40 @@ export default function Cart({
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
+  console.log(user)
+
+  let stock = cartItems.map((product) => ({
+    productoId: product.id,
+    title: product.title,
+    price: product.price,
+    amount: product.amount,
+  }));
+
+
+  const handleContinuar = () => {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Oops...",
+      text: "No puedes continuar si no hay productos en carrito!",
+    });
+  }
+
+  const handleLogin = () => {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Oops...",
+      text: "No puedes continuar si no iniciaste sesion",
+    }).then(r => {
+      if(r.isConfirmed) {
+    navigate("/login")
+      }
+    })
+
+    
+  }
+
 
   
 
@@ -76,9 +114,11 @@ export default function Cart({
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="/checkout">
-              <button className="btnBottom" >Continuar</button>
-            </Link>
+
+            {products.length !==0? (
+            <button className="btnBottom" onClick={user !== null?(() => navigate("/checkout")) : (() => handleLogin())  }>Continuar</button>
+            ) : <button className="btnBottom" onClick={() => handleContinuar() }>Continuar</button>}
+            
           </div>
         </div>
       </div>

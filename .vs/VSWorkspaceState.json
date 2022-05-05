@@ -1,17 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\api",
-    "\\api\\src\\helpers",
+    "\\api\\src\\routes",
+    "\\api\\tests",
+    "\\api\\tests\\routes",
     "\\client",
     "\\client\\src",
     "\\client\\src\\components",
     "\\client\\src\\components\\Modal",
-    "\\client\\src\\Pages\\Dashboard",
-    "\\client\\src\\Pages\\Dashboard\\Principal",
-    "\\client\\src\\Pages\\Home",
-    "\\client\\src\\reducer"
+    "\\client\\src\\Pages",
+    "\\client\\src\\Pages\\Home"
   ],
-  "SelectedNode": "\\client\\src\\reducer\\pedidos.js",
+  "SelectedNode": "\\client\\src\\actions\\categorias.js",
   "PreviewInSolutionExplorer": false
 }
