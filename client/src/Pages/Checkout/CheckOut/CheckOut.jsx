@@ -8,7 +8,7 @@ import CheckOutItems from "./CheckOutItems/checkoutItems";
 import { WineLoader } from "../../../components/wineLoader/wineLoader";
 import { getMercadoPago, getPedidosPendiente } from "../../../actions/pedidos";
 import { login } from "../../../actions/auth";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 export function calculateTotal(items) {
   return items
@@ -36,7 +36,7 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
   const user = useSelector((state) => state.loginReducer.userDetail);
   //const Inicie = () => toast(`Por Favor Inicie sesion`, {duration: 4000, position: 'bottom-center',})
   const url = useSelector((state) => state.pedidosReducer.url);
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let inicioSesion = JSON.parse(localStorage.getItem("userData"));
@@ -58,16 +58,17 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
     title: product.title,
     quantity: product.amount,
     price: product.price,
+    stock: product.stock - product.amount
   }));
 
   let order = {
     usuarioId: user?.id,
     email: user?.email,
     products: products,
-    total: Number(calculateTotal(cartItems)),
+     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
-  console.log(cartItems);
+  console.log(order);
   const navigate = useNavigate();
 
   function onFinishPay(e) {
@@ -79,28 +80,27 @@ export default function CheckOut({ product, cartItems, setCartItems }) {
       icon: "success",
       title: "Exitoso!",
       text: "Confirmaste direccion",
-    }) 
+    });
   }
   function onFinish(e) {
     e.preventDefault();
     if (typeof url === "object") {
       Swal.fire({
-      position: "center",
-      icon: "error",
-      title: "Oops...",
-      text: "Primero confirmar direccion",
-    }) 
-  } else {
-    
-    setTimeout(() => {
-       window.location.href = url;
-      setCartItems([]);
-      localStorage.removeItem("carrito");
-      
-     }, 1500);
-     //localStorage.clear();
-    
-  }}
+        position: "center",
+        icon: "error",
+        title: "Oops...",
+        text: "Primero confirmar direccion",
+      });
+    } else {
+     
+      setTimeout(() => {
+        window.location.href = url;
+        setCartItems([]);
+        localStorage.removeItem("carrito");
+      }, 1500);
+      //localStorage.clear();
+    }
+  }
 
   let users = useSelector((state) => state.loginReducer.userDetail);
   const { nombre, usuario, email, pais, provincia, direccion, telefono } =

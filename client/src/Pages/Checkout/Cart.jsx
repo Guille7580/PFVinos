@@ -40,8 +40,9 @@ export default function Cart({
     title: product.title,
     price: product.price,
     amount: product.amount,
+    stock: product.stock
   }));
-  //console.log(products)
+  console.log(products)
     
   let order = {
     usuarioId: user?.id,
@@ -57,6 +58,7 @@ export default function Cart({
     title: product.title,
     price: product.price,
     amount: product.amount,
+
   }));
 
 
@@ -114,7 +116,7 @@ export default function Cart({
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-
+              <Link to= {"/review/"+ products.productoId}>omg</Link>
             {products.length !==0? (
             <button className="btnBottom" onClick={user !== null?(() => navigate("/checkout")) : (() => handleLogin())  }>Continuar</button>
             ) : <button className="btnBottom" onClick={() => handleContinuar() }>Continuar</button>}

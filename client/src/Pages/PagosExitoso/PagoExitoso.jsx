@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 //import { useSearchParams } from "react-router-dom";
 import './pagoexitoso.css'
-import { changeStatusToComplete } from '../../actions/pedidos'
+import { checkoutEmail } from '../../actions/checkOutEmail';
+import { changeStatusToComplete } from '../../actions/pedidos';
 
 export default function PagoExitoso (handleEmptyCart) {
   const dispatch = useDispatch()
@@ -14,12 +15,16 @@ export default function PagoExitoso (handleEmptyCart) {
   useEffect(() => {
     console.log('pruebaaaaaaaaaaa')
     return function () {
-      if (user) {
-        dispatch(changeStatusToComplete(user.email))
-      }
-    }
-  }, [user])
+      if(user){
+      dispatch(changeStatusToComplete( user.email ))
+    }}
+    }, [user]);
 
+    useEffect(() => {
+      if(user) 
+      dispatch(checkoutEmail(user.email))
+  })
+        
   return (
     <div className='pagoContainer'>
       <h1 className='pagoGracias'>

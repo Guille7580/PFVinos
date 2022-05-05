@@ -2,7 +2,7 @@ const { Router } = require('express');
 const {Review} = require('../db')
 const router = Router();
 
-router.get('/:productId/review', async (req, res) => {
+router.get('/review/:productId', async (req, res) => {
 	const {productId} = req.params
 	try{
 		const productReview = await Review.findAll({where: {ProductId: productId}, attributes: {exclude: ["id"]}})
