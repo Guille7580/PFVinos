@@ -200,5 +200,6 @@ input {
   }
   .containerIn{
     justify-items: center;
+    border: none;
   }
 }

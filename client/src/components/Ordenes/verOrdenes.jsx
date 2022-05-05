@@ -14,8 +14,8 @@ export default function VerOrdenes () {
     dispatch(getPedidosByUser(user.email))
   }, [user])
 
-  const pepe = pedidos.data
-    ?.map(el => el.products.map(ell => JSON.parse(ell)))
+  const pepe = pedidos
+    .map(el => el.products.map(ell => JSON.parse(ell)))
     .flat()
     .map(elll => elll.title)
   console.log(pepe)

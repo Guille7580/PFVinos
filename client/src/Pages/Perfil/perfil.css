@@ -47,6 +47,19 @@
 }
 @media screen and (max-width: 600px) {
   .perfilContainer {
+    background-image: none;
     background-color: white;
+    text-align: center;
+    border: none;
+   
+  }
+  .dataContainer{
+    margin: 0%;
+    border: none;
+  }
+  .btnContainer{
+    background-color: rgb(95, 50, 82);
+    color: white;
   }
 }
+
