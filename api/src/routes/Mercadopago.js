@@ -38,7 +38,7 @@ router.post('/mercadoPago', async (req, res, next) => {
 
         mercadopago.preferences.create(preference)
             .then(function (response) {
-                console.info('respondio')
+                
                 //Este valor reemplazará el string"<%= global.id %>" en tu HTML
                 global.id = response.body.id;
                 global.init_point = response.body.sandbox_init_point;
@@ -58,7 +58,7 @@ router.post('/mercadoPago', async (req, res, next) => {
 
 router.get('/mercadoPago/pagos', async (req, res, next) => {
     try {
-      console.info("EN LA RUTA PAGOS ", req)
+
       const payment_id= req.query.payment_id
       const payment_status= req.query.status
       const external_reference = req.query.external_reference

@@ -16,10 +16,11 @@ async function emailCheckOut  (req, res, next)  {
   }
   try {
     const user = await User.findOne({ where: { email } })
+    console.log(user)
     const info = await Pedido.findAll({
         where: {usuarioId: user.id, status: PAGADO},
            })
-    console.log(info)
+    console.log(JSON.stringify(info))
     if (user) {
       try {
        
@@ -36,8 +37,8 @@ async function emailCheckOut  (req, res, next)  {
         const mailOptions = {
                  from: `${EMAIL_ADDRESS}`,
                  to: `${user.email}`,
-                 subject: "Compra Vi;edo Las moritas",
-                 text: `Muchas gracias por tu compra. Aquí está un resumen de tu compra :   ${info}  .Tu pedido será enviado lo antes posible.`,
+                 subject: "Compra Viñedo Las moritas",
+                 text: `Muchas gracias por tu compra. JSON.stringify(info)Tu pedido será enviado lo antes posible.`,
                };
           
         transporter.sendMail(mailOptions, (err, response) => {
