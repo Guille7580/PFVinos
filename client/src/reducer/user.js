@@ -6,7 +6,8 @@ import {
     DELETE_USER,
     CHANGE_CATEGORY,
     GET_CARRITO,
-    RECOVERY_PASSWORD
+    RECOVERY_PASSWORD,
+    CHECKOUT_EMAIL
 } from '../actions/types.js'
 
 
@@ -54,6 +55,10 @@ export default function users (state = initialState, action) {
           return {
               ...state
           }
+          case CHECKOUT_EMAIL:
+            return {
+                ...state
+            }
 
     default:
       return state

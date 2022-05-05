@@ -16,6 +16,7 @@ const forgotPassword = require("./forgotPassword");
 const resetPassword = require("./resetPassword");
 const mercadoPagoRoute = require('./Mercadopago');
 const pedidoRouter = require ("./pedido.routes")
+const checkout = require ("./checkOutEmail")
 
 
 
@@ -76,5 +77,9 @@ router.use("/resetPassword", resetPassword);
 //-----------------------usuario-----------------------
 
 router.use("/usuario/update", userupdate);
+
+//---------------------checkOut------------------------
+
+router.use("/checkout", checkout);
 
 module.exports = router;

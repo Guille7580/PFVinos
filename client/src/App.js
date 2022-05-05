@@ -25,6 +25,7 @@ import { getUserDetail } from './actions/auth'
 import VerificacionDeChekout from './Pages/Checkout/VerificacionDeChekout.jsx'
 import Swal from 'sweetalert2'
 import CheckOut from './Pages/Checkout/CheckOut/CheckOut.jsx'
+import ReviewProduct from './components/Ordenes/ReviewProduct';
 
 
 
@@ -175,6 +176,7 @@ const App = () => {
           <Route path='/login' element={<IniciarSession />} />
           <Route path='/login/recoverpassword' element={<RecoverPass />} />
           <Route path='/login/resetpassword' element={<ResetPass />} />
+          <Route exact path="/review/:id" element={<ReviewProduct/>}></Route>
 
           <Route path='/contact' element={<Contact />} />
 
