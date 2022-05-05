@@ -71,3 +71,15 @@
   display: flex;
   justify-content: space-around;
 }
+
+
+@media screen and (max-width: 600px) {
+  .animatedShopping{
+    font-size: 36px;
+    margin-top: 20px;
+  }
+  .totalContainer{
+    margin-top: 20px;
+    flex-direction: column;
+  }
+}

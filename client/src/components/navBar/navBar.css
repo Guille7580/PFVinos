@@ -63,6 +63,7 @@
     background-color: white;
     background-image: none;
     border: none;
+    border-bottom: #523e27 solid 1px;
   }
   .navAuth {
     width: 0;
@@ -76,5 +77,6 @@
     color: black;
     padding-left: 0%;
     padding-right: 15px;
+    border-bottom: #523e27 solid 1px;
   }
 }
