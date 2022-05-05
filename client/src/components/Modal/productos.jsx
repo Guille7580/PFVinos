@@ -217,6 +217,7 @@ function Productos() {
                     searchFieldStyle: {
                         backgroundColor: '#FFA500'
                     },
+                    pageSize: 10,
                     draggable: true,
                     searchAutoFocus: true,
                     search: true,

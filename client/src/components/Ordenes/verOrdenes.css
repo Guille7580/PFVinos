@@ -1,0 +1,28 @@
+.imagenimgOrden {
+    background-color: darkgray;
+    position: absolute;
+    width: 1461px;
+    height: 625px;
+   
+}
+.infoverorden {
+    font-size: 18px;
+    color: white;
+    position: relative;
+    padding-left: 1100px;
+    display: inline-block;
+    text-align: center;
+}
+
+.containerOrden {
+    overflow: hidden;
+    max-height: 100%;
+    margin-right: -100px;
+    padding-right: 100px;
+}
+.encabezado {
+    position: relative;
+}
+
+.contenido {
+}
