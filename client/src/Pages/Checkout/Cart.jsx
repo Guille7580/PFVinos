@@ -40,8 +40,9 @@ export default function Cart({
     title: product.title,
     price: product.price,
     amount: product.amount,
+    stock: product.stock
   }));
-  //console.log(products)
+  console.log(products)
     
   let order = {
     usuarioId: user?.id,
@@ -57,6 +58,7 @@ export default function Cart({
     title: product.title,
     price: product.price,
     amount: product.amount,
+
   }));
 
 
