@@ -100,7 +100,7 @@ export function updateProduct(payload) {
 }
 export function getProductReview(id){
   return async function(dispatch){
-      const productReview = await axios.get(`${BASEURL}/${id}/review`)
+      const productReview = await axios.get(`${BASEURL}/review/${id}`)
       return dispatch({
           type: 'GET_PRODUCT_REVIEW',
           payload: productReview.data
