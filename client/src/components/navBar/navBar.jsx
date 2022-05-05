@@ -68,8 +68,7 @@ const NavBarAdmin = () => {
       {admin ? (
         <>
           <NavLink to='/dashboard/admin'>Dashboard</NavLink>
-          <NavLink to='/dashboard/sales'>Sales</NavLink>
-          <NavLink to='/dashboard/offers'>Ofertas</NavLink>
+          
         </>
       ) : (
         <NavBarAuthenticated className='navAuth' />

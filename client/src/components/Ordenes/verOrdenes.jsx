@@ -2,42 +2,77 @@ import React, { useState } from 'react'
 import vino from './vino.jpeg'
 import './verOrdenes.css'
 import { getPedidosByUser } from '../../actions/pedidos'
+import { Link } from 'react-router-dom'
 
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+export default function VerOrdenes () {
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.loginReducer.userDetail)
+  const pedidos = useSelector(state => state.pedidosReducer.userPedidos)
 
-export default function VerOrdenes() {
+  console.log(JSON.stringify(pedidos) + 'Acaaaaaaaaaaaaaaaaaaa')
 
-    const dispatch = useDispatch()
-    const user = useSelector((state) => state.loginReducer.userDetail);
-    const pedidos = useSelector((state) => state.pedidosReducer.userPedidos)
+  useEffect(() => {
+    dispatch(getPedidosByUser(user.email))
+  }, [user])
+  console.log(user)
 
-    console.log(pedidos)
+  const products = pedidos
+    .map(el => el.products.map(ell => JSON.parse(ell)))
+    .flat(2)
+  console.log(
+    JSON.stringify(products.map(e => e.title)) + 'JEEEEEENENNNNNNNYYYYYYY'
+  )
+  const orders =
+    products.map(e => e.title) &&
+    products.map(e => e.quantity) &&
+    products.map(e => e.price)
+  //const {title, quantity, price } = products
+  //   const amount = pedidos
+  //     .map(el => el.products.map(ell => JSON.parse(ell)))
+  //     .flat()
+  //     .map(elll => elll.quantity)
+  //   const precio = pedidos.map(ep=> ep.total)
+  //     // .map(el => el.products.map(ell => JSON.stringify(ell)))
 
-    useEffect(() => {
-        dispatch(getPedidosByUser(user.email))
-    }, [user])
-    console.log(user)
+  //   console.log(precio + 'GGGGGGGGGGGGGGGGGG')
+  //   const array = pedidos
+  //     .map(el => el.products.map(ell => JSON.parse(ell)))
+  //     .flat()
+  //     .map(elll => elll.title)
 
-    const array = pedidos.map(el => el.products.map(ell => JSON.parse(ell))).flat().map(elll => elll.title)
-      
-    //pedidos.data?.map(el => el.products.map(ell => JSON.parse(ell))).flat().map(elll => elll.title) 🌿
-    const data = new Set(array)
-    const pepe = [...data]
-    console.log(pepe)
-    return (
-        <div className='containerOrden'>
-            <span className='encabezado'>Los Productos Que Has Comprado</span>
-            <img className='imagenimgOrden' src={vino} alt='vino'/>
-            <div>
-                {<div className='infoverorden'>{pepe?.map(el => <div classname = 'contenido'>{el}</div>)}</div>}
+  //   //pedidos.data?.map(el => el.products.map(ell => JSON.parse(ell))).flat().map(elll => elll.title) 🌿
+  //   const data = new Set(array)
+  //   const pepe = [...data]
+  //   console.log(pepe)
+  //   const {title, quantity, price} =  products.flat()
+  //   .map(elll => elll.title)
+
+  return (
+    <div className='containerOrden'>
+        <img className = 'imagenimgOrden' src={vino} alt='vino'/>
+      <span className=' title'>Ordenes Completados</span>
+      <div className='encabezados'>
+        <div className='productsContainer'>
+          {products.map(e => (
+            <div className='products'>
+                
+              <div>Nombre:   {e.title}</div>
+
+              <div>Cuantidad: {e.quantity}</div>
+
+              <div>Precio: {e.price}</div>
+              <div>{e.image}</div>
             </div>
+          ))}
+   
         </div>
-
-    )
+      </div>
+      <Link to='/'>
+        <button className='btnOrders'>Home</button>
+      </Link>
+    </div>
+  )
 }
-
-
-
-
