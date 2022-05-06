@@ -1,0 +1,49 @@
+.containReg {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(70, 69, 69),
+    rgb(230, 227, 219)
+    
+  );
+
+  text-align: center;
+  color: #e8cfc1;
+  border: #e8cfc1 solid 1px;
+  width: 100%;
+}
+
+.formReg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 20px;
+}
+
+.label {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  margin-left: 25%;
+}
+
+.regInput {
+  margin: 20px;
+  text-align: center;
+}
+
+.regButtons {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px;
+}
+
+.buttonReg {
+  border-radius: 5px;
+  height: 35px;
+  margin-top: 10px;
+  width: 170px;
+  background-color: #e8cfc1;
+  margin-bottom: 80px;
+}

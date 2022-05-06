@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import './modal.css';
 import { alpha } from '@material-ui/core/styles'
 import MaterialTable from 'material-table'
-import { deleteUser, getAllUser, postUser, changCategory } from '../../actions/user';
+import { deleteUser, getAllUser, postUser, changCategory, recoveryPassword } from '../../actions/user';
+import axios from 'axios';
+import { BASEURL } from '../../assets/URLS';
+
 
 function Modall() {
 
@@ -21,10 +24,7 @@ function Modall() {
         setData(allUsers)
     }, [allUsers]);
 
-    const delUser = (email) => {
-        dispatch(deleteUser(email))
-    }
-
+    
     const changCategories = (email) => {
         dispatch(changCategory(email))
     }
@@ -33,61 +33,72 @@ function Modall() {
         dispatch(deleteUser(id))
     }
 
+    const recoveryPasswords = async (email) => {   
+        dispatch(recoveryPassword(email))
+    }
+
     const columns = [
         {
-            title: "Name", field: "nombre",
+            title: "Nombre", field: "nombre",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
             }
         },
         {
             title: "Usuario", field: "usuario",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Rol", field: "rol",
             lookup: { 1: 'Usuario', 2: 'Administrador' },
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Email", field: "email",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Pais", field: "pais",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Provincia", field: 'provincia',
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Direccion", field: "direccion",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
         {
             title: "Telefono", field: "telefono",
             editable: 'never',
             headerStyle: {
-                backgroundColor: '#039be5',
+                backgroundColor: '#5f3252',
+                color: '#fff'
             }
         },
     ]
@@ -100,9 +111,19 @@ function Modall() {
                 title="Usuarios"
                 columns={columns}
                 data={data}
+
+                actions={[
+                    {
+                        icon: 'outgoing_mail',
+                        tooltip: 'Reset Password',
+                        onClick: (event, rowData) => recoveryPasswords(rowData.email)
+                    }
+                ]}
+
                 options={{
                     headerStyle: {
-                        backgroundColor: '#039be5',
+                        backgroundColor: '#5f3252',
+                        color: '#fff'
                     },
                     actionsColumnIndex: -1,
                     addRowPosition: "first",
@@ -111,8 +132,11 @@ function Modall() {
                         backgroundColor: rowData => rowData.id % 2 === 0 ? '#917351' : '#FFA500',
                     },
                     searchFieldStyle: {
-                        backgroundColor: '#FFA500'
+                        backgroundColor: '#5f3252',
+                        color: '#fff',
+                        borderRadius: '2px'
                     },
+                    pageSize: 10,
                     draggable: true,
                     searchAutoFocus: true,
                     search: true,
@@ -125,7 +149,7 @@ function Modall() {
                     onRowUpdate: (newData, oldData) =>
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                console.log('HOLAAAAAAAAA', oldData.email)
+
                                 const dataUpdate = [...data];
                                 const index = oldData.tableData.id;
                                 dataUpdate[index] = newData;
@@ -147,13 +171,7 @@ function Modall() {
                             }, 1000)
                         }),
                 }}
-                actions={[
-                    {
-                        icon: 'outgoing_mail',
-                        tooltip: 'Reset Password',
-                        onClick: (event, rowData) => alert("You saved " + rowData.name)
-                    }
-                ]}
+                
             />
         </div>
     );

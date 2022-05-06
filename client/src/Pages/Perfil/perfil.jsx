@@ -4,44 +4,44 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { WineLoader } from '../../components/wineLoader/wineLoader'
 
-function PerfilGoogle () {
-  let user = useSelector(state => state.loginReducer.userDetail)
-  const { nombre, usuario, email } = user || {}
-  return user ? (
-    <div className='perfilContainer'>
-      <div className='btnContainer'>
-        <Link className='editBtn' to='/profile/edit' >
-          Editar
-        </Link>
-        <Link
-          className='editBtn'
-          to='/profile/orders'
-          style={{ textAlign: 'center' }}
-        >
-          Ver mis compras
-        </Link>
-      </div>
-      <div className='dataContainer'>
-        <div>
-          <h5>Nombre: </h5>
-          <h5>Email: </h5>
-          <h5>Usuario: </h5>
-        </div>
+// function PerfilGoogle () {
+//   let user = useSelector(state => state.loginReducer.userDetail)
+//   const { nombre, usuario, email } = user || {}
+//   return user ? (
+//     <div className='perfilContainer'>
+//       <div className='btnContainer'>
+//         <Link className='editBtn' to='/profile/edit' >
+//           Editar
+//         </Link>
+//         <Link
+//           className='editBtn'
+//           to='/profile/orders'
+//           style={{ textAlign: 'center' }}
+//         >
+//           Ver mis compras
+//         </Link>
+//       </div>
+//       <div className='dataContainer'>
+//         <div>
+//           <h5>Nombre: </h5>
+//           <h5>Email: </h5>
+//           <h5>Usuario: </h5>
+//         </div>
 
-        <div className='infoPerfil'>
-          <h5> {nombre}</h5>
-          <span></span>
-          <h5>{email}</h5>
-          <span></span>
-          <h5>{usuario}</h5>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  ) : (
-    <WineLoader />
-  )
-}
+//         <div className='infoPerfil'>
+//           <h5> {nombre}</h5>
+//           <span></span>
+//           <h5>{email}</h5>
+//           <span></span>
+//           <h5>{usuario}</h5>
+//           <span></span>
+//         </div>
+//       </div>
+//     </div>
+//   ) : (
+//     <WineLoader />
+//   )
+// }
 
 function RegPerfil () {
   let user = useSelector(state => state.loginReducer.userDetail)
@@ -50,15 +50,16 @@ function RegPerfil () {
   return user ? (
     <div className='perfilContainer'>
       <div className='btnContainer'>
-        <Link to='/profile/edit'>
+        <h1>Datos de Perfil</h1>
+        {/* <Link to='/profile/edit'>
           <button className='editBtn'> Editar</button>
         </Link>
         <Link to='/profile/orders'>
           <button className='editBtn'> Ver mis compras</button>
-        </Link>
+        </Link> */}
       </div>
       <div className='dataContainer'>
-        <div>
+        {/* <div>
           <h5>Nombre: </h5>
           <h5>Email: </h5>
           <h5>Teléfono: </h5>
@@ -66,23 +67,30 @@ function RegPerfil () {
           <h5>País: </h5>
           <h5>Provincia: </h5>
           <h5>Dirección: </h5>
-        </div>
+        </div> */}
 
         <div className='infoPerfil'>
-          <h5> {nombre}</h5>
-          <span></span>
-          <h5>{email}</h5>
-          <span></span>
-          <h5>{telefono}</h5>
-          <span></span>
-          <h5>{usuario}</h5>
-          <span></span>
-          <h5>{pais}</h5>
-          <span></span>
-          <h5> {provincia}</h5>
-          <span></span>
-          <h5>{direccion}</h5>
-          <span></span>
+          <div>
+            <h3> Nombre: {nombre}</h3>
+          </div>
+          <div>
+            <h3> Email: {email} </h3>
+          </div>
+          <div>
+            <h3> Teléfono: {telefono} </h3>
+          </div>
+          <div>
+            <h3> Usuario: {usuario} </h3>
+          </div>
+          <div>
+            <h3> País: {pais} </h3>
+          </div>
+          <div>
+            <h3> Provincia: {provincia} </h3>
+          </div>
+          <div>
+            <h3> Dirección: {direccion} </h3>
+          </div>
         </div>
       </div>
     </div>
@@ -93,17 +101,27 @@ function RegPerfil () {
 
 export default function Perfil () {
   let user = useSelector(state => state.loginReducer.userDetail)
-  if (user.email.includes('gmail')) {
-    return (
-      <div>
-        <PerfilGoogle />
-      </div>
-    )
-  } else {
-    return (
-      <div>
-        <RegPerfil />
-      </div>
-    )
-  }
+  //console.log(user)
+
+  return (
+    <div>
+      <RegPerfil />
+    </div>
+  )
+  // if (user.email.includes('gmail')) {
+
+  //   return (
+  //     <div>
+  //       <PerfilGoogle />
+  //     </div>
+  //   )
+  // } else {
+  //   return (
+  //     <div>
+  //       <RegPerfil />
+  //     </div>
+  //   )
+  // }
 }
+
+

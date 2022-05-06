@@ -1,17 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\api",
-    "\\api\\src",
-    "\\api\\src\\routes",
     "\\client",
     "\\client\\src",
-    "\\client\\src\\Pages",
-    "\\client\\src\\Pages\\Dashboard",
-    "\\client\\src\\Pages\\Dashboard\\Principal",
-    "\\client\\src\\Pages\\Home",
-    "\\client\\src\\reducer"
+    "\\client\\src\\components",
+    "\\client\\src\\components\\Ordenes"
   ],
-  "SelectedNode": "\\client\\src\\actions\\carrito.js",
+  "SelectedNode": "\\client\\src\\components\\Ordenes\\verOrdenes.css",
   "PreviewInSolutionExplorer": false
 }

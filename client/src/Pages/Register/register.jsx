@@ -11,7 +11,6 @@ import { toast } from 'react-toastify'
 import { signInWithPopup } from 'firebase/auth'
 import { auth, provider } from '../../Helpers/firebase'
 import { postCart } from '../../actions/carrito'
-import NavBar from '../../components/navBar/navBar'
 
 const initialForm = {
   nombre: '',
@@ -153,7 +152,7 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
         pais: '',
         provincia: '',
         direccion: '',
-        telefono: userG.user.phoneNumber,
+        telefono: '',
         token: userG._tokenResponse.idToken
       }
       console.log(userGoogle)
@@ -212,6 +211,21 @@ function Createform ({ updateUser, register, isAuth, user, edit = false }) {
               />
               {errors.contrasena && <p>{errors.contrasena}</p>}
             </label>
+
+            <label className='label'>
+    
+              <input
+                onChange={e => handleChange(e)}
+                className='regInput'
+                type='password'
+                name='confirm_contrasena'
+                placeholder='Confirme Contraseña...'
+                value={form.confirm_contrasena}
+              />
+              {errors.confirm_contrasena && <p>{errors.confirm_contrasena}</p>}
+            </label>
+
+            
             <label className='label'>
     
               <input

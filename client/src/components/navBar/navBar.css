@@ -15,7 +15,11 @@
   justify-content: space-around;
   text-decoration: none;
   border: white solid 1px;
-  background-image: linear-gradient(to right, rgb(95, 50, 82), rgba(128, 46, 114, 0));
+  background-image: linear-gradient(
+    to right,
+    rgb(95, 50, 82),
+    rgba(128, 46, 114, 0)
+  );
   color: #523e27;
 }
 
@@ -37,4 +41,42 @@
   transition: 0.5s;
   border-bottom: #523e27 solid 1px;
   border-right: #523e27 solid 1px;
+}
+@media screen and (max-width: 600px) {
+  .navButton {
+    font-size: 14px;
+    color: black;
+    /* margin: 0;
+  padding: 0; */
+  }
+
+  .image {
+    display: none;
+  }
+
+  .navButtonHola {
+    display: none;
+  }
+  .navContainer {
+    width: 390px;
+    color: black;
+    background-color: white;
+    background-image: none;
+    border: none;
+    border-bottom: #523e27 solid 1px;
+  }
+  .navAuth {
+    width: 0;
+    height: 0;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .navContainer {
+    width: 380px;
+    color: black;
+    padding-left: 0%;
+    padding-right: 15px;
+    border-bottom: #523e27 solid 1px;
+  }
 }

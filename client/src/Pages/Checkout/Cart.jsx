@@ -4,11 +4,14 @@ import "./Cart.css";
 import { getUserDetail } from "../../actions/auth";
 //import NavBar from '../../components/navBar/navBar'
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2"
 //import { Loader } from '../../components/Loader/Loader'
 //import { updateCart, getCartDb, deleteAllCart, deleteAllCartDB } from '../../actions/carrito'
 //import Swal from 'sweetalert2'
 import CartItems from "./CartItems/CartItems";
 import AnimatedText from "react-animated-text-content";
+import { useNavigate } from "react-router-dom";
+
 
 export function calculateTotal(items) {
   return items
@@ -27,64 +30,69 @@ export default function Cart({
 }) {
  
   const user = useSelector((state) => state.loginReducer.userDetail);
-  console.log(user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+
 
   const products = cartItems.map((product) => ({
-    id: product.id,
+    productoId: product.id,
+    title: product.title,
+    price: product.price,
     amount: product.amount,
+    stock: product.stock
   }));
-  console.log(products);
-
+  console.log(products)
+    
   let order = {
-    id: user?.id,
+    usuarioId: user?.id,
     email: user?.email,
     products: products,
     total: Number(calculateTotal(cartItems)),
     date: new Date().toLocaleString(),
   };
-  console.log(order);
+  console.log(user)
 
-  /* const navigate = useNavigate();
-  const dispatch = useDispatch();
+  let stock = cartItems.map((product) => ({
+    productoId: product.id,
+    title: product.title,
+    price: product.price,
+    amount: product.amount,
 
- let items = useSelector((state) => {
-    let completeProducts = state.productsReducer.cart.products;
-    completeProducts = completeProducts.map((e) => {
-      const found = state.productsReducer.allProducts.find((el) => el.id === e.id)
-      return found ? { ...found, quantity : e.quantity } : null;
+  }));
+
+
+  const handleContinuar = () => {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Oops...",
+      text: "No puedes continuar si no hay productos en carrito!",
+    });
+  }
+
+  const handleLogin = () => {
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Oops...",
+      text: "No puedes continuar si no iniciaste sesion",
+    }).then(r => {
+      if(r.isConfirmed) {
+    navigate("/login")
+      }
     })
-     return completeProducts
-   });
 
- 
+    
+  }
 
- const total = useSelector((state)  => state.productsReducer.cart.precioTotal)
-const isAuth = useSelector((state) => state.loginReducer.isAuth);
-items = items?.filter((e) => e);
- const products = useSelector((state) => state.productsReducer.allProducts)
- const user = useSelector((state) => state.loginReducer.userDetail)
- const cartDB = useSelector((state) => state.productsReducer.carts) */
+
+  
+
   return (
     <div>
       <div div className="cartContainer">
-        {/* <AnimatedText
-          type="words" // animate words or chars
-          animation={{
-            x: "200px",
-            y: "-20px",
-            scale: 1.1,
-            ease: "ease-in-out",
-          }}
-          animationType="float"
-          interval={0.06}
-          duration={2.5}
-          tag="p"
-          className="animatedShopping"
-          includeWhiteSpaces
-          threshold={0.1}
-          rootMargin="20%"
-         
-        > */}
+        
         <div className="animatedShopping">
           Shopping Cart
           </div>
@@ -108,9 +116,11 @@ items = items?.filter((e) => e);
               <button className="btnBottom">Seguir Comprando</button>
             </Link>
             <h2>Total: &nbsp; $ {calculateTotal(cartItems)} </h2>
-            <Link to="/chekout">
-              <button className="btnBottom">Pagar</button>
-            </Link>
+              <Link to= {"/review/"+ products.productoId}>omg</Link>
+            {products.length !==0? (
+            <button className="btnBottom" onClick={user !== null?(() => navigate("/checkout")) : (() => handleLogin())  }>Continuar</button>
+            ) : <button className="btnBottom" onClick={() => handleContinuar() }>Continuar</button>}
+            
           </div>
         </div>
       </div>

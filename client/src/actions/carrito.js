@@ -93,8 +93,11 @@ export function getCarrito () {
   }
 }
 
-export function postOrder(order) {
-  return async() => {
-    await axios.post(`${BASEURL}/order`, order)
+export function postPedido(order) {
+  return async function () {
+    try {
+   await axios.post(`${BASEURL}/pedidos/:email`, order)
+  } catch (error) {
+    console.log(error)
   }
-}
+}}

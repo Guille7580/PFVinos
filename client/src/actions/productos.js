@@ -47,7 +47,7 @@ export function getNameProducts(title) {
   }
   };
 export function deleteProduct(payload) {
-  
+    
     return async function (dispatch) {
         try {
             const response = await axios.delete(`${BASEURL}/products/${payload}`);
@@ -97,4 +97,32 @@ export function updateProduct(payload) {
             console.log("desde error request", error);
         }
     }
+}
+export function getProductReview(id){
+  return async function(dispatch){
+      const productReview = await axios.get(`${BASEURL}/review/${id}`)
+      return dispatch({
+          type: 'GET_PRODUCT_REVIEW',
+          payload: productReview.data
+      })
+  }
+}
+export function postProductReview(email,id,productReviewData){
+  return async function(dispatch){
+      const productReview = await axios.post(`${BASEURL}/${id}/${email}/review`,productReviewData)
+      
+      return dispatch({
+          type: 'POST_PRODUCT_REVIEW',
+          payload: productReview.data
+      })
+  }
+}
+export function getProductReviewByEmail(email,id){
+  return async function(dispatch){
+      const productReview = await axios.get(`${BASEURL}/${id}/review/${email}`)
+      return dispatch({
+          type: 'GET_PRODUCT_REVIEW_BY_EMAIL',
+          payload: productReview.data
+      })
+  }
 }

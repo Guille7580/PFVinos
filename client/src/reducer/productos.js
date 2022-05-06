@@ -8,9 +8,6 @@ import {
   REST_ITEM,
   DELETE_CART_DB,
   UPDATE_CART,
-  ADD_ITEM,
-  DELETE_ITEM,
-  GET_CART,
   DELETE_CART
 } from '../actions/types'
 
@@ -26,8 +23,10 @@ const initialState = {
   filtered: [],
   detalles: [],
   cart: getCartLocalStorage(),
-  carts: {}
+  carts: {},
+  allProductsStock: []
 }
+
 
 export default function productsReducer (state = initialState, action) {
   const { type, payload } = action
@@ -50,44 +49,6 @@ export default function productsReducer (state = initialState, action) {
         ...state,
         cart: getCartLocalStorage()
       }
-
-    // case ADD_ITEM:
-    //   itemCart = state.cart.products.find(e => e.id === payload)
-    //   if (itemCart) {
-    //     newProducts = state.cart.products.map(item =>
-    //       item.id === payload ? { ...item, quantity: item.quantity + 1 } : item
-    //     )
-
-    //     if (localStorage.getItem('token_ecommerce')) {
-    //       newProducts?.forEach(el => putCart(el, state.carts.id))
-    //     }
-
-    //     newCart = {
-    //       products: newProducts,
-    //       precioTotal: newProducts.reduce((prev, e) => {
-    //         let prod = state.allProducts.find(el => el.id === e.id)
-
-    //         return Math.round((prev + prod.price * e.quantity) * 100) / 100
-    //       }, 0)
-    //     }
-    //   } else {
-    //     newCart = {
-    //       products: [...state.cart.products, { id: payload, quantity: 1 }],
-    //       precioTotal:
-    //         Math.round(
-    //           (state.cart.precioTotal +
-    //             state.allProducts.find(e => e.id === payload).price) *
-    //             100
-    //         ) / 100
-    //     }
-    //   }
-    //   saveCartLocalStorage(newCart)
-
-    //   return {
-    //     ...state,
-    //     cart: newCart,
-    //     flag: true
-    //   }
 
     case REST_ITEM:
       itemCart = state.cart.products.find(e => e.id === payload)
@@ -176,12 +137,13 @@ export default function productsReducer (state = initialState, action) {
         carts: payload
       }
     //Productos
-    case GET_PRODUCTS:
-      return {
-        ...state,
-        allProducts: payload,
-        filtered: payload
-      }
+      case GET_PRODUCTS:
+          return {
+
+              ...state,
+              allProducts: payload.filter(e => e.stock > 0),
+              filtered: payload
+          }
     case GET_DETAIL:
       return {
         ...state,
@@ -194,11 +156,11 @@ export default function productsReducer (state = initialState, action) {
     //   detalles : []
     // }
 
-    case GET_NAME_PRODUCTS:
-      return {
-        ...state,
-        allProducts: payload
-      }
+      case GET_NAME_PRODUCTS:
+          return {
+              ...state,
+              allProducts: payload.filter(e => e.stock > 0)
+          }
 
     case FILTER_BY_CATEGORY:
       const Todos = state.filtered

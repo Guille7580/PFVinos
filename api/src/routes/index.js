@@ -11,14 +11,18 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 const categorRoute= require('./categorias');
 const user = require('./user');
-const pedidoRouter = require("./pedido");
-const carritoRouter = require("./carrito");
+const userupdate = require('./Usuario');
 const forgotPassword = require("./forgotPassword");
 const resetPassword = require("./resetPassword");
+const mercadoPagoRoute = require('./Mercadopago');
+const pedidoRouter = require ("./pedido.routes")
+const checkout = require ("./checkOutEmail")
+
 
 
 //------------------- product -----------------------------------------
-var product = require('./product')
+var product = require('./product');
+const { route } = require('./pedido.routes');
 //userRouter.post("/register"var user = require('./user')
 
 //Product//////
@@ -27,29 +31,29 @@ router.get('/products/:id',product.getProductById)
 router.post('/products', product.postProduct)
 router.delete('/products/:id', product.deleteProduct)
 router.put('/products/:id', product.putProduct)
+router.put('/products/stock/:email', product.stockProduct)
 
 //User
 
 
 
 router.use('/user', user);
-router.use("/pedidos", pedidoRouter);
+router.use('/pedidos', pedidoRouter);
 
 //Categorias
 router.use('/categoria',categorRoute)
 
-// ------------------- Carrito -----------------------------------
-// var carro = require('./carrito')
+// ------------------- Mercado Pago-----------------------------------
 
-// router.post('/carritos', carro.carritoPost)
-// router.get('/carritos/:usuarioId', carro.carritoGet)
+router.use('/', mercadoPagoRoute);
 
 
-router.use("/carrito", carritoRouter);
+
+
 router.use('/categoria', categorRoute)
 router.post('/categoria', categorRoute)
 router.put('/categoria', categorRoute)
-router.delete('/categoria/:nombre', categorRoute)
+router.delete('/categoria/:id', categorRoute)
 
 
 router.delete('/categoria/:id',async (req,res)=>{
@@ -70,6 +74,12 @@ if(catId) {
 router.use("/password", forgotPassword);
 router.use("/resetPassword", resetPassword);
 
+//-----------------------usuario-----------------------
 
+router.use("/usuario/update", userupdate);
+
+//---------------------checkOut------------------------
+
+router.use("/checkout", checkout);
 
 module.exports = router;

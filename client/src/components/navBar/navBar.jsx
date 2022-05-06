@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './navBar.css'
 import logo from './LasMoritasLogo.png'
-import CartBtn from '../ShoppingCartButton/CartBtn'
+import CartBtn from '../../Pages/Checkout/ShoppingCartButton/CartBtn'
 import { useState, useEffect } from 'react'
 import { logout } from '../../actions/auth'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -15,17 +15,18 @@ const options = [
   { value: 'Tus Compras', label: 'Tus Compras' }
 ]
 
-const NavBarAll = () => {
+const NavBarAll = ({ cartItems }) => {
+  // console.log(cartItems)
   return (
     <>
       <Link to='/aboutUs' className='navButton'>
-        Sobre Nosotros
+        Nosotros
       </Link>
       <Link to='/contact' className='navButton'>
-        Contacta
+        Contacto
       </Link>
       <Link to='/carrito' className='navButton'>
-        <CartBtn />
+        <CartBtn cartItems={cartItems} />
       </Link>
     </>
   )
@@ -67,11 +68,10 @@ const NavBarAdmin = () => {
       {admin ? (
         <>
           <NavLink to='/dashboard/admin'>Dashboard</NavLink>
-          <NavLink to='/dashboard/sales'>Sales</NavLink>
-          <NavLink to='/dashboard/offers'>Ofertas</NavLink>
+          
         </>
       ) : (
-        <NavBarAuthenticated />
+        <NavBarAuthenticated className='navAuth' />
       )}
       {admin ? (
         <button className='btn btn-success' onClick={handleUsuarioNormal}>
@@ -86,18 +86,25 @@ const NavBarAdmin = () => {
   )
 }
 
-const NavBarAuthenticated = () => {
-  // let navigate = useNavigate()
-  //   const handleClickPerfil=(e)=>{
-  //     e.preventDefault
-  //     navigate("/perfil")
-  //   }
+const NavBarAuthenticated = ({ cartItems }) => {
+  let navigate = useNavigate()
+  const handleClickPerfil = e => {
+    if (e.value === 'Perfil') {
+      navigate('/perfil')
+    }
+    if (e.value === 'Editar') {
+      navigate('/perfil/edit')
+    }
+    if (e.value === 'Tus Compras') {
+      navigate('./perfil/ordenes')
+    }
+  }
 
   return (
     <>
-      <NavBarAll />
+      <NavBarAll cartItems={cartItems}/>
 
-      <Select options={options} />
+      <Select options={options} onChange={handleClickPerfil} />
       {/* <Link to='/perfil' className='navButton'>
        Perfil
       </Link> */}
@@ -105,7 +112,7 @@ const NavBarAuthenticated = () => {
   )
 }
 
-function NavBar () {
+function NavBar ({ cartItems }) {
   const [flag, setFlag] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -116,6 +123,7 @@ function NavBar () {
   const handleLogout = () => {
     setFlag(true)
     dispatch(logout())
+    localStorage.clear();
     navigate('/home')
   }
 
@@ -132,8 +140,12 @@ function NavBar () {
 
       {isAuth && user ? (
         <>
-          {user.rol === '2' ? <NavBarAdmin /> : <NavBarAuthenticated />}
-          <div className='navButton'> Hola, {user.usuario} </div>
+          {user.rol === '2' ? (
+            <NavBarAdmin />
+          ) : (
+            <NavBarAuthenticated className='navAuth' cartItems={cartItems} />
+          )}
+          <div className='navButtonHola'> Hola, {user.usuario} </div>
           <Link to='/' className='navButton' onClick={handleLogout}>
             Salir
           </Link>
@@ -141,7 +153,7 @@ function NavBar () {
       ) : (
         <>
           <NavBarLogin />
-          <NavBarAll />
+          <NavBarAll cartItems={cartItems} />
         </>
       )}
     </div>

@@ -3,11 +3,14 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   filterByCategory,
+  getShowActivity,
   order_ByName,
   order_ByPrice
 } from '../../actions/categorias'
 import { getDetail, resetDetail ,getAllProducts } from '../../actions/productos'
 import Swal from 'sweetalert2'
+
+
 
 import Cards from '../../components/cards/cards'
 import Paginado from '../../components/Paginado/Paginado'
@@ -69,9 +72,12 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
   }, [allProduct])
 
   useEffect(() => {
-    dispatch(resetDetail())
+      dispatch(resetDetail())
+      dispatch(getShowActivity())
   }, [])
 
+    const categories = useSelector(state => state.catReducer.allCategory)
+    console.log(categories)
 
   return (
     <div>
@@ -113,10 +119,13 @@ function Home ({handleAddToCart, setCartItems, cartItems}) {
         </select>
         <label className='labelHome'>  </label>
         <select onChange={handleFilterCat}>
-          <option value='All'>Categoría</option>
-          <option value='Blanco'>Blanco</option>
-          <option value='Tinto'>Tinto</option>
-          <option value='Rosado'>Rosado</option>
+                  <option value='All'>Categoría</option>
+
+                  {categories.map(el => <option key={el.id}value={el.nombre}>{el.nombre}</option>)}
+
+          {/*<option value='Blanco'>Blanco</option>*/}
+          {/*<option value='Tinto'>Tinto</option>*/}
+          {/*<option value='Rosado'>Rosado</option>*/}
         </select>
         <SearchBar className= 'searchHome' />
         <button className='searchBtn' onClick={e=>{handleClick(e)}}>Recargar Vinos</button>

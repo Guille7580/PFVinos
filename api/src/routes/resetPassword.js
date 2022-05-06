@@ -3,6 +3,6 @@ const { ResetPassword } = require("../controllers/resetPassword");
 const resetPasswordRouter = Router();
 const authentication = require("../middlewares/authentication");
 
-resetPasswordRouter.put("/:id", authentication, ResetPassword);
+resetPasswordRouter.post("/",ResetPassword);
 
 module.exports = resetPasswordRouter;

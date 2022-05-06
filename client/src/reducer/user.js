@@ -1,11 +1,13 @@
 import {
-    GET_USER_DETAIL,
+    GET_USER_D,
     GET_ALL_USERS,
     POST_USER,
     GET_BY_EMAIL,
     DELETE_USER,
     CHANGE_CATEGORY,
-    GET_CARRITO
+    GET_CARRITO,
+    RECOVERY_PASSWORD,
+    CHECKOUT_EMAIL
 } from '../actions/types.js'
 
 
@@ -32,7 +34,7 @@ export default function users (state = initialState, action) {
         ...state
       }
 
-    case GET_USER_DETAIL:
+    case GET_USER_D:
       return { ...state, getUser: action.payload }
 
     case GET_ALL_USERS:
@@ -49,6 +51,15 @@ export default function users (state = initialState, action) {
           return {
               ...state
           }
+      case RECOVERY_PASSWORD:
+          return {
+              ...state
+          }
+          case CHECKOUT_EMAIL:
+            return {
+                ...state
+            }
+
     default:
       return state
   }
