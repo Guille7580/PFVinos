@@ -1,11 +1,12 @@
 .detailContainer {
+  padding-top: 50px;
   color: #e8cfc1;
   background-image: linear-gradient(
     to bottom right,
     rgb(70, 69, 69),
     rgb(184, 177, 160)
   );
-  height: 600px;
+  height: 650px;
 }
 .btnDetails {
   display: flex;
@@ -60,14 +61,13 @@
 }
 
 @media screen and (max-width: 600px) {
-  .detailImage{
+  .detailImage {
     display: none;
   }
-  .info{
+  .info {
     flex-direction: column;
-    
   }
-  .detailContainer{
+  .detailContainer {
     height: 850px;
     width: 400px;
   }

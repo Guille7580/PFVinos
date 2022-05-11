@@ -1,85 +1,59 @@
 .imagenimgOrden {
   background-color: darkgray;
   position: absolute;
-  width: 1461px;
-  height: 705px;
-
+  max-width:min-content;
+  overflow: hidden;
+  height: 900px;
+  background-repeat: repeat-y;
 }
-/* .contenidoPrecio{
-    margin-top: 200px;
-} */
+
 .productsContainer {
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  word-wrap: wrap;
+  margin: 50px;
+  padding: 20px;
   overflow: hidden;
   position: relative;
-  background-color: rgb(155, 150, 150) ;
-  /* display: flex;
-  justify-content: space-between; */
-}
-.products {
-  flex-direction: column;
+  background-color: rgb(155, 150, 150);
+  font-size: 20px;
   border-bottom: black solid 1px;
+  border: black solid 1px;
+  color: black;
+opacity:.95;
 }
 
-.infoOrden {
-  display: flex;
-  justify-items: space-around;
+
+.pedidos {
+  border-top: black solid 1px;
+  align-items: center;
 }
-.infovertorden {
-  font-size: 24px;
-  color: 523e27;
-  margin-top: 20 0px;
-  line-height: 1.5cm;
-}
-/* .labelPerdido{
-    font-size: 24px;
-    color: #523e27;
-    margin-top: 230px;
-    line-height: 1.5cm;
-} */
-.infoverorden {
-  color: 523e27;
-  position: relative;
-  line-height: 1.5cm;
-  justify-content: space-between;
-  /* text-align: center; */
-}
+
+
 
 .containerOrden {
   overflow: hidden;
   max-height: 100%;
 }
-.encabezados {
+
+.titleOrder {
   position: relative;
-  font-size: 26px;
-  color: #523e27;
-  text-align: left;
-
-  border-radius: 5px;
-  opacity: 0.955;
-
-  margin-top: 60px;
-  height: fit-content;
-  padding: 10px;
+  font-size: 30px;
+  color: black;
   
-}
-.title{
-    position: relative;
-    font-size: 30px;
-    color: #523e27;
-    text-align: center;
-    margin-left: 400px;
+  margin-left: 40%;
+  margin-top: 10px;
+  background-color: darkgray;
+  opacity:.95;
+  padding: 5px;
 }
 
-.encabezado {
-  width: fit-content;
-}
 
 .btnOrders {
   position: relative;
   color: #523e27;
   font-size: 16px;
-  margin-left: 900px;
+  margin-left: 650px;
   margin-top: 20px;
   cursor: pointer;
   text-decoration: none;
