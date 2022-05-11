@@ -11,42 +11,48 @@ import Review from "./Review";
 export default function Detail ({ handleAddToCart, handleAddToCartButton, cartItems, setCartItems }) {
   const dispatch = useDispatch()
   const { id } = useParams()
+  const { productId } = useParams()
 const [cart , setCart ] = useState()
 const [promedioReview, setPromedioReview] = useState(0);
 
 const myProducts = useSelector(state => state.productosReducer.detalles)
+const productReview = useSelector(state => state.productosReducer.productReview)
 
   
 useEffect(() => {
     dispatch(getDetail(id))
   }, [dispatch, id])
 
+  useEffect(() => {
+    dispatch(getProductReview(productId))
+  }, [dispatch, productId])
+
   
 
-//   useEffect(() =>{
+  useEffect(() =>{
     
-//     if (productReview.length){
-//         let sumatotal = 0;
-//         let cantidad = 0;
-//         productReview?.map((item) => {
-//             sumatotal = sumatotal + item.rate;
-//             cantidad = cantidad + 1;
-//             return <> </>;
-//         });
+    if (productReview.length){
+        let sumatotal = 0;
+        let cantidad = 0;
+        productReview?.map((item) => {
+            sumatotal = sumatotal + item.rate;
+            cantidad = cantidad + 1;
+            return <> </>;
+        });
 
-//         setPromedioReview(sumatotal / cantidad);
-//         let redondeo = Math.ceil(sumatotal / cantidad);
-//         for (let i = 1; i <= redondeo; i++) {
-//             const star = document.getElementById(`promedio${i}`);
-//             star.style.color = "#3483fa";
-//         }
+        setPromedioReview(sumatotal / cantidad);
+        let redondeo = Math.ceil(sumatotal / cantidad);
+        for (let i = 1; i <= redondeo; i++) {
+            const star = document.getElementById(`promedio${i}`);
+            star.style.color = "#3483fa";
+        }
     
-//         for (let i = 1; i <= redondeo; i++) {
-//         const star = document.getElementById(`${myProducts.name}${i}`);
-//         star.style.color = "orange";
-//         }
-//     }
-// },[productReview])
+        for (let i = 1; i <= redondeo; i++) {
+        const star = document.getElementById(`${myProducts.name}${i}`);
+        star.style.color = "orange";
+        }
+    }
+},[productReview])
 
   function handleReviewShow(name) {
     if (name === "Todas") {
@@ -114,8 +120,8 @@ useEffect(() => {
           <button className='detailButtons' >Sigue Comprando</button>
         </Link>
 
-        {/* <Link to="/carrito">  */}
-        {/* {productReview.length ? (
+        <Link to="/carrito"> 
+        {productReview.length ? (
                             <div className="rating-product-detail">
                                 <label id={`${myProducts.title}${1}`}>
                                     ★
@@ -163,7 +169,7 @@ useEffect(() => {
                             >
                                 Opiniones
                             </button>
-                            {/* <button
+                           <button
                                 className="button-product-detail"
                                 id="Positivas"
                                 onClick={(e) => handleReviewShow("Positivas")}
@@ -176,8 +182,8 @@ useEffect(() => {
                                 onClick={(e) => handleReviewShow("Negativas")}
                             >
                                 Negativas
-                            </button> */}
-                        {/* </div>
+                            </button> 
+                        </div>
                         <div>
                             {productReview?.map((elem, i) => {
                                 return (
@@ -189,14 +195,14 @@ useEffect(() => {
                             })}
                         </div>
                         </> ):<h1>No hay opiniones del producto</h1>}
-                    </div> */} 
+                    </div> 
         <button
           onClick={() => handleAddToCartButton(myProducts) }
           className='detailButtons'
         >
           Agrega a Carrito
         </button>
-        {/* </Link>  */}
+        </Link>  
       </div>
     </div>
   )

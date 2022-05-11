@@ -98,10 +98,10 @@ export function updateProduct(payload) {
         }
     }
 }
-export function getProductReview(payload){
+export function getProductReview(id){
   return async function(dispatch){
-    console.log("action ", payload)
-      const productReview = await axios.get(`${BASEURL}/review/${payload}`)
+    console.log("action ", id)
+      const productReview = await axios.get(`${BASEURL}/review/` + id)
       return dispatch({
           type: GET_PRODUCT_REVIEW,
           payload: productReview.data
@@ -111,7 +111,7 @@ export function getProductReview(payload){
 export function postProductReview(email,id,productReviewData){
   return async function(dispatch){
       const productReview = await axios.post(`${BASEURL}/${id}/${email}/review`,productReviewData)
-      
+      console.log()
       return dispatch({
           type: POST_PRODUCT_REVIEW,
           payload: productReview.data

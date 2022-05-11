@@ -2,10 +2,10 @@ const { Router } = require('express');
 const {Review} = require('../db')
 const router = Router();
 
-router.get('/review/:productId', async (req, res) => {
-	const {productId} = req.params
+router.get('/review/:ProductId', async (req, res) => {
+	const {id} = req.params
 	try{
-		const productReview = await Review.findAll({where: {ProductId: productId}, attributes: {exclude: ["id"]}})
+		const productReview = await Review.findAll({where: {ProductId: id}, attributes: {exclude: ["id"]}})
 		if(productReview.length > 0){
 			res.send(productReview)
 		}else{
@@ -16,10 +16,10 @@ router.get('/review/:productId', async (req, res) => {
 		res.status(500).send(`${e}`)
 	}
 })
-router.get('/:productId/review/:email/', async (req, res) => {
-	const {productId, email} = req.params
+router.get('/:id/review/:email/', async (req, res) => {
+	const {id, email} = req.params
 	try{
-		const [created, productReview] = await Review.findOne({where: {ProductId: productId, UserEmail: email}, attributes: {exclude: ["id"]}})
+		const [created, productReview] = await Review.findOne({where: {ProductId: id, email: email}, attributes: {exclude: ["id"]}})
 		if(created){
 			res.send(productReview)
 		}else{
@@ -33,17 +33,17 @@ router.get('/:productId/review/:email/', async (req, res) => {
 
 
 
-router.post('/:productId/:email/review', async (req, res) =>{
+router.post('/:id/:email/review', async (req, res) =>{
 		var { title, rate, content } = req.body
-		var { productId, email } = req.params
+		var { id, email } = req.params
 		try{
 			const [review, created] = await Review.findOrCreate({
 				where: {
 					title,
 					rate,
 					content,
-					ProductId: productId,
-					UserEmail: email,
+					ProductId: id,
+					email: email,
 				},
 			})
 			if(!created){
@@ -61,13 +61,13 @@ router.post('/:productId/:email/review', async (req, res) =>{
 
 router.put('/:productId/review/:idReview/:email', async (req, res) =>{
 		var { title, rate, content } = req.body
-		var { productId, idReview, email } = req.params
+		var { id, idReview, email } = req.params
 		try{
 			const review = await Review.findOne({
 				where: {
 					id: idReview,
-					ProductId: productId,
-					UserEmail: email,
+					ProductId: id,
+					email: email,
 				},
 			})
 			if(review){
@@ -89,12 +89,12 @@ router.put('/:productId/review/:idReview/:email', async (req, res) =>{
 
 
 router.delete('/:idReview/product/:productId', async (req, res) =>{
-		var { idReview, productId } = req.params
+		var { idReview, id } = req.params
 		try{
 			const review = await Review.findOne({
 				where: {
 					id: idReview,
-					ProductId: productId,
+					ProductId: id,
 				},
 			})
 			if(review){
