@@ -13,7 +13,6 @@ export default function VerOrdenes () {
   const pedidos = useSelector(state => state.pedidosReducer.userPedidos)
 
   console.log(JSON.stringify(pedidos) + 'Acaaaaaaaaaaaaaaaaaaa')
-
   useEffect(() => {
     dispatch(getPedidosByUser(user.email))
   }, [user])
@@ -21,54 +20,61 @@ export default function VerOrdenes () {
 
   const products = pedidos
     .map(el => el.products.map(ell => JSON.parse(ell)))
-    .flat(2)
+    .flat(1)
   console.log(
     JSON.stringify(products.map(e => e.title)) + 'JEEEEEENENNNNNNNYYYYYYY'
   )
-  const orders =
-    products.map(e => e.title) &&
-    products.map(e => e.quantity) &&
-    products.map(e => e.price)
-  //const {title, quantity, price } = products
-  //   const amount = pedidos
-  //     .map(el => el.products.map(ell => JSON.parse(ell)))
-  //     .flat()
-  //     .map(elll => elll.quantity)
-  //   const precio = pedidos.map(ep=> ep.total)
-  //     // .map(el => el.products.map(ell => JSON.stringify(ell)))
 
-  //   console.log(precio + 'GGGGGGGGGGGGGGGGGG')
-  //   const array = pedidos
-  //     .map(el => el.products.map(ell => JSON.parse(ell)))
-  //     .flat()
-  //     .map(elll => elll.title)
-
-  //   //pedidos.data?.map(el => el.products.map(ell => JSON.parse(ell))).flat().map(elll => elll.title) 🌿
-  //   const data = new Set(array)
-  //   const pepe = [...data]
-  //   console.log(pepe)
-  //   const {title, quantity, price} =  products.flat()
-  //   .map(elll => elll.title)
+  const orders = pedidos.map(e => e.total)
+  console.log(orders + ' aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 
   return (
     <div className='containerOrden'>
-        <img className = 'imagenimgOrden' src={vino} alt='vino'/>
-      <span className=' title'>Ordenes Completados</span>
-      <div className='encabezados'>
-        <div className='productsContainer'>
-          {products.map(e => (
-            <div className='products'>
-                
-              <div>Nombre:   {e.title}</div>
+      <img className='imagenimgOrden' src={vino} alt='vino' />
 
-              <div>Cuantidad: {e.quantity}</div>
-
-              <div>Precio: {e.price}</div>
-              <div>{e.image}</div>
+        <span className=' titleOrder'>Ordenes Completados</span>
+      <div className='productsContainer'>
+        {pedidos.map(e => (
+          <div className='pedidos'>
+            <div>
+              Nombre:{' '}
+              {e.products
+                .map(ell => JSON.parse(ell))
+                .flat(2)
+                .map(a => a.title)+",  "}
+               
             </div>
-          ))}
-   
-        </div>
+            <div>
+              Cantidad:{' '}
+              {e.products
+                .map(ell => JSON.parse(ell))
+                .flat(0)
+                .map(a => a.quantity)
+                .reduce((a, b) => a + b)}
+            </div>
+
+            <div>Status: {e.status}</div>
+            <div>Fecha: {e.date}</div>
+            {/* <div>
+              Precio Unitario: $
+              {e.products
+                .map(ell => JSON.parse(ell))
+                .flat(0)
+                .map(a => a.price).reduce((a, b) => a + b)}
+            </div> */}
+            <div>Total: ${e.total}</div>
+            <div>
+              <Link
+                to={`/detalles/${e.products
+                  .map(ell => JSON.parse(ell))
+                  .flat(0)
+                  .map(a => a.productoId)}`}
+              >
+                Comprar de Nuevo
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
       <Link to='/'>
         <button className='btnOrders'>Home</button>

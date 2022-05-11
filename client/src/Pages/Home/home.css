@@ -1,5 +1,5 @@
 .imageHome {
-  height: 540px;
+  height: 650px;
   width: 100%;
   border-bottom: white solid 1px;
 }
@@ -19,7 +19,6 @@
   height: 800px;
   width: 100%;
   color: white;
- 
 }
 
 .pinkBar {
@@ -50,38 +49,35 @@ select {
   color: #e8cfc1;
 }
 
-
-.numberPag{
+.numberPag {
   padding: 20px;
 }
 
 @media screen and (max-width: 600px) {
-  .imageHome{
-  display: none;
-  background-color: #e8cfc1;
-   
+  .imageHome {
+    display: none;
+    background-color: #e8cfc1;
   }
-  .pinkBar{
+  .pinkBar {
     background-color: #523e27;
     height: 50px;
   }
 
-  .animatedParagraph{
+  .animatedParagraph {
     top: 5%;
     left: 40%;
     font-size: 24px;
-    color: #e8cfc1
+    color: #e8cfc1;
   }
 
-  .filters{
+  .filters {
     flex-direction: column;
     margin-top: 100px;
     margin-bottom: 100px;
     padding: 10px;
   }
-.labelHome{
-  height: 60px;
-  margin: 10px;
-}
-
+  .labelHome {
+    height: 60px;
+    margin: 10px;
+  }
 }

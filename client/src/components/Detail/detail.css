@@ -1,11 +1,12 @@
 .detailContainer {
+  padding-top: 50px;
   color: #e8cfc1;
   background-image: linear-gradient(
     to bottom right,
     rgb(70, 69, 69),
     rgb(184, 177, 160)
   );
-  height: 600px;
+  height: 650px;
 }
 .btnDetails {
   display: flex;
@@ -68,15 +69,15 @@
   margin-bottom: 2em;
   border-bottom: #EBEBEB 2px solid;
 
-}
-.container-review-product-detail{
-  text-align: Left;
-  margin-left: 3rem;
-}
-.review-product-detail{
-  width: 75%;
-  padding-bottom: 2em;
-  margin-bottom: 2em;
-  border-bottom: #EBEBEB 2px solid;
-
+@media screen and (max-width: 600px) {
+  .detailImage {
+    display: none;
+  }
+  .info {
+    flex-direction: column;
+  }
+  .detailContainer {
+    height: 850px;
+    width: 400px;
+  }
 }
