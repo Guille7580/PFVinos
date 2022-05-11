@@ -136,6 +136,7 @@ function Modall() {
                         color: '#fff',
                         borderRadius: '2px'
                     },
+                    pageSize: 10,
                     draggable: true,
                     searchAutoFocus: true,
                     search: true,

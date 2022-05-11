@@ -22,18 +22,18 @@ const CartItems = ({
       </div>
       <div className='btnMasMenos'>
       <button
-          className='btnItems1'
+          className='btnItems'
           onClick={() => handleRemoveFromCart(product.id)}
         >
           -
         </button>
         <button
-className='btnItems2'
+className='btnItems'
           onClick={() => handleDeleteFromCart(product.id)}
         >
           Borrar
           </button>
-        <button className='btnItems3' onClick={() => handleAddToCart(product) }>
+        <button className='btnItems' onClick={() => handleAddToCart(product) }>
           +
           
         </button>

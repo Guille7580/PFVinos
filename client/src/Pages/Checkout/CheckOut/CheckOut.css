@@ -52,6 +52,7 @@
 @media screen and (max-width: 600px) {
   .CKOContainer {
     flex-direction: column;
+    margin-bottom: 20px;
   }
   .infoUsuario {
     text-align: center;
