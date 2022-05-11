@@ -1,7 +1,7 @@
 import axios from "axios"; 
 import Swal from "sweetalert2"
 import { BASEURL } from "../assets/URLS";
-import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL, DELETE_PRODUCT, POST_PRODUCT, UPDATE_PRODUCT } from "./types";
+import { GET_PRODUCTS, GET_DETAIL, GET_NAME_PRODUCTS, RESET_DETAIL, DELETE_PRODUCT, POST_PRODUCT, UPDATE_PRODUCT, GET_PRODUCT_REVIEW, POST_PRODUCT_REVIEW, GET_PRODUCT_REVIEW_BY_EMAIL } from "./types";
 
 export const getAllProducts = () => async (dispatch) => {
   try {
@@ -98,11 +98,12 @@ export function updateProduct(payload) {
         }
     }
 }
-export function getProductReview(id){
+export function getProductReview(payload){
   return async function(dispatch){
-      const productReview = await axios.get(`${BASEURL}/review/${id}`)
+    console.log("action ", payload)
+      const productReview = await axios.get(`${BASEURL}/review/${payload}`)
       return dispatch({
-          type: 'GET_PRODUCT_REVIEW',
+          type: GET_PRODUCT_REVIEW,
           payload: productReview.data
       })
   }
@@ -112,7 +113,7 @@ export function postProductReview(email,id,productReviewData){
       const productReview = await axios.post(`${BASEURL}/${id}/${email}/review`,productReviewData)
       
       return dispatch({
-          type: 'POST_PRODUCT_REVIEW',
+          type: POST_PRODUCT_REVIEW,
           payload: productReview.data
       })
   }
@@ -121,7 +122,7 @@ export function getProductReviewByEmail(email,id){
   return async function(dispatch){
       const productReview = await axios.get(`${BASEURL}/${id}/review/${email}`)
       return dispatch({
-          type: 'GET_PRODUCT_REVIEW_BY_EMAIL',
+          type: GET_PRODUCT_REVIEW_BY_EMAIL,
           payload: productReview.data
       })
   }

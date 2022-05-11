@@ -38,7 +38,7 @@ async function emailCheckOut  (req, res, next)  {
                  from: `${EMAIL_ADDRESS}`,
                  to: `${user.email}`,
                  subject: "Compra Viñedo Las moritas",
-                 text: `Muchas gracias por tu compra. JSON.stringify(info)Tu pedido será enviado lo antes posible.`,
+                 text: `Muchas gracias por tu compra. Tu pedido será enviado lo antes posible.`,
                };
           
         transporter.sendMail(mailOptions, (err, response) => {

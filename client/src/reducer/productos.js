@@ -8,7 +8,9 @@ import {
   REST_ITEM,
   DELETE_CART_DB,
   UPDATE_CART,
-  DELETE_CART
+  DELETE_CART,
+  GET_PRODUCT_REVIEW,
+  GET_PRODUCT_REVIEW_BY_EMAIL
 } from '../actions/types'
 
 import {
@@ -24,7 +26,9 @@ const initialState = {
   detalles: [],
   cart: getCartLocalStorage(),
   carts: {},
-  allProductsStock: []
+  allProductsStock: [],
+  productReviewByEmail:false,
+  productReview:[],
 }
 
 
@@ -150,12 +154,6 @@ export default function productsReducer (state = initialState, action) {
         detalles: payload
       }
 
-    // case RESET_DETAIL :
-    // return {
-    //   ...state,
-    //   detalles : []
-    // }
-
       case GET_NAME_PRODUCTS:
           return {
               ...state,
@@ -220,6 +218,29 @@ export default function productsReducer (state = initialState, action) {
         ...state,
         allProducts: sortedpri
       }
+      case GET_PRODUCT_REVIEW:
+            if(action.payload==='El producto no tiene reviews'){
+                return{
+                    ...state,
+                    productReview:[]
+                }
+            }
+            return{
+                ...state,
+                productReview:action.payload
+            }
+        case GET_PRODUCT_REVIEW_BY_EMAIL:
+            if(action.payload==='El usuario no ha hecho review de este producto'){
+                return{
+                    ...state,
+                    productReviewByEmail:false
+                }
+            } else{
+                return{
+                    ...state,
+                    productReviewByEmail:true
+                }
+            }
     default:
       return { ...state }
   }

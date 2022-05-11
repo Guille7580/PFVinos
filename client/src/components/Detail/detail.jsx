@@ -5,22 +5,80 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getDetail } from '../../actions/productos'
 import './detail.css'
+import {getProductReview} from '../../actions/productos'
+import Review from "./Review";
 
 export default function Detail ({ handleAddToCart, handleAddToCartButton, cartItems, setCartItems }) {
   const dispatch = useDispatch()
   const { id } = useParams()
 const [cart , setCart ] = useState()
-  useEffect(() => {
-    dispatch(getDetail(id))
-  }, [dispatch])
+const [promedioReview, setPromedioReview] = useState(0);
 
+const myProducts = useSelector(state => state.productosReducer.detalles)
+
+  
+useEffect(() => {
+    dispatch(getDetail(id))
+  }, [dispatch, id])
+
+  
+
+//   useEffect(() =>{
+    
+//     if (productReview.length){
+//         let sumatotal = 0;
+//         let cantidad = 0;
+//         productReview?.map((item) => {
+//             sumatotal = sumatotal + item.rate;
+//             cantidad = cantidad + 1;
+//             return <> </>;
+//         });
+
+//         setPromedioReview(sumatotal / cantidad);
+//         let redondeo = Math.ceil(sumatotal / cantidad);
+//         for (let i = 1; i <= redondeo; i++) {
+//             const star = document.getElementById(`promedio${i}`);
+//             star.style.color = "#3483fa";
+//         }
+    
+//         for (let i = 1; i <= redondeo; i++) {
+//         const star = document.getElementById(`${myProducts.name}${i}`);
+//         star.style.color = "orange";
+//         }
+//     }
+// },[productReview])
+
+  function handleReviewShow(name) {
+    if (name === "Todas") {
+        document.getElementById("Todas").className =
+            "button-active-product-detail";
+        document.getElementById("Positivas").className =
+            "button-product-detail";
+        document.getElementById("Negativas").className =
+            "button-product-detail";
+    } else if (name === "Positivas") {
+        document.getElementById("Todas").className =
+            "button-product-detail";
+        document.getElementById("Positivas").className =
+            "button-active-product-detail";
+        document.getElementById("Negativas").className =
+            "button-product-detail";
+    } else if (name === "Negativas") {
+        document.getElementById("Todas").className =
+            "button-product-detail";
+        document.getElementById("Positivas").className =
+            "button-product-detail";
+        document.getElementById("Negativas").className =
+            "button-active-product-detail";
+    }
+}
   function changeNumber(e){
     const item = e.target.value;
     console.log(item)
     setCart([...cart, item])
   }
 
-  const myProducts = useSelector(state => state.productosReducer.detalles)
+  
   console.log(myProducts)
   console.log(cartItems)
   return (
@@ -57,6 +115,81 @@ const [cart , setCart ] = useState()
         </Link>
 
         {/* <Link to="/carrito">  */}
+        {/* {productReview.length ? (
+                            <div className="rating-product-detail">
+                                <label id={`${myProducts.title}${1}`}>
+                                    ★
+                                </label>
+                                <label id={`${myProducts.title}${2}`}>
+                                    ★
+                                </label>
+                                <label id={`${myProducts.title}${3}`}>
+                                    ★
+                                </label>
+                                <label id={`${myProducts.title}${4}`}>
+                                    ★
+                                </label>
+                                <label id={`${myProducts.title}${5}`}>
+                                    ★
+                                </label>
+                            </div>
+                            ):null}
+                             <div className="review-product-detail">
+                    {productReview.length ? (<>
+                        <div className="container-review-product-detail">
+                            <h1>Opiniones sobre {myProducts.title}</h1>
+                            <p style={{fontSize:"60px",marginBottom:"0"}}> {promedioReview.toFixed(1)} </p>
+                            <div
+                                className="rating-product-detail"
+                                style={{ fontSize: "48px", marginLeft: "0",marginTop:"-2rem" }}
+                            >
+                                <label id={`promedio${1}`}>★</label>
+                                <label id={`promedio${2}`}>★</label>
+                                <label id={`promedio${3}`}>★</label>
+                                <label id={`promedio${4}`}>★</label>
+                                <label id={`promedio${5}`}>★</label>
+                            </div>
+                            { productReview.length>1 ?
+                            <h6>Promedio entre {productReview.length} opiniones</h6>:
+                            <h6>Hay una sola opinion</h6>
+                            }
+                        </div>
+
+                        <div className="div-buttons-container">
+                            <button
+                                className="button-active-product-detail"
+                                id="Todas"
+                                onClick={(e) => handleReviewShow("Todas")}
+                            >
+                                Opiniones
+                            </button>
+                            {/* <button
+                                className="button-product-detail"
+                                id="Positivas"
+                                onClick={(e) => handleReviewShow("Positivas")}
+                            >
+                                Positivas
+                            </button>
+                            <button
+                                className="button-product-detail"
+                                id="Negativas"
+                                onClick={(e) => handleReviewShow("Negativas")}
+                            >
+                                Negativas
+                            </button> */}
+                        {/* </div>
+                        <div>
+                            {productReview?.map((elem, i) => {
+                                return (
+                                    <Review
+                                        key={elem.description}
+                                        review={elem}
+                                    />
+                                );
+                            })}
+                        </div>
+                        </> ):<h1>No hay opiniones del producto</h1>}
+                    </div> */} 
         <button
           onClick={() => handleAddToCartButton(myProducts) }
           className='detailButtons'

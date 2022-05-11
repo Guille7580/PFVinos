@@ -58,3 +58,25 @@
   height: 300px;
   border-radius: 5px;
 }
+.container-review-product-detail{
+  text-align: Left;
+  margin-left: 3rem;
+}
+.review-product-detail{
+  width: 75%;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  border-bottom: #EBEBEB 2px solid;
+
+}
+.container-review-product-detail{
+  text-align: Left;
+  margin-left: 3rem;
+}
+.review-product-detail{
+  width: 75%;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+  border-bottom: #EBEBEB 2px solid;
+
+}

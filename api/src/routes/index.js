@@ -17,8 +17,12 @@ const resetPassword = require("./resetPassword");
 const mercadoPagoRoute = require('./Mercadopago');
 const pedidoRouter = require ("./pedido.routes")
 const checkout = require ("./checkOutEmail")
+const review = require ('./Review')
 
 
+router.get('/review/:productId', review)
+router.get('/:productId/review/:email/', review)
+router.post('/:productId/:email/review', review)
 
 //------------------- product -----------------------------------------
 var product = require('./product');
