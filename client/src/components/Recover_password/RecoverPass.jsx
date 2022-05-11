@@ -1,17 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
+import {useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import styles from './RecoverPassword.module.css'
 import { ToastContainer } from 'react-toastify'
 import { WarningAlert, SuccessAlert, ErrorAlert } from '../../assets/alerts'
 import { BASEURL } from '../../assets/URLS'
+import {getAllUser} from '../../actions/user'
 
 export const RecoverPass = () => {
   function validateEmail (value) {
     let validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
     return validRegex.test(value)
   }
-
+  const dispatch = useDispatch()
   const [email, setEmail] = useState('')
+  const alluser = useSelector(state => state.users.allUser)
+
+  useEffect(() => {
+    dispatch (getAllUser())
+  }, [dispatch])
 
   const handleChange = e => {
     const { value } = e.target
@@ -20,9 +27,16 @@ export const RecoverPass = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-
-    if (!email || !validateEmail(email))
-      return WarningAlert('Complete su Correo')
+    
+    if (!email || !validateEmail(email)){
+      return WarningAlert('Complete su Correo')}
+      
+    const filteruser= alluser.filter(elem => elem.email === email)
+ 
+    if (filteruser[0] === undefined) {
+      setEmail('')
+      return WarningAlert('Su Correo no es valido , ingrese uno valido')}
+    
     try {
       await axios.post(`${BASEURL}/password/${email}`)
       setEmail('')
