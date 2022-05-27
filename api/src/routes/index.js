@@ -53,11 +53,12 @@ router.use('/', mercadoPagoRoute);
 router.use('/categoria', categorRoute)
 router.post('/categoria', categorRoute)
 router.put('/categoria', categorRoute)
-router.delete('/categoria/:id', categorRoute)
+// router.delete('/categoria/:id', categorRoute)
 
 
 router.delete('/categoria/:id',async (req,res)=>{
     const {id} = req.params;
+    console.log(id)
     try{
 const catId = await Categoria.findByPk(id)
 if(catId) {
